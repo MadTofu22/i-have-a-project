@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 class ContractRequests extends Component {
     
@@ -16,4 +17,4 @@ class ContractRequests extends Component {
     }
 }
 
-export default withRouter(connect()(ContractRequests));
+export default withRouter(connect(mapStoreToProps)(ContractRequests));

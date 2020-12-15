@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 class FindDesigners extends Component {
     
@@ -16,4 +17,4 @@ class FindDesigners extends Component {
     }
 }
 
-export default withRouter(connect()(FindDesigners));
+export default withRouter(connect(mapStoreToProps)(FindDesigners));
