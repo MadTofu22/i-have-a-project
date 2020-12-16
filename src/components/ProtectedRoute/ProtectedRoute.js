@@ -1,8 +1,15 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+=======
+import {Route} from 'react-router-dom'
+import {connect} from 'react-redux';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -20,14 +27,20 @@ const ProtectedRoute = (props) => {
   const {
     // Alias prop 'component' as 'ComponentToProtect'
     component: ComponentToProtect,
+<<<<<<< HEAD
     // redirect path to be used if the user is authorized
     authRedirect,
     store,
+=======
+    user,
+    loginMode,
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
+<<<<<<< HEAD
   if (store.user.id) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
@@ -43,10 +56,25 @@ const ProtectedRoute = (props) => {
     return <Redirect exact from={otherProps.path} to={authRedirect} />;
   } else if (!store.user.id && authRedirect != null) {
     ComponentToShow = ComponentToProtect;
+=======
+  if(user.id) {
+    // if the user is logged in (only logged in users have ids)
+    // show the component that is protected
+    ComponentToShow = ComponentToProtect;
+  } else if (loginMode === 'login') {
+    // if they are not logged in, check the loginMode on Redux State
+    // if the mode is 'login', show the LoginPage
+    ComponentToShow = LoginPage;
+  } else {
+    // the the user is not logged in and the mode is not 'login'
+    // show the RegisterPage
+    ComponentToShow = RegisterPage;
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f
   }
 
   // We return a Route component that gets added to our list of routes
   return (
+<<<<<<< HEAD
     <Route
       // all props like 'exact' and 'path' that were passed in
       // are now passed along to the 'Route' Component
@@ -57,3 +85,28 @@ const ProtectedRoute = (props) => {
 };
 
 export default connect(mapStoreToProps)(ProtectedRoute);
+=======
+      <Route
+        // all props like 'exact' and 'path' that were passed in
+        // are now passed along to the 'Route' Component
+        {...otherProps}
+        component={ComponentToShow}
+      />
+  )
+}
+
+// Instead of taking everything from state, we just want the user and loginMode
+// to determine which page we should show the user
+// if you wanted you could write this code like this:
+// const mapStateToProps = ({ user, loginMode }) => ({ user, loginMode });
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    loginMode: state.loginMode,
+  }
+}
+
+export default connect(mapStateToProps)(ProtectedRoute)
+
+
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f

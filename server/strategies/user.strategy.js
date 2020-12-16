@@ -52,14 +52,22 @@ passport.use(
           // this will result in the server returning a 401 status code
           done(null, null);
         }
+<<<<<<< HEAD
       })
       .catch((error) => {
+=======
+      }).catch((error) => {
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f
         console.log('Error with query for user ', error);
         // done takes an error (we have one) and a user (null in this case)
         // this will result in the server returning a 500 status code
         done(error, null);
       });
+<<<<<<< HEAD
   })
 );
+=======
+  }));
+>>>>>>> c09bef7d63a7489a1f6633ab9154473630adb53f
 
 module.exports = passport;
