@@ -17,7 +17,7 @@ CREATE TABLE "designers" (
 	"rate" DECIMAL
 );
 
-CREATE TABLE "managers" (
+CREATE TABLE "users" (
 	"id" SERIAL PRIMARY KEY,
 	"username" varchar(255) UNIQUE,
 	"password" varchar(40),
