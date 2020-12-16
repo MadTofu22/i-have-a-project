@@ -7,7 +7,7 @@ class ContractRequests extends Component {
     
     state = {
 
-    }
+    };
 
     render () {
         return (

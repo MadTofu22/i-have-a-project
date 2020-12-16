@@ -7,7 +7,7 @@ class Dashboard extends Component {
     
     state = {
 
-    }
+    };
 
     render () {
         return (
