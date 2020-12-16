@@ -12,6 +12,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import './App.css';
 
+import Calendar from '../Designer/DesignerHomeComponents/Calendar'
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
@@ -25,6 +27,13 @@ class App extends Component {
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
 
+            <ProtectedRoute
+              exact
+              path={`/DesignCalendar`}
+              component={Calendar} 
+            />
+            
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
@@ -35,3 +44,5 @@ class App extends Component {
 }
 
 export default connect()(App);
+
+
