@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux'
 
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,11 @@ import {makeStyles} from '@material-ui/core'
 function AddCalendarEvent(props) {
   const [open, setOpen] = React.useState(false);
   const [event, setName] = React.useState('')
+
+  // potential to pass probs and trigger modal this way
+  useEffect(() => {
+
+  }, [event])
 
   const handleClickOpen = () => {
     setName('')
@@ -33,6 +38,9 @@ function AddCalendarEvent(props) {
 
   const handleChange = (event) => {
     setName(event.target.value)
+  }
+  const handleDateChange = (event) => {
+    console.log(event.target.value);
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -91,7 +99,7 @@ function AddCalendarEvent(props) {
           <DialogContentText>
             Select Project or Event Type 
           </DialogContentText>
-            <input type="date" />
+            <input type="date" onChange={handleDateChange}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
