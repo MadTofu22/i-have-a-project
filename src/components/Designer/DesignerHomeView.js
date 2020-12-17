@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import NavButtonDesigner from '../../Designer/DesignerHomeComponents/NavButtonDesigner.js'
-import Calendar from '../../DesignerHomeComponents/Calendar.js'
-import MyProfile from '../../DesignerHomeComponents/MyProfile.js'
-import Projects from '../../DesignerHomeComponents/projects.js'
+import {
+	HashRouter as Router,
+	Route,
+	withRouter
+  } from 'react-router-dom';
+import mapStoreToProps from '../../redux/mapStoreToProps'
+import NavButtonDesigner from './DesignerHomeComponents/NavButtonDesigner.js'
+import Calendar from '././DesignerHomeComponents/Calendar.js'
+import MyProfile from '././DesignerHomeComponents/MyProfile.js'
+import Projects from '././DesignerHomeComponents/projects.js'
+
 
 class DesignerHomeView extends Component {
 	state = {
@@ -14,10 +19,6 @@ class DesignerHomeView extends Component {
 
 	render () {
         const pages = [
-            {
-                path: '/home', 
-                label: 'Home'
-            },
             {
                 path: '/DesignerHomeView/MyProfile', 
                 label: 'My Profile'
@@ -43,11 +44,6 @@ class DesignerHomeView extends Component {
 									return <NavButtonDesigner key={index} page={page} />
 								})}
 							</div>
-							<Route
-								exact
-								path={`/home`}
-								component={Home}
-							/>
 							<Route
 								exact
 								path={`/DesignerHomeView/MyProfile`}

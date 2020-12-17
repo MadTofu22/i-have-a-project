@@ -15,6 +15,7 @@ import './App.css';
 import Calendar from '../Designer/DesignerHomeComponents/Calendar'
 import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
+import DesignerHomeView from '../Designer/DesignerHomeView';
 
 class App extends Component {
   componentDidMount() {
@@ -44,6 +45,11 @@ class App extends Component {
               exact
               path={'/DesignProjects'}
               component={Projects}
+            />
+             <Route 
+              exact
+              path={'/DesignerHomeView'}
+              component={DesignerHomeView}
             />
             
 
