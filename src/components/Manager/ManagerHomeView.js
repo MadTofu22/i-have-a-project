@@ -3,9 +3,13 @@ import {HashRouter as Router, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+
 import NavButton from './ManagerHomeComponents/NavButton';
 import Dashboard from './ManagerHomeComponents/Dashboard';
-////089-8 90-890=khjlhjklhjkljhkljkhlkjhlimport calesadfasdfzxczxc
+import Calendar from './ManagerHomeComponents/Calendar';
+import ContractRequests from './ManagerHomeComponents/ContractRequests';
+import MyDesigners from './ManagerHomeComponents/MyDesigners';
+import FindDesigners from './ManagerHomeComponents/FindDesigners';
 
 class ManagerHomeView extends Component {
     
