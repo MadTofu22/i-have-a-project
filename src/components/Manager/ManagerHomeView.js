@@ -43,39 +43,45 @@ class ManagerHomeView extends Component {
         ];
 
         return (
-            <Router>
-                <div className='managerNavBar'>
-                    {pages.map((page, index) => {
-                        return <NavButton key={index} page={page} />
-                    })}
+            <>
+                <div className='topSection'>
+                    <h1 className='header'>Welcome to Your Home View</h1>
+                    <button className='accountButton'>Account Settings</button>
                 </div>
-                {/* Routes to each component */}
-                <Route 
-                    exact
-                    path={`/ManagerHomeView/Dashboard`}
-                    component={Dashboard}
-                />
-                <Route 
-                    exact
-                    path={`/ManagerHomeView/Designers`}
-                    component={MyDesigners}
-                />
-                <Route 
-                    exact
-                    path={`/ManagerHomeView/Calendar`}
-                    component={Calendar}
-                />
-                <Route 
-                    exact
-                    path={`/ManagerHomeView/Requests`}
-                    component={ContractRequests}
-                />
-                <Route 
-                    exact
-                    path={`/ManagerHomeView/Search`}
-                    component={FindDesigners}
-                />
-            </Router>
+                <Router>
+                    <div className='managerNavBar'>
+                        {pages.map((page, index) => {
+                            return <NavButton key={index} page={page} />
+                        })}
+                    </div>
+                    {/* Routes to each component */}
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/Dashboard`}
+                        component={Dashboard}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/Designers`}
+                        component={MyDesigners}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/Calendar`}
+                        component={Calendar}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/Requests`}
+                        component={ContractRequests}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/Search`}
+                        component={FindDesigners}
+                    />
+                </Router>
+            </>
         );
     }
 }

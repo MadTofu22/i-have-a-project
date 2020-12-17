@@ -27,3 +27,12 @@
 .navBtnLabel {
     margin: auto .5em;
 }
+
+.topSection {
+    display: inline-flex;
+    width: 100%;
+}
+
+.accountButton {
+    position: flex-end;
+}
