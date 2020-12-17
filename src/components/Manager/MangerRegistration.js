@@ -11,7 +11,7 @@ class ManagerRegistration extends Component {
     };
   
     registerUser = (event) => {
-      event.preventDefault();
+        event.preventDefault();
   
     //   if (this.state.username && this.state.password) {
     //     this.props.dispatch({
@@ -28,7 +28,7 @@ class ManagerRegistration extends Component {
 
     // history.push to '/ManagerHomeView'
     // TECH DEBT: REPLACE THIS WITH LOGIN FUNCTIONALITY DISPATCH AND THEN ONTO MANAGER HOME VIEW
-
+        this.props.history.push('/ManagerHomeView');
 
     } // end registerUser
   
@@ -50,7 +50,7 @@ class ManagerRegistration extends Component {
             </h2>
           )}
           <form onSubmit={this.registerUser}>
-            <h1>Register Manager</h1>
+            <h1>Manager Registration</h1>
             <div>
               <label htmlFor="username">
                 Email:
@@ -73,9 +73,6 @@ class ManagerRegistration extends Component {
                 />
               </label>
             </div>
-
-            {/* Here be other fields from the Manager User table. Also throw in a confirm password field */}
-
             <div>
               <label htmlFor="passwordConfirmation">
                 Password Confirmation:
@@ -87,6 +84,82 @@ class ManagerRegistration extends Component {
                 />
               </label>
             </div>
+
+             {/* Employee type, First name, Last name, Company */}
+
+             {/* <div>
+              <label htmlFor="employeeType">
+                Position:
+                <select
+                  type="employeeType"
+                  name="employeeType"
+                  value={this.state.employeeType}
+                  onChange={this.handleInputChangeFor('employeeType')}
+                >
+                    <option value="Manager">Manager</option>
+                    <option value="Designer">Designer</option>
+                </select>
+              </label>
+            </div> */}
+            <div>
+              <label htmlFor="firstName">
+                First Name:
+                <input
+                  type="firstName"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleInputChangeFor('firstName')}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="lastName">
+                Last Name:
+                <input
+                  type="lastName"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleInputChangeFor('lastName')}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="company">
+                Company:
+                <input
+                  type="company"
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.handleInputChangeFor('company')}
+                />
+              </label>
+            </div>
+            {/* {this.state.employeeType === 'Designer' ?
+                <div>
+                <label htmlFor="manager_id">
+                Manager ID #:
+                <input
+                    type="manager_id"
+                    name="manager_id"
+                    value={this.state.manager_id}
+                    onChange={this.handleInputChangeFor('manager_id')}
+                />
+                </label>
+                </div>
+            :
+                <div>
+                <label htmlFor="manager_id">
+                Manager ID #:
+                <input
+                    type="manager_id"
+                    name="manager_id"
+                    value={this.state.manager_id}
+                    onChange={this.handleInputChangeFor('manager_id')}
+                    disabled
+                />
+                </label>
+                </div>
+            } */}
 
             <div>
                 {/* Add a conditional to prevent insufficient input from advancing */}
