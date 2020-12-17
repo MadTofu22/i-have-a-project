@@ -3,7 +3,9 @@ import {HashRouter as Router, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import NavButton from './ManagerHomeComponents/NavButton.js'
+import NavButton from './ManagerHomeComponents/NavButton';
+import Dashboard from './ManagerHomeComponents/Dashboard';
+////089-8 90-890=khjlhjklhjkljhkljkhlkjhlimport calesadfasdfzxczxc
 
 class ManagerHomeView extends Component {
     
@@ -14,23 +16,23 @@ class ManagerHomeView extends Component {
     render () {
         const pages = [
             {
-                path: '/dashboard', 
+                path: '/ManagerHomeView/Dashboard', 
                 label: 'Dashboard'
             },
             {
-                path: '/designers', 
+                path: '/ManagerHomeView/Designers', 
                 label: 'My Designers'
             },
             {
-                path: '/calendar', 
+                path: '/ManagerHomeView/Calendar', 
                 label: 'Calendar'
             },
             {
-                path: '/requests', 
+                path: '/ManagerHomeView/Requests', 
                 label: 'Contract Requests'
             },
             {
-                path: '/search',
+                path: '/ManagerHomeView/Search',
                 label: 'Find Designers'
             },
         ];
@@ -43,7 +45,31 @@ class ManagerHomeView extends Component {
                     })}
                 </div>
                 {/* Routes to each component */}
-                
+                <Route 
+                    exact
+                    path={`/ManagerHomeView/Dashboard`}
+                    component={Dashboard}
+                />
+                <Route 
+                    exact
+                    path={`/ManagerHomeView/Designers`}
+                    component={MyDesigners}
+                />
+                <Route 
+                    exact
+                    path={`/ManagerHomeView/Calendar`}
+                    component={Calendar}
+                />
+                <Route 
+                    exact
+                    path={`/ManagerHomeView/Requests`}
+                    component={ContractRequests}
+                />
+                <Route 
+                    exact
+                    path={`/ManagerHomeView/Search`}
+                    component={FindDesigners}
+                />
             </Router>
         );
     }
