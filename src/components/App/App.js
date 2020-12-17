@@ -12,10 +12,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import './App.css';
 
-import Calendar from '../Designer/DesignerHomeComponents/Calendar'
+import Calendar from '../Designer/DesignerHomeComponents/Calendar';
 import ManagerHomeView from '../Manager/ManagerHomeView';
-import Projects from '../Designer/DesignerHomeComponents/Projects'
-import MyProfile from '../Designer/DesignerHomeComponents/MyProfile'
+import Projects from '../Designer/DesignerHomeComponents/Projects';
+import ManagerRegistration from '../Manager/MangerRegistration';
+
+import MyProfile from '../Designer/DesignerHomeComponents/MyProfile';
 
 class App extends Component {
   componentDidMount() {
@@ -48,8 +50,8 @@ class App extends Component {
             />
             <Route 
               exact
-              path={'/DesignMyProfile'}
-              component={MyProfile}
+              path={'/ManagerRegistration'}
+              component={ManagerRegistration}
             />
             
 
