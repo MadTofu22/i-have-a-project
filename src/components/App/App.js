@@ -12,11 +12,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import './App.css';
 
-import Calendar from '../Designer/DesignerHomeComponents/Calendar'
 import ManagerHomeView from '../Manager/ManagerHomeView';
-import Projects from '../Designer/DesignerHomeComponents/Projects'
+import ManagerRegistration from '../Manager/MangerRegistration';
 import DesignerHomeView from '../Designer/DesignerHomeView';
-import MyProfile from '../Designer/DesignerHomeComponents/MyProfile'
 
 class App extends Component {
   componentDidMount() {
@@ -41,7 +39,12 @@ class App extends Component {
               path={'/DesignerHomeView'}
               component={DesignerHomeView}
             />
-          
+            <Route 
+              exact
+              path={'/ManagerRegistration'}
+              component={ManagerRegistration}
+            />
+            
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
