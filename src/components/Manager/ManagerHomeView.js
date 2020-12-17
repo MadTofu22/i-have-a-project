@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {HashRouter as Router, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import './Manager.css';
 
-
+// Import components
 import NavButton from './ManagerHomeComponents/NavButton';
 import Dashboard from './ManagerHomeComponents/Dashboard';
 import Calendar from './ManagerHomeComponents/Calendar';
