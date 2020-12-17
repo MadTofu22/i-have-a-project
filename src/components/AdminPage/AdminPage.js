@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -46,6 +51,15 @@ class AdminPage extends Component {
                                     { field: 'id', headerName: 'Manager ID' },
                                     { field: 'username', headerName: 'Name' },
                                     { field: 'company', headerName: 'Company' },
+                                    {
+                                        field: 'action',
+                                        headerName: 'Action',
+                                        renderCell: () => (
+                                          <button>
+                                            Content
+                                          </button>
+                                        ),
+                                      }
                                 ]}
                             rows={this.state.rows}
                         />
@@ -54,10 +68,22 @@ class AdminPage extends Component {
                                     { field: 'designer_id', headerName: 'Designer ID' },
                                     { field: 'first_name', headerName: 'First Name' },
                                     { field: 'last_name', headerName: 'Last Name' },
-                                    { field: 'manager', headerName: 'Manager' }
+                                    { field: 'manager', headerName: 'Manager' },
+                                    {
+                                        field: 'action',
+                                        headerName: 'Action',
+                                        renderCell: () => (
+                                            <IconButton aria-label="delete" className={classes.margin}>
+                                                <DeleteIcon fontSize="large"/>
+                                            </IconButton>
+                                        ),
+                                      }
                                 ]}
                             rows={this.state.designerRows}
+                            
                         />
+                         <div>
+      </div>
                        </div>
                        
                 );
