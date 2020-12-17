@@ -11,9 +11,9 @@ class Dashboard extends Component {
 
     render () {
         return (
-            <div className=''>
+            <div className='homeComponentWrapper'>
 
-            </>
+            </div>
         );
     }
 }
