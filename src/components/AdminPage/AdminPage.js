@@ -80,10 +80,7 @@ class AdminPage extends Component {
                                       }
                                 ]}
                             rows={this.state.designerRows}
-                            
                         />
-                         <div>
-      </div>
                        </div>
                        
                 );
