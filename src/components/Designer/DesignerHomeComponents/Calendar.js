@@ -44,7 +44,7 @@ class Calendar extends Component {
 		let eventInfo = {
 			id: info.event.title,
 			title: info.event.id,
-			start: info.event.start,
+			start: new Intl.DateTimeFormat('en-US').format(info.event.start),
 			hoursToCommit: info.event.extendedProps.hoursToCommit
 		}
 		console.log(info);
@@ -57,7 +57,7 @@ class Calendar extends Component {
 	render() {
 		return (
 			<div className="CalendarWrap">
-				<AddCalendarEvent calendarClickEvent={this.state.ClickEvent}/>
+				<AddCalendarEvent  calendarClickEvent={this.state.ClickEvent}/>
 				<FullCalendar
 					plugins={[ dayGridPlugin ]}
 					initialView="dayGridMonth"
