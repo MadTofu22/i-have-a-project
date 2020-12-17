@@ -13,17 +13,23 @@ class ManagerRegistration extends Component {
     registerUser = (event) => {
       event.preventDefault();
   
-      if (this.state.username && this.state.password) {
-        this.props.dispatch({
-          type: 'REGISTER',
-          payload: {
-            username: this.state.username,
-            password: this.state.password,
-          },
-        });
-      } else {
-        this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-      }
+    //   if (this.state.username && this.state.password) {
+    //     this.props.dispatch({
+    //       type: 'REGISTER',
+    //       payload: {
+    //         username: this.state.username,
+    //         password: this.state.password,
+    //       },
+    //     });
+        
+    //   } else {
+    //     this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+    //   }
+
+    // history.push to '/ManagerHomeView'
+    // TECH DEBT: REPLACE THIS WITH LOGIN FUNCTIONALITY DISPATCH AND THEN ONTO MANAGER HOME VIEW
+
+
     } // end registerUser
   
     handleInputChangeFor = propertyName => (event) => {
@@ -35,19 +41,19 @@ class ManagerRegistration extends Component {
     render() {
       return (
         <div>
-          {this.props.errors.registrationMessage && (
+          {this.props.store.errors.registrationMessage && (
             <h2
               className="alert"
               role="alert"
             >
-              {this.props.errors.registrationMessage}
+              {this.props.store.errors.registrationMessage}
             </h2>
           )}
           <form onSubmit={this.registerUser}>
-            <h1>Register User</h1>
+            <h1>Register Manager</h1>
             <div>
               <label htmlFor="username">
-                Username:
+                Email:
                 <input
                   type="text"
                   name="username"
@@ -67,16 +73,33 @@ class ManagerRegistration extends Component {
                 />
               </label>
             </div>
+
+            {/* Here be other fields from the Manager User table. Also throw in a confirm password field */}
+
             <div>
+              <label htmlFor="passwordConfirmation">
+                Password Confirmation:
+                <input
+                  type="passwordConfirmation"
+                  name="passwordConfirmation"
+                  value={this.state.passwordConfirmation}
+                  onChange={this.handleInputChangeFor('passwordConfirmation')}
+                />
+              </label>
+            </div>
+
+            <div>
+                {/* Add a conditional to prevent insufficient input from advancing */}
               <input
                 className="register"
                 type="submit"
                 name="submit"
                 value="Register"
+                
               />
             </div>
           </form>
-          <center>
+          {/* <center>
             <button
               type="button"
               className="link-button"
@@ -84,7 +107,7 @@ class ManagerRegistration extends Component {
             >
               Login
             </button>
-          </center>
+          </center> */}
         </div>
       );
     }
@@ -93,8 +116,6 @@ class ManagerRegistration extends Component {
   // Instead of taking everything from state, we just want the error messages.
   // if you wanted you could write this code like this:
   // const mapStateToProps = ({errors}) => ({ errors });
-  const mapStateToProps = state => ({
-    errors: state.errors,
-  });
+ 
 
 export default withRouter(connect(mapStoreToProps)(ManagerRegistration));
