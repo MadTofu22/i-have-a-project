@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 import Calendar from '../Designer/DesignerHomeComponents/Calendar'
+import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 
 class App extends Component {
@@ -34,6 +35,11 @@ class App extends Component {
               component={Calendar} 
             />
 
+            {/* Te+mp route to help with display and testing */}
+            <Route
+              path={`/ManagerHomeView`}
+              component={ManagerHomeView}
+            />
             <Route 
               exact
               path={'/DesignProjects'}
