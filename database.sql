@@ -32,6 +32,7 @@ CREATE TABLE "users" (
 	"designer_id" int REFERENCES "designers"
 );
 
+-- CHECK TO SEE IF WE CAN GET BY WITH WHAT MAY BE A CIRCULAR REFERENCE BETWEEN DESIGNERS AND USERS
 
 CREATE TABLE "designer_skills_join" (
 	"id" SERIAL PRIMARY KEY,
@@ -96,9 +97,9 @@ CREATE TABLE "certification" (
 -- "email", "password", "employee_type", "first_name", "last_name", "company", "designer_id"
 
 INSERT INTO "users" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
-VALUES ('zpets@gmail.com', 'feckland87', 'Manager', 'Franz', 'Eckland', 'Z-Pets',), 
-('bubblehub@gmail.com', 'kdanger88', 'Manager', 'Kelly', 'Danger', 'BubbleHub',), 
-('cellsgraphic@gmail.com', 'tbrookshaw89', 'Manager', 'Thomas', 'Brookshaw', 'Cell Graphic',);
+VALUES ('zpets@gmail.com', 'feckland87', 'Designer', 'Franz', 'Eckland', 'Z-Pets',1), 
+('bubblehub@gmail.com', 'kdanger88', 'Manager', 'Kelly', 'Danger', 'BubbleHub'), 
+('cellsgraphic@gmail.com', 'tbrookshaw89', 'Designer', 'Thomas', 'Brookshaw', 'Cell Graphic',2);
 
 
 INSERT INTO "projects" ("manager_id", "status", "due_date", "notes")
@@ -117,5 +118,4 @@ VALUES ('feng shui', 'the art of spacing and palletting'), ('computer softwares'
 
 INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate")
 VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '5'),
-('3', '6513986342', 'www.linkedin.com', 'photoURL', '5'),
-('1', '4679862439', 'www.linkedin.com', 'photoURL', '5');
+('2', '6513986342', 'www.linkedin.com', 'photoURL', '5');
