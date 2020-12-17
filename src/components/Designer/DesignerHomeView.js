@@ -7,9 +7,9 @@ import {
   } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps'
 import NavButtonDesigner from './DesignerHomeComponents/NavButtonDesigner.js'
-import Calendar from '././DesignerHomeComponents/Calendar.js'
+import Calendar from './DesignerHomeComponents/Calendar.js'
 import MyProfile from '././DesignerHomeComponents/MyProfile.js'
-import Projects from '././DesignerHomeComponents/projects.js'
+import Projects from '././DesignerHomeComponents/Projects.js'
 
 
 class DesignerHomeView extends Component {
@@ -28,7 +28,7 @@ class DesignerHomeView extends Component {
                 label: 'Calendar'
             },
             {
-                path: '/DesignerHomeView/projects', 
+                path: '/DesignerHomeView/Projects', 
                 label: 'Projects'
             },
            
@@ -38,7 +38,6 @@ class DesignerHomeView extends Component {
 			<>
 				<div>Designer Home</div>
 					<Router>
-						<div>Designer Home</div>
 							<div className='designerNavBar'>
 								{pages.map((page, index) => {
 									return <NavButtonDesigner key={index} page={page} />
