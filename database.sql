@@ -84,7 +84,7 @@ CREATE TABLE "certification" (
 
 
 INSERT INTO "users" ("username", "password", "user_type")
-VALUES ('Manager X', '1234', 'Manager'), ('Manager Y', '1234', 'Manager'), ('Manager A', '1234', 'Manager');
+VALUES ('Casie', '1234', 'Manager'), ('Kris', '1234', 'Manager'), ('Edon', '1234', 'Manager');
 
 
 INSERT INTO "projects" ("manager_id", "status", "due_date", "notes")
