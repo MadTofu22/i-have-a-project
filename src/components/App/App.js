@@ -17,6 +17,8 @@ import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects';
 import ManagerRegistration from '../Manager/MangerRegistration';
 
+import MyProfile from '../Designer/DesignerHomeComponents/MyProfile';
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
