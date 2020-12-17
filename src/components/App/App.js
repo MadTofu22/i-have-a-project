@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 import Calendar from '../Designer/DesignerHomeComponents/Calendar'
+import Projects from '../Designer/DesignerHomeComponents/Projects'
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +32,12 @@ class App extends Component {
               exact
               path={`/DesignCalendar`}
               component={Calendar} 
+            />
+
+            <Route 
+              exact
+              path={'/DesignProjects'}
+              component={Projects}
             />
             
 
