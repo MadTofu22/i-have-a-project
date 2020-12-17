@@ -14,7 +14,14 @@ class AdminPage extends Component {
             {id: 3, username: 'Mary', company: 'manager'},
             {id: 2, username: 'Genia', company: 'manager'},
             {id: 3, username: 'Bethany', company: 'manager'},
-        ]
+        ],
+        designerRows: [
+            {designer_id: 1, first_name: 'Beau', last_name: 'Wise', manager: 'Casie'},
+            {designer_id: 2, first_name: 'Emily', last_name: 'Garber', manager: 'Mary'},
+            {designer_id: 3, first_name: 'Stav', last_name: 'Kidron', manager: 'Casie'},
+            {designer_id: 4, first_name: 'Sam', last_name: 'Mahler', manager: 'Casie'},
+            {designer_id: 5, first_name: 'Leroy', last_name: 'Dahl', manager: 'Kris'},
+        ],
     };
     // componentDidMount() {
     //   this.props.dispatch({ type: 'FETCH_MANAGERS' });
@@ -42,7 +49,17 @@ class AdminPage extends Component {
                                 ]}
                             rows={this.state.rows}
                         />
+                        <DataGrid
+                            columns={[
+                                    { field: 'designer_id', headerName: 'Designer ID' },
+                                    { field: 'first_name', headerName: 'First Name' },
+                                    { field: 'last_name', headerName: 'Last Name' },
+                                    { field: 'manager', headerName: 'Manager' }
+                                ]}
+                            rows={this.state.designerRows}
+                        />
                        </div>
+                       
                 );
             }
 }
