@@ -12,7 +12,9 @@
     justify-content: center;
 }
 
-.accountButton {
+.headerButton {
+    justify-self: center;
+    margin: auto 1em;
     align-self: end;
 }
 
@@ -67,3 +69,27 @@
 .managerCalendarSection {
     width: 90vw;
 }
+
+h2.manager {
+    width: 90vw;
+    text-align: center;
+}
+
+h2.designer {
+    width: 20vw;
+    text-align: left;
+}
+
+.designerCalendarSection {
+    display: inline-flex;
+    margin: 2vh 0vw;
+    width: 90vw;
+}
+
+.designerWeek {
+    justify-self: right;
+}
+/* 
+.fc-dayGridWeek-view {
+    width: 40vw;
+} */

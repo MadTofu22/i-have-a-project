@@ -4,6 +4,19 @@ CREATE TABLE "skills" (
 	"description" varchar(255) NOT NULL
 );
 
+CREATE TABLE "users" (
+	"id" SERIAL PRIMARY KEY,
+	-- CHANGED username TO email
+	"email" varchar(255) UNIQUE,
+	"password" varchar(40),
+	-- ADDED/TWEAKED
+	"user_type" varchar(40),
+	"first_name" varchar(30),
+	"last_name" varchar(50),
+	"company" varchar(100),
+	"designer_id" int
+);
+
 CREATE TABLE "designers" (
 	"id" SERIAL PRIMARY KEY,
 	-- "first_name" varchar(30),
@@ -17,19 +30,6 @@ CREATE TABLE "designers" (
 	"rate" DECIMAL,
 	"availability_hours" integer,
 	"weekend_availability" boolean
-);
-
-CREATE TABLE "users" (
-	"id" SERIAL PRIMARY KEY,
-	-- CHANGED username TO email
-	"email" varchar(255) UNIQUE,
-	"password" varchar(40),
-	-- ADDED/TWEAKED
-	"user_type" varchar(40),
-	"first_name" varchar(30),
-	"last_name" varchar(50),
-	"company" varchar(100),
-	"designer_id" int REFERENCES "designers"
 );
 
 -- CHECK TO SEE IF WE CAN GET BY WITH WHAT MAY BE A CIRCULAR REFERENCE BETWEEN DESIGNERS AND USERS

@@ -47,7 +47,8 @@ class ManagerHomeView extends Component {
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to Your Home View</h1>
-                        <button className='accountButton'>Account Settings</button>
+                        <button className='headerButton'>Create New Project</button>
+                        <button className='headerButton'>Account Settings</button>
                     </div>
                     <div className='managerNavBar'>
                         {pages.map((page, index) => {

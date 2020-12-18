@@ -16,11 +16,23 @@ class ManagerCalendar extends Component {
         return (
             <>
                 <div className='managerCalendarSection'>
-                    <h3>My Calendar</h3>
+                    <h2 className='manager'>My Calendar</h2>
                     <FullCalendar
+                        className='managerMonth'
                         plugins={[dayGridPlugin]}
                         initialView='dayGridMonth'
                         height='50vh'
+                    />
+                </div>
+                <h2 className='manager'>Designer Weekly Calendars</h2>
+                <div className='designerCalendarSection'>
+                    <h2 className='designer'>Designer Name</h2>
+                    <FullCalendar
+                        className='designerWeek'
+                        plugins={[dayGridPlugin]}
+                        initialView='dayGridWeek'
+                        height='20vh'
+                        dayMinWidth='5vw'
                     />
                 </div>
             </>
