@@ -14,7 +14,7 @@ class Dashboard extends Component {
                 {
                     field: 'id',
                     headerName: '#',
-                    width: 24,
+                    width: 42,
                 },
                 {
                     field: 'name', // Name of the project
@@ -24,27 +24,27 @@ class Dashboard extends Component {
                 {
                     field: 'numDesigers', // Total number of designers assigned to the project
                     headerName: '# Designers',
-                    width: 56,
+                    // width: 56,
                 },
                 {
                     field: 'hrsScheduled', // Total number of hours scheduled for this project across all designers
-                    headerName: 'Hours Scheduled',
-                    width: 56,
+                    headerName: 'Scheduled',
+                    // width: 56,
                 },
                 {
                     field: 'hrsRequired', // Total number of required hours estimated to be completed for this project
-                    headerName: 'Hours Required',
-                    width: 56,
+                    headerName: 'Required',
+                    // width: 56,
                 },
                 {
                     field: 'hrsAvailable', // Total number of hours all assigned developers have available
-                    headerName: 'Hours Available',
-                    width: 56,
+                    headerName: 'Available',
+                    // width: 56,
                 },
                 {
                     field: 'hrsActual', // Actual number of hours that were worked on this project, this is 0 if the project is not completed
-                    headerName: 'Hours Workd',
-                    width: 56,
+                    headerName: 'Worked',
+                    // width: 56,
                 },
                 {
                     field: 'status',
@@ -53,30 +53,43 @@ class Dashboard extends Component {
                 },
             ],
             rows: [
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 0, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 1, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 2, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 3, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 4, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 5, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 6, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 7, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 8, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 9, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 10, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 11, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 12, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
             ],
-        }
+        },
+        
     };
 
     render () {
         return (
-            <div className='homeComponentWrapper'>
+            <>
                 <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Projects at a Glance:</h3>
-                    <DataGrid rows={this.state.projectsData.rows} columns={columns}
+                    <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
                 </div>
-            </div>
+                <div className='dashboardSection'>
+                    <h3 className='sectionHeader'>Contract Designers this Month:</h3>
+                    <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
+                </div>
+                <div className='dashboardSection'>
+                    <h3 className='sectionHeader'>My Designers this Month:</h3>
+                    <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
+                </div>
+                <div className='dashboardSection'>
+                    <h3 className='sectionHeader'>Contract Requests:</h3>
+                    <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
+                </div>
+            </>
         );
     }
 }
