@@ -12,9 +12,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import './App.css';
 
+import DesignerHomeView from '../Designer/DesignerHomeView'
 import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
+import ManagerRegistration from '../Manager/MangerRegistration'
 
 class App extends Component {
   componentDidMount() {

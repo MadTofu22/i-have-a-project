@@ -45,8 +45,11 @@ class AdminPage extends Component {
     //   }  
             render() {
                 return (
+                
+                 
                     <div style={{ height: 250, width: '100%' }}>
-                        {/* <div className='adminDataGrid'> */}
+                        <h1>Administrative Services</h1>
+                        <div className='adminDataGrid'>
                         <DataGrid
                             columns={[
                                     { field: 'id', headerName: 'Manager ID' },
@@ -57,15 +60,15 @@ class AdminPage extends Component {
                                         headerName: 'Action',
                                         renderCell: () => (
                                           <button>
-                                            Content
+                                            Delete
                                           </button>
                                         ),
                                       }
                                 ]}
                             rows={this.state.rows}
                         />
-                        {/* </div> */}
-                        {/* <div className='adminDataGrid'> */}
+                        </div>
+                        <div className='adminDataGrid'>
                         <DataGrid
                             columns={[
                                     { field: 'designer_id', headerName: 'Designer ID' },
@@ -77,7 +80,7 @@ class AdminPage extends Component {
                                         headerName: 'Action',
                                         renderCell: () => (
                                             <button>
-                                            Content
+                                            Delete
                                           </button>
                                             // <IconButton aria-label="delete">
                                             //     <DeleteIcon fontSize="large"/>
@@ -87,7 +90,7 @@ class AdminPage extends Component {
                                 ]}
                             rows={this.state.designerRows}
                         />
-                        {/* </div> */}
+                        </div>
                        </div>
                        
                 );
