@@ -9,7 +9,7 @@ import '../Manager.css';
 class ManagerCalendar extends Component {
     
     state = {
-
+        
     }
 
     render () {
@@ -26,7 +26,16 @@ class ManagerCalendar extends Component {
                 </div>
                 <h2 className='manager'>Designer Weekly Calendars</h2>
                 <div className='designerCalendarSection'>
-                    <h2 className='designer'>Designer Name</h2>
+                    <div className='designerInfoBlock'>
+                        <h2 className='designerNameHeader'>Designer Name</h2>
+                        <button className='viewDesignerButton'>View Profile</button>
+                        <ul className='designerStatsLists'>
+                            <li>#Projects: 3</li>
+                            <li>Hours Available: 35</li>
+                            <li>Hours Scheduled: 0</li>
+                            <li>Billable Rate: $55</li>
+                        </ul>
+                    </div>
                     <FullCalendar
                         className='designerWeek'
                         plugins={[dayGridPlugin]}
