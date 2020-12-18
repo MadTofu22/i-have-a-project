@@ -14,11 +14,11 @@ import './App.css';
 
 import DesignerHomeView from '../Designer/DesignerHomeView'
 import ManagerHomeView from '../Manager/ManagerHomeView';
-import ManagerRegistration from '../Manager/MangerRegistration';
-import DesignerHomeView from '../Designer/DesignerHomeView';
+import ManagerRegistration from '../Manager/ManagerRegistration';
 import Login from '../Login/Login';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
+import DesignerRegistration from '../Designer/DesignerRegistration';
 
 
 class App extends Component {
@@ -58,6 +58,11 @@ class App extends Component {
               exact
               path={'/AdminPage'}
               component={AdminPage}
+            />
+            <Route 
+              exact
+              path={'/DesignerRegistration'}
+              component={DesignerRegistration}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
