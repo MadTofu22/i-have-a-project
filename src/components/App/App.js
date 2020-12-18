@@ -60,8 +60,8 @@ class App extends Component {
             component={FindDesigners}
             />
 
+            <Redirect exact from='/UpdateProfile' to='/UpdateProfile/Info' />
             <Route
-              exact
               path={'/UpdateProfile'}
               component={UpdateProfile}
             />
