@@ -43,24 +43,25 @@ class ManagerHomeView extends Component {
         ];
 
         return (
-            <>
+            <Router>
                 <div className='topSection'>
                     <h1 className='header'>Welcome to Your Home View</h1>
                     <button className='accountButton'>Account Settings</button>
                 </div>
-                <Router>
-                    <div className='managerNavBar'>
-                        {pages.map((page, index) => {
-                            return <NavButton key={index} page={page} />
-                        })}
-                    </div>
-                    {/* Routes to each component */}
+                <div className='managerNavBar'>
+                    {pages.map((page, index) => {
+                        return <NavButton key={index} page={page} />
+                    })}
+                </div>
+                {/* Routes to each component */}
+                
+                <div className='homeComponentWrapper'>
                     <Route 
                         exact
                         path={`/ManagerHomeView/Dashboard`}
                         component={Dashboard}
                     />
-                    <Route 
+                    <Route
                         exact
                         path={`/ManagerHomeView/Designers`}
                         component={MyDesigners}
@@ -75,13 +76,13 @@ class ManagerHomeView extends Component {
                         path={`/ManagerHomeView/Requests`}
                         component={ContractRequests}
                     />
-                    <Route 
+                    <Route
                         exact
                         path={`/ManagerHomeView/Search`}
                         component={FindDesigners}
                     />
-                </Router>
-            </>
+                </div>
+            </Router>
         );
     }
 }
