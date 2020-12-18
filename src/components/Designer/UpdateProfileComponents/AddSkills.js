@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class UpdateProfile extends Component {
+class AddSkills extends Component {
 	state = {
 
 	};
@@ -16,7 +16,4 @@ class UpdateProfile extends Component {
 	}
 }
 
-export default withRouter(connect(mapStoreToProps)(UpdateProfile));
-
-
-
+export default withRouter(connect(mapStoreToProps)(AddSkills));
