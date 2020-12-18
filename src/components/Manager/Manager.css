@@ -1,3 +1,4 @@
+/* Manager Home View Styling */
 .topSection {
     display: inline-flex;
     width: 100%;
@@ -44,12 +45,15 @@
     justify-content: center;
 }
 
+/* Dashboard Component Styling */
 .dashboardSection {
     height: 40vh;
     width: 40vw;
     margin: 2.5vh 2.5vw;
 }
 
-.projectsTable {
-    
+/* Calendar Component Styling */
+.managerCalendarSection {
+    width: 90vw;
+    height: 40vh;
 }
