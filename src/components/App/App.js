@@ -17,7 +17,7 @@ import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
 import ManagerRegistration from '../Manager/MangerRegistration'
-import FindNewDesigner from '../Manager/ManagerHomeComponents/FindNewDesigner'
+import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 
 class App extends Component {
   componentDidMount() {
@@ -55,8 +55,8 @@ class App extends Component {
 
             <Route
             exact
-            path={'/FindNewDesigner'}
-            component={FindNewDesigner}
+            path={'/FindDesigners'}
+            component={FindDesigners}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
