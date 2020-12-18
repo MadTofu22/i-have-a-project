@@ -12,7 +12,7 @@ class FindNewDesigner extends Component {
       software: '',
     };
   
-    searchDesigner = () =>
+    // searchDesigner = () =>
 
     handleInputChangeFor = propertyName => (event) => {
       this.setState({
@@ -75,15 +75,25 @@ class FindNewDesigner extends Component {
             <div>
            
               <input
-                className="register"
+                className="Search"
                 type="submit"
                 name="submit"
-                value="Register"
+                value="Search"
                 
               />
             </div>
           </form>
        
+       <table id="designerSearchTable"> 
+       
+        <th>(Designer Search Outputs)</th>
+         <th> Designer Name </th>
+         <th> Rate </th>
+         <th> Skills </th>
+         <th> Education </th>
+         
+          </table>
+
         </div>
       );
     }
