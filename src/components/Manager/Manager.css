@@ -1,3 +1,13 @@
+.topSection {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.accountButton {
+    align-self: end;
+}
+
 .managerNavBar {
     display: inline-flex;
 }
@@ -28,11 +38,18 @@
     margin: auto .5em;
 }
 
-.topSection {
+.homeComponentWrapper {
     display: inline-flex;
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.accountButton {
-    position: flex-end;
+.dashboardSection {
+    height: 40vh;
+    width: 40vw;
+    margin: 2.5vh 2.5vw;
+}
+
+.projectsTable {
+    
 }
