@@ -1,27 +1,41 @@
+/* Manager Home View Styling */
 .topSection {
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+}
+
+.titleContainer {
     display: inline-flex;
-    width: 100%;
+    width: 100vw;
+    height: 8vh;
     justify-content: center;
 }
 
-.accountButton {
+.headerButton {
+    justify-self: center;
+    margin: auto 1em;
     align-self: end;
 }
 
 .managerNavBar {
     display: inline-flex;
+    max-height: 6vh;
+    margin: 0em auto;
 }
 
 .navBtn {
     display: flex;
     height: 3vh;
-    margin: 1.5vh .5vh;
+    margin: 1vh .5vh;
 }
 
 .navBtnClicked {
     display: flex;
     height: 3vh;
-    margin: 1em .25em;
+    margin: 1vh .25em;
     background: radial-gradient(rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
     border-left: .25em solid rgba(255, 255, 255, 0.5);
     border-right: .25em solid rgba(255, 255, 255, 0.5);
@@ -30,26 +44,55 @@
 .navBtn:hover {
     display: flex;
     height: 3vh;
-    margin: 1.25em .25em;
+    margin: 1.25vh .25em 0vh .25em;
     background: radial-gradient(rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .navBtnLabel {
-    margin: auto .5em;
+    margin: 0em .25em;
 }
 
 .homeComponentWrapper {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+    height: auto;
+    margin: 15vh auto 0vh auto;
 }
 
+/* Dashboard Component Styling */
 .dashboardSection {
     height: 40vh;
     width: 40vw;
     margin: 2.5vh 2.5vw;
 }
 
-.projectsTable {
-    
+/* Calendar Component Styling */
+.managerCalendarSection {
+    width: 90vw;
+}
+
+h2.manager {
+    width: 90vw;
+    text-align: center;
+}
+
+h2.designer {
+    width: 20vw;
+    text-align: left;
+}
+
+.designerCalendarSection {
+    display: inline-flex;
+    margin: 2vh 0vw;
+    width: 90vw;
+}
+
+.designerWeek {
+    justify-self: right;
+}
+
+.designerInfoBlock {
+    width: 35%;
 }
