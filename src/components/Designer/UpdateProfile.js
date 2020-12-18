@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import {HashRouter as Router, Route, withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import components
+import AddSkills from './UpdateProfileComponents/AddSkills';
+import AddInformation from './UpdateProfileComponents/AddInformation';
 
 class UpdateProfile extends Component {
 	state = {
@@ -10,8 +14,21 @@ class UpdateProfile extends Component {
 
 	render() {
 		return (
-			<>
-			</>
+			<Router>
+				<h1>Build Your Profile!</h1>
+				<div className='profileInputContainer'>
+					<Route 
+						exact
+						path='/UpdateProfile/Skills'
+						component={AddSkills}
+					/>
+					<Route 
+						exact
+						path='/UpdateProfile/Info'
+						component={AddInformation}
+					/>
+				</div>
+			</Router>
 		);
 	}
 }
