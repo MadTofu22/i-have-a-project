@@ -17,7 +17,7 @@ import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
 import ManagerRegistration from '../Manager/MangerRegistration'
-import FindNewDesigner from '../Manager/FindNewDesigner'
+import FindNewDesigner from '../Manager/ManagerHomeComponents/FindNewDesigner'
 
 class App extends Component {
   componentDidMount() {
