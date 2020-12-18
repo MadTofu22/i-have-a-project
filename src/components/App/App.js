@@ -14,10 +14,16 @@ import './App.css';
 
 import DesignerHomeView from '../Designer/DesignerHomeView'
 import ManagerHomeView from '../Manager/ManagerHomeView';
+import ManagerRegistration from '../Manager/ManagerRegistration';
+import Login from '../Login/Login';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
-import ManagerRegistration from '../Manager/MangerRegistration'
+
+import DesignerRegistration from '../Designer/DesignerRegistration';
+
+
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
+
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +37,11 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
+
+            <Route
+            path={`/home`}
+            component={Login}
+            />
 
             {/* Te+mp route to help with display and testing */}
             <Route
@@ -51,6 +62,11 @@ class App extends Component {
               exact
               path={'/AdminPage'}
               component={AdminPage}
+            />
+            <Route 
+              exact
+              path={'/DesignerRegistration'}
+              component={DesignerRegistration}
             />
 
             <Route
