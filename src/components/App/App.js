@@ -15,6 +15,7 @@ import './App.css';
 import Calendar from '../Designer/DesignerHomeComponents/Calendar'
 import ManagerHomeView from '../Manager/ManagerHomeView';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
+import AdminPage from '../AdminPage/AdminPage'
 
 class App extends Component {
   componentDidMount() {

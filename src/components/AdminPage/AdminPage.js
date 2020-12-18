@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
-import mapStoreToProps from '../../../redux/mapStoreToProps';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-
+// import mapStoreToProps from '../../../redux/mapStoreToProps';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import './AdminPage.css'
 import { DataGrid } from '@material-ui/data-grid';
 
 class AdminPage extends Component {
@@ -21,11 +21,11 @@ class AdminPage extends Component {
             {id: 3, username: 'Bethany', company: 'manager'},
         ],
         designerRows: [
-            {designer_id: 1, first_name: 'Beau', last_name: 'Wise', manager: 'Casie'},
-            {designer_id: 2, first_name: 'Emily', last_name: 'Garber', manager: 'Mary'},
-            {designer_id: 3, first_name: 'Stav', last_name: 'Kidron', manager: 'Casie'},
-            {designer_id: 4, first_name: 'Sam', last_name: 'Mahler', manager: 'Casie'},
-            {designer_id: 5, first_name: 'Leroy', last_name: 'Dahl', manager: 'Kris'},
+            {id: 1, first_name: 'Beau', last_name: 'Wise', manager: 'Casie'},
+            {id: 2, first_name: 'Emily', last_name: 'Garber', manager: 'Mary'},
+            {id: 3, first_name: 'Stav', last_name: 'Kidron', manager: 'Casie'},
+            {id: 4, first_name: 'Sam', last_name: 'Mahler', manager: 'Casie'},
+            {id: 5, first_name: 'Leroy', last_name: 'Dahl', manager: 'Kris'},
         ],
     };
     // componentDidMount() {
@@ -46,6 +46,7 @@ class AdminPage extends Component {
             render() {
                 return (
                     <div style={{ height: 250, width: '100%' }}>
+                        {/* <div className='adminDataGrid'> */}
                         <DataGrid
                             columns={[
                                     { field: 'id', headerName: 'Manager ID' },
@@ -63,6 +64,8 @@ class AdminPage extends Component {
                                 ]}
                             rows={this.state.rows}
                         />
+                        {/* </div> */}
+                        {/* <div className='adminDataGrid'> */}
                         <DataGrid
                             columns={[
                                     { field: 'designer_id', headerName: 'Designer ID' },
@@ -73,14 +76,18 @@ class AdminPage extends Component {
                                         field: 'action',
                                         headerName: 'Action',
                                         renderCell: () => (
-                                            <IconButton aria-label="delete" className={classes.margin}>
-                                                <DeleteIcon fontSize="large"/>
-                                            </IconButton>
-                                        ),
+                                            <button>
+                                            Content
+                                          </button>
+                                            // <IconButton aria-label="delete">
+                                            //     <DeleteIcon fontSize="large"/>
+                                            // </IconButton>
+                                        )
                                       }
                                 ]}
                             rows={this.state.designerRows}
                         />
+                        {/* </div> */}
                        </div>
                        
                 );
@@ -88,7 +95,9 @@ class AdminPage extends Component {
 }
 
 
-export default withRouter(connect(mapStoreToProps)(AdminPage));
+export default withRouter(AdminPage);
+
+// (connect(mapStoreToProps)
 
 
 // render() {
