@@ -11,6 +11,7 @@ class UpdateProfile extends Component {
 	render() {
 		return (
 			<>
+				<h1>Build Your Profile!</h1>
 			</>
 		);
 	}

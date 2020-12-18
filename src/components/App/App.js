@@ -18,6 +18,7 @@ import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
 import ManagerRegistration from '../Manager/MangerRegistration'
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
+import UpdateProfile from '../Designer/UpdateProfile';
 
 class App extends Component {
   componentDidMount() {
@@ -57,6 +58,12 @@ class App extends Component {
             exact
             path={'/FindDesigners'}
             component={FindDesigners}
+            />
+
+            <Route
+              exact
+              path={'/UpdateProfile'}
+              component={UpdateProfile}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
