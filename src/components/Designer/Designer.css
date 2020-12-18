@@ -1,3 +1,4 @@
+/* Designer Home Profile Components */
 .myProfileWrap{
     display: inline-flex;
     width: 90%;
@@ -22,3 +23,5 @@
 .rightProfileColumn{
     width: 50%;
 }
+
+/* Build Profile Styling */

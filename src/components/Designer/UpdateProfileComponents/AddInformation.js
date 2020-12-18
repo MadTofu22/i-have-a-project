@@ -35,42 +35,45 @@ class AddInformation extends Component {
 					id='linkedinUrl'
 				/>
 				<br/>
-				<label
-					htmlFor='educationItem'
-					className='buildProfileLabel'
-				>
-					Education:
-				</label>
-				<input 
-					type='text'
-					id='educationItem'
-				/>
-				<button>Add</button>
-				<h4>Added Education</h4>
-				<ul>
-					{this.state.eductionHistory.map(item => {
-						return <li>{item}</li>
-					})}
-				</ul>
+				<div className='experienceSection'>
+					<label
+						htmlFor='educationItem'
+						className='buildProfileLabel'
+					>
+						Education:
+					</label>
+					<input 
+						type='text'
+						id='educationItem'
+					/>
+					<button>Add</button>
+					<h4>Added Education</h4>
+					<ul>
+						{this.state.eductionHistory.map(item => {
+							return <li>{item}</li>
+						})}
+					</ul>
+					<br/>
+					<label
+						htmlFor='workItem'
+						className='buildProfileLabel'
+					>
+						Work Experience:
+					</label>
+					<input 
+						type='text'
+						id='workItem'
+					/>
+					<button>Add</button>
+					<h4>Added Work Experience</h4>
+					<ul>
+						{this.state.workHistory.map(item => {
+							return <li>{item}</li>
+						})}
+					</ul>
+				</div>
 				<br/>
-				<label
-					htmlFor='workItem'
-					className='buildProfileLabel'
-				>
-					Work Experience:
-				</label>
-				<input 
-					type='text'
-					id='workItem'
-				/>
-				<button>Add</button>
-				<h4>Added Work Experience</h4>
-				<ul>
-					{this.state.workHistory.map(item => {
-						return <li>{item}</li>
-					})}
-				</ul>
-				<br/>
+				<button onClick={()=>{this.props.history.push('/UpdateProfile/Skills')}}>To Skills</button>
 			</>
 		);
 	}

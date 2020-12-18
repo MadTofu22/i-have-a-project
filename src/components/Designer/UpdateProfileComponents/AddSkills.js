@@ -12,6 +12,11 @@ class AddSkills extends Component {
 		return (
 			<>
 				<h2>Add Skills</h2>
+				<h4>Software</h4>
+				<input
+					name='software1'
+					type='checkbox'
+				/>
 			</>
 		);
 	}
