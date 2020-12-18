@@ -45,16 +45,18 @@ class ManagerHomeView extends Component {
         return (
             <Router>
                 <div className='topSection'>
-                    <h1 className='header'>Welcome to Your Home View</h1>
-                    <button className='accountButton'>Account Settings</button>
+                    <div className='titleContainer'>
+                        <h1 className='header'>Welcome to Your Home View</h1>
+                        <button className='accountButton'>Account Settings</button>
+                    </div>
+                    <div className='managerNavBar'>
+                        {pages.map((page, index) => {
+                            return <NavButton key={index} page={page} />
+                        })}
+                    </div>
                 </div>
-                <div className='managerNavBar'>
-                    {pages.map((page, index) => {
-                        return <NavButton key={index} page={page} />
-                    })}
-                </div>
+
                 {/* Routes to each component */}
-                
                 <div className='homeComponentWrapper'>
                     <Route 
                         exact

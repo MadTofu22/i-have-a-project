@@ -20,6 +20,7 @@ class ManagerCalendar extends Component {
                     <FullCalendar
                         plugins={[dayGridPlugin]}
                         initialView='dayGridMonth'
+                        height='50vh'
                     />
                 </div>
             </>
