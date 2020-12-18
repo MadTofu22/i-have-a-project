@@ -28,7 +28,7 @@ class DesignerRegistration extends Component {
 
     // history.push to '/ManagerHomeView'
     // TECH DEBT: REPLACE THIS WITH LOGIN FUNCTIONALITY DISPATCH AND THEN ONTO MANAGER HOME VIEW
-        this.props.history.push('/DesigneHomeview');
+        this.props.history.push('/DesignerHomeview');
 
     } // end registerUser
   
