@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
+import '../Designer.css'
+
 class MyProfile extends Component {
 	state = {
 		profile: {
@@ -47,17 +49,18 @@ class MyProfile extends Component {
 		return (
 			<div className="myProfileWrap">
 				<div className="left-ProfileColumn">
-					<div>
-						Hello, {this.state.profile.first_name} {this.state.profile.last_name}
-					</div>
+					
 					<div className="profileImg">
-
+						profile image
 					</div>
-					<div>
+					<div className="profileName">
+						{this.state.profile.first_name} {this.state.profile.last_name}
+					</div>
+					<div className="prpfileContactInfo">
 						contact Info: 
-						<p>{this.state.profile.email}</p>
-						<p>{this.state.profile.phone}</p>
-						<p>{this.state.profile.linkedin}</p>
+						<p>Email: {this.state.profile.email}</p>
+						<p>Phone: {this.state.profile.phone}</p>
+						<p>Linkedin URL: {this.state.profile.linkedin}</p>
 					</div>
 					<div>
 						Career History: 

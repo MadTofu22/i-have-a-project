@@ -1,0 +1,24 @@
+.myProfileWrap{
+    display: inline-flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profileImg{
+    width: 100px;
+    height: 100px;
+    border: 1px dashed black;
+}
+.prpfileContactInfo{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.prpfileContactInfo p{
+    padding-left: 2%;
+}
+.left-ProfileColumn{
+    width: 50%;
+}
+.rightProfileColumn{
+    width: 50%;
+}

@@ -18,7 +18,11 @@ import ManagerRegistration from '../Manager/ManagerRegistration';
 import Login from '../Login/Login';
 import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
+
 import DesignerRegistration from '../Designer/DesignerRegistration';
+
+
+import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 
 
 class App extends Component {
@@ -63,6 +67,12 @@ class App extends Component {
               exact
               path={'/DesignerRegistration'}
               component={DesignerRegistration}
+            />
+
+            <Route
+            exact
+            path={'/FindDesigners'}
+            component={FindDesigners}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
