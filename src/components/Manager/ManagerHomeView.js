@@ -55,12 +55,13 @@ class ManagerHomeView extends Component {
                         })}
                     </div>
                     {/* Routes to each component */}
+                    
                     <Route 
                         exact
                         path={`/ManagerHomeView/Dashboard`}
                         component={Dashboard}
                     />
-                    <Route 
+                    <Route
                         exact
                         path={`/ManagerHomeView/Designers`}
                         component={MyDesigners}
@@ -75,7 +76,7 @@ class ManagerHomeView extends Component {
                         path={`/ManagerHomeView/Requests`}
                         component={ContractRequests}
                     />
-                    <Route 
+                    <Route
                         exact
                         path={`/ManagerHomeView/Search`}
                         component={FindDesigners}

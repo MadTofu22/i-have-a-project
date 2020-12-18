@@ -47,4 +47,14 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/test', (req, res) => {
+  pool.query('SELECT * FROM "skills";')
+    .then(response => {
+      res.send(response);
+    }).catch(error => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
