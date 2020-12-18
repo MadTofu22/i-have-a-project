@@ -3,6 +3,8 @@
     display: block;
     position: fixed;
     top: 0;
+    z-index: 2;
+    background-color: white;
 }
 
 .titleContainer {
@@ -22,7 +24,6 @@
     display: inline-flex;
     max-height: 6vh;
     margin: 0em auto;
-    background-color: white;
 }
 
 .navBtn {
