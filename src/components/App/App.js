@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -16,7 +17,6 @@ import DesignerHomeView from '../Designer/DesignerHomeView'
 import ManagerHomeView from '../Manager/ManagerHomeView';
 import ManagerRegistration from '../Manager/ManagerRegistration';
 import Login from '../Login/Login';
-import Projects from '../Designer/DesignerHomeComponents/Projects'
 import AdminPage from '../AdminPage/AdminPage'
 
 import DesignerRegistration from '../Designer/DesignerRegistration';
@@ -27,9 +27,38 @@ import UpdateProfile from '../Designer/UpdateProfile';
 
 
 class App extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' });
+
+  state = {
+    user: {
+      id: 0
+    },
+    userHome: '/login'
   }
+
+  componentDidMount = () => {
+    this.props.dispatch({ type: 'FETCH_USER' });
+    
+    console.log(this.state.userHome);
+    
+  }
+  componentDidUpdate = () => {
+    if (this.props.store.user.id !== this.state.user.id) {
+      let redirect;
+      if(this.props.store.user.user_type === 'Designer'){
+        redirect = '/DesignerHomeView'
+      } else if ( this.props.user.user_type === 'Manager'){
+        redirect = '/ManagerHomeView'
+      } else if ( this.props.user.user_type === 'Admin'){
+        redirect = '/AdminPage'
+      }
+      console.log(redirect);      
+      this.setState({
+        user: this.props.store.user,
+        userHome: redirect
+      })
+    }
+  }
+  
 
   render() {
     return (
@@ -37,11 +66,20 @@ class App extends Component {
         <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
-
-            <Route
-            path={`/home`}
-            component={Login}
+            <Redirect exact from="/" to="/Login" />
+            
+             <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to Home Page based on user 
+              // if not logged in shows login
+              exact
+              path="/Login"
+              component={Login}
+              authRedirect="/DesignerHomeView"
+            />
+             <ProtectedRoute
+              path="/DesignerHomeView"
+              component={DesignerHomeView}
             />
 
             {/* Te+mp route to help with display and testing */}
@@ -50,10 +88,6 @@ class App extends Component {
               component={ManagerHomeView}
             />
         
-             <Route 
-              path={'/DesignerHomeView'}
-              component={DesignerHomeView}
-            />
             <Route 
               exact
               path={'/ManagerRegistration'}
@@ -91,6 +125,6 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(mapStoreToProps)(App);
 
 
