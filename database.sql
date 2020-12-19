@@ -4,7 +4,7 @@ CREATE TABLE "skills" (
 	"description" varchar(255) NOT NULL
 );
 
-CREATE TABLE "users" (
+CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	-- CHANGED username TO email
 	"email" varchar(255) UNIQUE,

@@ -6,25 +6,33 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class ManagerRegistration extends Component {
 
     state = {
-      username: '',
+      email: '',
       password: '',
+      passwordConfirmation: '',
+      company: '',
+      firstName: '',
+      lastName: '',
+      passwordIsMatch: null
     };
   
     registerUser = (event) => {
         event.preventDefault();
   
-    //   if (this.state.username && this.state.password) {
-    //     this.props.dispatch({
-    //       type: 'REGISTER',
-    //       payload: {
-    //         username: this.state.username,
-    //         password: this.state.password,
-    //       },
-    //     });
+      if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
+        this.props.dispatch({
+          type: 'REGISTER',
+          payload: {
+            username: this.state.email,
+            password: this.state.password,
+            company: this.state.company,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+          }
+        });
         
-    //   } else {
-    //     this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-    //   }
+      } else {
+        this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      }
 
     // history.push to '/ManagerHomeView'
     // TECH DEBT: REPLACE THIS WITH LOGIN FUNCTIONALITY DISPATCH AND THEN ONTO MANAGER HOME VIEW
@@ -36,6 +44,17 @@ class ManagerRegistration extends Component {
       this.setState({
         [propertyName]: event.target.value,
       });
+      if (propertyName === 'passwordConfirmation') {
+        this.checkpasswordMatch();
+      } 
+    }
+
+    checkpasswordMatch = () => {
+      if (this.state.password !== this.state.passwordConfirmation) {
+        this.setState({
+          passwordIsMatch: true
+        })
+      }
     }
   
     render() {
@@ -52,13 +71,14 @@ class ManagerRegistration extends Component {
           <form onSubmit={this.registerUser}>
             <h1>Manager Registration</h1>
             <div>
-              <label htmlFor="username">
+              <label htmlFor="email">
                 Email:
                 <input
                   type="text"
-                  name="username"
+                  name="email"
                   value={this.state.username}
-                  onChange={this.handleInputChangeFor('username')}
+                  onChange={this.handleInputChangeFor('email')}
+                  required
                 />
               </label>
             </div>
@@ -67,9 +87,9 @@ class ManagerRegistration extends Component {
                 Password:
                 <input
                   type="password"
-                  name="password"
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
+                  required
                 />
               </label>
             </div>
@@ -77,30 +97,13 @@ class ManagerRegistration extends Component {
               <label htmlFor="passwordConfirmation">
                 Password Confirmation:
                 <input
-                  type="passwordConfirmation"
-                  name="passwordConfirmation"
+                  type="password"
                   value={this.state.passwordConfirmation}
                   onChange={this.handleInputChangeFor('passwordConfirmation')}
+                  required
                 />
               </label>
             </div>
-
-             {/* Employee type, First name, Last name, Company */}
-
-             {/* <div>
-              <label htmlFor="employeeType">
-                Position:
-                <select
-                  type="employeeType"
-                  name="employeeType"
-                  value={this.state.employeeType}
-                  onChange={this.handleInputChangeFor('employeeType')}
-                >
-                    <option value="Manager">Manager</option>
-                    <option value="Designer">Designer</option>
-                </select>
-              </label>
-            </div> */}
             <div>
               <label htmlFor="firstName">
                 First Name:
@@ -109,6 +112,7 @@ class ManagerRegistration extends Component {
                   name="firstName"
                   value={this.state.firstName}
                   onChange={this.handleInputChangeFor('firstName')}
+                  required
                 />
               </label>
             </div>
@@ -131,44 +135,16 @@ class ManagerRegistration extends Component {
                   name="company"
                   value={this.state.company}
                   onChange={this.handleInputChangeFor('company')}
+                  required
                 />
               </label>
             </div>
-            {/* {this.state.employeeType === 'Designer' ?
-                <div>
-                <label htmlFor="manager_id">
-                Manager ID #:
-                <input
-                    type="manager_id"
-                    name="manager_id"
-                    value={this.state.manager_id}
-                    onChange={this.handleInputChangeFor('manager_id')}
-                />
-                </label>
-                </div>
-            :
-                <div>
-                <label htmlFor="manager_id">
-                Manager ID #:
-                <input
-                    type="manager_id"
-                    name="manager_id"
-                    value={this.state.manager_id}
-                    onChange={this.handleInputChangeFor('manager_id')}
-                    disabled
-                />
-                </label>
-                </div>
-            } */}
-
             <div>
-                {/* Add a conditional to prevent insufficient input from advancing */}
               <input
                 className="register"
                 type="submit"
                 name="submit"
                 value="Register"
-                
               />
             </div>
           </form>
