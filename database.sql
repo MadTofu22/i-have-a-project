@@ -7,8 +7,8 @@ CREATE TABLE "skills" (
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	-- CHANGED username TO email
-	"email" varchar(255) UNIQUE,
-	"password" varchar(40),
+	"email" VARCHAR (80) UNIQUE NOT NULL,
+    "password" VARCHAR (1000) NOT NULL
 	-- ADDED/TWEAKED
 	"user_type" varchar(40),
 	"first_name" varchar(30),
