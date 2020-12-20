@@ -40,6 +40,16 @@ class Calendar extends Component {
 			}
 		}
 	};
+
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_CALENDAR_EVENTS'
+		})
+	}
+
+	
+
+// converts date format from FullCalendar passed as info from eventClick
 	OpenCalendarEventModal = (info) => {
 		let eventInfo = {
 			id: info.event.title,

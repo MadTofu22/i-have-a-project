@@ -1,17 +1,20 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* sampleName() {
+function* fetchCalendarEventsByID() {
   try {
-    const response = yield axios.get('/api/sampleName');
-    yield put({ type: 'SAMPLE_DISPATCH_CALL', payload: response.data });
+    const calendarEventsData = yield axios.get("/api/")
+    yield put({
+      type: 'SET_DESIGNER_EVENTS',
+      payload: calendarEventsData.data
+    })
   } catch (error) {
-    console.log('User get request failed', error);
+    
   }
 }
 
 function* calendarSaga() {
-  yield takeLatest('FETCH_USER', sampleName);
+  yield takeLatest('FETCH_CALENDAR_EVENTS_BY_ID', fetchCalendarEventsByID);
 }
 
 export default calendarSaga;
