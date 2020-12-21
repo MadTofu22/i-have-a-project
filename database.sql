@@ -46,7 +46,8 @@ CREATE TABLE "projects" (
 	"manager_id" BOOLEAN NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
-	"notes" varchar(510)
+	"notes" varchar(510),
+	"project_name" varchar(256)
 );
 
 CREATE TABLE "projects_designers_join" (
@@ -57,7 +58,6 @@ CREATE TABLE "projects_designers_join" (
 	"hours_est" int NOT NULL,
 	"project_signature" BOOLEAN NOT NULL,
 	"roster_signature" BOOLEAN NOT NULL,
-	"project_name" varchar(255) NOT NULL
 );
 
 CREATE TABLE "designer_calendar_item" (

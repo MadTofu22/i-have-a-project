@@ -9,67 +9,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-class AddCalendarEvent extends Component{
-
-  state = {
-    open: false,
-    clickEvent: {
-        dialog: 'Add New Event',
-				id: 0,
-				title: '',
-				start: '',
-				hoursToCommit: 0,
-				renderModal: false
-		}
-  }
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log('propsinfo', this.props.clickEvent);
-    
-
-    if (this.props.clickEvent.id !== this.state.clickEvent.id) {
-      console.log('update', this.props.clickEvent)
-      this.setState({
-        clickEvent: this.props.clickEvent
-      })
-      this.handleClickOpen()
-    }
-  }
-
-
+function AddCalendarEvent(props) {
   // potential to pass probs and trigger modal this way
 
-   handleClickOpen = () => {
-    this.setState({
-      open: true
-    })
-  };
 
-   handleClose = () => {
-    this.setState({
-      open: false
-    })
-    
-  };
-
-   handleAddEvent = () => {
-      //dispatch
-      this.setState({
-        open: false
-      })
-  }
-
-   handleChange = (event) => { 
-    console.log(event.target.value);
-  }
-
-  render() {
-    return (
+    return (      
       <div>
-  
-      <button onClick={this.handleClickOpen}>Add Events</button> 
-  
-        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
+        <Dialog open={props.clickEvent.eventInfo.renderModal} onClose={props.closeClickEvent} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">{props.clickEvent.eventInfo.dialog}</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -95,20 +42,19 @@ class AddCalendarEvent extends Component{
             <DialogContentText>
               Select Project or Event Type 
             </DialogContentText>
-              <input type="date" value='12/21/2020' onChange={this.handleChange}/>
+              <input type="date"/>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="secondary">
+            <Button onClick={props.closeClickEvent} color="secondary">
               Cancel
             </Button>
-            <Button onClick={this.handleAddEvent} color="primary">
+            <Button color="primary">
               Add
             </Button>
           </DialogActions>
         </Dialog>
       </div>
     );
-  }
 }
 
 export default connect()(AddCalendarEvent);

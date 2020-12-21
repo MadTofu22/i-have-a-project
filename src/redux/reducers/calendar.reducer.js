@@ -1,10 +1,10 @@
-const sampleReducer = (state = {}, action) => {
+const calendar = (state = {}, action) => {
     switch (action.type) {
-      case 'SAMPLE_CASE':
+      case 'SET_DESIGNER_EVENTS':
         return action.payload;
       default:
         return state;
     }
   };
 
-  export default sampleReducer;
+  export default calendar;

@@ -5,13 +5,16 @@ const router = express.Router();
 /**
  * GET Calendar Events by Designer login ID
  */
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
 
     if (req.isAuthenticated) {
+        console.log(req.user);
         const queryText = `SELECT * FROM "designer_calendar_item" WHERE "designer_id" = $1`
 
-        pool.query( queryText, [ req.user.id ] )
+        pool.query( queryText, [ req.user.designer_id] )
         .then( ( response ) => {
+            console.log(response.rows);
+            
             res.send( response.rows )
         })
         .catch( ( error ) => {
