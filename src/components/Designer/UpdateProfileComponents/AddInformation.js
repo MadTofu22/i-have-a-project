@@ -71,6 +71,16 @@ class AddInformation extends Component {
 					})}
 				</ul>
 				<br/>
+				<button
+					onClick={() => {this.props.history.push('/DesignerHomeView')}}
+				>
+					Save and Go Home
+				</button>
+				<button
+					onClick={() => {this.props.history.push('/UpdateProfile/Skills')}}
+				>
+					To Skills
+				</button>
 			</>
 		);
 	}
