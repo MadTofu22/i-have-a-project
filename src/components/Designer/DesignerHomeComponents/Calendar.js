@@ -14,22 +14,10 @@ class Calendar extends Component {
 	// Date Formatting - https://fullcalendar.io/docs/Calendar-formatDate
 	state = {
 		events: [{
-			id: 1,
-			title: 'my event',
-			start: '2020-12-16',
-			hoursToCommit: 4
-		  },
-		  {
-			id: '2',
-			title: 'event 2',
-			start: '2020-12-16',
-			hoursToCommit: 2
-		  },
-		  {
-			id: '3',
-			title: 'IT"S EASY',
-			start: '2020-12-16',
-			hoursToCommit: 7
+			id: 0,
+			title: '',
+			start: '',
+			hoursToCommit: 0
 		  }],
 		clickEvent: {
 				dialog: 'Add New Event',
@@ -40,6 +28,14 @@ class Calendar extends Component {
 				renderModal: true
 		}
 	};
+	componentDidUpdate = () => {
+		if (this.props.store.calendar[0].id !== this.state.events[0].id) {
+			console.log(this.props.store.calendar);
+			this.setState({
+				events: this.props.store.calendar
+			});
+		}
+	}
 
 	componentDidMount = () => {
 		this.props.dispatch({

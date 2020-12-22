@@ -8,8 +8,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
     if (req.isAuthenticated) {
-        console.log(req.user);
-        const queryText = `SELECT * FROM "designer_calendar_item" WHERE "designer_id" = $1`
+        const queryText = `SELECT * FROM "designer_calendar_item" 
+                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
+                        WHERE "designer_id" = $1`
 
         pool.query( queryText, [ req.user.designer_id] )
         .then( ( response ) => {

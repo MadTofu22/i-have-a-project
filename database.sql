@@ -63,9 +63,10 @@ CREATE TABLE "projects_designers_join" (
 CREATE TABLE "designer_calendar_item" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"project_id" INT REFERENCES "projects" NOT NULL,
-	"start_date" TIMESTAMP NOT NULL,
-	"total_hours" int NOT NULL,
+	"project_id" INT REFERENCES "projects",
+	"name" varchar(64)
+	"start" DATE NOT NULL,
+	"hoursCommitted" int NOT NULL,
 	"available" BOOLEAN NOT NULL
 );
 
