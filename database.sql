@@ -46,7 +46,8 @@ CREATE TABLE "projects" (
 	"manager_id" BOOLEAN NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
-	"notes" varchar(510)
+	"notes" varchar(510),
+	"project_name" varchar(256)
 );
 
 CREATE TABLE "projects_designers_join" (
@@ -55,17 +56,15 @@ CREATE TABLE "projects_designers_join" (
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL NOT NULL,
 	"hours_est" int NOT NULL,
-	"project_signature" BOOLEAN NOT NULL,
-	"roster_signature" BOOLEAN NOT NULL,
-	"project_name" varchar(255) NOT NULL
 );
 
 CREATE TABLE "designer_calendar_item" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"project_id" INT REFERENCES "projects" NOT NULL,
-	"start_date" TIMESTAMP NOT NULL,
-	"total_hours" int NOT NULL,
+	"project_id" INT REFERENCES "projects",
+	"name" varchar(64)
+	"start" DATE NOT NULL,
+	"hoursCommitted" int NOT NULL,
 	"available" BOOLEAN NOT NULL
 );
 
