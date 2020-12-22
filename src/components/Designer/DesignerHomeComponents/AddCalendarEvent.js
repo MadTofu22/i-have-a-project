@@ -30,7 +30,11 @@ class AddCalendarEvent extends Component{
       this.setState({
         clickEvent: this.props.clickEvent
       })
-      this.handleClickOpen()
+      if (this.props.clickEvent.id !== 0 ) {
+        this.setState({
+          open: true
+        })
+      }    
     }
   }
 
@@ -38,11 +42,9 @@ class AddCalendarEvent extends Component{
   // potential to pass probs and trigger modal this way
 
    handleClickOpen = () => {
-    if (this.props.clickEvent.id !== 0 ) {
-      this.setState({
-        open: true
-      })
-    }
+    this.setState({
+      open: true
+    })
   };
 
    handleClose = () => {

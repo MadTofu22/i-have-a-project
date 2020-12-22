@@ -17,6 +17,13 @@ class DesignerHomeView extends Component {
 
 	};
 
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_DESIGNER_PROJECTS',
+			payload: this.props.store.user.designer_id
+		})
+	}
+
 	render () {
         const pages = [
             {

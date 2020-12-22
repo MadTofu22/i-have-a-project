@@ -1,21 +1,23 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+
 /**
- * GET Calendar Events by Designer login ID
+ * GET route template
  */
-router.get('/', (req, res) => {
-
-    if (req.isAuthenticated) {
-        const queryText = `SELECT * FROM "designer_calendar_item" 
-                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
-                        WHERE "designer_id" = $1`
-
-        pool.query( queryText, [ req.user.designer_id] )
+router.get('/:designer_id', (req, res) => {
+    console.log(req.params)
+    
+    if(req.isAuthenticated){
+        
+        const queryText = `SELECT * FROM "projects" 
+                            JOIN "projects_designers_join" ON "projects_designers_join"."project_id" = "projects"."id" 
+                            WHERE "designer_id" = $1`
+        pool.query(queryText, [req.params.designer_id])
         .then( ( response ) => {
             console.log(response.rows);
             
-            res.send( response.rows )
+            res.send(response.rows)
         })
         .catch( ( error ) => {
             console.log(error);
