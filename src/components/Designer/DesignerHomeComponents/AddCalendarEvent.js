@@ -9,10 +9,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import mapStoreToProps from '../../../redux/mapStoreToProps';
+
+
+
+import Switch from '@material-ui/core/Switch';
+
 class AddCalendarEvent extends Component{
 
   state = {
     open: false,
+    allocatedToProject: false,
     clickEvent: {
         dialog: 'Add New Event',
 				id: 0,
@@ -62,8 +69,18 @@ class AddCalendarEvent extends Component{
     this.props.closeClickEvent()
   }
 
-   handleChange = (event) => { 
-    console.log(event.target.value);
+  toggleProjectSelect = () => { 
+     this.setState({
+      allocatedToProject: !this.state.allocatedToProject
+     })
+  }
+  handleEventChange = (event, keyname) => { 
+    this.setState({
+      clickEvent: {
+        ...this.state.clickEvent,
+
+      }
+    })
   }
 
   render() {
@@ -74,33 +91,58 @@ class AddCalendarEvent extends Component{
   
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
+
           <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Event Name"
-              type="text"
-              fullWidth
-              onChange={(event) => this.handleChange(event)}
-              required={true}
-            />
+            Allocate to Project?
+            <Switch onChange={this.toggleProjectSelect}/> 
           </DialogContent>
-          <DialogContent>
-            <DialogContentText>
-               
-            </DialogContentText>
-            <select>
-                  {/* need map of user's projects and personal time option */}
-                <option>test</option>
-            </select>
-          </DialogContent>
-          <DialogContent>
-            <DialogContentText>
-              Select Project or Event Type 
-            </DialogContentText>
-              <input type="date" value='12/21/2020' onChange={this.handleChange}/>
-          </DialogContent>
+
+            { this.state.allocatedToProject ? 
+              <DialogContent>
+                <select onChange={(event) =>this.handleEventChange(event, 'project_id')}>
+                    <option value="">select a project</option>
+                    {this.props.store.projects.map( (project) => {
+                      return <option value={project.project_id}>{project.project_name}</option>
+                    })}
+                </select>
+              </DialogContent>
+            :
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Event Name"
+                type="text"
+                fullWidth
+                onChange={(event) => this.handleChange(event)}
+                required={true}
+              />
+            </DialogContent>
+            }
+            <DialogContent>
+              <TextField
+                id="date"
+                label="Event Date"
+                type="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                  autoFocus
+                  margin="dense"
+                  id="hours"
+                  label="Length of Event? (hours)"
+                  type="number"
+                  min={1} 
+                  max={12}
+                  fullWidth
+                  required={true}
+                />
+            </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="secondary">
               Cancel
@@ -115,4 +157,4 @@ class AddCalendarEvent extends Component{
   }
 }
 
-export default connect()(AddCalendarEvent);
+export default connect(mapStoreToProps)(AddCalendarEvent);
