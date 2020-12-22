@@ -33,7 +33,7 @@ function* fetchCalendarEventsByID() {
       let formattedEvent = {
         ...conditionalProperties,
         start: event.start.slice(0,10),
-        event_Id: event.event_Id,
+        id: event.event_Id,
         designer_Id: event.designer_id,
         hoursCommitted: event.hoursCommitted
       }

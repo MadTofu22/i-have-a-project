@@ -18,16 +18,15 @@ class AddCalendarEvent extends Component{
 				id: 0,
 				title: '',
 				start: '',
-				hoursToCommit: 0,
+				hoursCommitted: 0,
 				renderModal: false
 		}
   }
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = () => {
     console.log('propsinfo', this.props.clickEvent);
-    
 
     if (this.props.clickEvent.id !== this.state.clickEvent.id) {
-      console.log('update', this.props.clickEvent)
+      console.log('update')
       this.setState({
         clickEvent: this.props.clickEvent
       })
@@ -39,23 +38,26 @@ class AddCalendarEvent extends Component{
   // potential to pass probs and trigger modal this way
 
    handleClickOpen = () => {
-    this.setState({
-      open: true
-    })
+    if (this.props.clickEvent.id !== 0 ) {
+      this.setState({
+        open: true
+      })
+    }
   };
 
    handleClose = () => {
     this.setState({
       open: false
     })
-    
+    this.props.closeClickEvent()
   };
 
    handleAddEvent = () => {
       //dispatch
-      this.setState({
-        open: false
-      })
+    this.setState({
+      open: false
+    })
+    this.props.closeClickEvent()
   }
 
    handleChange = (event) => { 

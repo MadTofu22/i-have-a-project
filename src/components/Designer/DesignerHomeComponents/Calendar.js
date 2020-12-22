@@ -17,14 +17,14 @@ class Calendar extends Component {
 			id: 0,
 			title: '',
 			start: '',
-			hoursToCommit: 0
+			hoursCommitted: 0
 		  }],
 		clickEvent: {
 				dialog: 'Add New Event',
 				id: 0,
 				title: '',
 				start: '',
-				hoursToCommit: 0,
+				hoursCommitted: 0,
 				renderModal: true
 		}
 	};
@@ -49,7 +49,7 @@ class Calendar extends Component {
 					id: 0,
 					title: '',
 					start: '',
-					hoursToCommit: 0,
+					hoursCommitted: 0,
 					renderModal: false
 			}
 		})
@@ -63,7 +63,7 @@ class Calendar extends Component {
 			id: Number(info.event.id),
 			title: info.event.title,
 			start: new Intl.DateTimeFormat('en-US').format(info.event.start),
-			hoursToCommit: info.event.extendedProps.hoursToCommit,
+			hoursCommitted: info.event.extendedProps.hoursCommitted,
 			renderModal: true,
 			dialog: 'Edit Event'
 		}
