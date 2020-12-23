@@ -5,7 +5,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-
+import { formatDate } from '@fullcalendar/core'
 import './Calendar.css'
 import AddCalendarEvent from './AddCalendarEvent'
 
@@ -64,12 +64,13 @@ class Calendar extends Component {
 		let eventInfo = {
 			id: Number(info.event.id),
 			title: info.event.title,
-			start: new Intl.DateTimeFormat('en-US').format(info.event.start),
+			start: info.event.start.toISOString().slice(0, 10),
 			hoursCommitted: info.event.extendedProps.hoursCommitted,
 			project_id: info.event.extendedProps.project_id,
 			renderModal: true,
 			dialog: 'Edit Event'
 		}
+		console.log('event info', eventInfo)
 		this.setState({
 			clickEvent: eventInfo
 		})

@@ -52,7 +52,6 @@ class AddCalendarEvent extends Component{
     }
   }
 
-
   // potential to pass probs and trigger modal this way
 
    handleClickOpen = () => {
@@ -151,6 +150,7 @@ class AddCalendarEvent extends Component{
                 id="date"
                 label="Event Date"
                 type="date"
+                defaultValue={this.state.clickEvent.start}
                 InputLabelProps={{
                   shrink: true,
                 }}
