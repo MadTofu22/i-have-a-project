@@ -30,7 +30,81 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+    if (req.isAuthenticated) {
+        console.log(req.body);
+
+        
+        const queryText = `SELECT * FROM "designer_calendar_item" 
+                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
+                        WHERE "designer_id" = $1`
+
+        // pool.query( queryText, [ req.user.designer_id] )
+        // .then( ( response ) => {
+        //     console.log(response.rows);
+            
+        //     res.send( response.rows )
+        // })
+        // .catch( ( error ) => {
+        //     console.log(error);
+        //     res.sendStatus(500)
+        // })
+    } else {
+        res.sendStatus(403)
+    }
+});
+
+/**
+ * PUT route template
+ */
+router.put('/', (req, res) => {
+    if (req.isAuthenticated) {
+        console.log(req.body);
+        
+        
+        const queryText = `SELECT * FROM "designer_calendar_item" 
+                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
+                        WHERE "designer_id" = $1`
+
+        // pool.query( queryText, [ req.user.designer_id] )
+        // .then( ( response ) => {
+        //     console.log(response.rows);
+            
+        //     res.send( response.rows )
+        // })
+        // .catch( ( error ) => {
+        //     console.log(error);
+        //     res.sendStatus(500)
+        // })
+    } else {
+        res.sendStatus(403)
+    }
+});
+
+/**
+ * delete route template
+ */
+router.delete('/', (req, res) => {
+    if (req.isAuthenticated) {
+        console.log(req.body);
+        
+        
+        const queryText = `SELECT * FROM "designer_calendar_item" 
+                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
+                        WHERE "designer_id" = $1`
+
+        // pool.query( queryText, [ req.user.designer_id] )
+        // .then( ( response ) => {
+        //     console.log(response.rows);
+            
+        //     res.send( response.rows )
+        // })
+        // .catch( ( error ) => {
+        //     console.log(error);
+        //     res.sendStatus(500)
+        // })
+    } else {
+        res.sendStatus(403)
+    }
 });
 
 module.exports = router;

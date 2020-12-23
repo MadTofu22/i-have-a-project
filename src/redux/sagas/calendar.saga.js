@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* fetchCalendarEventsByID() {
   try {
@@ -22,7 +22,6 @@ function* fetchCalendarEventsByID() {
       if (event.project_name != null) {
         conditionalProperties = {
           title: event.project_name,
-          project_id: event.project_id,
           Status: event.status
         }
       } else {
@@ -35,17 +34,51 @@ function* fetchCalendarEventsByID() {
         start: event.start.slice(0,10),
         id: event.event_Id,
         designer_Id: event.designer_id,
-        hoursCommitted: event.hoursCommitted
+        hoursCommitted: event.hoursCommitted,
+        project_id: event.project_id,
       }
       transformedResults.push(formattedEvent)
     }
     return transformedResults
   }
+}
 
+function* updateCalendarEvent(action) {
+  try {
+    axios.put(`/api/calendar/`, action.payload)
+    put({
+      type: "FETCH_CALENDAR_EVENTS_BY_ID"
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* DeleteCalendarEvent(action) {
+  try {
+    axios.delete('/api/calendar', action.payload);
+    put({
+      type: "FETCH_CALENDAR_EVENTS_BY_ID"
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* createCalendarEvent(action) {
+  try {
+    axios.post('/api/calendar', action.payload);
+    put({
+      type: "FETCH_CALENDAR_EVENTS_BY_ID"
+    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* calendarSaga() {
   yield takeLatest('FETCH_CALENDAR_EVENTS_BY_ID', fetchCalendarEventsByID);
+  yield takeLatest('CREATE_CALENDAR_EVENT', createCalendarEvent)
+  yield takeEvery('UPDATE_CALENDAR_EVENT', updateCalendarEvent);
+  yield takeEvery('DELETE_CALENDAR_EVENT', DeleteCalendarEvent)
 }
 
 export default calendarSaga;

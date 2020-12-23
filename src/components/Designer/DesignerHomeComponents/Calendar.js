@@ -25,7 +25,8 @@ class Calendar extends Component {
 				title: '',
 				start: '',
 				hoursCommitted: 0,
-				renderModal: true
+				renderModal: true,
+				project_id: null
 		}
 	};
 	componentDidUpdate = () => {
@@ -50,7 +51,8 @@ class Calendar extends Component {
 					title: '',
 					start: '',
 					hoursCommitted: 0,
-					renderModal: false
+					renderModal: false,
+					project_id: null
 			}
 		})
 	}
@@ -64,11 +66,10 @@ class Calendar extends Component {
 			title: info.event.title,
 			start: new Intl.DateTimeFormat('en-US').format(info.event.start),
 			hoursCommitted: info.event.extendedProps.hoursCommitted,
+			project_id: info.event.extendedProps.project_id,
 			renderModal: true,
 			dialog: 'Edit Event'
 		}
-		console.log('in calendarjs', eventInfo)
-
 		this.setState({
 			clickEvent: eventInfo
 		})
@@ -77,13 +78,10 @@ class Calendar extends Component {
 	render() {
 		return (
 			<div className="CalendarWrap">
-	
-					<AddCalendarEvent  
-						closeClickEvent={this.closeClickEvent}
-						clickEvent={this.state.clickEvent}
-					/>
-				
-				
+				<AddCalendarEvent  
+					closeClickEvent={this.closeClickEvent}
+					clickEvent={this.state.clickEvent}
+				/>
 				{JSON.stringify(this.props.store)}
 				<FullCalendar
 					plugins={[ dayGridPlugin ]}
