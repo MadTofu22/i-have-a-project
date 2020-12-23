@@ -8,7 +8,7 @@ CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	-- CHANGED username TO email
 	"email" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
 	-- ADDED/TWEAKED
 	"user_type" varchar(40),
 	"first_name" varchar(30),
@@ -62,7 +62,7 @@ CREATE TABLE "designer_calendar_item" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects",
-	"name" varchar(64)
+	"name" varchar(64),
 	"start" DATE NOT NULL,
 	"hoursCommitted" int NOT NULL,
 	"available" BOOLEAN NOT NULL
