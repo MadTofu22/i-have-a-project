@@ -43,7 +43,7 @@ CREATE TABLE "designer_skills_join" (
 
 CREATE TABLE "projects" (
 	"id" SERIAL PRIMARY KEY,
-	"manager_id" BOOLEAN NOT NULL,
+	"manager_id" int references "user" NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
 	"notes" varchar(510),
@@ -56,6 +56,7 @@ CREATE TABLE "projects_designers_join" (
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL NOT NULL,
 	"hours_est" int NOT NULL,
+	"request_status" varchar(30)
 );
 
 CREATE TABLE "designer_calendar_item" (
@@ -65,6 +66,7 @@ CREATE TABLE "designer_calendar_item" (
 	"name" varchar(64),
 	"start" DATE NOT NULL,
 	"hoursCommitted" int NOT NULL,
+	-- In final update change hoursCommitted to snake case FIX THIS
 	"available" BOOLEAN NOT NULL
 );
 
