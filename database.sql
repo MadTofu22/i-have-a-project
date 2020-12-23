@@ -8,7 +8,7 @@ CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	-- CHANGED username TO email
 	"email" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
 	-- ADDED/TWEAKED
 	"user_type" varchar(40),
 	"first_name" varchar(30),
@@ -43,7 +43,7 @@ CREATE TABLE "designer_skills_join" (
 
 CREATE TABLE "projects" (
 	"id" SERIAL PRIMARY KEY,
-	"manager_id" BOOLEAN NOT NULL,
+	"manager_id" int references "user" NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
 	"notes" varchar(510),
@@ -56,15 +56,17 @@ CREATE TABLE "projects_designers_join" (
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL NOT NULL,
 	"hours_est" int NOT NULL,
+	"request_status" varchar(30)
 );
 
 CREATE TABLE "designer_calendar_item" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects",
-	"name" varchar(64)
+	"name" varchar(64),
 	"start" DATE NOT NULL,
 	"hoursCommitted" int NOT NULL,
+	-- In final update change hoursCommitted to snake case FIX THIS
 	"available" BOOLEAN NOT NULL
 );
 
