@@ -70,7 +70,7 @@ class AddCalendarEvent extends Component{
      
     this.props.dispatch({
       type: "CREATE_CALENDAR_EVENT",
-      payload: this.state.clickEvent
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
     })    
     this.setState({
       open: false
@@ -94,7 +94,7 @@ class AddCalendarEvent extends Component{
   handleUpdateEvent = () => {
     this.props.dispatch({
       type: "UPDATE_CALENDAR_EVENT",
-      payload: this.state.clickEvent
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
     })    
     this.setState({
       open: false
