@@ -10,11 +10,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import mapStoreToProps from '../../../redux/mapStoreToProps';
-
-
-
 import Switch from '@material-ui/core/Switch';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 class AddCalendarEvent extends Component{
 
@@ -124,9 +123,9 @@ class AddCalendarEvent extends Component{
                   onChange={(event) =>this.handleEventChange(event, 'project_id')}
                   labelId="projectSelect"
                 >
-                    <option value={this.state.clickEvent.title}>{this.state.clickEvent.title}</option>
+                    <MenuItem value={this.state.clickEvent.title}>{this.state.clickEvent.title}</MenuItem>
                     {this.props.store.projects.map( (project) => {
-                      return <option value={project.project_id}>{project.project_name}</option>
+                      return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
                     })}
                 </Select>
 

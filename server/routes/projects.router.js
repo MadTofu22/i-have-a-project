@@ -28,6 +28,28 @@ router.get('/:designer_id', (req, res) => {
     }
 });
 
+router.get('/details/:project_id', (req, res) => {
+    console.log(req.params)
+    
+    if(req.isAuthenticated){
+        
+        const queryText = `SELECT * FROM "projects" 
+                            WHERE "project_id" = $1`
+        pool.query(queryText, [req.params.designer_id])
+        .then( ( response ) => {
+            console.log(response.rows);
+            
+            res.send(response.rows)
+        })
+        .catch( ( error ) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+});
+
 /**
  * POST route template
  */
