@@ -8,27 +8,40 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import Switch from '@material-ui/core/Switch';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 class AddCalendarEvent extends Component{
 
   state = {
     open: false,
+    allocatedToProject: false,
     clickEvent: {
         dialog: 'Add New Event',
 				id: 0,
 				title: '',
 				start: '',
 				hoursCommitted: 0,
-				renderModal: false
-		}
+        renderModal: false,
+        project_id: null
+  	}
   }
   componentDidUpdate = () => {
     console.log('propsinfo', this.props.clickEvent);
+    let isProject = false;
 
     if (this.props.clickEvent.id !== this.state.clickEvent.id) {
-      console.log('update')
+      if (this.props.clickEvent.project_id != null) {
+        isProject = true
+        console.log('is project', isProject);
+      }
       this.setState({
-        clickEvent: this.props.clickEvent
+        clickEvent: this.props.clickEvent,
+        allocatedToProject: isProject
       })
       if (this.props.clickEvent.id !== 0 ) {
         this.setState({
@@ -37,7 +50,6 @@ class AddCalendarEvent extends Component{
       }    
     }
   }
-
 
   // potential to pass probs and trigger modal this way
 
@@ -55,15 +67,39 @@ class AddCalendarEvent extends Component{
   };
 
    handleAddEvent = () => {
-      //dispatch
+     
+    this.props.dispatch({
+      type: "CREATE_CALENDAR_EVENT",
+      payload: this.state.clickEvent
+    })    
     this.setState({
       open: false
     })
     this.props.closeClickEvent()
   }
 
-   handleChange = (event) => { 
-    console.log(event.target.value);
+  toggleProjectSelect = () => { 
+     this.setState({
+      allocatedToProject: !this.state.allocatedToProject
+     })
+  }
+  handleEventChange = (event, keyname) => { 
+    this.setState({
+      clickEvent: {
+        ...this.state.clickEvent,
+        [keyname]: event.target.value
+      }
+    })
+  }
+  handleUpdateEvent = () => {
+    this.props.dispatch({
+      type: "UPDATE_CALENDAR_EVENT",
+      payload: this.state.clickEvent
+    })    
+    this.setState({
+      open: false
+    })
+    this.props.closeClickEvent()
   }
 
   render() {
@@ -72,42 +108,86 @@ class AddCalendarEvent extends Component{
   
       <button onClick={this.handleClickOpen}>Add Events</button> 
   
-        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" >
           <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
+
           <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Event Name"
-              type="text"
-              fullWidth
-              onChange={(event) => this.handleChange(event)}
-              required={true}
-            />
+            Allocate to Project?
+            <Switch checked={this.state.allocatedToProject} onChange={this.toggleProjectSelect} color="primary"/> 
           </DialogContent>
-          <DialogContent>
-            <DialogContentText>
-               
-            </DialogContentText>
-            <select>
-                  {/* need map of user's projects and personal time option */}
-                <option>test</option>
-            </select>
-          </DialogContent>
-          <DialogContent>
-            <DialogContentText>
-              Select Project or Event Type 
-            </DialogContentText>
-              <input type="date" value='12/21/2020' onChange={this.handleChange}/>
-          </DialogContent>
+
+            { this.state.allocatedToProject ? 
+              <DialogContent>
+                <InputLabel id="projectSelect">Select Project</InputLabel>
+                <Select 
+                  onChange={(event) =>this.handleEventChange(event, 'project_id')}
+                  labelId="projectSelect"
+                >
+                    <MenuItem value={this.state.clickEvent.title}>{this.state.clickEvent.title}</MenuItem>
+                    {this.props.store.projects.map( (project) => {
+                      return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
+                    })}
+                </Select>
+
+              </DialogContent>
+            :
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Event Name"
+                type="text"
+                fullWidth
+                onChange={(event) => this.handleEventChange(event, 'title' )}
+                required={true}
+              />
+            </DialogContent>
+            }
+            <DialogContent>
+              <TextField
+                id="date"
+                label="Event Date"
+                type="date"
+                defaultValue={this.state.clickEvent.start}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(event) => this.handleEventChange(event, 'start')}
+              />
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                  autoFocus
+                  margin="dense"
+                  id="hours"
+                  label="Length of Event? (hours)"
+                  type="number"
+                  min={1} 
+                  max={12}
+                  fullWidth
+                  required={true}
+                  onChange={(event) => this.handleEventChange(event, 'hoursCommitted')}
+                />
+            </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="secondary">
               Cancel
             </Button>
-            <Button onClick={this.handleAddEvent} color="primary">
-              Add
-            </Button>
+            {this.state.clickEvent.id === 0 ?
+              <Button onClick={this.handleAddEvent} color="primary">
+                Add
+              </Button>
+            :
+              <div>
+                <Button color="primary">
+                  Delete
+                </Button>
+                <Button onClick={this.handleUpdateEvent} color="primary">
+                  Update
+                </Button>
+              </div>
+            }
           </DialogActions>
         </Dialog>
       </div>
@@ -115,4 +195,4 @@ class AddCalendarEvent extends Component{
   }
 }
 
-export default connect()(AddCalendarEvent);
+export default connect(mapStoreToProps)(AddCalendarEvent);

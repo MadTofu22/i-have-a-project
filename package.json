@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@fullcalendar/core": "^5.5.0",
     "@fullcalendar/daygrid": "^5.4.0",
     "@fullcalendar/react": "^5.4.0",
     "@material-ui/core": "^4.11.2",
