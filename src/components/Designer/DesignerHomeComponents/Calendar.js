@@ -5,7 +5,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-
+import { formatDate } from '@fullcalendar/core'
 import './Calendar.css'
 import AddCalendarEvent from './AddCalendarEvent'
 
@@ -14,50 +14,76 @@ class Calendar extends Component {
 	// Date Formatting - https://fullcalendar.io/docs/Calendar-formatDate
 	state = {
 		events: [{
-			id: '1',
-			title: 'my event',
-			start: '2020-12-16',
-			hoursToCommit: 4
-		  },
-		  {
-			id: '2',
-			title: 'event 2',
-			start: '2020-12-16',
-			hoursToCommit: 2
-		  },
-		  {
-			id: '3',
-			title: 'IT"S EASY',
-			start: '2020-12-16',
-			hoursToCommit: 7
+			id: 0,
+			title: '',
+			start: '',
+			hoursCommitted: 0
 		  }],
-		ClickEvent: {
-			eventInfo: {
-				id: '',
+		clickEvent: {
+				dialog: 'Add New Event',
+				id: 0,
 				title: '',
 				start: '',
-				hoursToCommit: 0
-			}
+				hoursCommitted: 0,
+				renderModal: true,
+				project_id: null
 		}
 	};
+	componentDidUpdate = () => {
+		if (this.props.store.calendar !== this.state.events) {
+			console.log(this.props.store.calendar);
+			this.setState({
+				events: this.props.store.calendar
+			});
+		}
+	}
+
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_CALENDAR_EVENTS_BY_ID'
+		})
+	}
+	closeClickEvent = () => {
+		this.setState({
+			clickEvent: {
+					dialog: 'Add New Event',
+					id: 0,
+					title: '',
+					start: '',
+					hoursCommitted: 0,
+					renderModal: false,
+					project_id: null
+			}
+		})
+	}
+
+	
+
+// converts date format from FullCalendar passed as info from eventClick
 	OpenCalendarEventModal = (info) => {
 		let eventInfo = {
-			id: info.event.title,
-			title: info.event.id,
-			start: new Intl.DateTimeFormat('en-US').format(info.event.start),
-			hoursToCommit: info.event.extendedProps.hoursToCommit
+			id: Number(info.event.id),
+			title: info.event.title,
+			start: info.event.start.toISOString().slice(0, 10),
+			hoursCommitted: info.event.extendedProps.hoursCommitted,
+			project_id: info.event.extendedProps.project_id,
+			renderModal: true,
+			dialog: 'Edit Event'
 		}
-		console.log(info);
-		console.log(eventInfo);
+		console.log('event info', eventInfo)
 		this.setState({
-			ClickEvent: eventInfo
+			clickEvent: eventInfo
 		})
 	}
 
 	render() {
 		return (
 			<div className="CalendarWrap">
-				<AddCalendarEvent  calendarClickEvent={this.state.ClickEvent}/>
+				<AddCalendarEvent  
+					closeClickEvent={this.closeClickEvent}
+					clickEvent={this.state.clickEvent}
+				/>
+				{JSON.stringify(this.props.store)}
 				<FullCalendar
 					plugins={[ dayGridPlugin ]}
 					initialView="dayGridMonth"
