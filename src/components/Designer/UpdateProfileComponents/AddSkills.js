@@ -42,7 +42,14 @@ class AddSkills extends Component {
 								</>
 							)
 						})}
-						<button disabled={this.state.saveDisabled}>Save</button>
+						<div className='skillsSection'>
+							<label htmlFor='skillInput'>Enter Skill</label>
+							<input type='text' name='skillInput' id='skillInput' className='skillsTextField' />
+							<input type='button' id='addSkill' value='Add' />
+							
+						</div>
+						<br/>
+						<input type='submit' disabled={this.state.saveDisabled} value='Save' />
 					</form>
 				</div>
 			</>
