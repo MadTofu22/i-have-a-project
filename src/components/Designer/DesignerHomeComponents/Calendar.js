@@ -30,7 +30,7 @@ class Calendar extends Component {
 		}
 	};
 	componentDidUpdate = () => {
-		if (this.props.store.calendar[0].id !== this.state.events[0].id) {
+		if (this.props.store.calendar !== this.state.events) {
 			console.log(this.props.store.calendar);
 			this.setState({
 				events: this.props.store.calendar

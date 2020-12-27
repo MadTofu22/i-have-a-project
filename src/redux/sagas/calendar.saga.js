@@ -65,7 +65,7 @@ function* DeleteCalendarEvent(action) {
 }
 function* createCalendarEvent(action) {
   try {
-    yield axios.post('/api/calendar', action.payload);
+    yield axios.post(`/api/calendar/`, action.payload);
     yield put({
       type: "FETCH_CALENDAR_EVENTS_BY_ID"
     })
