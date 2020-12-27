@@ -6,7 +6,25 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 class AddSkills extends Component {
 	state = {
 		softwareList: ['Software 1', 'Software 2', 'Software 3', 'Software 4', 'Software 5'],
+		selectedSoftware: [],
+		saveDisabled: false,
+
 	};
+
+	handleFormSubmit = (event) => {
+		
+	}
+
+	// This function toggles the Save button enabled or disabled
+	enableSave = () => {
+
+		if (this.state.saveDisabled) {
+			this.setState({
+				...this.state,
+				saveDisabled: !this.state.saveDisabled
+			});
+		}
+	}
 
 	render() {
 		return (
@@ -14,16 +32,17 @@ class AddSkills extends Component {
 				<h2>Add Skills</h2>
 				<div className='sectionContainer'>
 					<h4>Software</h4>
-					<form id='softwareSelectionForm'>
+					<form id='softwareSelectionForm' onSubmit={this.handleFormSubmit}>
 						{this.state.softwareList.map((item, index) => {
 							return (
 								<>
-									<input type='checkbox' id={`software${index}`} name={`software${index}`} value={index}/>
+									<input type='checkbox' id={`software${index}`} name={`software${index}`} value={index} onChange={this.enableSave} />
 									<label htmlFor={`software${index}`}>{item}</label>
 									<br/>
 								</>
 							)
 						})}
+						<button disabled={this.state.saveDisabled}>Save</button>
 					</form>
 				</div>
 			</>
