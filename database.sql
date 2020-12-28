@@ -46,6 +46,7 @@ CREATE TABLE "projects" (
 	"manager_id" int references "user" NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
+	"start" TIMESTAMP,
 	"notes" varchar(510),
 	"project_name" varchar(256)
 );
