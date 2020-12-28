@@ -60,7 +60,7 @@ CREATE TABLE "projects_designers_join" (
 );
 
 CREATE TABLE "designer_calendar_item" (
-	"id" SERIAL PRIMARY KEY,
+	"event_id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects",
 	"name" varchar(64),

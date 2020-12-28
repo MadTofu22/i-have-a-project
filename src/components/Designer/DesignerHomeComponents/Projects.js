@@ -6,28 +6,30 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
 
 class Projects extends Component {
-	state = {
-		rows: [
-			{id: 1, name: 'projectTable', status: 'In Progress', owner: 'Simon', hours: 20},
-			{id: 2, name: 'CalendarView', status: 'completed', owner: 'Peter', hours: 4},
-			{id: 3, name: 'My Profile', status: 'Scheduled', owner: 'Tom', hours: 8},
-			{id: 2, name: 'Dashboard', status: 'completed', owner: 'Rachel', hours: 10},
-			{id: 3, name: 'DB', status: 'In Progress', owner: 'Elliot', hours: 8},
-		]
-	};
+
+	handleClickProjects = (row) => {
+		console.log(row.row.project_id);
+		this.props.history.push(`/projectDetails/${row.row.project_id}`)
+	}
+
 	render() {
 		return (
 			<div style={{ height: 250, width: '100%' }}>
-				<DataGrid
-					columns={[
-							{ field: 'id', headerName: 'Project ID' },
-							{ field: 'name', headerName: 'Name' },
-							{ field: 'status', headerName: 'Status' },
-							{ field: 'owner', headerName: 'Project MAnager'},
-							{ field: 'hours', headerName: 'Scheduled Hours' }
-						]}
-					rows={this.state.rows}
-				/>
+				{this.props.store.projects.length > 1 ?
+					<DataGrid
+						columns={[
+								{ field: 'id', headerName: 'Project ID' },
+								{ field: 'project_name', headerName: 'Name' },
+								{ field: 'status', headerName: 'Status' },
+								{ field: 'due_date', headerName: 'Due Date'}
+							]}
+						rows={this.props.store.projects}
+						onRowClick={(rowParams) => this.handleClickProjects(rowParams)}
+					/>
+				:
+						<></>
+				}
+				
    			</div>
 		);
 	}
