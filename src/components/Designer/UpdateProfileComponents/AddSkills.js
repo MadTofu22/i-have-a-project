@@ -8,8 +8,28 @@ import AddedSkillLabel from './AddedSkillLabel';
 class AddSkills extends Component {
 	
 	state = {
-		softwareList: ['Software 1', 'Software 2', 'Software 3', 'Software 4', 'Software 5'],
-		selectedSoftware: [],
+		softwareList: [
+			{
+				name: 'Software 1',
+				checkedState: false,
+			},
+			{
+				name: 'Software 2',
+				checkedState: false,
+			},
+			{
+				name: 'Software 3',
+				checkedState: false,
+			},
+			{
+				name: 'Software 4',
+				checkedState: false,
+			},
+			{
+				name: 'Software 5',
+				checkedState: false,
+			},
+		],
 		skillsList: [
 			{
 				label: 'Communication',
@@ -21,19 +41,23 @@ class AddSkills extends Component {
 
 	// This fucntion saves the input info and stores it to the redux state, then passes it to the server/database
 	handleFormSubmit = (event) => {
+		event.preventDefault();
 		console.log('skill form save clicked:', event.target);
+
 
 	}
 
-	// This function toggles the Save button enabled or disabled
-	enableSave = () => {
+	// This function marks the state for the selected software as checked and toggles the save button enabled
+	handleCheckboxChange = (index) => {
 
-		if (this.state.saveDisabled) {
-			this.setState({
-				...this.state,
-				saveDisabled: !this.state.saveDisabled
-			});
-		}
+		let newSoftwareList = this.state.softwareList;
+		newSoftwareList[index].checkedState = true;
+
+		this.setState({
+			...this.state,
+			softwareList: newSoftwareList,
+			saveDisabled: false
+		});
 	}
 
 	// This function updates the local state skills list with User added skills and their ratings.
@@ -58,7 +82,7 @@ class AddSkills extends Component {
 	}
 
 	render() {
-		console.log('AddSkills:', this)
+		console.log('AddSkills - state:', this.state, '; props:', this.props);
 		return (
 			<>
 				<h2>Add Skills</h2>
@@ -68,8 +92,15 @@ class AddSkills extends Component {
 						{this.state.softwareList.map((item, index) => {
 							return (
 								<>
-									<input type='checkbox' id={`software${index}`} name={`software${index}`} value={index} onChange={this.enableSave} />
-									<label htmlFor={`software${index}`}>{item}</label>
+									<input 
+										type='checkbox' 
+										id={`software${index}`} 
+										name={`software${index}`} 
+										value={index}
+										checked={item.checkedState}
+										onChange={() => this.handleCheckboxChange(index)} 
+									/>
+									<label htmlFor={`software${index}`}>{item.name}</label>
 									<br/>
 								</>
 							)
