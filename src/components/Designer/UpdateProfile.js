@@ -12,6 +12,11 @@ class UpdateProfile extends Component {
 
 	};
 
+	// This function saves the profile data and navigates to the specified page
+	saveAndNavigate = (path) => {
+		
+	}
+
 	render() {
 		return (
 			<Router>

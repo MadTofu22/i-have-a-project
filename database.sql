@@ -7,21 +7,21 @@ CREATE TABLE "skills" (
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	-- CHANGED username TO email
-	"email" VARCHAR (80) UNIQUE NOT NULL,
+	"email" VARCHAR (80) UNIQUE,
     "password" VARCHAR (1000) NOT NULL,
 	-- ADDED/TWEAKED
 	"user_type" varchar(40),
 	"first_name" varchar(30),
 	"last_name" varchar(50),
 	"company" varchar(100),
-	"designer_id" int
+	"designer_id" int 
 );
 
 CREATE TABLE "designers" (
 	"id" SERIAL PRIMARY KEY,
 	-- "first_name" varchar(30),
 	-- "last_name" varchar(50),
-	"manager_id" int REFERENCES "users" NOT NULL,
+	"manager_id" int REFERENCES "user" NOT NULL,
 	-- "email" varchar(150) UNIQUE,
 	-- "login" varchar(30),
 	"phone" varchar(15),
@@ -75,21 +75,24 @@ CREATE TABLE "career" (
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"start_date" DATE,
 	"end_date" DATE NOT NULL,
-	"title" varchar(100) NOT NULL
+	"title" varchar(100) NOT NULL,
+	"location" varchar(100),
 );
 
 CREATE TABLE "education" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"graduation_date" DATE NOT NULL,
-	"degree" varchar(100) NOT NULL
+	"degree" varchar(100) NOT NULL,
+	"location" varchar(100),
 );
 
 CREATE TABLE "certification" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"graduation_date" DATE NOT NULL,
-	"certification" varchar(100) NOT NULL
+	"certification" varchar(100) NOT NULL,
+	"location" varchar(100),
 );
 
 
@@ -97,10 +100,10 @@ CREATE TABLE "certification" (
 
 -- "email", "password", "employee_type", "first_name", "last_name", "company", "designer_id"
 
-INSERT INTO "users" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
+INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
 VALUES ('zpets@gmail.com', 'feckland87', 'Designer', 'Franz', 'Eckland', 'Z-Pets',1), 
-('bubblehub@gmail.com', 'kdanger88', 'Manager', 'Kelly', 'Danger', 'BubbleHub'), 
-('cellsgraphic@gmail.com', 'tbrookshaw89', 'Designer', 'Thomas', 'Brookshaw', 'Cell Graphic',2);
+('bubblehub@gmail.com', 'kdanger88', 'Manager', 'Kelly', 'Danger', 'BubbleHub', 2), 
+('cellsgraphic@gmail.com', 'tbrookshaw89', 'Designer', 'Thomas', 'Brookshaw', 'Cell Graphic', 3);
 
 
 INSERT INTO "projects" ("manager_id", "status", "due_date", "notes")
@@ -120,3 +123,18 @@ VALUES ('feng shui', 'the art of spacing and palletting'), ('computer softwares'
 INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate")
 VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '5'),
 ('2', '6513986342', 'www.linkedin.com', 'photoURL', '5');
+
+-- TEST DATA FOR GET PRFOFILE
+-- Added by Tom S
+insert into career (designer_id, start_date, end_date, title, "location")
+values ('4', '1/1/1990', '1/1/2000', 'Supervisor', 'CIA')
+('4', '1/1/1994', '1/1/2004', 'Clerk', 'FAA'),
+('4', '1/1/1998', '1/1/2008', 'Analyst', 'NSA')
+
+insert into education (designer_id, graduation_date, "degree", "location")
+values ('4', '1/1/2000', 'MBA', 'Harvard'),
+('4', '1/1/2004', 'PhD Bio-Physics', 'MIT')
+
+insert into certification (designer_id, graduation_date, certification, "location")
+values ('4', '1/1/2000', 'Dangerous Goods Shipping', 'IOTA'),
+('4', '1/1/2004', 'Life Guard', 'YMCA')
