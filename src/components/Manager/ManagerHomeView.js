@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {HashRouter as Router, Route, withRouter} from 'react-router-dom';
+import {HashRouter as Router, Route, withRouter, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './Manager.css';
@@ -59,6 +59,7 @@ class ManagerHomeView extends Component {
 
                 {/* Routes to each component */}
                 <div className='homeComponentWrapper'>
+                    <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Dashboard' />
                     <Route 
                         exact
                         path={`/ManagerHomeView/Dashboard`}
