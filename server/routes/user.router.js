@@ -50,6 +50,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// TEST ROUTE USED FOR TESTING
 router.get('/test', (req, res) => {
   pool.query('SELECT * FROM "skills";')
     .then(response => {

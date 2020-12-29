@@ -26,6 +26,17 @@ if (process.env.DATABASE_URL) {
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
+} else if (process.env.PGUSER && process.env.PGPASS) {
+  console.log('using local config with user and password');
+  config = {
+    user: process.env.PGUSER,
+    password: process.env.PGPASS,
+    host: 'localhost', // Server hosting the postgres database
+    port: 5432, // env var: PGPORT
+    database: 'i_have_a_project', // CHANGE THIS LINE! env var: PGDATABASE, this is likely the one thing you need to change to get up and running
+    max: 10, // max number of clients in the pool
+    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+  };
 } else {
   config = {
     host: 'localhost', // Server hosting the postgres database

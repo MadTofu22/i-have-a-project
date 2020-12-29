@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import profile from './profile.reducer';
 
 import calendar from './calendar.reducer'
 import projects from './projects.reducer'
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   calendar,
   projects,
-  designer
+  designer,
+  profile,
 });
 
 export default rootReducer;

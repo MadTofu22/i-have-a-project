@@ -76,7 +76,7 @@ class App extends Component {
               exact
               path="/Login"
               component={Login}
-              authRedirect={this.state.userHome}
+              authRedirect="/DesignerHomeView"
             />
              <ProtectedRoute
               path="/DesignerHomeView"

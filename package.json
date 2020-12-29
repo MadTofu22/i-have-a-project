@@ -2,7 +2,7 @@
   "name": "prime-solo-project",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@fullcalendar/core": "^5.5.0",
     "@fullcalendar/daygrid": "^5.4.0",
