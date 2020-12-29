@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+import AddDesignerToProject from '../Modals/AddDesignerToProject'
+
 class CreateProject extends Component {
 	state = {
 		newProject: {
@@ -14,7 +16,10 @@ class CreateProject extends Component {
 			status: '',
 			due_date: '',
 			notes: '',
-			start: ''
+			start: '',
+			TeamDesigners: [
+
+			]
 		},
 		status: [
 			'Active',
@@ -22,6 +27,14 @@ class CreateProject extends Component {
 			'Complete',
 		]
 	};
+	addSelectedDesigners = (designers) => {
+		this.setState({
+			newProject: {
+				...this.state.newProject,
+				TeamDesigners: designers
+			}
+		})
+	}
 
 	handlechange = (event, keyname) => {
 		this.setState({
@@ -29,11 +42,18 @@ class CreateProject extends Component {
 				...this.state.newProject,
 				[keyname]: event.target.value
 			}
-			
 		});
 	}
 	handleSubmit = () => {
-		console.log(this.state);	
+		this.props.dispatch({
+			type: "CREATE_PROJECT",
+			payload: this.state.newProject
+		})
+	}
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: "FETCH_DESIGNERS"
+		})
 	}
 
 	render() {
@@ -85,6 +105,14 @@ class CreateProject extends Component {
 							</MenuItem>
 						))}
 					</TextField>
+					<AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.newProject.TeamDesigners}/>
+							{this.state.newProject.TeamDesigners.length > 0 ?
+								this.state.newProject.TeamDesigners.map(designer => {
+									return <p>{JSON.stringify(designer)}</p>
+								})
+								:
+								<></>
+								}
 					<Button 
 						type="submit"
 						variant="contained" 

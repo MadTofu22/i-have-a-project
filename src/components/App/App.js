@@ -47,9 +47,9 @@ class App extends Component {
       let redirect;
       if(this.props.store.user.user_type === 'Designer'){
         redirect = '/DesignerHomeView'
-      } else if ( this.props.user.user_type === 'Manager'){
+      } else if ( this.props.store.user.user_type === 'Manager'){
         redirect = '/ManagerHomeView'
-      } else if ( this.props.user.user_type === 'Admin'){
+      } else if ( this.props.store.user.user_type === 'Admin'){
         redirect = '/AdminPage'
       }
       console.log(redirect);      
