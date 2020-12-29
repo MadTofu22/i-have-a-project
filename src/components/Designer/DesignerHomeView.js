@@ -45,6 +45,7 @@ class DesignerHomeView extends Component {
 			<>
 				<div>Designer Home</div>
 					<Router>
+						<button className='headerBarButton' onClick={() => this.props.history.push('/UpdateProfile')}>Update Profile</button>
 							<div className='designerNavBar'>
 								{pages.map((page, index) => {
 									return <NavButtonDesigner key={index} page={page} />

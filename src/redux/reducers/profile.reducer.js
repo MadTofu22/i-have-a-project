@@ -1,10 +1,11 @@
-const sampleReducer = (state = {}, action) => {
-    switch (action.type) {
-      case 'SAMPLE_CASE':
-        return action.payload;
-      default:
-        return state;
-    }
-  };
+const profile = (state = {}, action) => {
 
-  export default sampleReducer;
+    switch (action.type) {
+        case 'SET_PROFILE':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
+export default profile;
