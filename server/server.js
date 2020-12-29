@@ -13,8 +13,6 @@ const userRouter = require('./routes/user.router');
 const calendarRouter = require('./routes/calendar.router')
 const projectRouter = require('./routes/projects.router')
 const designerRouter = require('./routes/designer.router')
-const calendarRouter = require('./routes/calendar.router');
-const projectRouter = require('./routes/projects.router');
 const profileRouter = require('./routes/profile.router');
 
 // Body parser middleware
