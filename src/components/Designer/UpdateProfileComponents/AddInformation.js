@@ -45,7 +45,6 @@ class AddInformation extends Component {
 		return (
 			<>
 				<h2>Add Information</h2>
-				{JSON.stringify(this.props.store.profile)}
 				<br/>
 				<label
 					htmlFor='phoneNum'
