@@ -1,8 +1,11 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../_TemplateComponents/LoginPage/LoginPage';
 import RegisterPage from '../_TemplateComponents/RegisterPage/RegisterPage';
+
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -22,12 +25,13 @@ const ProtectedRoute = (props) => {
     component: ComponentToProtect,
     user,
     loginMode,
+    authRedirect,
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
-  if(user.id) {
+  if(props.store.user.id) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
@@ -39,6 +43,11 @@ const ProtectedRoute = (props) => {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
     ComponentToShow = RegisterPage;
+  }
+  if (props.store.user.id && authRedirect != null) {
+    return <Redirect exact from={otherProps.path} to={authRedirect} />;
+  } else if (!props.store.user.id && authRedirect != null) {
+    ComponentToShow = ComponentToProtect;
   }
 
   // We return a Route component that gets added to our list of routes
@@ -56,13 +65,8 @@ const ProtectedRoute = (props) => {
 // to determine which page we should show the user
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({ user, loginMode }) => ({ user, loginMode });
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    loginMode: state.loginMode,
-  }
-}
 
-export default connect(mapStateToProps)(ProtectedRoute)
+
+export default connect(mapStoreToProps)(ProtectedRoute)
 
 

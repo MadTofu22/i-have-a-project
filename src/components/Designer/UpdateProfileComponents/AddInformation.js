@@ -4,15 +4,59 @@ import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 class AddInformation extends Component {
-	state = {
-		eductionHistory: ['MCTC', 'Prime Digital Academy', 'University of Michigan'],
-		workHistory: ['I Have a Project', 'Activision', 'Endeavor'],
-	};
+
+	constructor (props) {
+		super(props);
+		this.workHistoryInputRef = React.createRef();
+		this.educationHistoryInputRef = React.createRef();
+		this.state = {
+			educationHistory: ['MCTC', 'Prime Digital Academy', 'University of Michigan'],
+			workHistory: ['I Have a Project', 'Activision', 'Endeavor'],
+			workHistoryInput: '',
+			educationHistoryInput: '',
+			linkedinPath: '',
+			avatarPath: '',
+		};
+	}
+
+	// This function handles storing the work and education history inputs in the local state on change
+	handleInputChange = (event, inputType) => {
+
+		console.log('in handleInputChange - inputType:', inputType, '; inputValue:', event.target.value);
+		this.setState({
+			...this.state,
+			[inputType]: event.target.value,
+		})
+	}
+
+	// This function handles adding an item to the education or work history list
+	updateHistoryList = (listType) => {
+
+		let refType = listType + 'InputRef';
+		let inputType = listType + 'Input';
+		this.setState({
+			...this.state,
+			[listType]: [...this.state[listType], this.state[inputType]],
+		});
+		this[refType].current.value = '';
+	}
 
 	render() {
 		return (
 			<>
 				<h2>Add Information</h2>
+				<br/>
+				<label
+					htmlFor='phoneNum'
+					className='buildProfileLabel'
+					defaultValue={this.props.store.profile.phone}
+				>
+					Cell Number:
+				</label>
+				<input
+					type='text'
+					id='phoneNum'
+				/>
 				<label
 					htmlFor='imgUrl'
 					className='buildProfileLabel'
@@ -22,6 +66,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='imgUrl'
+					onChange={(event) => this.handleInputChange(event, 'avatarPath')}
 				/>
 				<br/>
 				<label
@@ -33,47 +78,59 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='linkedinUrl'
+					onChange={(event) => this.handleInputChange(event, 'linkedinPath')}
 				/>
 				<br/>
-				<div className='experienceSection'>
-					<label
-						htmlFor='educationItem'
-						className='buildProfileLabel'
-					>
-						Education:
-					</label>
-					<input 
-						type='text'
-						id='educationItem'
-					/>
-					<button>Add</button>
-					<h4>Added Education</h4>
-					<ul>
-						{this.state.eductionHistory.map(item => {
-							return <li>{item}</li>
-						})}
-					</ul>
-					<br/>
-					<label
-						htmlFor='workItem'
-						className='buildProfileLabel'
-					>
-						Work Experience:
-					</label>
-					<input 
-						type='text'
-						id='workItem'
-					/>
-					<button>Add</button>
-					<h4>Added Work Experience</h4>
-					<ul>
-						{this.state.workHistory.map(item => {
-							return <li>{item}</li>
-						})}
-					</ul>
-				</div>
+				<label
+					htmlFor='educationItem'
+					className='buildProfileLabel'
+				>
+					Education:
+				</label>
+				<input 
+					type='text'
+					id='educationItem'
+					ref={this.historyInputRef}
+					onChange={(event) => this.handleInputChange(event, 'educationHistoryInput')}
+				/>
+				<button onClick={() => this.updateHistoryList('educationHistory')}>Add</button>
+				<h4>Added Education</h4>
+				<ul>
+					{this.state.educationHistory.map(item => {
+						return <li>{item}</li>
+					})}
+				</ul>
 				<br/>
-				<button onClick={()=>{this.props.history.push('/UpdateProfile/Skills')}}>To Skills</button>
+				<label
+					htmlFor='workItem'
+					className='buildProfileLabel'
+				>
+					Work Experience:
+				</label>
+				<input 
+					type='text'
+					id='workItem'
+					ref={this.historyInputRef}
+					onChange={(event) => this.handleInputChange(event, 'workHistoryInput')}
+				/>
+				<button onClick={() => this.updateHistoryList('workHistory')}>Add</button>
+				<h4>Added Work Experience</h4>
+				<ul>
+					{this.state.workHistory.map(item => {
+						return <li>{item}</li>
+					})}
+				</ul>
+				<br/>
+				<button
+					onClick={() => {this.props.history.push('/DesignerHomeView')}}
+				>
+					Save and Go Home
+				</button>
+				<button
+					onClick={() => {this.props.history.push('/UpdateProfile/Skills')}}
+				>
+					Save and go to Skills
+				</button>
 			</>
 		);
 	}

@@ -12,10 +12,20 @@ class UpdateProfile extends Component {
 
 	};
 
+	componentDidUpdate () {
+		this.props.dispatch({type: 'FETCH_PROFILE'});
+	}
+
+	// This function saves the profile data and navigates to the specified page
+	saveAndNavigate = (path) => {
+		
+	}
+
 	render() {
 		return (
 			<Router>
 				<h1>Build Your Profile!</h1>
+				{JSON.stringify(this.props.store.profile)}
 				<div className='profileInputContainer'>
 					<Route 
 						exact

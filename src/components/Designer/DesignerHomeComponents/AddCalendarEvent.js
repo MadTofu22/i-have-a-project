@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux'
 
 import Button from '@material-ui/core/Button';
@@ -8,110 +8,191 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import Switch from '@material-ui/core/Switch';
+import MenuItem from '@material-ui/core/MenuItem';
 
-import {makeStyles} from '@material-ui/core'
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
-function AddCalendarEvent(props) {
-  const [open, setOpen] = React.useState(false);
-  const [event, setName] = React.useState('')
+class AddCalendarEvent extends Component{
+
+  state = {
+    open: false,
+    allocatedToProject: false,
+    clickEvent: {
+        dialog: 'Add New Event',
+				id: 0,
+				title: '',
+				start: '',
+				hoursCommitted: 0,
+        renderModal: false,
+        project_id: null
+  	}
+  }
+  componentDidUpdate = () => {
+    console.log('propsinfo', this.props.clickEvent);
+    let isProject = false;
+
+    if (this.props.clickEvent.id !== this.state.clickEvent.id) {
+      if (this.props.clickEvent.project_id != null) {
+        isProject = true
+        console.log('is project', isProject);
+      }
+      this.setState({
+        clickEvent: this.props.clickEvent,
+        allocatedToProject: isProject
+      })
+      if (this.props.clickEvent.id !== 0 ) {
+        this.setState({
+          open: true
+        })
+      }    
+    }
+  }
 
   // potential to pass probs and trigger modal this way
-  useEffect(() => {
 
-  }, [event])
-
-  const handleClickOpen = () => {
-    setName('')
-    setOpen(true);
+   handleClickOpen = () => {
+    this.setState({
+      open: true
+    })
   };
 
-  const handleClose = () => {
-    setName('')
-    setOpen(false);
+   handleClose = () => {
+    this.setState({
+      open: false
+    })
+    this.props.closeClickEvent()
   };
 
-  const handleAddPlaylist = () => {
-      //dispatch
-    setOpen(false)
-    setName('')
+   handleAddEvent = () => {
+     
+    this.props.dispatch({
+      type: "CREATE_CALENDAR_EVENT",
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+    })    
+    this.setState({
+      open: false
+    })
+    this.props.closeClickEvent()
   }
 
-  const handleChange = (event) => {
-    setName(event.target.value)
+  toggleProjectSelect = () => { 
+     this.setState({
+      allocatedToProject: !this.state.allocatedToProject
+     })
   }
-  const handleDateChange = (event) => {
-    console.log(event.target.value);
+  handleEventChange = (event, keyname) => { 
+    this.setState({
+      clickEvent: {
+        ...this.state.clickEvent,
+        [keyname]: event.target.value
+      }
+    })
+  }
+  handleUpdateEvent = () => {
+    this.props.dispatch({
+      type: "UPDATE_CALENDAR_EVENT",
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+    })    
+    this.setState({
+      open: false
+    })
+    this.props.closeClickEvent()
   }
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(2),
-        width: theme.spacing(25),
-        height: theme.spacing(25),
-      },
-    },
-    paper: {
-      backgroundColor:  '#008183',
-      "&:hover, &:focus": {
-        backgroundColor: '#369091'
-      },
-      color: 'white',
-      textAlign: 'center',
-      paddingTop: '10px'
-    }
-  }));
+  render() {
+    return (
+      <div>
+  
+      <button onClick={this.handleClickOpen}>Add Events</button> 
+  
+        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" >
+          <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
 
-  const classes = useStyles();
+          <DialogContent>
+            Allocate to Project?
+            <Switch checked={this.state.allocatedToProject} onChange={this.toggleProjectSelect} color="primary"/> 
+          </DialogContent>
 
+            { this.state.allocatedToProject ? 
+              <DialogContent>
+                <InputLabel id="projectSelect">Select Project</InputLabel>
+                <Select 
+                  onChange={(event) =>this.handleEventChange(event, 'project_id')}
+                  labelId="projectSelect"
+                >
+                    <MenuItem value={this.state.clickEvent.title}>{this.state.clickEvent.title}</MenuItem>
+                    {this.props.store.projects.map( (project) => {
+                      return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
+                    })}
+                </Select>
 
-  return (
-    <div>
-
-    <button onClick={handleClickOpen}>Add Events</button> 
-
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add New Event</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Event Name"
-            type="text"
-            fullWidth
-            onChange={(event) => handleChange(event)}
-            required={true}
-          />
-        </DialogContent>
-        <DialogContent>
-          <DialogContentText>
-             
-          </DialogContentText>
-          <select>
-                {/* need map of user's projects and personal time option */}
-              <option>test</option>
-          </select>
-        </DialogContent>
-        <DialogContent>
-          <DialogContentText>
-            Select Project or Event Type 
-          </DialogContentText>
-            <input type="date" onChange={handleDateChange}/>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAddPlaylist} color="primary">
-            Add
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+              </DialogContent>
+            :
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Event Name"
+                type="text"
+                fullWidth
+                onChange={(event) => this.handleEventChange(event, 'title' )}
+                required={true}
+              />
+            </DialogContent>
+            }
+            <DialogContent>
+              <TextField
+                id="date"
+                label="Event Date"
+                type="date"
+                defaultValue={this.state.clickEvent.start}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(event) => this.handleEventChange(event, 'start')}
+              />
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                  autoFocus
+                  margin="dense"
+                  id="hours"
+                  label="Length of Event? (hours)"
+                  type="number"
+                  min={1} 
+                  max={12}
+                  fullWidth
+                  required={true}
+                  onChange={(event) => this.handleEventChange(event, 'hoursCommitted')}
+                />
+            </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="secondary">
+              Cancel
+            </Button>
+            {this.state.clickEvent.id === 0 ?
+              <Button onClick={this.handleAddEvent} color="primary">
+                Add
+              </Button>
+            :
+              <div>
+                <Button color="primary">
+                  Delete
+                </Button>
+                <Button onClick={this.handleUpdateEvent} color="primary">
+                  Update
+                </Button>
+              </div>
+            }
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 }
 
-export default connect()(AddCalendarEvent);
+export default connect(mapStoreToProps)(AddCalendarEvent);

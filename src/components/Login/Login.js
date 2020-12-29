@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 
 class LoginPage extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
   };
 
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.email && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
         payload: {
-          username: this.state.username,
+          username: this.state.email,
           password: this.state.password,
         },
       });
@@ -43,13 +43,13 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
+            <label htmlFor="email">
               Username:
               <input
                 type="text"
-                name="username"
+                name="email"
                 value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+                onChange={this.handleInputChangeFor('email')}
               />
             </label>
           </div>
