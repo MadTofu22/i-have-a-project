@@ -13,6 +13,7 @@ function* fetchProfile (action) {
 		career: careerResponse.data.rows,
 		certification: certificationResponse.data.rows,
 		education: educationResponse.data.rows
+		
 	}
 	console.log('in fetchProfile - responsePackage:', responsePackage);
 
