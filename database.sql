@@ -46,6 +46,7 @@ CREATE TABLE "projects" (
 	"manager_id" int references "user" NOT NULL,
 	"status" varchar(50),
 	"due_date" TIMESTAMP,
+	"start" TIMESTAMP,
 	"notes" varchar(510),
 	"project_name" varchar(256)
 );
@@ -54,8 +55,8 @@ CREATE TABLE "projects_designers_join" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects" NOT NULL,
-	"rate" DECIMAL NOT NULL,
-	"hours_est" int NOT NULL,
+	"rate" DECIMAL,
+	"hours_est" int,
 	"request_status" varchar(30)
 );
 

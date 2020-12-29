@@ -43,30 +43,6 @@ function AddTeamMember(props) {
     console.log(event.target.value);
   }
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(2),
-        width: theme.spacing(25),
-        height: theme.spacing(25),
-      },
-    },
-    paper: {
-      backgroundColor:  '#008183',
-      "&:hover, &:focus": {
-        backgroundColor: '#369091'
-      },
-      color: 'white',
-      textAlign: 'center',
-      paddingTop: '10px'
-    }
-  }));
-
-  const classes = useStyles();
-
-
   return (
     <div>
 
