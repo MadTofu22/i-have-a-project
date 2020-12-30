@@ -16,7 +16,17 @@ class AddInformation extends Component {
 			educationHistoryInput: '',
 			linkedinPath: '',
 			avatarPath: '',
+			phoneNum: '',
 		};
+	}
+
+	componentDidMount = () => {
+		if (this.props.store.profile.designer) {
+			this.setState({
+				...this.state,
+				phoneNum: this.props.store.profile.designer[0].phone
+			})
+		}
 	}
 
 	// This function handles storing the work and education history inputs in the local state on change
@@ -49,7 +59,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='phoneNum'
 					className='buildProfileLabel'
-					defaultValue={this.props.store.profile.phone}
+					defaultValue={this.state.phoneNum}
 				>
 					Cell Number:
 				</label>
@@ -97,7 +107,7 @@ class AddInformation extends Component {
 				<h4>Added Education</h4>
 				<ul>
 					{this.state.educationHistory.map(item => {
-						return <li>{item}</li>
+						return <li key={item}>{item}</li>
 					})}
 				</ul>
 				<br/>
@@ -117,7 +127,7 @@ class AddInformation extends Component {
 				<h4>Added Work Experience</h4>
 				<ul>
 					{this.state.workHistory.map(item => {
-						return <li>{item}</li>
+						return <li key={item}>{item}</li>
 					})}
 				</ul>
 				<br/>

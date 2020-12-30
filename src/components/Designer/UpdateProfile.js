@@ -8,12 +8,23 @@ import AddSkills from './UpdateProfileComponents/AddSkills';
 import AddInformation from './UpdateProfileComponents/AddInformation';
 
 class UpdateProfile extends Component {
+	
 	state = {
-
+		profileFetched: false,
+		designer: {}
 	};
 
-	componentDidUpdate () {
+	componentDidMount = () => {
+		this.getProfileData();
+	}
+
+	// This function gets the profile data from the database and stores it to the redux store
+	getProfileData = () => {
 		this.props.dispatch({type: 'FETCH_PROFILE'});
+		this.setState({
+			profileFetched: true,
+			designer: this.props.store.profile.designer,
+		});
 	}
 
 	// This function saves the profile data and navigates to the specified page
@@ -25,7 +36,7 @@ class UpdateProfile extends Component {
 		return (
 			<Router>
 				<h1>Build Your Profile!</h1>
-				{JSON.stringify(this.props.store.profile)}
+				{JSON.stringify(this.state)}
 				<div className='profileInputContainer'>
 					<Route 
 						exact

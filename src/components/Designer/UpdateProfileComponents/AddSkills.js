@@ -39,13 +39,6 @@ class AddSkills extends Component {
 		};
 	}
 
-	// This fucntion saves the input info and stores it to the redux state, then passes it to the server/database
-	handleFormSubmit = (event) => {
-		console.log('skill form save clicked:', event.target);
-
-
-	}
-
 	// This function marks the state for the selected software as checked and toggles the save button enabled
 	handleCheckboxChange = (index) => {
 
@@ -101,6 +94,7 @@ class AddSkills extends Component {
 
 	// This function removes a skill from the local state skills list by it's index
 	removeSkill = (index) => {
+
 		let newSkillsList = this.state.skillsList.slice();
 		newSkillsList.splice(index, 1);
 		console.log('in removeSkill - newSkillList:', newSkillsList)

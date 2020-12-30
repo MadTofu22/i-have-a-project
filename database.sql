@@ -128,14 +128,14 @@ VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '5'),
 -- TEST DATA FOR GET PRFOFILE
 -- Added by Tom S
 insert into career (designer_id, start_date, end_date, title, "location")
-values ('4', '1/1/1990', '1/1/2000', 'Supervisor', 'CIA')
+values ('4', '1/1/1990', '1/1/2000', 'Supervisor', 'CIA'),
 ('4', '1/1/1994', '1/1/2004', 'Clerk', 'FAA'),
-('4', '1/1/1998', '1/1/2008', 'Analyst', 'NSA')
+('4', '1/1/1998', '1/1/2008', 'Analyst', 'NSA');
 
 insert into education (designer_id, graduation_date, "degree", "location")
 values ('4', '1/1/2000', 'MBA', 'Harvard'),
-('4', '1/1/2004', 'PhD Bio-Physics', 'MIT')
+('4', '1/1/2004', 'PhD Bio-Physics', 'MIT');
 
 insert into certification (designer_id, graduation_date, certification, "location")
 values ('4', '1/1/2000', 'Dangerous Goods Shipping', 'IOTA'),
-('4', '1/1/2004', 'Life Guard', 'YMCA')
+('4', '1/1/2004', 'Life Guard', 'YMCA');
