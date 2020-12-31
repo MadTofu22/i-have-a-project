@@ -12,23 +12,8 @@ class UpdateProfile extends Component {
 	state = {
 		updatesMade: false,
 		profileFetched: false,
-		profile: {
-			designer: {},
-			career: [],
-			certification: [],
-			education: [],
-		},
+		profile: this.props.store.profile,
 	};
-	
-	componentDidMount = () => {
-		const profileData = {
-			designer: this.props.store.profile.designer,
-			career: this.props.store.profile.career,
-			certification: this.props.store.profile.certification,
-			education: this.props.store.profile.education,
-		}
-		this.setProfileData(profileData);
-	}
 
 	// This function handles updating the local state with changes that were made
 	setProfileData = (profileData) => {

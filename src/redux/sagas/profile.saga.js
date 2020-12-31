@@ -6,15 +6,15 @@ function* fetchProfile (action) {
 		const id = action.payload;
 		const designerResponse = yield axios.get(`/api/profile/designers/${id}`);
 		const careerResponse = yield axios.get(`/api/profile/career/${id}`);
-		const certificationResponse = yield axios.get(`/api/profile/certification/${id}`);
+		// const certificationResponse = yield axios.get(`/api/profile/certification/${id}`);
 		const educationResponse = yield axios.get(`/api/profile/education/${id}`);
 
 		yield put({
 			type: 'SET_PROFILE',
 			payload: {
-				designer: designerResponse.data.rows,
+				designer: designerResponse.data.rows[0],
 				career: careerResponse.data.rows,
-				certification: certificationResponse.data.rows,
+				// certification: certificationResponse.data.rows,
 				education: educationResponse.data.rows,
 			}
 		});
