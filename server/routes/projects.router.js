@@ -28,25 +28,45 @@ router.get('/:designer_id', (req, res) => {
     }
 });
 
-router.get('/details/:project_id', (req, res) => {
-    console.log(req.params)
-    
+router.get('/details/:project_id', async (req, res) => {    
     if(req.isAuthenticated){
         
-        const queryText = `SELECT * FROM "projects" 
-                            WHERE "project_id" = $1`
-        pool.query(queryText, [req.params.designer_id])
-        .then( ( response ) => {
-            console.log(response.rows);
-            
-            res.send(response.rows)
-        })
-        .catch( ( error ) => {
+        const getProjectInfo =      `SELECT * FROM "projects" 
+                                        WHERE "id" = $1`
+        const getProjectEvents =    `SELECT * FROM "designer_calendar_item"
+                                        Where "project_id" = $1`
+        const getProjectDesigners = `SELECT "user"."designer_id" AS id, "rate", "hours_est", "first_name", "last_name" FROM "projects_designers_join" 
+                                        Join "user" on "projects_designers_join"."designer_id" = "user"."designer_id"
+                                        WHERE project_id = $1 
+                                        AND "accepted" = $2`
+
+
+        const connection = await pool.connect();
+        try {
+            await connection.query("BEGIN")
+                const projectInfo = await connection.query(getProjectInfo, [req.params.project_id])
+                const projectDesigners = await connection.query(getProjectDesigners, [req.params.project_id, true])
+                const designerProjectEvents  = await connection.query(getProjectEvents, [req.params.project_id])
+
+                console.log({
+                    projectDetails: projectInfo.rows,
+                    designerEvents: designerProjectEvents.rows,
+                    projectDesigners: projectDesigners.rows
+                });
+                let results = {
+                    projectDetails: projectInfo.rows[0],
+                    designerEvents: designerProjectEvents.rows,
+                    projectDesigners: projectDesigners.rows
+                }
+                
+                res.send(results);
+
+        } catch (error) {
             console.log(error);
             res.sendStatus(500)
-        })
-    } else {
-        res.sendStatus(403)
+        } finally {
+            connection.release()
+        }
     }
 });
 

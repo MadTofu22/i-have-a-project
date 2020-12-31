@@ -4,7 +4,6 @@ import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 function* fetchCalendarEventsByID() {
   try {
     console.log('in fetch calendar');
-    
     const calendarEventsData = yield axios.get(`/api/calendar/`)
     console.log(transformData(calendarEventsData.data));
     yield put({

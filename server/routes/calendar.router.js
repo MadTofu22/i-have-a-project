@@ -7,10 +7,23 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
     if (req.isAuthenticated) {
-        const queryText = `SELECT * FROM "designer_calendar_item" 
+        const queryText = `SELECT  
+                            "event_Id",
+                            "designer_id",
+                            "project_id",
+                            "designer_calendar_item".start,
+                            "hoursCommitted",
+                            "available",
+                            "name",
+                            "status",
+                            "due_date",
+                            "notes",
+                            "project_name",
+                            "manager_id"
+                        FROM "designer_calendar_item" 
                             left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
-                        WHERE "designer_id" = $1
-                        ORDER BY "id" DESC`
+                            WHERE "designer_id" = $1
+                            ORDER BY "id" DESC`
 
         pool.query( queryText, [ req.user.designer_id] )
         .then( ( response ) => {
