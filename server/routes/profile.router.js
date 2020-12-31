@@ -75,7 +75,7 @@ router.get('/education/:id', (req, res) => {
 
 router.get('/skills/:id', (req, res) => {
     console.log('in profile.router - retrieving skills data, id=', req.params.id);
-    const queryText = `SELECT * FROM designer_skills_join WHERE designer_id = $1;`;
+    const queryText = `SELECT * FROM skills WHERE designer_id = $1;`;
 
     pool.query(queryText, [req.params.id])
     .then(response => {

@@ -24,7 +24,7 @@ class DesignerHomeView extends Component {
 		});
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
-			payload: this.props.store.user.id
+			payload: this.props.store.user.designer_id
 		});
 	}
 

@@ -1,15 +1,7 @@
--- CREATE TABLE "skills" (
--- 	"id" SERIAL PRIMARY KEY,
--- 	"label" varchar(255) NOT NULL,
--- 	"description" varchar(255) NOT NULL
--- );
-
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
-	-- CHANGED username TO email
 	"email" VARCHAR (80) UNIQUE,
     "password" VARCHAR (1000) NOT NULL,
-	-- ADDED/TWEAKED
 	"user_type" varchar(40),
 	"first_name" varchar(30),
 	"last_name" varchar(50),
@@ -19,11 +11,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE "designers" (
 	"id" SERIAL PRIMARY KEY,
-	-- "first_name" varchar(30),
-	-- "last_name" varchar(50),
 	"manager_id" int REFERENCES "user" NOT NULL,
-	-- "email" varchar(150) UNIQUE,
-	-- "login" varchar(30),
 	"phone" varchar(15),
 	"linkedin" varchar(255),
 	"photo" varchar(255),
@@ -34,7 +22,7 @@ CREATE TABLE "designers" (
 
 -- CHECK TO SEE IF WE CAN GET BY WITH WHAT MAY BE A CIRCULAR REFERENCE BETWEEN DESIGNERS AND USERS
 
-CREATE TABLE "designer_skills_join" (
+CREATE TABLE "skills" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"proficiency" int NOT NULL,
@@ -85,13 +73,6 @@ CREATE TABLE "education" (
 	"location" varchar(100),
 );
 
-CREATE TABLE "certification" (
-	"id" SERIAL PRIMARY KEY,
-	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"certification" varchar(100) NOT NULL,
-	"location" varchar(100),
-);
-
 
 -- NEEDS CHANGING
 
@@ -124,15 +105,15 @@ VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '5'),
 -- TEST DATA FOR GET PRFOFILE
 -- Added by Tom S
 insert into career (designer_id, title, "location")
-values ('4', 'Supervisor', 'CIA'),
-('4', 'Clerk', 'FAA'),
-('4', 'Analyst', 'NSA');
+values ('1', 'Supervisor', 'CIA'),
+('1', 'Clerk', 'FAA'),
+('1', 'Analyst', 'NSA');
 
 insert into education (designer_id, "degree", "location")
-values ('4', 'MBA', 'Harvard'),
-('4', 'PhD Bio-Physics', 'MIT');
+values ('1', 'MBA', 'Harvard'),
+('1', 'PhD Bio-Physics', 'MIT');
 
-insert into certification (designer_id, certification, "location")
-values ('4', 'Dangerous Goods Shipping', 'IOTA'),
-('4', 'Life Guard', 'YMCA');
-
+insert into skills (designer_id, proficiency, label)
+value ('1', '4', 'Communication'),
+('1', '5', 'Modern Style'),
+('1', '1', 'Cowyboy Theme');
