@@ -41,11 +41,23 @@ function* fetchManagerProjects(){
     console.log(error);
   }
 }
+function* updateProject(action){
+  try {
+    yield axios.put(`/api/projects/`, action.payload)
+    yield put({
+      type: "FETCH_PROJECT_DETAILS",
+      payload: action.payload.projectDetails.id
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* projectSaga() {
   yield takeLatest('FETCH_DESIGNER_PROJECTS', fetchDesignerProjects);
   yield takeEvery('FETCH_PROJECT_DETAILS', fetchProjectDetails)
   yield takeEvery('CREATE_PROJECT', createProject)
+  yield takeEvery('UPDATE_PROJECT', updateProject)
   yield takeLatest('FETCH_MANAGER_PROJECTS', fetchManagerProjects)
 }
 

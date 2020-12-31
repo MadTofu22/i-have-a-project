@@ -143,4 +143,45 @@ router.post('/', async (req, res) => {
     }
 });
 
+/**
+ * POST route template
+ */
+router.put('/', async (req, res) => {
+    if (req.isAuthenticated) {
+        console.log(req.body);
+        
+        let projectInformation = [
+            req.body.status,
+            req.body.due_date,
+            req.body.start,
+            req.body.notes,
+            req.body.project_name,
+            req.user.id,
+            req.body.id,
+        ]
+
+        const updateProject = ` UPDATE "projects" 
+                                SET
+                                "status" = $1,
+                                "due_date" = $2,
+                                "start" = $3,
+                                "notes" = $4,
+                                "project_name" = $5,
+                                "manager_id" = $6
+                            WHERE "id" = $7`
+            
+       pool.query(updateProject, projectInformation)
+       .then( (response) => {
+           console.log(response);
+           res.sendStatus(200)
+       })
+       .catch( (error) => {
+           console.log(error);
+           res.sendStatus(500)
+       })
+    } else {
+        res.sendStatus(403)
+    }
+});
+
 module.exports = router;

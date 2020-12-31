@@ -56,6 +56,16 @@ class ProjectDetails extends Component {
                                 { field: 'first_name', headerName: 'First Name' },
                                 { field: 'last_name', headerName: 'Last Name' },
                                 { field: 'hours_est', headerName: 'Est. Time' },
+                                {field: 'action',
+                                    headerName: 'Action',
+                                    renderCell: () => {
+                                        return(
+                                            <button>
+                                                Delete
+                                            </button>
+                                            )
+                                    }     
+                                }
                             ]}         
                             rows={this.props.store.projectDetails.projectDesigners}          
                         />

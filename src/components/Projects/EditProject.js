@@ -20,8 +20,6 @@ class EditProject extends Component {
             manager_id: 0,
             start: ''
         },
-        designerEvents: [],
-        projectDesigners: [],
 		status: [
 			'Active',
 			'New',
@@ -36,8 +34,8 @@ class EditProject extends Component {
 
 	handlechange = (event, keyname) => {
 		this.setState({
-			newProject: {
-				...this.state.newProject,
+			projectDetails: {
+				...this.state.projectDetails,
 				[keyname]: event.target.value
 			}
 		});
@@ -45,7 +43,7 @@ class EditProject extends Component {
 	handleSubmit = () => {
 		this.props.dispatch({
 			type: "UPDATE_PROJECT",
-			payload: this.state.newProject
+			payload: this.state.projectDetails
 		})
 	}
     componentDidMount = () => {
@@ -125,14 +123,6 @@ class EditProject extends Component {
                                 </MenuItem>)
                         })}
                     </TextField>
-                    <AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.projectDesigners}/>
-                            {this.state.projectDesigners.length > 0 ?
-                                this.state.projectDesigners.map(designer => {
-                                    return <p key={designer.designer_id}>{JSON.stringify(designer)}</p>
-                                })
-                                :
-                                <></>
-                                }
                     <Button 
                         type="submit"
                         variant="contained" 
