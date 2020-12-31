@@ -143,8 +143,49 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.post('/addDesigner', (req, res) => {
+
+    const addDesigner = `INSERT INTO "projects_designers_join" 
+                                ("designer_id", "project_id")
+                                Values($1, $2)`
+
+    if (req.isAuthenticated) {
+        pool.query(addDesigner, [req.body.designer_id, req.body.project_id])
+        .then( (response) => {
+            console.log(response)
+            res.sendStatus(201)
+        })
+        .catch( (error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
+router.delete('/removeDesigner', (req, res) => {
+
+    const removeDesigner = `DELETE FROM "projects_designers_join" 
+                                WHERE "designer_id" = $1
+                                AND "project_id" = $2`
+
+    if (req.isAuthenticated) {
+        pool.query(removeDesigner, [req.body.designer_id, req.body.project_id])
+        .then( (response) => {
+            console.log(response)
+            res.sendStatus(200)
+        })
+        .catch( (error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
+
 /**
- * POST route template
+ * put route template
  */
 router.put('/', async (req, res) => {
     if (req.isAuthenticated) {

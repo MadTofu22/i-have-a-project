@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import AddDesignerToProject from '../../components/Modals/AddDesignerToProject';
 
 function* fetchDesignerProjects(action) {
   try {
@@ -52,6 +53,17 @@ function* updateProject(action){
     console.log(error);
   }
 }
+function* addDesignerToProject(action){
+  try {
+    yield axios.post(`/api/projects/addDesigner`, action.payload)
+    yield put({
+      type: "FETCH_PROJECT_DETAILS",
+      payload: action.payload.projectDetails.id
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* projectSaga() {
   yield takeLatest('FETCH_DESIGNER_PROJECTS', fetchDesignerProjects);
@@ -59,6 +71,7 @@ function* projectSaga() {
   yield takeEvery('CREATE_PROJECT', createProject)
   yield takeEvery('UPDATE_PROJECT', updateProject)
   yield takeLatest('FETCH_MANAGER_PROJECTS', fetchManagerProjects)
+  yield takeLatest('ADD_DESIGNER_TO_PROJECT', addDesignerToProject)
 }
 
 export default projectSaga;
