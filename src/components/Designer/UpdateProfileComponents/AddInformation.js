@@ -21,12 +21,7 @@ class AddInformation extends Component {
 	}
 
 	componentDidMount = () => {
-		if (this.props.store.profile.designer) {
-			this.setState({
-				...this.state,
-				phoneNum: this.props.store.profile.designer[0].phone
-			})
-		}
+		
 	}
 
 	// This function handles storing the work and education history inputs in the local state on change
@@ -52,9 +47,11 @@ class AddInformation extends Component {
 	}
 
 	render() {
+		console.log('UpdateProfile/info has rendered - this.props:', this.props)
 		return (
 			<>
 				<h2>Add Information</h2>
+				{JSON.stringify(this.state.profile)}
 				<br/>
 				<label
 					htmlFor='phoneNum'

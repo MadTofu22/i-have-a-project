@@ -28,25 +28,45 @@ router.get('/:designer_id', (req, res) => {
     }
 });
 
-router.get('/details/:project_id', (req, res) => {
-    console.log(req.params)
-    
+router.get('/details/:project_id', async (req, res) => {    
     if(req.isAuthenticated){
         
-        const queryText = `SELECT * FROM "projects" 
-                            WHERE "project_id" = $1`
-        pool.query(queryText, [req.params.designer_id])
-        .then( ( response ) => {
-            console.log(response.rows);
-            
-            res.send(response.rows)
-        })
-        .catch( ( error ) => {
+        const getProjectInfo =      `SELECT * FROM "projects" 
+                                        WHERE "id" = $1`
+        const getProjectEvents =    `SELECT * FROM "designer_calendar_item"
+                                        Where "project_id" = $1`
+        const getProjectDesigners = `SELECT "user"."designer_id" AS id, "rate", "hours_est", "first_name", "last_name" FROM "projects_designers_join" 
+                                        Join "user" on "projects_designers_join"."designer_id" = "user"."designer_id"
+                                        WHERE project_id = $1 
+                                        AND "accepted" = $2`
+
+
+        const connection = await pool.connect();
+        try {
+            await connection.query("BEGIN")
+                const projectInfo = await connection.query(getProjectInfo, [req.params.project_id])
+                const projectDesigners = await connection.query(getProjectDesigners, [req.params.project_id, true])
+                const designerProjectEvents  = await connection.query(getProjectEvents, [req.params.project_id])
+
+                console.log({
+                    projectDetails: projectInfo.rows,
+                    designerEvents: designerProjectEvents.rows,
+                    projectDesigners: projectDesigners.rows
+                });
+                let results = {
+                    projectDetails: projectInfo.rows[0],
+                    designerEvents: designerProjectEvents.rows,
+                    projectDesigners: projectDesigners.rows
+                }
+                
+                res.send(results);
+
+        } catch (error) {
             console.log(error);
             res.sendStatus(500)
-        })
-    } else {
-        res.sendStatus(403)
+        } finally {
+            connection.release()
+        }
     }
 });
 
@@ -118,6 +138,47 @@ router.post('/', async (req, res) => {
             connection.release()
         }
         
+    } else {
+        res.sendStatus(403)
+    }
+});
+
+/**
+ * POST route template
+ */
+router.put('/', async (req, res) => {
+    if (req.isAuthenticated) {
+        console.log(req.body);
+        
+        let projectInformation = [
+            req.body.status,
+            req.body.due_date,
+            req.body.start,
+            req.body.notes,
+            req.body.project_name,
+            req.user.id,
+            req.body.id,
+        ]
+
+        const updateProject = ` UPDATE "projects" 
+                                SET
+                                "status" = $1,
+                                "due_date" = $2,
+                                "start" = $3,
+                                "notes" = $4,
+                                "project_name" = $5,
+                                "manager_id" = $6
+                            WHERE "id" = $7`
+            
+       pool.query(updateProject, projectInformation)
+       .then( (response) => {
+           console.log(response);
+           res.sendStatus(200)
+       })
+       .catch( (error) => {
+           console.log(error);
+           res.sendStatus(500)
+       })
     } else {
         res.sendStatus(403)
     }

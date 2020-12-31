@@ -1,5 +1,5 @@
 /* Designer Home Profile Components */
-.myProfileWrap{
+.myProfileWrap, .designerNavBar{
     display: inline-flex;
     width: 90%;
     margin-left: auto;

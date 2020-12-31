@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {connect} from 'react-redux'
 
 import Button from '@material-ui/core/Button';
@@ -50,13 +50,14 @@ function AddDesignerToProject(props) {
     <button onClick={handleClickOpen}>Add Team Member</button> 
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="title">Enter Team Member Info</DialogTitle>
+        <DialogTitle id="title">Select Team Members</DialogTitle>
         {props.store.designer.length > 0 ? 
             <DialogContent>
                  {props.store.designer.map( (designer) => {
                     return( 
                         <MenuItem 
                             onClick={() => handlePushDesigner(designer)} 
+                            key={designer.designer_id}
                         > {designer.first_name + ' ' + designer.last_name}
                         </MenuItem>
                     )
@@ -64,6 +65,7 @@ function AddDesignerToProject(props) {
                 {designers.length > 0 ?
                     designers.map(designer => {
                         return <Chip
+                            key={designer.designer_id}
                             label={designer.first_name + ' ' + designer.last_name}
                             onDelete={() => handleRemove(designer)}
                         />

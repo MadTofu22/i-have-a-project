@@ -5,7 +5,6 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import { formatDate } from '@fullcalendar/core'
 import './Calendar.css'
 import AddCalendarEvent from './AddCalendarEvent'
 

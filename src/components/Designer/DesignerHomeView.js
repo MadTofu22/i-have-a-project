@@ -21,7 +21,11 @@ class DesignerHomeView extends Component {
 		this.props.dispatch({
 			type: 'FETCH_DESIGNER_PROJECTS',
 			payload: this.props.store.user.id
-		})
+		});
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.id
+		});
 	}
 
 	render () {
@@ -45,27 +49,36 @@ class DesignerHomeView extends Component {
 			<>
 				<div>Designer Home</div>
 					<Router>
-						<button className='headerBarButton' onClick={() => this.props.history.push('/UpdateProfile')}>Update Profile</button>
-							<div className='designerNavBar'>
-								{pages.map((page, index) => {
-									return <NavButtonDesigner key={index} page={page} />
-								})}
-							</div>
-							<Route
-								exact
-								path={`/DesignerHomeView/MyProfile`}
-								component={MyProfile}
-							/>
-							<Route
-								exact
-								path={`/DesignerHomeView/Calendar`}
-								component={Calendar}
-							/>
-							<Route
-								exact
-								path={`/DesignerHomeView/projects`}
-								component={Projects}
-							/>
+						<button 
+							className='headerBarButton' 
+							onClick={() => this.props.history.push('/UpdateProfile')}
+							>Update Profile
+						</button>
+						<button 
+							className='headerBarButton' 
+							onClick={() => this.props.history.push('/UpdateProfile')}
+							>Logout
+						</button>
+						<div className='designerNavBar'>
+							{pages.map((page, index) => {
+								return <NavButtonDesigner key={index} page={page} />
+							})}
+						</div>
+						<Route
+							exact
+							path={`/DesignerHomeView/MyProfile`}
+							component={MyProfile}
+						/>
+						<Route
+							exact
+							path={`/DesignerHomeView/Calendar`}
+							component={Calendar}
+						/>
+						<Route
+							exact
+							path={`/DesignerHomeView/projects`}
+							component={Projects}
+						/>
 					</Router>
 			</>
 		);
