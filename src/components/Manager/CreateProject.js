@@ -105,7 +105,10 @@ class CreateProject extends Component {
 							</MenuItem>
 						))}
 					</TextField>
-					<AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.newProject.TeamDesigners}/>
+					<AddDesignerToProject 
+						addSelectedDesigners={this.addSelectedDesigners} 
+						SelectedDesigners={this.state.newProject.TeamDesigners}
+					/>
 							{this.state.newProject.TeamDesigners.length > 0 ?
 								this.state.newProject.TeamDesigners.map(designer => {
 									return <p>{JSON.stringify(designer)}</p>
