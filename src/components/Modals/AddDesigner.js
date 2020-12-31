@@ -25,7 +25,7 @@ function AddDesigner(props) {
   const handleAddDesigner = (designerObj) => {
     props.dispatch({
       type: "ADD_DESIGNER_TO_PROJECT",
-      payload: designerObj
+      payload: {...designerObj, project_id: props.project_id}
     })
     setOpen(false);
   }

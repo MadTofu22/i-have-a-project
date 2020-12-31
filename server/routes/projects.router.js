@@ -145,6 +145,9 @@ router.post('/', async (req, res) => {
 
 router.post('/addDesigner', (req, res) => {
 
+    console.log(req.body);
+    
+
     const addDesigner = `INSERT INTO "projects_designers_join" 
                                 ("designer_id", "project_id")
                                 Values($1, $2)`

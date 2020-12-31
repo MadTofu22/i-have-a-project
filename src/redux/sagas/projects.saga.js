@@ -58,7 +58,7 @@ function* addDesignerToProject(action){
     yield axios.post(`/api/projects/addDesigner`, action.payload)
     yield put({
       type: "FETCH_PROJECT_DETAILS",
-      payload: action.payload.projectDetails.id
+      payload: action.payload.project_id
     })
   } catch (error) {
     console.log(error);
