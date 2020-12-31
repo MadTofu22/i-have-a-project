@@ -9,8 +9,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import {makeStyles} from '@material-ui/core'
-
 function AddTeamMember(props) {
   const [open, setOpen] = React.useState(false);
   const [event, setName] = React.useState('')

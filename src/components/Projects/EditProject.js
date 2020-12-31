@@ -11,16 +11,15 @@ import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
 class EditProject extends Component {
 	state = {
-		newProject: {
-			project_name: '',
-			status: '',
-			due_date: '',
-			notes: '',
-			start: '',
-			TeamDesigners: [
-
-			]
-		},
+        projectDetails: {
+            id: 0,
+            status: 'New',
+            due_date: '',
+            notes: '',
+            project_name: '',
+            manager_id: 0,
+            start: ''
+        },
 		status: [
 			'Active',
 			'New',
@@ -29,17 +28,14 @@ class EditProject extends Component {
 	};
 	addSelectedDesigners = (designers) => {
 		this.setState({
-			newProject: {
-				...this.state.newProject,
-				TeamDesigners: designers
-			}
+			projectDesigners: designers
 		})
 	}
 
 	handlechange = (event, keyname) => {
 		this.setState({
-			newProject: {
-				...this.state.newProject,
+			projectDetails: {
+				...this.state.projectDetails,
 				[keyname]: event.target.value
 			}
 		});
@@ -47,7 +43,7 @@ class EditProject extends Component {
 	handleSubmit = () => {
 		this.props.dispatch({
 			type: "UPDATE_PROJECT",
-			payload: this.state.newProject
+			payload: this.state.projectDetails
 		})
 	}
     componentDidMount = () => {
@@ -59,17 +55,29 @@ class EditProject extends Component {
 			type: "FETCH_DESIGNERS"
 		})
     }
+    componentDidUpdate = () => {
+        console.log(this.props.store.projectDetails.projectDetails.id);
+        
+        if (this.props.store.projectDetails.projectDetails.id !== this.state.projectDetails.id) {
+            this.setState({
+                projectDetails: this.props.store.projectDetails.projectDetails,
+                designerEvents: this.props.store.projectDetails.designerEvents,
+                projectDesigners: this.props.store.projectDetails.projectDesigners,
+            })
+        }
+    }
 
 	render() {
 		return (
 			<div>
-                {  this.props.store.projectDetails ?
+                {  this.props.store.projectDetails.projectDetails ?
                     <form onSubmit={this.handleSubmit}>
                     <TextField 
                         id="outlined-basic" 
                         label="Project Name" 
                         variant="outlined" 
                         onChange={(event) => this.handlechange(event, 'project_name')}
+                        value={this.state.projectDetails.project_name}
                     />
                     <TextField
                         id="date"
@@ -79,6 +87,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'start')}
+                        value={this.state.projectDetails.start.slice(0, 10)}
                     />
                     <TextField
                         id="date"
@@ -88,6 +97,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'due_date')}
+                        value={this.state.projectDetails.due_date.slice(0, 10)}
                     />
                     <TextField
                         id="notes"
@@ -96,6 +106,7 @@ class EditProject extends Component {
                         rows={4}
                         onChange={(event) => this.handlechange(event, 'notes')}
                         helperText="Enter Quick Description of Project"
+                        value={this.state.projectDetails.notes}
                     />
                     <TextField
                         id="project-status"
@@ -103,21 +114,15 @@ class EditProject extends Component {
                         label="Status"
                         onChange={(event) => this.handlechange(event, 'status')}
                         helperText="Select Project Status"
+                        value={this.state.projectDetails.status}
                         >
-                        {this.state.status.map((option, index) => (
-                            <MenuItem key={index} value={option}>
-                            {option}
-                            </MenuItem>
-                        ))}
+                        {this.state.status.map((option, index) => {
+                            return(
+                                <MenuItem key={index} value={option}>
+                                    {option}
+                                </MenuItem>)
+                        })}
                     </TextField>
-                    <AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.newProject.TeamDesigners}/>
-                            {this.state.newProject.TeamDesigners.length > 0 ?
-                                this.state.newProject.TeamDesigners.map(designer => {
-                                    return <p key={designer.designer_id}>{JSON.stringify(designer)}</p>
-                                })
-                                :
-                                <></>
-                                }
                     <Button 
                         type="submit"
                         variant="contained" 
