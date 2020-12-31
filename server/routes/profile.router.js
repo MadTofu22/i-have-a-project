@@ -73,7 +73,18 @@ router.get('/education/:id', (req, res) => {
     });
 });
 
-router.
+router.get('/skills/:id', (req, res) => {
+    console.log('in profile.router - retrieving skills data, id=', req.params.id);
+    const queryText = `SELECT * FROM designer_skills_join WHERE designer_id = $1;`;
+
+    pool.query(queryText, [req.params.id])
+    .then(response => {
+        res.send(response);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
 
 router.put('/', (req, res) => {
 
@@ -91,7 +102,6 @@ router.put('/', (req, res) => {
                 phone = $2,
                 photo = $3,
                 availability_hours = $4
-
     `
 });
 

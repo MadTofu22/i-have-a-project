@@ -1,8 +1,8 @@
-CREATE TABLE "skills" (
-	"id" SERIAL PRIMARY KEY,
-	"label" varchar(255) NOT NULL,
-	"description" varchar(255) NOT NULL
-);
+-- CREATE TABLE "skills" (
+-- 	"id" SERIAL PRIMARY KEY,
+-- 	"label" varchar(255) NOT NULL,
+-- 	"description" varchar(255) NOT NULL
+-- );
 
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
@@ -38,7 +38,7 @@ CREATE TABLE "designer_skills_join" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"proficiency" int NOT NULL,
-	"skills_id" INT REFERENCES "skills"
+	"label" varchar(80) NOT NULL
 );
 
 CREATE TABLE "projects" (
@@ -74,8 +74,6 @@ CREATE TABLE "designer_calendar_item" (
 CREATE TABLE "career" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"start_date" DATE,
-	"end_date" DATE NOT NULL,
 	"title" varchar(100) NOT NULL,
 	"location" varchar(100),
 );
@@ -83,7 +81,6 @@ CREATE TABLE "career" (
 CREATE TABLE "education" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"graduation_date" DATE NOT NULL,
 	"degree" varchar(100) NOT NULL,
 	"location" varchar(100),
 );
@@ -91,7 +88,6 @@ CREATE TABLE "education" (
 CREATE TABLE "certification" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
-	"graduation_date" DATE NOT NULL,
 	"certification" varchar(100) NOT NULL,
 	"location" varchar(100),
 );
@@ -127,15 +123,16 @@ VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '5'),
 
 -- TEST DATA FOR GET PRFOFILE
 -- Added by Tom S
-insert into career (designer_id, start_date, end_date, title, "location")
-values ('4', '1/1/1990', '1/1/2000', 'Supervisor', 'CIA'),
-('4', '1/1/1994', '1/1/2004', 'Clerk', 'FAA'),
-('4', '1/1/1998', '1/1/2008', 'Analyst', 'NSA');
+insert into career (designer_id, title, "location")
+values ('4', 'Supervisor', 'CIA'),
+('4', 'Clerk', 'FAA'),
+('4', 'Analyst', 'NSA');
 
-insert into education (designer_id, graduation_date, "degree", "location")
-values ('4', '1/1/2000', 'MBA', 'Harvard'),
-('4', '1/1/2004', 'PhD Bio-Physics', 'MIT');
+insert into education (designer_id, "degree", "location")
+values ('4', 'MBA', 'Harvard'),
+('4', 'PhD Bio-Physics', 'MIT');
 
-insert into certification (designer_id, graduation_date, certification, "location")
-values ('4', '1/1/2000', 'Dangerous Goods Shipping', 'IOTA'),
-('4', '1/1/2004', 'Life Guard', 'YMCA');
+insert into certification (designer_id, certification, "location")
+values ('4', 'Dangerous Goods Shipping', 'IOTA'),
+('4', 'Life Guard', 'YMCA');
+
