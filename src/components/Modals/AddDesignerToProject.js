@@ -57,6 +57,7 @@ function AddDesignerToProject(props) {
                     return( 
                         <MenuItem 
                             onClick={() => handlePushDesigner(designer)} 
+                            key={designer.designer_id}
                         > {designer.first_name + ' ' + designer.last_name}
                         </MenuItem>
                     )
