@@ -57,6 +57,17 @@ class EditProject extends Component {
 			type: "FETCH_DESIGNERS"
 		})
     }
+    componentDidUpdate = () => {
+        console.log(this.props.store.projectDetails.projectDetails.id);
+        
+        if (this.props.store.projectDetails.projectDetails.id !== this.state.projectDetails.id) {
+            this.setState({
+                projectDetails: this.props.store.projectDetails.projectDetails,
+                designerEvents: this.props.store.projectDetails.designerEvents,
+                projectDesigners: this.props.store.projectDetails.projectDesigners,
+            })
+        }
+    }
 
 	render() {
 		return (
@@ -68,7 +79,7 @@ class EditProject extends Component {
                         label="Project Name" 
                         variant="outlined" 
                         onChange={(event) => this.handlechange(event, 'project_name')}
-                        defaultValue={this.props.store.projectDetails.projectDetails.project_name}
+                        value={this.state.projectDetails.project_name}
                     />
                     <TextField
                         id="date"
@@ -78,7 +89,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'start')}
-                        defaultValue={this.props.store.projectDetails.projectDetails.start.slice(0, 10)}
+                        value={this.state.projectDetails.start.slice(0, 10)}
                     />
                     <TextField
                         id="date"
@@ -88,7 +99,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'due_date')}
-                        defaultValue={this.props.store.projectDetails.projectDetails.due_date.slice(0, 10)}
+                        value={this.state.projectDetails.due_date.slice(0, 10)}
                     />
                     <TextField
                         id="notes"
@@ -97,8 +108,7 @@ class EditProject extends Component {
                         rows={4}
                         onChange={(event) => this.handlechange(event, 'notes')}
                         helperText="Enter Quick Description of Project"
-                        defaultValue={this.props.store.projectDetails.projectDetails.notes}
-
+                        value={this.state.projectDetails.notes}
                     />
                     <TextField
                         id="project-status"
@@ -106,7 +116,7 @@ class EditProject extends Component {
                         label="Status"
                         onChange={(event) => this.handlechange(event, 'status')}
                         helperText="Select Project Status"
-                        defaultValue={this.props.store.projectDetails.projectDetails.status}
+                        value={this.state.projectDetails.status}
                         >
                         {this.state.status.map((option, index) => {
                             return(
