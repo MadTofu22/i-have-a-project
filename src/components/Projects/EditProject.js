@@ -11,16 +11,17 @@ import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
 class EditProject extends Component {
 	state = {
-		newProject: {
-			project_name: '',
-			status: '',
-			due_date: '',
-			notes: '',
-			start: '',
-			TeamDesigners: [
-
-			]
-		},
+        projectDetails: {
+            id: 0,
+            status: 'New',
+            due_date: '',
+            notes: '',
+            project_name: '',
+            manager_id: 0,
+            start: ''
+        },
+        designerEvents: [],
+        projectDesigners: [],
 		status: [
 			'Active',
 			'New',
@@ -29,10 +30,7 @@ class EditProject extends Component {
 	};
 	addSelectedDesigners = (designers) => {
 		this.setState({
-			newProject: {
-				...this.state.newProject,
-				TeamDesigners: designers
-			}
+			projectDesigners: designers
 		})
 	}
 
@@ -63,13 +61,14 @@ class EditProject extends Component {
 	render() {
 		return (
 			<div>
-                {  this.props.store.projectDetails ?
+                {  this.props.store.projectDetails.projectDetails ?
                     <form onSubmit={this.handleSubmit}>
                     <TextField 
                         id="outlined-basic" 
                         label="Project Name" 
                         variant="outlined" 
                         onChange={(event) => this.handlechange(event, 'project_name')}
+                        defaultValue={this.props.store.projectDetails.projectDetails.project_name}
                     />
                     <TextField
                         id="date"
@@ -79,6 +78,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'start')}
+                        defaultValue={this.props.store.projectDetails.projectDetails.start.slice(0, 10)}
                     />
                     <TextField
                         id="date"
@@ -88,6 +88,7 @@ class EditProject extends Component {
                         shrink: true,
                         }}
                         onChange={(event) => this.handlechange(event, 'due_date')}
+                        defaultValue={this.props.store.projectDetails.projectDetails.due_date.slice(0, 10)}
                     />
                     <TextField
                         id="notes"
@@ -96,6 +97,8 @@ class EditProject extends Component {
                         rows={4}
                         onChange={(event) => this.handlechange(event, 'notes')}
                         helperText="Enter Quick Description of Project"
+                        defaultValue={this.props.store.projectDetails.projectDetails.notes}
+
                     />
                     <TextField
                         id="project-status"
@@ -103,16 +106,18 @@ class EditProject extends Component {
                         label="Status"
                         onChange={(event) => this.handlechange(event, 'status')}
                         helperText="Select Project Status"
+                        defaultValue={this.props.store.projectDetails.projectDetails.status}
                         >
-                        {this.state.status.map((option, index) => (
-                            <MenuItem key={index} value={option}>
-                            {option}
-                            </MenuItem>
-                        ))}
+                        {this.state.status.map((option, index) => {
+                            return(
+                                <MenuItem key={index} value={option}>
+                                    {option}
+                                </MenuItem>)
+                        })}
                     </TextField>
-                    <AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.newProject.TeamDesigners}/>
-                            {this.state.newProject.TeamDesigners.length > 0 ?
-                                this.state.newProject.TeamDesigners.map(designer => {
+                    <AddDesignerToProject addSelectedDesigners={this.addSelectedDesigners} SelectedDesigners={this.state.projectDesigners}/>
+                            {this.state.projectDesigners.length > 0 ?
+                                this.state.projectDesigners.map(designer => {
                                     return <p key={designer.designer_id}>{JSON.stringify(designer)}</p>
                                 })
                                 :

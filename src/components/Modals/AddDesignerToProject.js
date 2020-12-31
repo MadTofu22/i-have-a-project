@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {connect} from 'react-redux'
 
 import Button from '@material-ui/core/Button';
@@ -65,6 +65,7 @@ function AddDesignerToProject(props) {
                 {designers.length > 0 ?
                     designers.map(designer => {
                         return <Chip
+                            key={designer.designer_id}
                             label={designer.first_name + ' ' + designer.last_name}
                             onDelete={() => handleRemove(designer)}
                         />
