@@ -28,6 +28,10 @@ class DesignerHomeView extends Component {
 		});
 	}
 
+	handleLogout = () => {
+		this.props.dispatch({type: 'LOGOUT'});
+	}
+
 	render () {
         const pages = [
             {
@@ -56,7 +60,7 @@ class DesignerHomeView extends Component {
 						</button>
 						<button 
 							className='headerBarButton' 
-							onClick={() => this.props.history.push('/UpdateProfile')}
+							onClick={() => this.handleLogout()}
 							>Logout
 						</button>
 						<div className='designerNavBar'>

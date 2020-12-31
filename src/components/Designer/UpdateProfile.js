@@ -21,7 +21,7 @@ class UpdateProfile extends Component {
 	};
 	
 	componentDidMount = () => {
-		let profileData = {
+		const profileData = {
 			designer: this.props.store.profile.designer,
 			career: this.props.store.profile.career,
 			certification: this.props.store.profile.certification,
@@ -30,28 +30,8 @@ class UpdateProfile extends Component {
 		this.setProfileData(profileData);
 	}
 
-	// This function gets the profile data from the database and stores it to the redux store
-	// getProfileData = () => {
-	// 	try {
-	// 		this.props.dispatch({type: 'FETCH_PROFILE', payload: {id: this.props.store.user.id}});
-	// 	} catch (error) {
-	// 		console.log('ERROR: Unexpected error in getProfileData', error);
-	// 	} finally {
-	// 		this.setState({
-	// 			profileFetched: true,
-	// 			profileData: {
-	// 				designer: this.props.store.profile.designer,
-	// 				career: this.props.store.profile.career,
-	// 				certification: this.props.store.profile.certification,
-	// 				education: this.props.store.profile.education,
-	// 			}
-	// 		});
-	// 	}
-	// }
-
 	// This function handles updating the local state with changes that were made
 	setProfileData = (profileData) => {
-		console.log('in setProfileData - profileData:', profileData)
 		this.setState({
 			...this.state,
 			profile: profileData,
