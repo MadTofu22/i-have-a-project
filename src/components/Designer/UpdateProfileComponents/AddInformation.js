@@ -8,8 +8,10 @@ class AddInformation extends Component {
 	constructor (props) {
 		super(props);
 		console.log('in addinfo constructor, props:', props)
-		this.historyInputRef = React.createRef();
-		this.historyLocationInputRef = React.createRef();
+		this.educationTitleInputRef = React.createRef();
+		this.educationLocationInputRef = React.createRef();
+		this.careerTitleInputRef = React.createRef();
+		this.careerLocationInputRef = React.createRef();
 		this.state = {
 			profile: props.profile,
 			newProfile: {
@@ -51,15 +53,24 @@ class AddInformation extends Component {
 	// This function handles adding an item to the education or work history list
 	updateHistoryList = (section) => {
 
-		this.setState({
-			...this.state,
-			profile: {
-				...this.state.profile,
-				[section]: [...this.state.profile[section], this.state.newProfile[section]],
-			}	
-		});
-		this.historyInputRef.current.value = '';
-		this.historyLocationInputRef.current.value = '';
+		if (((section === 'education' && this.state.newProfile[section].degree) || (section === 'career' && this.state.newProfile[section].title)) && this.state.newProfile[section].location) {
+
+			let titleRef = `${section}TitleInputRef`;
+			let locationRef = `${section}LocationInputRef` ;
+	
+			this.setState({
+				...this.state,
+				profile: {
+					...this.state.profile,
+					[section]: [...this.state.profile[section], this.state.newProfile[section]],
+				}	
+			});
+	
+			this[titleRef].current.value = '';
+			this[locationRef].current.value = '';
+		} else {
+			alert ('Please ensure all inputs are filled and valid.')
+		}
 	}
 
 	render() {
@@ -115,7 +126,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='educationDegree'
-					ref={this.historyInputRef}
+					ref={this.educationTitleInputRef}
 					onChange={(event) => this.handleHistoryInputChange(event, 'education', 'degree')}
 				/>
 				<label
@@ -127,7 +138,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='educationLocation'
-					ref={this.historyLocationInputRef}
+					ref={this.educationLocationInputRef}
 					onChange={(event) => this.handleHistoryInputChange(event, 'education', 'location')}
 				/>
 				<button onClick={() => this.updateHistoryList('education')}>Add</button>
@@ -147,7 +158,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='careerTitle'
-					ref={this.historyInputRef}
+					ref={this.careerTitleInputRef}
 					onChange={(event) => this.handleHistoryInputChange(event, 'career', 'title')}
 				/>
 				<label
@@ -159,7 +170,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='careerLocation'
-					ref={this.historyLocationInputRef}
+					ref={this.careerLocationInputRef}
 					onChange={(event) => this.handleHistoryInputChange(event, 'career', 'location')}
 				/>
 				<button onClick={() => this.updateHistoryList('career')}>Add</button>
@@ -171,12 +182,12 @@ class AddInformation extends Component {
 				</ul>
 				<br/>
 				<button
-					onClick={() => {this.props.history.push('/DesignerHomeView')}}
+					onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
 				>
 					Save and Go Home
 				</button>
 				<button
-					onClick={() => {this.props.history.push('/UpdateProfile/Skills')}}
+					onClick={() => {this.props.saveAndNavigate('/UpdateProfile/Skills', this.state.profile)}}
 				>
 					Save and go to Skills
 				</button>

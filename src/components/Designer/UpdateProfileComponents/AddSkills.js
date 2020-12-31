@@ -33,6 +33,7 @@ class AddSkills extends Component {
 					checkedState: false,
 				},
 			],
+			profile: props.profile,
 			skillsList: [], // {label: '', rating: ''}
 			saveDisabled: false,
 			currentSkillInput: '',

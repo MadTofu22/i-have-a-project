@@ -22,11 +22,11 @@ router.get('/designers/:id', (req, res) => {
 // This route gets the specified user's career history
 router.get('/career/:id', (req, res) => {
     console.log('in profile.router - retrieving career data, id=', req.params.id);
-    const queryText = `SELECT designers.id, career."location", career.title, career.start_date, career.end_date
+    const queryText = `SELECT designers.id, career."location", career.title
     FROM designers
     JOIN career ON career.designer_id = designers.id
     where designers.id=$1
-    GROUP BY designers.id, career."location", career.title, career.start_date, career.end_date;`;
+    GROUP BY designers.id, career."location", career.title;`;
 
     pool.query(queryText, [req.params.id])
     .then(response => {
@@ -37,32 +37,32 @@ router.get('/career/:id', (req, res) => {
     });
 });
 
-router.get('/certification/:id', (req, res) => {
-    console.log('in profile.router - retrieving certification data, id=', req.params.id);
-    const queryText = `
-        SELECT designers.id, certification."location", certification.certification, certification.graduation_date
-        FROM designers
-        JOIN certification ON certification.designer_id = designers.id
-        where designers.id=$1
-        GROUP BY designers.id, certification."location", certification.certification, certification.graduation_date;`;
+// router.get('/certification/:id', (req, res) => {
+//     console.log('in profile.router - retrieving certification data, id=', req.params.id);
+//     const queryText = `
+//         SELECT designers.id, certification."location", certification.certification, certification.graduation_date
+//         FROM designers
+//         JOIN certification ON certification.designer_id = designers.id
+//         where designers.id=$1
+//         GROUP BY designers.id, certification."location", certification.certification, certification.graduation_date;`;
 
-    pool.query(queryText, [req.params.id])
-    .then(response => {
-        res.send(response);
-    }).catch(error => {
-        console.log(error);
-        res.sendStatus(500);
-    });
-});
+//     pool.query(queryText, [req.params.id])
+//     .then(response => {
+//         res.send(response);
+//     }).catch(error => {
+//         console.log(error);
+//         res.sendStatus(500);
+//     });
+// });
 
 router.get('/education/:id', (req, res) => {
     console.log('in profile.router - retrieving education data, id=', req.params.id);
     const queryText = `
-        SELECT designers.id, education."location", education."degree", education.graduation_date, education."degree"
+        SELECT designers.id, education."location", education."degree"
         FROM designers
         JOIN education ON education.designer_id = designers.id
         where designers.id=$1
-        GROUP BY designers.id, education."location", education."degree", education.graduation_date, education."degree";`;
+        GROUP BY designers.id, education."location", education."degree";`;
 
     pool.query(queryText, [req.params.id])
     .then(response => {
@@ -71,6 +71,28 @@ router.get('/education/:id', (req, res) => {
         console.log(error);
         res.sendStatus(500);
     });
+});
+
+router.
+
+router.put('/', (req, res) => {
+
+    const queryParams = [
+        req.body.designer.linkedin,
+        req.body.designer.phone,
+        req.body.designer.photo,
+        req.body.designer.availability_hours,
+
+    ];
+    const queryText = `
+        BEGIN;
+            UPDATE designer SET
+                linkedin = $1,
+                phone = $2,
+                photo = $3,
+                availability_hours = $4
+
+    `
 });
 
 // TEST ROUTE USED FOR TESTING
