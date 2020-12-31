@@ -25,6 +25,7 @@ import DesignerRegistration from '../Designer/DesignerRegistration';
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 import UpdateProfile from '../Designer/UpdateProfile';
 import CreateProject from '../Manager/CreateProject'
+import ProjectDetails from '../Projects/ProjectDetails'
 
 
 class App extends Component {
@@ -119,6 +120,14 @@ class App extends Component {
             <Route 
               path={'/CreateProject'}
               component={CreateProject}
+            />
+            <Route 
+              path={'/ProjectEdit/project_id'}
+              component={CreateProject}
+            /> 
+              <ProtectedRoute 
+              path={`/projectDetails/:project_id`}
+              component={ProjectDetails}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
