@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import AddDesigner from '../Modals/AddDesigner'
 
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -15,6 +16,9 @@ class ProjectDetails extends Component {
             type: "FETCH_PROJECT_DETAILS",
             payload: this.props.match.params.project_id
         })
+        this.props.dispatch({
+			type: "FETCH_DESIGNERS"
+		})
     }
     goToEditPage = () =>{
         this.props.history.push(`/projectEdit/${this.props.match.params.project_id}`)
@@ -50,6 +54,7 @@ class ProjectDetails extends Component {
                 {this.props.store.projectDetails.projectDesigners ?
                     <div style={{ height: 300, width: '100%' }}>
                         <h2>Project Designers</h2>
+                        <AddDesigner project_id={this.props.match.params.project_id} />
                         <DataGrid
                             columns={[
                                 { field: 'id', headerName: 'ID' },
