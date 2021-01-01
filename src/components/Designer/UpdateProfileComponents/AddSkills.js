@@ -34,62 +34,24 @@ class AddSkills extends Component {
 				},
 			],
 			profile: props.profile,
-			newProfile: {},
 			currentSkillInput: '',
 		};
-	}
-
-	componentDidMount = () => {
-		console.log('in AddSkill componentDidMount')
-		this.setSoftwareList();
-	}
-
-	// This function gets the updated states of proficient software from the profile
-	setSoftwareList = () => {
-		
-		let newSoftwareList = [];
-		let isProficient = false;
-
-		for (let index in this.state.softwareList) {
-			isProficient = false;
-			// Check if the user is proficient in the current software
-			for (let userSoftware of this.state.profile.software) {
-				if (userSoftware.label === this.state.softwareList[index].label) {
-					isProficient = true;
-				}
-			}
-			newSoftwareList.push({
-				label: this.state.softwareList[index].label,
-				checkedState: isProficient,
-			});
-		}
-
-		this.setState({
-			...this.state,
-			softwareList: newSoftwareList,
-		});
 	}
 
 	// This function marks the state for the selected software as checked and toggles the save button enabled
 	handleCheckboxChange = (index) => {
 
-		let newSoftwareList = [];
+		let newSoftwareList = this.state.profile.software.slice();
+		newSoftwareList[index].proficient = !this.state.profile.software[index].proficient;
 
-		for(let softwareIndex in this.state.softwareList) {
-			if (Number(index) === Number(softwareIndex)) {
-				newSoftwareList.push({
-					label: this.state.softwareList[softwareIndex].label,
-					checkedState: !this.state.softwareList[index].checkedState,
-				});
-			} else {
-				newSoftwareList.push(this.state.softwareList[softwareIndex]);
-			}
-		}
 		console.log('in handleCheckBoxChange - index:', index, '; newSoftwareList:', newSoftwareList);
 
 		this.setState({
 			...this.state,
-			softwareList: newSoftwareList,
+			profile: {
+				...this.state.profile,
+				software: newSoftwareList,
+			}
 		});
 	}
 
@@ -165,7 +127,7 @@ class AddSkills extends Component {
 				<h2>Add Skills</h2>
 				<div className='sectionContainer'>
 					<h4>Software</h4>
-					{this.state.softwareList.map((software, index) => {
+					{this.state.profile.software.map((software, index) => {
 						return (
 							<>
 								<input 
@@ -173,7 +135,7 @@ class AddSkills extends Component {
 									id={`software${index}`} 
 									name={`software${index}`} 
 									value={software.label}
-									checked={software.checkedState}
+									checked={software.proficient}
 									onChange={() => this.handleCheckboxChange(index)} 
 								/>
 								<label htmlFor={`software${index}`}>{software.label}</label>
@@ -196,8 +158,14 @@ class AddSkills extends Component {
 						})}
 					</div>
 					<br/>
-					<input type='submit' value='Save and go to Information' />
-					<input type='submit' value='Save and go to Home' />
+					<button
+						onClick={() => {this.props.saveAndNavigate('/UpdateProfile/Info', this.state.profile)}}
+					>Save and go to Information
+					</button>
+					<button
+						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
+					>Save and Go Home
+					</button>
 				</div>
 			</>
 		);
