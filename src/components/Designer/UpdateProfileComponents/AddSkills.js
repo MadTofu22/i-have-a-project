@@ -34,7 +34,7 @@ class AddSkills extends Component {
 				},
 			],
 			profile: props.profile,
-			saveDisabled: false,
+			newProfile: {},
 			currentSkillInput: '',
 		};
 	}
@@ -48,7 +48,6 @@ class AddSkills extends Component {
 		this.setState({
 			...this.state,
 			softwareList: newSoftwareList,
-			saveDisabled: false
 		});
 	}
 
@@ -131,8 +130,14 @@ class AddSkills extends Component {
 						<label htmlFor='skillInput'>Enter Skill</label>
 						<input type='text' name='skillInput' id='skillInput' className='skillsTextField' ref={this.skillInputRef} onChange={this.handleSkillInputChange} />
 						<input type='button' id='addSkill' value='Add' onClick={this.addSkill} />
-						{this.state.skillsList.map((skill, index) => {
-							return <AddedSkillLabel key={index} index={index} skill={skill} removeSkill={this.removeSkill} updateSkill={this.updateSkill} />
+						{this.state.profile.skills.map((skill, index) => {
+							return <AddedSkillLabel 
+										key={index} 
+										index={index} 
+										skill={skill} 
+										removeSkill={this.removeSkill} 
+										updateSkill={this.updateSkill} 
+									/>
 						})}
 					</div>
 					<br/>

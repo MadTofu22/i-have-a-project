@@ -20,8 +20,6 @@ CREATE TABLE "designers" (
 	"weekend_availability" boolean
 );
 
--- CHECK TO SEE IF WE CAN GET BY WITH WHAT MAY BE A CIRCULAR REFERENCE BETWEEN DESIGNERS AND USERS
-
 CREATE TABLE "skills" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
@@ -73,20 +71,16 @@ CREATE TABLE "education" (
 	"location" varchar(100),
 );
 
-
--- NEEDS CHANGING
-
--- "email", "password", "employee_type", "first_name", "last_name", "company", "designer_id"
-
-INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
-VALUES ('zpets@gmail.com', 'feckland87', 'Designer', 'Franz', 'Eckland', 'Z-Pets',1), 
-('bubblehub@gmail.com', 'kdanger88', 'Manager', 'Kelly', 'Danger', 'BubbleHub', 2), 
-('cellsgraphic@gmail.com', 'tbrookshaw89', 'Designer', 'Thomas', 'Brookshaw', 'Cell Graphic', 3);
+create table "software" (
+	"id" SERIAL primary key,
+	"designer_id" INT references "designers" not null,
+	"label" varchar(80) not null,
+	"proficient" boolean not null
+);
 
 
 INSERT INTO "projects" ("manager_id", "status", "due_date", "notes")
 VALUES ('1', 'Active', '10.10.2021', 'a current project for manager 1');
-
 
 INSERT INTO "skills" ("label", "description")
 VALUES ('feng shui', 'the art of spacing and palletting'), ('computer softwares', 'autocad and other virtual design softwares'), ('architecture', 'architecting');
@@ -117,3 +111,8 @@ insert into skills (designer_id, proficiency, label)
 value ('1', '4', 'Communication'),
 ('1', '5', 'Modern Style'),
 ('1', '1', 'Cowyboy Theme');
+
+insert into software (designer_id, "label", proficient)
+values ('1', 'AutoCAD', true),
+('1', 'Blendr', true),
+('1', 'Adobpe Illustrator', true);
