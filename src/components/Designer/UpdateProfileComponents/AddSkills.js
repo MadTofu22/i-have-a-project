@@ -108,11 +108,16 @@ class AddSkills extends Component {
 
 		this.setState({
 			...this.state,
-			skillsList: [...this.state.skillsList,
-				{
-					label: this.skillInputRef.current.value,
-					rating: '3',
-				}],
+			profile: {
+				...this.state.profile,
+				skills: [
+					...this.state.profile.skills,
+					{
+						label: this.skillInputRef.current.value,
+						proficiency: '3',
+					}
+				]
+			}
 		});
 		this.skillInputRef.current.value = '';	
 	}
@@ -122,26 +127,34 @@ class AddSkills extends Component {
 
 		console.log('in updateSkill - index:', index, '; newRating:', newRating)
 
-		let newSkillList = this.state.skillsList.slice();
-		newSkillList[index] = {label: this.state.skillsList[index].label, rating: newRating};
+		let newSkillsList = this.state.profile.skills.slice();
+		newSkillsList[index] = {label: this.state.profile.skills[index].label, proficiency: newRating};
 
-		console.log('in updateSkill - newSkillList:', newSkillList, 'state skillsList:', this.state.skillsList);
+		console.log('in updateSkill - newSkillList:', newSkillsList, 'state skillsList:', this.state.skillsList);
 
 		this.setState({
 			...this.state,
-			skillsList: newSkillList,
+			profile: {
+				...this.state.profile,
+				skills: newSkillsList,
+			},
 		});
 	}
 
 	// This function removes a skill from the local state skills list by it's index
 	removeSkill = (index) => {
 
-		let newSkillsList = this.state.skillsList.slice();
+		let newSkillsList = this.state.profile.skills.slice();
 		newSkillsList.splice(index, 1);
+
 		console.log('in removeSkill - newSkillList:', newSkillsList)
+
 		this.setState({
 			...this.state,
-			skillsList: newSkillsList,
+			profile: {
+				...this.state.profile,
+				skills: newSkillsList,
+			},
 		});
 	}
 
