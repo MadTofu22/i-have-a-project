@@ -37,24 +37,6 @@ router.get('/career/:id', (req, res) => {
     });
 });
 
-// router.get('/certification/:id', (req, res) => {
-//     console.log('in profile.router - retrieving certification data, id=', req.params.id);
-//     const queryText = `
-//         SELECT designers.id, certification."location", certification.certification, certification.graduation_date
-//         FROM designers
-//         JOIN certification ON certification.designer_id = designers.id
-//         where designers.id=$1
-//         GROUP BY designers.id, certification."location", certification.certification, certification.graduation_date;`;
-
-//     pool.query(queryText, [req.params.id])
-//     .then(response => {
-//         res.send(response);
-//     }).catch(error => {
-//         console.log(error);
-//         res.sendStatus(500);
-//     });
-// });
-
 router.get('/education/:id', (req, res) => {
     console.log('in profile.router - retrieving education data, id=', req.params.id);
     const queryText = `
@@ -76,6 +58,19 @@ router.get('/education/:id', (req, res) => {
 router.get('/skills/:id', (req, res) => {
     console.log('in profile.router - retrieving skills data, id=', req.params.id);
     const queryText = `SELECT * FROM skills WHERE designer_id = $1;`;
+
+    pool.query(queryText, [req.params.id])
+    .then(response => {
+        res.send(response);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
+router.get('/software/:id', (req, res) => {
+    console.log('in profile.router - retrieving software data, id=', req.params.id);
+    const queryText = `SELECT * FROM software WHERE designer_id = $1;`;
 
     pool.query(queryText, [req.params.id])
     .then(response => {

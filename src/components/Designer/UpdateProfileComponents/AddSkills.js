@@ -13,23 +13,23 @@ class AddSkills extends Component {
 		this.state = {
 			softwareList: [
 				{
-					name: 'Software 1',
+					label: 'AutoCAD',
 					checkedState: false,
 				},
 				{
-					name: 'Software 2',
+					label: 'Blendr',
 					checkedState: false,
 				},
 				{
-					name: 'Software 3',
+					label: 'Adobe Illustrator',
 					checkedState: false,
 				},
 				{
-					name: 'Software 4',
+					label: 'Software 4',
 					checkedState: false,
 				},
 				{
-					name: 'Software 5',
+					label: 'Software 5',
 					checkedState: false,
 				},
 			],
@@ -39,11 +39,53 @@ class AddSkills extends Component {
 		};
 	}
 
+	componentDidMount = () => {
+		console.log('in AddSkill componentDidMount')
+		this.setSoftwareList();
+	}
+
+	// This function gets the updated states of proficient software from the profile
+	setSoftwareList = () => {
+		
+		let newSoftwareList = [];
+		let isProficient = false;
+
+		for (let index in this.state.softwareList) {
+			isProficient = false;
+			// Check if the user is proficient in the current software
+			for (let userSoftware of this.state.profile.software) {
+				if (userSoftware.label === this.state.softwareList[index].label) {
+					isProficient = true;
+				}
+			}
+			newSoftwareList.push({
+				label: this.state.softwareList[index].label,
+				checkedState: isProficient,
+			});
+		}
+
+		this.setState({
+			...this.state,
+			softwareList: newSoftwareList,
+		});
+	}
+
 	// This function marks the state for the selected software as checked and toggles the save button enabled
 	handleCheckboxChange = (index) => {
 
-		let newSoftwareList = this.state.softwareList;
-		newSoftwareList[index].checkedState = true;
+		let newSoftwareList = [];
+
+		for(let softwareIndex in this.state.softwareList) {
+			if (Number(index) === Number(softwareIndex)) {
+				newSoftwareList.push({
+					label: this.state.softwareList[softwareIndex].label,
+					checkedState: !this.state.softwareList[index].checkedState,
+				});
+			} else {
+				newSoftwareList.push(this.state.softwareList[softwareIndex]);
+			}
+		}
+		console.log('in handleCheckBoxChange - index:', index, '; newSoftwareList:', newSoftwareList);
 
 		this.setState({
 			...this.state,
@@ -110,18 +152,18 @@ class AddSkills extends Component {
 				<h2>Add Skills</h2>
 				<div className='sectionContainer'>
 					<h4>Software</h4>
-					{this.state.softwareList.map((item, index) => {
+					{this.state.softwareList.map((software, index) => {
 						return (
 							<>
 								<input 
 									type='checkbox'
 									id={`software${index}`} 
 									name={`software${index}`} 
-									value={index}
-									checked={item.checkedState}
+									value={software.label}
+									checked={software.checkedState}
 									onChange={() => this.handleCheckboxChange(index)} 
 								/>
-								<label htmlFor={`software${index}`}>{item.name}</label>
+								<label htmlFor={`software${index}`}>{software.label}</label>
 								<br/>
 							</>
 						)
