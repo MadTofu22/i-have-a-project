@@ -8,35 +8,36 @@ import AddSkills from './UpdateProfileComponents/AddSkills';
 import AddInformation from './UpdateProfileComponents/AddInformation';
 
 class UpdateProfile extends Component {
+	
 	state = {
-
+		profile: this.props.store.profile,
 	};
 
-	componentDidUpdate () {
-		this.props.dispatch({type: 'FETCH_PROFILE'});
-	}
-
 	// This function saves the profile data and navigates to the specified page
-	saveAndNavigate = (path) => {
-		
+	saveAndNavigate = (path, profileData) => {
+		console.log('in saveAndNavigate - profileData', profileData)
+		this.props.dispatch({type: 'UPDATE_PROFILE', payload: profileData});
+		this.props.history.push(path);
 	}
 
 	render() {
+		console.log('UpdateProfile component has rendered - this.state:', this.state);
 		return (
 			<Router>
-				<h1>Build Your Profile!</h1>
-				{JSON.stringify(this.props.store.profile)}
+				<h1>Build Your Perofile!</h1>
 				<div className='profileInputContainer'>
-					<Route 
-						exact
-						path='/UpdateProfile/Skills'
-						component={AddSkills}
-					/>
-					<Route 
-						exact
-						path='/UpdateProfile/Info'
-						component={AddInformation}
-					/>
+					<Route exact path='/UpdateProfile/Skills'>
+						<AddSkills 
+							saveAndNavigate={this.saveAndNavigate}
+							profile={this.state.profile}
+						/>
+					</Route>
+					<Route exact path='/UpdateProfile/Info'>
+						<AddInformation
+							saveAndNavigate={this.saveAndNavigate}
+							profile={this.state.profile}
+						/>
+					</Route>
 				</div>
 			</Router>
 		);

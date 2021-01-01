@@ -29,10 +29,9 @@ class AddedSkillLabel extends Component {
                 <input 
                     type='number' 
                     className='ratingInput' 
-                    defaultValue={this.props.skill.rating} 
+                    defaultValue={this.props.skill.proficiency} 
                     min='1' 
                     max='5'
-                    // ref={this.ratingInputRef}
                     onChange={this.handleRatingChange} 
                 />
                 <input 

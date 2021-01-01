@@ -7,127 +7,187 @@ class AddInformation extends Component {
 
 	constructor (props) {
 		super(props);
-		this.workHistoryInputRef = React.createRef();
-		this.educationHistoryInputRef = React.createRef();
+		console.log('in addinfo constructor, props:', props)
+		this.educationTitleInputRef = React.createRef();
+		this.educationLocationInputRef = React.createRef();
+		this.careerTitleInputRef = React.createRef();
+		this.careerLocationInputRef = React.createRef();
 		this.state = {
-			educationHistory: ['MCTC', 'Prime Digital Academy', 'University of Michigan'],
-			workHistory: ['I Have a Project', 'Activision', 'Endeavor'],
-			workHistoryInput: '',
-			educationHistoryInput: '',
-			linkedinPath: '',
-			avatarPath: '',
+			profile: props.profile,
+			newProfile: {
+				career: {},
+				education: {},
+			},
 		};
 	}
 
 	// This function handles storing the work and education history inputs in the local state on change
-	handleInputChange = (event, inputType) => {
+	handleInputChange = (event, section, property) => {
 
-		console.log('in handleInputChange - inputType:', inputType, '; inputValue:', event.target.value);
 		this.setState({
 			...this.state,
-			[inputType]: event.target.value,
+			profile: {
+				...this.state.profile,
+				[section]: {
+					...this.state.profile[section],
+					[property]: event.target.value,
+				}
+			}
+		})
+	}
+
+
+	handleHistoryInputChange = (event, section, property) => {
+
+		this.setState({
+			...this.state,
+			newProfile: {
+				[section]: {
+					...this.state.newProfile[section],
+					[property]: event.target.value,
+				}
+			}
 		})
 	}
 
 	// This function handles adding an item to the education or work history list
-	updateHistoryList = (listType) => {
+	updateHistoryList = (section) => {
 
-		let refType = listType + 'InputRef';
-		let inputType = listType + 'Input';
-		this.setState({
-			...this.state,
-			[listType]: [...this.state[listType], this.state[inputType]],
-		});
-		this[refType].current.value = '';
+		if (((section === 'education' && this.state.newProfile[section].degree) || (section === 'career' && this.state.newProfile[section].title)) && this.state.newProfile[section].location) {
+
+			let titleRef = `${section}TitleInputRef`;
+			let locationRef = `${section}LocationInputRef` ;
+	
+			this.setState({
+				...this.state,
+				profile: {
+					...this.state.profile,
+					[section]: [...this.state.profile[section], this.state.newProfile[section]],
+				}	
+			});
+	
+			this[titleRef].current.value = '';
+			this[locationRef].current.value = '';
+		} else {
+			alert ('Please ensure all inputs are filled and valid.')
+		}
 	}
 
 	render() {
+		console.log('UpdateProfile/info has rendered - this.props:', this.props, this.state)
 		return (
 			<>
 				<h2>Add Information</h2>
+				{JSON.stringify(this.state.profile)}
 				<br/>
 				<label
 					htmlFor='phoneNum'
 					className='buildProfileLabel'
-					defaultValue={this.props.store.profile.phone}
 				>
-					Cell Number:
+					Phone Number:
 				</label>
 				<input
 					type='text'
 					id='phoneNum'
+					defaultValue={this.state.profile.designer.phone}
+					onChange={(event) => this.handleInputChange(event, 'designer', 'phone')}
 				/>
 				<label
 					htmlFor='imgUrl'
 					className='buildProfileLabel'
 				>
-					Profile Image:
+					Profile Image URL:
 				</label>
 				<input 
 					type='text'
 					id='imgUrl'
-					onChange={(event) => this.handleInputChange(event, 'avatarPath')}
+					defaultValue={this.state.profile.designer.photo}
+					onChange={(event) => this.handleInputChange(event, 'designer', 'photo')}
 				/>
 				<br/>
 				<label
 					htmlFor='linkedinUrl'
 					className='buildProfileLabel'
-				>
-					LinkedIn Page:
+					>LinkedIn Page:
 				</label>
 				<input 
 					type='text'
 					id='linkedinUrl'
-					onChange={(event) => this.handleInputChange(event, 'linkedinPath')}
+					onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
+					defaultValue={this.state.profile.designer.linkedin}
 				/>
 				<br/>
 				<label
-					htmlFor='educationItem'
+					htmlFor='educationDegree'
 					className='buildProfileLabel'
 				>
-					Education:
+					Degree:
 				</label>
 				<input 
 					type='text'
-					id='educationItem'
-					ref={this.historyInputRef}
-					onChange={(event) => this.handleInputChange(event, 'educationHistoryInput')}
+					id='educationDegree'
+					ref={this.educationTitleInputRef}
+					onChange={(event) => this.handleHistoryInputChange(event, 'education', 'degree')}
 				/>
-				<button onClick={() => this.updateHistoryList('educationHistory')}>Add</button>
+				<label
+					htmlFor='educationDegree'
+					className='buildProfileLabel'
+				>
+					Institution:
+				</label>
+				<input 
+					type='text'
+					id='educationLocation'
+					ref={this.educationLocationInputRef}
+					onChange={(event) => this.handleHistoryInputChange(event, 'education', 'location')}
+				/>
+				<button onClick={() => this.updateHistoryList('education')}>Add</button>
 				<h4>Added Education</h4>
 				<ul>
-					{this.state.educationHistory.map(item => {
-						return <li>{item}</li>
+					{this.state.profile.education.map((row, index) => {
+						return <li key={index}>{row.degree} from {row.location}</li>
 					})}
 				</ul>
 				<br/>
 				<label
-					htmlFor='workItem'
+					htmlFor='careerTitle'
 					className='buildProfileLabel'
 				>
-					Work Experience:
+					Position:
 				</label>
 				<input 
 					type='text'
-					id='workItem'
-					ref={this.historyInputRef}
-					onChange={(event) => this.handleInputChange(event, 'workHistoryInput')}
+					id='careerTitle'
+					ref={this.careerTitleInputRef}
+					onChange={(event) => this.handleHistoryInputChange(event, 'career', 'title')}
 				/>
-				<button onClick={() => this.updateHistoryList('workHistory')}>Add</button>
+				<label
+					htmlFor='careerTitle'
+					className='buildProfileLabel'
+				>
+					Company:
+				</label>
+				<input 
+					type='text'
+					id='careerLocation'
+					ref={this.careerLocationInputRef}
+					onChange={(event) => this.handleHistoryInputChange(event, 'career', 'location')}
+				/>
+				<button onClick={() => this.updateHistoryList('career')}>Add</button>
 				<h4>Added Work Experience</h4>
 				<ul>
-					{this.state.workHistory.map(item => {
-						return <li>{item}</li>
+					{this.state.profile.career.map((job, index) => {
+						return <li key={index}>{job.title} at {job.location}</li>
 					})}
 				</ul>
 				<br/>
 				<button
-					onClick={() => {this.props.history.push('/DesignerHomeView')}}
+					onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
 				>
 					Save and Go Home
 				</button>
 				<button
-					onClick={() => {this.props.history.push('/UpdateProfile/Skills')}}
+					onClick={() => {this.props.saveAndNavigate('/UpdateProfile/Skills', this.state.profile)}}
 				>
 					Save and go to Skills
 				</button>

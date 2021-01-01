@@ -13,49 +13,45 @@ class AddSkills extends Component {
 		this.state = {
 			softwareList: [
 				{
-					name: 'Software 1',
+					label: 'AutoCAD',
 					checkedState: false,
 				},
 				{
-					name: 'Software 2',
+					label: 'Blendr',
 					checkedState: false,
 				},
 				{
-					name: 'Software 3',
+					label: 'Adobe Illustrator',
 					checkedState: false,
 				},
 				{
-					name: 'Software 4',
+					label: 'Software 4',
 					checkedState: false,
 				},
 				{
-					name: 'Software 5',
+					label: 'Software 5',
 					checkedState: false,
 				},
 			],
-			skillsList: [], // {label: '', rating: ''}
-			saveDisabled: false,
+			profile: props.profile,
 			currentSkillInput: '',
 		};
-	}
-
-	// This fucntion saves the input info and stores it to the redux state, then passes it to the server/database
-	handleFormSubmit = (event) => {
-		console.log('skill form save clicked:', event.target);
-
-
 	}
 
 	// This function marks the state for the selected software as checked and toggles the save button enabled
 	handleCheckboxChange = (index) => {
 
-		let newSoftwareList = this.state.softwareList;
-		newSoftwareList[index].checkedState = true;
+		let newSoftwareList = this.state.profile.software.slice();
+		newSoftwareList[index].proficient = !this.state.profile.software[index].proficient;
+
+		console.log('in handleCheckBoxChange - index:', index, '; newSoftwareList:', newSoftwareList);
 
 		this.setState({
 			...this.state,
-			softwareList: newSoftwareList,
-			saveDisabled: false
+			profile: {
+				...this.state.profile,
+				software: newSoftwareList,
+			}
 		});
 	}
 
@@ -74,11 +70,16 @@ class AddSkills extends Component {
 
 		this.setState({
 			...this.state,
-			skillsList: [...this.state.skillsList,
-				{
-					label: this.skillInputRef.current.value,
-					rating: '3',
-				}],
+			profile: {
+				...this.state.profile,
+				skills: [
+					...this.state.profile.skills,
+					{
+						label: this.skillInputRef.current.value,
+						proficiency: '3',
+					}
+				]
+			}
 		});
 		this.skillInputRef.current.value = '';	
 	}
@@ -88,25 +89,34 @@ class AddSkills extends Component {
 
 		console.log('in updateSkill - index:', index, '; newRating:', newRating)
 
-		let newSkillList = this.state.skillsList.slice();
-		newSkillList[index] = {label: this.state.skillsList[index].label, rating: newRating};
+		let newSkillsList = this.state.profile.skills.slice();
+		newSkillsList[index] = {label: this.state.profile.skills[index].label, proficiency: newRating};
 
-		console.log('in updateSkill - newSkillList:', newSkillList, 'state skillsList:', this.state.skillsList);
+		console.log('in updateSkill - newSkillList:', newSkillsList, 'state skillsList:', this.state.skillsList);
 
 		this.setState({
 			...this.state,
-			skillsList: newSkillList,
+			profile: {
+				...this.state.profile,
+				skills: newSkillsList,
+			},
 		});
 	}
 
 	// This function removes a skill from the local state skills list by it's index
 	removeSkill = (index) => {
-		let newSkillsList = this.state.skillsList.slice();
+
+		let newSkillsList = this.state.profile.skills.slice();
 		newSkillsList.splice(index, 1);
+
 		console.log('in removeSkill - newSkillList:', newSkillsList)
+
 		this.setState({
 			...this.state,
-			skillsList: newSkillsList,
+			profile: {
+				...this.state.profile,
+				skills: newSkillsList,
+			},
 		});
 	}
 
@@ -117,18 +127,18 @@ class AddSkills extends Component {
 				<h2>Add Skills</h2>
 				<div className='sectionContainer'>
 					<h4>Software</h4>
-					{this.state.softwareList.map((item, index) => {
+					{this.state.profile.software.map((software, index) => {
 						return (
 							<>
 								<input 
-									type='checkbox' 
+									type='checkbox'
 									id={`software${index}`} 
 									name={`software${index}`} 
-									value={index}
-									checked={item.checkedState}
+									value={software.label}
+									checked={software.proficient}
 									onChange={() => this.handleCheckboxChange(index)} 
 								/>
-								<label htmlFor={`software${index}`}>{item.name}</label>
+								<label htmlFor={`software${index}`}>{software.label}</label>
 								<br/>
 							</>
 						)
@@ -137,13 +147,25 @@ class AddSkills extends Component {
 						<label htmlFor='skillInput'>Enter Skill</label>
 						<input type='text' name='skillInput' id='skillInput' className='skillsTextField' ref={this.skillInputRef} onChange={this.handleSkillInputChange} />
 						<input type='button' id='addSkill' value='Add' onClick={this.addSkill} />
-						{this.state.skillsList.map((skill, index) => {
-							return <AddedSkillLabel key={index} index={index} skill={skill} removeSkill={this.removeSkill} updateSkill={this.updateSkill} />
+						{this.state.profile.skills.map((skill, index) => {
+							return <AddedSkillLabel 
+										key={index} 
+										index={index} 
+										skill={skill} 
+										removeSkill={this.removeSkill} 
+										updateSkill={this.updateSkill} 
+									/>
 						})}
 					</div>
 					<br/>
-					<input type='submit' value='Save and go to Information' />
-					<input type='submit' value='Save and go to Home' />
+					<button
+						onClick={() => {this.props.saveAndNavigate('/UpdateProfile/Info', this.state.profile)}}
+					>Save and go to Information
+					</button>
+					<button
+						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
+					>Save and Go Home
+					</button>
 				</div>
 			</>
 		);

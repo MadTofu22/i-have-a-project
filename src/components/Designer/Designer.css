@@ -1,4 +1,5 @@
-.designerNavBar{
+/* Designer Home Profile Components */
+.myProfileWrap, .designerNavBar{
     display: inline-flex;
     width: 90%;
     margin-left: auto;
@@ -22,3 +23,5 @@
 .rightProfileColumn{
     width: 50%;
 }
+
+/* Build Profile Styling */
