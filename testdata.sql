@@ -33,5 +33,7 @@ value ('1', '4', 'Communication'),
 
 insert into software (designer_id, "label", proficient)
 values ('1', 'AutoCAD', true),
-('1', 'Blendr', true),
-('1', 'Adobpe Illustrator', true);
+('1', 'Blendr', false),
+('1', 'Adobe Illustrator', true),
+('1', 'MS Paint', false),
+('1', 'FreeCAD', false);
