@@ -38,6 +38,13 @@ class AddSkills extends Component {
 		};
 	}
 
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.designer_id
+		});
+	}
+
 	// This function marks the state for the selected software as checked and toggles the save button enabled
 	handleCheckboxChange = (index) => {
 
