@@ -13,8 +13,20 @@ class UpdateProfile extends Component {
 		profile: this.props.store.profile,
 	};
 
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.designer_id
+		});
+	}
+
 	// This function saves the profile data and navigates to the specified page
-	saveAndNavigate = (path, profileData) => {
+	saveAndNavigate = (path, newData) => {
+		const profileData = {
+			designer_id: this.props.store.user.designer_id,
+			oldData: this.props.store.profile,
+			newData,
+		}
 		console.log('in saveAndNavigate - profileData', profileData)
 		this.props.dispatch({type: 'UPDATE_PROFILE', payload: profileData});
 		this.props.history.push(path);

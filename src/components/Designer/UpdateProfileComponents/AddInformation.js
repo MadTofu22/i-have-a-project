@@ -21,6 +21,13 @@ class AddInformation extends Component {
 		};
 	}
 
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.designer_id
+		});
+	}
+
 	// This function handles storing the work and education history inputs in the local state on change
 	handleInputChange = (event, section, property) => {
 
@@ -83,8 +90,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='phoneNum'
 					className='buildProfileLabel'
-				>
-					Phone Number:
+				>Phone Number:
 				</label>
 				<input
 					type='text'
@@ -95,8 +101,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='imgUrl'
 					className='buildProfileLabel'
-				>
-					Profile Image URL:
+				>Profile Image URL:
 				</label>
 				<input 
 					type='text'
@@ -118,10 +123,21 @@ class AddInformation extends Component {
 				/>
 				<br/>
 				<label
+					htmlFor='availability_hours'
+					className='buildProfileLabel'
+					>Hours Available per Week:
+				</label>
+				<input 
+					type='text'
+					id='availability_hours'
+					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
+					defaultValue={this.state.profile.designer.availability_hours}
+				/>
+				<br/>
+				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
-				>
-					Degree:
+				>Degree:
 				</label>
 				<input 
 					type='text'
@@ -132,8 +148,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
-				>
-					Institution:
+				>Institution:
 				</label>
 				<input 
 					type='text'
