@@ -28,7 +28,9 @@ class DesignerHomeView extends Component {
 		});
 	}
 
+	// Handles logging out the user 
 	handleLogout = () => {
+		this.props.history.push('/Login');
 		this.props.dispatch({type: 'LOGOUT'});
 	}
 

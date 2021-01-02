@@ -30,6 +30,12 @@ class ManagerHomeView extends Component {
         return password;
     }
 
+    // Handles logging out the user 
+	handleLogout = () => {
+		this.props.history.push('/Login');
+		this.props.dispatch({type: 'LOGOUT'});
+	}
+
     // This function handles sending an invite email to a designer and creates their account in the DB
     sendInvite = (inviteData) => {
         inviteData = {
@@ -81,6 +87,11 @@ class ManagerHomeView extends Component {
                         <h1 className='header'>Welcome to Your Home View</h1>
                         <button className='headerButton'>Create New Project</button>
                         <button className='headerButton'>Account Settings</button>
+                        <button 
+							className='headerButton' 
+							onClick={() => this.handleLogout()}
+							>Logout
+						</button>
 
                         {/* This button will run a test to ensure the saga creates the designer in the DB */}
                         <button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</button>
