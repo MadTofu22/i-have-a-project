@@ -200,11 +200,12 @@ router.post('/designers/:manager_id', (req, res) => {
     ];
     const queryText = `
         INSERT INTO designers (manager_id, rate)
-        VALUES ($1, $2);`;
+        VALUES ($1, $2)
+        RETURNING id;`;
 
     pool.query(queryText, queryParams)
     .then(response => {
-        res.send(200);
+        res.send(response);
     }).catch(error => {
         console.log(error);
         res.sendStatus(500);
@@ -279,7 +280,7 @@ router.post('/software/:id', (req, res) => {
         req.body.proficient,
     ];
     const queryText = `
-        INSTER INTO career (designer_id, label, proficienct)
+        INSERT INTO software (designer_id, label, proficient)
         VALUES ($1, $2, $3);`;
 
     pool.query(queryText, queryParams)

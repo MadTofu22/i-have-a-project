@@ -9,7 +9,7 @@ class AddInformation extends Component {
 		super(props);
 		console.log('in addinfo constructor, props:', props)
 		this.educationTitleInputRef = React.createRef();
-		this.educationLocationInputRef = React.createRef();s
+		this.educationLocationInputRef = React.createRef();
 		this.careerTitleInputRef = React.createRef();
 		this.careerLocationInputRef = React.createRef();
 		this.state = {

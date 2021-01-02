@@ -18,6 +18,38 @@ class ManagerHomeView extends Component {
 
     }
 
+    createRandomPassword = () => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const passwordLength = 8;
+        let password = '';
+
+        for (let i=0; i<passwordLength; i++) {
+            password += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        console.log('Random password created:', password);
+        return password;
+    }
+
+    // This function handles sending an invite email to a designer and creates their account in the DB
+    sendInvite = (inviteData) => {
+        inviteData = {
+            userData: {
+                email: 'ukkonendevs@gmail.com',
+                password: this.createRandomPassword(),
+                user_type: 'Designer',
+                first_name: 'Ukkonen',
+                last_name: 'Dev',
+                company: this.props.store.user.company,
+            },
+            designerData: {
+                manager_id: this.props.store.user.id,
+                rate: 60,
+            },
+        };
+        console.log('testing invite - inviteData:', inviteData);
+        this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData})
+    }
+
     render () {
         const pages = [
             {
@@ -49,6 +81,9 @@ class ManagerHomeView extends Component {
                         <h1 className='header'>Welcome to Your Home View</h1>
                         <button className='headerButton'>Create New Project</button>
                         <button className='headerButton'>Account Settings</button>
+
+                        {/* This button will run a test to ensure the saga creates the designer in the DB */}
+                        <button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</button>
                     </div>
                     <div className='managerNavBar'>
                         {pages.map((page, index) => {
