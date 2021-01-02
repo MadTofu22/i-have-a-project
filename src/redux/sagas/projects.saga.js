@@ -64,6 +64,28 @@ function* addDesignerToProject(action){
     console.log(error);
   }
 }
+function* removeDesignerFromProject(action) {
+  try {
+    yield axios.delete('/api/projects/removeDesigner', action.payload)
+    yield put({
+      type: "FETCH_PROJECT_DETAILS",
+      payload: action.payload.project_id
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* updateDesignerHours(action) {
+  try {
+    yield axios.put(`/api/projects/hours_est`, action.payload)
+    yield put({
+      type: "FETCH_PROJECT_DETAILS",
+      payload: action.payload.projectDetails.id
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* projectSaga() {
   yield takeLatest('FETCH_DESIGNER_PROJECTS', fetchDesignerProjects);
@@ -72,6 +94,8 @@ function* projectSaga() {
   yield takeEvery('UPDATE_PROJECT', updateProject)
   yield takeLatest('FETCH_MANAGER_PROJECTS', fetchManagerProjects)
   yield takeLatest('ADD_DESIGNER_TO_PROJECT', addDesignerToProject)
+  yield takeLatest('REMOVE_DESIGNER_FROM_PROJECT', removeDesignerFromProject)
+  yield takeLatest('UPDATE_DESIGNER_HOURS', updateDesignerHours)
 }
 
 export default projectSaga;

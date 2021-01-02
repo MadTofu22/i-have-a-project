@@ -44,7 +44,7 @@ class ProjectDetails extends Component {
                 {field: 'action',
                     headerName: 'Action',
                     renderCell: (params) => {
-                       return(<ProjectActionMenu props={params} />)
+                       return(<ProjectActionMenu rowProps={params} project_id={this.props.match.params.project_id}/>)
                     },
                 }
             ]

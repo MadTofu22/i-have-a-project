@@ -187,6 +187,31 @@ router.delete('/removeDesigner', (req, res) => {
     }
 })
 
+router.put('/hours_est', (req, res) => {
+    const updateHours = `UPDATE "projects_designers_join" 
+                            SET "hours_est" = $1
+                            WHERE "project_id" = $2
+                            AND "designer_id" = $3`
+    if (req.isAuthenticated) {
+
+        pool.query(updateHours, [
+            req.body.hours_est,
+            req.body.project_id,
+            req.body.designer_id
+        ])
+        .then( (response) => {
+            console.log(response);
+            res.sendStatus(201)
+        })
+        .catch( (error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
+
 /**
  * put route template
  */
