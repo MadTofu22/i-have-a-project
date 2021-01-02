@@ -7,6 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
 class CreateProject extends Component {
@@ -109,13 +117,38 @@ class CreateProject extends Component {
 						addSelectedDesigners={this.addSelectedDesigners} 
 						SelectedDesigners={this.state.newProject.TeamDesigners}
 					/>
-							{this.state.newProject.TeamDesigners.length > 0 ?
+					<TableContainer component={Paper}>
+						<Table aria-label="simple table">
+							<TableHead>
+							<TableRow>
+								<TableCell>Designer Name</TableCell>
+								<TableCell align="right">Committed Hours</TableCell>
+							</TableRow>
+							</TableHead>
+							<TableBody>
+						{
+							this.state.newProject.TeamDesigners.length > 0 ?
 								this.state.newProject.TeamDesigners.map(designer => {
-									return <p>{JSON.stringify(designer)}</p>
+									return(
+										<>
+											<TableRow key={designer.designer_id}>
+											<TableCell component="th" scope="row">
+												{designer.first_name + ' ' + designer.last_name}
+											</TableCell>
+											<TableCell align="right">
+												<input></input>
+											</TableCell>
+											</TableRow>
+										</>
+									)
 								})
-								:
+							:
 								<></>
-								}
+							}
+					        </TableBody>
+      					</Table>
+   					</TableContainer>
+
 					<Button 
 						type="submit"
 						variant="contained" 
