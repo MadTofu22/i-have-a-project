@@ -25,7 +25,7 @@ import DesignerRegistration from '../Designer/DesignerRegistration';
 
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 import UpdateProfile from '../Designer/UpdateProfile';
-import CreateProject from '../Manager/CreateProject'
+import CreateProject from '../Projects/CreateProject'
 import ProjectDetails from '../Projects/ProjectDetails'
 
 

@@ -13,7 +13,6 @@ import Switch from '@material-ui/core/Switch';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import { DialogContentText } from '@material-ui/core';
 
 class AddCalendarEvent extends Component{
 

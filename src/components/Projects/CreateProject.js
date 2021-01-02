@@ -21,7 +21,7 @@ class CreateProject extends Component {
 	state = {
 		newProject: {
 			project_name: '',
-			status: '',
+			status: 'New',
 			due_date: '',
 			notes: '',
 			start: '',
@@ -61,6 +61,27 @@ class CreateProject extends Component {
 	componentDidMount = () => {
 		this.props.dispatch({
 			type: "FETCH_DESIGNERS"
+		})
+	}
+	handleSetEstHours = (designerID, event) => {
+		let newDesignerArray = JSON.parse(JSON.stringify(this.state.newProject.TeamDesigners))
+		console.log(this.state.newProject.TeamDesigners);
+		
+		this.state.newProject.TeamDesigners.forEach( (designer, index) => {
+			if (designer.designer_id === designerID) {
+				let updatedDesigner = designer
+					updatedDesigner['hours_est'] = event.target.value
+				newDesignerArray.splice(index, 1)
+				this.setState({
+					newProject: {
+						...this.state.newProject,
+						teamDesigners: [
+							...newDesignerArray,
+							updatedDesigner
+						]
+					}
+				})
+			}
 		})
 	}
 
@@ -106,6 +127,7 @@ class CreateProject extends Component {
 						label="Status"
 						onChange={(event) => this.handlechange(event, 'status')}
 						helperText="Select Project Status"
+						value={this.state.newProject.status}
 						>
 						{this.state.status.map((option) => (
 							<MenuItem  value={option}>
@@ -136,7 +158,15 @@ class CreateProject extends Component {
 												{designer.first_name + ' ' + designer.last_name}
 											</TableCell>
 											<TableCell align="right">
-												<input></input>
+												<TextField
+													id="project-status"
+													type='number'
+													label="Est. Hours"
+													helperText="Estimated Hours Committed to Project"
+													defaultValue={designer.hours_est}
+													onChange={(event) => this.handleSetEstHours(designer.designer_id, event)}
+													>
+												</TextField>
 											</TableCell>
 											</TableRow>
 										</>

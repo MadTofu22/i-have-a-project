@@ -106,6 +106,8 @@ router.post('/', async (req, res) => {
             req.user.id
         ]
         let teamDesigners = req.body.TeamDesigners
+        console.log(teamDesigners);
+        
 
         const createProject = `INSERT INTO "projects" (
                                 "status",
@@ -118,15 +120,15 @@ router.post('/', async (req, res) => {
                             Values($1, $2, $3, $4, $5, $6)
                             RETURNING "id"`
         const addDesigner = `INSERT INTO "projects_designers_join" 
-                                ("designer_id", "project_id")
-                                Values($1, $2)`
+                                ("designer_id", "project_id", "hours_est", "accepted" )
+                                Values($1, $2, $3, TRUE)`
             
         const connection = await pool.connect();
         try {
             await connection.query("BEGIN")
             const newprojID = await connection.query(createProject, projectInformation)
             await teamDesigners.forEach(designer => {
-                connection.query(addDesigner, [designer.designer_id, newprojID.rows[0].id])
+                connection.query(addDesigner, [designer.designer_id, newprojID.rows[0].id, designer.hours_est])
             })
             await connection.query('COMMIT')
             res.sendStatus(201)

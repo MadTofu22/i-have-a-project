@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
-import AddDesignerToProject from '../../components/Modals/AddDesignerToProject';
 
 function* fetchDesignerProjects(action) {
   try {

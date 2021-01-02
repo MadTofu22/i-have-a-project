@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -23,7 +22,7 @@ const ProjectActionMenu = (props) =>{
 
     useEffect(() => {
         setHours(props.rowProps.row.hours_est)
-    }, [estHours])
+    }, [estHours, props.rowProps.row.hours_est])
 
     const handleClickOpen = (event) => {
         if (menuPosition) {
@@ -82,7 +81,7 @@ const ProjectActionMenu = (props) =>{
                 anchorPosition={menuPosition}
             >
                 <MenuItem onClick={openEditMenu}>Edit Est. Hours</MenuItem>
-                <MenuItem onClick={handleItemClick}>Remove Designer</MenuItem>
+                <MenuItem onClick={removeDesigner}>Remove Designer</MenuItem>
             </Menu>
             <Dialog 
                 open={hoursModalOpen} 
