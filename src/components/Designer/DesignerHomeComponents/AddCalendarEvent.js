@@ -100,6 +100,13 @@ class AddCalendarEvent extends Component{
     })
     this.props.closeClickEvent()
   }
+  handleDeleteEvent = () => {
+    this.props.dispatch({
+      type: "DELETE_CALENDAR_EVENT",
+      payload: {id: this.props.clickEvent.id}
+    })
+    this.props.closeClickEvent()
+  }
 
   render() {
     return (
@@ -112,22 +119,25 @@ class AddCalendarEvent extends Component{
 
           <DialogContent>
             Allocate to Project?
-            <Switch checked={this.state.allocatedToProject} onChange={this.toggleProjectSelect} color="primary"/> 
+            <Switch 
+              checked={this.state.allocatedToProject} 
+              onChange={this.toggleProjectSelect} 
+              color="primary"
+            /> 
           </DialogContent>
 
             { this.state.allocatedToProject ? 
               <DialogContent>
                 <InputLabel id="projectSelect">Select Project</InputLabel>
-                <Select 
-                  onChange={(event) =>this.handleEventChange(event, 'project_id')}
-                  labelId="projectSelect"
-                >
-                    <MenuItem value={this.state.clickEvent.title}>{this.state.clickEvent.title}</MenuItem>
-                    {this.props.store.projects.map( (project) => {
-                      return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
-                    })}
-                </Select>
-
+                  <Select 
+                    onChange={(event) =>this.handleEventChange(event, 'project_id')}
+                    labelId="projectSelect"
+                    value={this.state.clickEvent.project_id}
+                  >
+                      {this.props.store.projects.map( (project) => {
+                        return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
+                      })}
+                  </Select>
               </DialogContent>
             :
             <DialogContent>
@@ -138,6 +148,7 @@ class AddCalendarEvent extends Component{
                 label="Event Name"
                 type="text"
                 fullWidth
+                value={this.state.clickEvent.title}
                 onChange={(event) => this.handleEventChange(event, 'title' )}
                 required={true}
               />
@@ -166,6 +177,7 @@ class AddCalendarEvent extends Component{
                   max={12}
                   fullWidth
                   required={true}
+                  value={this.state.clickEvent.hoursCommitted}
                   onChange={(event) => this.handleEventChange(event, 'hoursCommitted')}
                 />
             </DialogContent>
@@ -179,7 +191,7 @@ class AddCalendarEvent extends Component{
               </Button>
             :
               <div>
-                <Button color="primary">
+                <Button onClick={this.handleDeleteEvent} color="primary">
                   Delete
                 </Button>
                 <Button onClick={this.handleUpdateEvent} color="primary">

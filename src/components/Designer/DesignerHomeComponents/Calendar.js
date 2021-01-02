@@ -82,7 +82,6 @@ class Calendar extends Component {
 					closeClickEvent={this.closeClickEvent}
 					clickEvent={this.state.clickEvent}
 				/>
-				{JSON.stringify(this.props.store)}
 				<FullCalendar
 					plugins={[ dayGridPlugin ]}
 					initialView="dayGridMonth"

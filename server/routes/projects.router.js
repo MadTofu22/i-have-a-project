@@ -106,6 +106,8 @@ router.post('/', async (req, res) => {
             req.user.id
         ]
         let teamDesigners = req.body.TeamDesigners
+        console.log(teamDesigners);
+        
 
         const createProject = `INSERT INTO "projects" (
                                 "status",
@@ -118,15 +120,15 @@ router.post('/', async (req, res) => {
                             Values($1, $2, $3, $4, $5, $6)
                             RETURNING "id"`
         const addDesigner = `INSERT INTO "projects_designers_join" 
-                                ("designer_id", "project_id")
-                                Values($1, $2)`
+                                ("designer_id", "project_id", "hours_est", "accepted" )
+                                Values($1, $2, $3, TRUE)`
             
         const connection = await pool.connect();
         try {
             await connection.query("BEGIN")
             const newprojID = await connection.query(createProject, projectInformation)
             await teamDesigners.forEach(designer => {
-                connection.query(addDesigner, [designer.designer_id, newprojID.rows[0].id])
+                connection.query(addDesigner, [designer.designer_id, newprojID.rows[0].id, designer.hours_est])
             })
             await connection.query('COMMIT')
             res.sendStatus(201)
@@ -177,6 +179,31 @@ router.delete('/removeDesigner', (req, res) => {
         .then( (response) => {
             console.log(response)
             res.sendStatus(200)
+        })
+        .catch( (error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
+
+router.put('/hours_est', (req, res) => {
+    const updateHours = `UPDATE "projects_designers_join" 
+                            SET "hours_est" = $1
+                            WHERE "project_id" = $2
+                            AND "designer_id" = $3`
+    if (req.isAuthenticated) {
+
+        pool.query(updateHours, [
+            req.body.hours_est,
+            req.body.project_id,
+            req.body.designer_id
+        ])
+        .then( (response) => {
+            console.log(response);
+            res.sendStatus(201)
         })
         .catch( (error) => {
             console.log(error);

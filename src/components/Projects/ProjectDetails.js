@@ -6,6 +6,8 @@ import AddDesigner from '../Modals/AddDesigner'
 
 import { DataGrid } from '@material-ui/data-grid';
 
+import ProjectActionMenu from './ProjectActionMenu'
+
 class ProjectDetails extends Component {
     
     state = {
@@ -31,6 +33,31 @@ class ProjectDetails extends Component {
             this.props.history.push(`/DesignerHomeView/Projects`)
         }
     }
+    formatTableColumns = () => {
+        let columnFormat = []
+        if (this.props.store.user.user_type === 'Manager') {
+            columnFormat = [
+                { field: 'id', headerName: 'ID' },
+                { field: 'first_name', headerName: 'First Name' },
+                { field: 'last_name', headerName: 'Last Name' },
+                { field: 'hours_est', headerName: 'Est. Time' },
+                {field: 'action',
+                    headerName: 'Action',
+                    renderCell: (params) => {
+                       return(<ProjectActionMenu rowProps={params} project_id={this.props.match.params.project_id}/>)
+                    },
+                }
+            ]
+        } else if (this.props.store.user.user_type === 'Designer') {
+            columnFormat = [
+                { field: 'id', headerName: 'ID' },
+                { field: 'first_name', headerName: 'First Name' },
+                { field: 'last_name', headerName: 'Last Name' },
+                { field: 'hours_est', headerName: 'Est. Time' }
+            ]
+        }
+        return columnFormat
+    }
     
 
     render () {
@@ -46,7 +73,10 @@ class ProjectDetails extends Component {
                     <></>
                 }
                 {this.props.store.user.user_type === 'Manager' ?
+                    <>
                     <button onClick={this.goToEditPage}>Edit Project</button>
+                    <AddDesigner project_id={this.props.match.params.project_id} />
+                    </>
                     :
                     <></>
                 }
@@ -54,26 +84,10 @@ class ProjectDetails extends Component {
                 {this.props.store.projectDetails.projectDesigners ?
                     <div style={{ height: 300, width: '100%' }}>
                         <h2>Project Designers</h2>
-                        <AddDesigner project_id={this.props.match.params.project_id} />
-                        <DataGrid
-                            columns={[
-                                { field: 'id', headerName: 'ID' },
-                                { field: 'first_name', headerName: 'First Name' },
-                                { field: 'last_name', headerName: 'Last Name' },
-                                { field: 'hours_est', headerName: 'Est. Time' },
-                                {field: 'action',
-                                    headerName: 'Action',
-                                    renderCell: () => {
-                                        return(
-                                            <button>
-                                                Delete
-                                            </button>
-                                            )
-                                    }     
-                                }
-                            ]}         
-                            rows={this.props.store.projectDetails.projectDesigners}          
-                        />
+                            <DataGrid
+                                columns={this.formatTableColumns()}         
+                                rows={this.props.store.projectDetails.projectDesigners}          
+                            />
                     </div>
                     :
                     <></>
