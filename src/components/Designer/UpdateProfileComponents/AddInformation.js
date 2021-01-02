@@ -123,6 +123,18 @@ class AddInformation extends Component {
 				/>
 				<br/>
 				<label
+					htmlFor='availability_hours'
+					className='buildProfileLabel'
+					>Hours Available per Week:
+				</label>
+				<input 
+					type='text'
+					id='availability_hours'
+					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
+					defaultValue={this.state.profile.designer.availability_hours}
+				/>
+				<br/>
+				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
 				>Degree:
