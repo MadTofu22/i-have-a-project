@@ -21,6 +21,13 @@ class AddInformation extends Component {
 		};
 	}
 
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.designer_id
+		});
+	}
+
 	// This function handles storing the work and education history inputs in the local state on change
 	handleInputChange = (event, section, property) => {
 
