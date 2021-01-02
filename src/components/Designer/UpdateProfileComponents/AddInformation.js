@@ -9,7 +9,7 @@ class AddInformation extends Component {
 		super(props);
 		console.log('in addinfo constructor, props:', props)
 		this.educationTitleInputRef = React.createRef();
-		this.educationLocationInputRef = React.createRef();
+		this.educationLocationInputRef = React.createRef();s
 		this.careerTitleInputRef = React.createRef();
 		this.careerLocationInputRef = React.createRef();
 		this.state = {
@@ -83,8 +83,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='phoneNum'
 					className='buildProfileLabel'
-				>
-					Phone Number:
+				>Phone Number:
 				</label>
 				<input
 					type='text'
@@ -95,8 +94,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='imgUrl'
 					className='buildProfileLabel'
-				>
-					Profile Image URL:
+				>Profile Image URL:
 				</label>
 				<input 
 					type='text'
@@ -120,8 +118,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
-				>
-					Degree:
+				>Degree:
 				</label>
 				<input 
 					type='text'
@@ -132,8 +129,7 @@ class AddInformation extends Component {
 				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
-				>
-					Institution:
+				>Institution:
 				</label>
 				<input 
 					type='text'

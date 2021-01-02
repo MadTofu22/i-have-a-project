@@ -26,7 +26,9 @@ function* fetchProfile (action) {
 }
 
 function* updateProfile(action) {
-	// yield axios.put('/api/profile', action.payload);
+	// Separate action.payload into invidual databases
+	// Compage career, education, and skills with this.props.store.profile and break each array into an array for updating and an array for creating
+	// Call each of the put and post requests for all of the arrays/objects
 	yield put({
 		type: 'SET_PROFILE',
 		payload: action.payload
