@@ -177,20 +177,19 @@ router.delete('/', (req, res) => {
         console.log(req.body);
         
         
-        const queryText = `SELECT * FROM "designer_calendar_item" 
-                            left join "projects" on "projects"."id" = "designer_calendar_item"."project_id"
-                        WHERE "designer_id" = $1`
+        const queryText = `DELETE FROM "designer_calendar_item"
+                                WHERE "id" =  $1 AND designer_id = $2`
 
-        // pool.query( queryText, [ req.user.designer_id] )
-        // .then( ( response ) => {
-        //     console.log(response.rows);
+        pool.query( queryText, [req.body.id, req.user.designer_id] )
+        .then( ( response ) => {
+            console.log(response.rows);
             
-        //     res.send( response.rows )
-        // })
-        // .catch( ( error ) => {
-        //     console.log(error);
-        //     res.sendStatus(500)
-        // })
+            res.send( response.rows )
+        })
+        .catch( ( error ) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
     } else {
         res.sendStatus(403)
     }
