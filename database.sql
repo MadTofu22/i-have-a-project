@@ -71,9 +71,14 @@ CREATE TABLE "education" (
 	"location" varchar(100)
 );
 
-create table "software" (
+create table "designer_software_join" (
 	"id" SERIAL primary key,
 	"designer_id" INT references "designers" not null,
-	"label" varchar(80) not null,
+	"software_id" INT references "software" not null,
 	"proficient" boolean not null
+);
+
+CREATE TABLE "software" (
+	"id" SERIAL primary key,
+	"label" varchar(80) not null
 );
