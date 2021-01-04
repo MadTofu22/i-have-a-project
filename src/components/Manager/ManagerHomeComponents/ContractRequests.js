@@ -37,8 +37,8 @@ class ContractRequests extends Component {
                             </tr>       
                         </tbody>
                 </table>
-            <button>accept</button>
-            <button>deny</button>
+            <button onClick={() => this.handleInboxAccept}>accept</button>
+            <button onClick={() => this.handelInboxAccept}>deny</button>
             <div>Outbox:</div>
             <table>
                 <thead>
@@ -52,13 +52,13 @@ class ContractRequests extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>       
+                    <tr>
+                        <td></td>
+                    </tr>       
                 </tbody>
             </table>
-            <button>accept</button>
-            <button>deny</button>
+            <button onClick={() => this.handleOutboxAccept}>accept</button>
+            <button onClick={() => this.handleOutboxDeny}>deny</button>
             </>
         );
     }
