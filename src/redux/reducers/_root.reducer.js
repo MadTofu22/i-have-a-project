@@ -7,6 +7,7 @@ import calendar from './calendar.reducer'
 import projects from './projects.reducer'
 import designer from './designer.saga'
 import projectDetails from './projectDetails.reducer'
+import outbox from './outbox.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   designer,
   profile,
   projectDetails,
+  outbox
 });
 
 export default rootReducer;
