@@ -16,8 +16,11 @@ class ContractRequests extends Component {
         requestedStatus: ''
     };
 
+    componentDidMount(){
+        
+    }
     render () {
-        let inboxTable = Object.keys(this.state.inboxItems[0])
+        // let inboxTable = Object.keys(this.state.inboxItems[0])
     
         return (
             <>
