@@ -16,7 +16,8 @@ init("user_KwJe2ulviLUzklqweZQDa");
 
 function AddTeamMember(props) {
   const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [rate, setRate] = React.useState('');
   const [message, setMessage] = React.useState('');
@@ -24,38 +25,66 @@ function AddTeamMember(props) {
   // potential to pass probs and trigger modal this way
   useEffect(() => {
 
-  }, [name])
+  }, [firstName])
 
   const handleClickOpen = () => {
-    setName('');
+    setFirstName('');
     setOpen(true);
   };
 
   const handleClose = () => {
-    setName('');
+    setFirstName('');
     setOpen(false);
   };
 
+  const createRandomPassword = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const passwordLength = 8;
+    let password = '';
+
+    for (let i=0; i<passwordLength; i++) {
+        password += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    console.log('Random password created:', password);
+    return password;
+  }
+
   const handleSendInvites = () => {
+
+    const inviteData = {
+      userData: {
+          email,
+          password: createRandomPassword(),
+          user_type: 'Designer',
+          firstName,
+          lastName,
+          company: props.managerCompany,
+      },
+      designerData: {
+          manager_id: props.managerId,
+          rate,
+      }
+    };
+
+    props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
+    sendEmail(inviteData);
+
+    setOpen(false)
+    setFirstName('')
+  }
+
+  const sendEmail = (inviteData) => {
+    const serviceId = 'ihap_service_1234'; // process.env.REACT_APP_EMAILJS_SERVICEID;
+    const templateId = 'template_93nx0fo'; // process.env.REACT_APP_EMAILJS_TEMPLATEID;
     const templateParams = {
-      to_name: name,
+      to_name: firstName + '' + lastName,
       to_email: email,
-      password: '',
+      password: inviteData.userData.password,
       rate: rate,
       from_name: props.managerName,
       from_email: props.managerEmail,
       message: message,
     }
-
-    sendEmail(templateParams);
-
-    setOpen(false)
-    setName('')
-  }
-
-  const sendEmail = (templateParams) => {
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICEID;
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATEID;
 
     emailjs.send(serviceId, templateId, templateParams)
       .then(response => {
@@ -71,8 +100,11 @@ function AddTeamMember(props) {
       default:
         console.log('In handleChanger, something went wrong:', type, event);
         break;
-      case 'name':
-        setName(event.target.value);
+      case 'first':
+        setFirstName(event.target.value);
+        break;
+      case 'last':
+        setLastName(event.target.value);
         break;
       case 'email':
         setEmail(event.target.value);
@@ -97,11 +129,23 @@ function AddTeamMember(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            label="Designer Name"
+            id="firstName"
+            label="First Name"
             type="text"
             fullWidth
-            onChange={(event) => handleChange(event, 'name')}
+            onChange={(event) => handleChange(event, 'first')}
+            required={true}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="lastName"
+            label="Last Name"
+            type="text"
+            fullWidth
+            onChange={(event) => handleChange(event, 'last')}
             required={true}
           />
         </DialogContent>

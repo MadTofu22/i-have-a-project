@@ -35,6 +35,8 @@ class MyDesigners extends Component {
                 <AddTeamMember 
                     managerName='Test Name'
                     managerEmail='Test Email'
+                    managerCompany='Test Company'
+                    managerId='1'
                 />
                 <div style={{ height: 250, width: '100%', padding: '20px' }}>
                     <DataGrid
