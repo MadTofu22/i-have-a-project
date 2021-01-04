@@ -61,14 +61,14 @@ CREATE TABLE "career" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"title" varchar(100) NOT NULL,
-	"location" varchar(100),
+	"location" varchar(100)
 );
 
 CREATE TABLE "education" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"degree" varchar(100) NOT NULL,
-	"location" varchar(100),
+	"location" varchar(100)
 );
 
 create table "software" (
