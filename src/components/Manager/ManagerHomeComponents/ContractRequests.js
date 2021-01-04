@@ -29,22 +29,36 @@ class ContractRequests extends Component {
                             <th>Requested Designer</th>
                             <th>Project Timeline</th>
                             <th>Date Received</th>
-                            
                         </tr>
                     </thead> 
                         <tbody>
                             <tr>
-                                <td></td>
                                 <td></td>
                             </tr>       
                         </tbody>
                 </table>
             <button>accept</button>
             <button>deny</button>
+            <div>Outbox:</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Requested Designer Name</th>
+                        <th>Team Manager</th>
+                        <th>Project Name</th>
+                        <th>Hourly Rate</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>       
+                </tbody>
+            </table>
             <button>accept</button>
             <button>deny</button>
-            <div>Outbox:</div>
-            <th>Hourly Rate</th>
             </>
         );
     }
