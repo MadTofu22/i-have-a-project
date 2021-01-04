@@ -33,7 +33,7 @@ class ManagerHomeView extends Component {
     // Handles logging out the user 
 	handleLogout = () => {
         this.props.dispatch({type: 'LOGOUT'});
-		this.props.history.push('/Login');
+		this.props.history.push('/');
 	}
 
     // This function handles sending an invite email to a designer and creates their account in the DB

@@ -32,7 +32,10 @@ class MyDesigners extends Component {
 		return (
             
             <div style={{width: '100%'}}>
-               <AddTeamMember />
+                <AddTeamMember 
+                    managerName='Test Name'
+                    managerEmail='Test Email'
+                />
                 <div style={{ height: 250, width: '100%', padding: '20px' }}>
                     <DataGrid
                         columns={[

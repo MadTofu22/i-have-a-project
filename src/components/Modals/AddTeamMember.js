@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {connect} from 'react-redux'
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,44 +12,76 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 function AddTeamMember(props) {
   const [open, setOpen] = React.useState(false);
-  const [event, setName] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [rate, setRate] = React.useState('');
+  const [message, setMessage] = React.useState('');
   const [inviteData, setInviteData] = React.useState({
-    invitees: [
-      {
-        name: '',
-        email: '',
+    invitee: {
+        to_name: '',
+        to_email: '',
         rate: 0,
-      },
-    ],
-    message: '',
-  })
+    },
+    manager: {
+      from_name: props.managerName,
+      from_email: props.managerEmail,
+      message: '',
+    },
+  });
 
   // potential to pass probs and trigger modal this way
   useEffect(() => {
 
-  }, [event])
+  }, [name])
 
   const handleClickOpen = () => {
-    setName('')
+    setName('');
     setOpen(true);
   };
 
   const handleClose = () => {
-    setName('')
+    setName('');
     setOpen(false);
   };
 
-  const handleAddPlaylist = () => {
-      //dispatch
+  const handleSendInvites = () => {
+    setInviteData({
+      invitee: {
+        to_name: name,
+        to_email: email,
+        rate: rate,
+      },
+      manager: {
+        from_name: props.managerName,
+        from_email: props.managerEmail,
+        message: message,
+      },
+    })
+    
+    //dispatch
     setOpen(false)
     setName('')
   }
 
-  const handleChange = (event) => {
-    setName(event.target.value)
-  }
-  const handleDateChange = (event) => {
-    console.log(event.target.value);
+  const handleChange = (event, type) => {
+    console.log('in handleChange', type, event.target.value);
+    switch (type) {
+      default:
+        console.log('In handleChanger, something went wrong:', type, event);
+        break;
+      case 'name':
+        setName(event.target.value);
+        break;
+      case 'email':
+        setEmail(event.target.value);
+        break;
+      case 'rate':
+        setRate(event.target.value);
+        break;
+      case 'message':
+        setMessage(event.target.value);
+        break;
+    }
   }
 
   return (
@@ -66,7 +99,43 @@ function AddTeamMember(props) {
             label="Designer Name"
             type="text"
             fullWidth
-            onChange={(event) => handleChange(event)}
+            onChange={(event) => handleChange(event, 'name')}
+            required={true}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Designer Email"
+            type="text"
+            fullWidth
+            onChange={(event) => handleChange(event, 'email')}
+            required={true}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="rate"
+            label="Rate per hour"
+            type="text"
+            fullWidth
+            onChange={(event) => handleChange(event, 'rate')}
+            required={true}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="message"
+            label="Short Message"
+            type="text"
+            fullWidth
+            onChange={(event) => handleChange(event, 'message')}
             required={true}
           />
         </DialogContent>
@@ -75,18 +144,12 @@ function AddTeamMember(props) {
              
           </DialogContentText>
         </DialogContent>
-        <DialogContent>
-          <DialogContentText>
-            Select Project or Event Type 
-          </DialogContentText>
-            <input type="date" onChange={handleDateChange}/>
-        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleAddPlaylist} color="primary">
-            Add
+          <Button onClick={handleSendInvites} color="primary">
+            Send
           </Button>
         </DialogActions>
       </Dialog>
@@ -94,4 +157,4 @@ function AddTeamMember(props) {
   );
 }
 
-export default connect()(AddTeamMember);
+export default connect(mapStoreToProps)(AddTeamMember);
