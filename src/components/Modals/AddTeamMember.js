@@ -10,24 +10,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+// Import and initialize emailjs
+import emailjs, {init} from 'emailjs-com';
+init("user_KwJe2ulviLUzklqweZQDa");
+
 function AddTeamMember(props) {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [rate, setRate] = React.useState('');
   const [message, setMessage] = React.useState('');
-  const [inviteData, setInviteData] = React.useState({
-    invitee: {
-        to_name: '',
-        to_email: '',
-        rate: 0,
-    },
-    manager: {
-      from_name: props.managerName,
-      from_email: props.managerEmail,
-      message: '',
-    },
-  });
 
   // potential to pass probs and trigger modal this way
   useEffect(() => {
@@ -45,22 +37,32 @@ function AddTeamMember(props) {
   };
 
   const handleSendInvites = () => {
-    setInviteData({
-      invitee: {
-        to_name: name,
-        to_email: email,
-        rate: rate,
-      },
-      manager: {
-        from_name: props.managerName,
-        from_email: props.managerEmail,
-        message: message,
-      },
-    })
-    
-    //dispatch
+    const templateParams = {
+      to_name: name,
+      to_email: email,
+      password: '',
+      rate: rate,
+      from_name: props.managerName,
+      from_email: props.managerEmail,
+      message: message,
+    }
+
+    sendEmail(templateParams);
+
     setOpen(false)
     setName('')
+  }
+
+  const sendEmail = (templateParams) => {
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICEID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATEID;
+
+    emailjs.send(serviceId, templateId, templateParams)
+      .then(response => {
+        console.log('SUCCESS! Email sent with the following params', templateParams);
+      }, error => {
+        console.log('Error in handleSendInvites:', error);
+    });
   }
 
   const handleChange = (event, type) => {
