@@ -92,6 +92,29 @@ router.get('/', (req, res) => {
     }
 });
 
+// // // // // // // // // 
+router.get('/', (req, res) => {
+    console.log(req.params)
+    
+    if(req.isAuthenticated){
+        const queryText = `SELECT * FROM "projects_designers_join" 
+                            WHERE "project_id" = $1 or`
+        pool.query(queryText, [req.user.id])
+        .then(( response ) => {
+            console.log(response.rows);
+            res.send(response.rows)
+        })
+        .catch(( error ) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+}); 
+
+//
+
 /**
  * POST route template
  */
