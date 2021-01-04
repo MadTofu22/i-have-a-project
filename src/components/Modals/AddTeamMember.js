@@ -11,7 +11,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 function AddTeamMember(props) {
   const [open, setOpen] = React.useState(false);
-  const [event, setName] = React.useState('')
+  const [event, setName] = React.useState('');
+  const [inviteData, setInviteData] = React.useState({
+    invitees: [
+      {
+        name: '',
+        email: '',
+        rate: 0,
+      },
+    ],
+    message: '',
+  })
 
   // potential to pass probs and trigger modal this way
   useEffect(() => {
