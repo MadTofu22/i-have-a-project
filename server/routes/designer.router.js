@@ -25,6 +25,24 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/availability/:designer_id', (req, res) => {
+
+    const getBaseAvailability = `SELECT "availability_hours", "weekend_availability" FROM "designers"
+                                WHERE "id" = $1`
+    if (req.isAuthenticated) {
+        
+        pool.query(getBaseAvailability, [req.params.designer_id])
+        .then( ( response ) => {
+            res.send(response.rows)
+        })
+        .catch( ( error ) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
 // Handles POST request for a new user being added by a manager
 router.post('/register/:designer_id', (req, res) => {
     
