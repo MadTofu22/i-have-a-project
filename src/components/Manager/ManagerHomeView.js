@@ -32,8 +32,8 @@ class ManagerHomeView extends Component {
 
     // Handles logging out the user 
 	handleLogout = () => {
-		this.props.history.push('/Login');
-		this.props.dispatch({type: 'LOGOUT'});
+        this.props.dispatch({type: 'LOGOUT'});
+		this.props.history.push('/');
 	}
 
     // This function handles sending an invite email to a designer and creates their account in the DB
@@ -53,7 +53,7 @@ class ManagerHomeView extends Component {
             },
         };
         console.log('testing invite - inviteData:', inviteData);
-        this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData})
+        this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
     }
 
     render () {
