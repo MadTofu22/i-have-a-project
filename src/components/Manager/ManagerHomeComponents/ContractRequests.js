@@ -6,10 +6,19 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 class ContractRequests extends Component {
     
     state = {
-
+        requestingManager: '',
+        contractedManager: '',
+        contractedDesigner: '',
+        project: '',
+        software: '',
+        requestedHours: 0,
+        dateSent:0,
+        requestedStatus: ''
     };
 
     render () {
+        let inboxTable = Object.keys(this.state.inboxItems[0])
+    
         return (
             <>
             <div>Inbox:</div>
@@ -20,6 +29,7 @@ class ContractRequests extends Component {
                             <th>Requested Designer</th>
                             <th>Project Timeline</th>
                             <th>Date Received</th>
+                            
                         </tr>
                     </thead> 
                         <tbody>
@@ -34,6 +44,7 @@ class ContractRequests extends Component {
             <button>accept</button>
             <button>deny</button>
             <div>Outbox:</div>
+            <th>Hourly Rate</th>
             </>
         );
     }
