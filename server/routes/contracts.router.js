@@ -17,7 +17,7 @@ router.get('/outbox/:id', (req, res) => {
         GROUP BY contract_requests.id, projects.id, software.id;`;
 
     const designerQueryText = `
-        SELECT * FROM contract_requests
+        SELECT "user".*, designers.* FROM contract_requests
         JOIN designers ON designers.id = contract_requests.contracted_designer_id
         JOIN "user" ON "user".designer_id = designers.id
         WHERE requesting_manager_id = $1;`;
