@@ -15,6 +15,8 @@ const projectRouter = require('./routes/projects.router')
 const designerRouter = require('./routes/designer.router')
 const profileRouter = require('./routes/profile.router');
 const adminRouter = require('./routes/admin.router');
+const searchRouter = require('./routes/search.router')
+const contractRouter = require('./routes/contracts.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -36,6 +38,8 @@ app.use('/api/calendar', calendarRouter);
 app.use('/api/projects', projectRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/search', searchRouter)
+app.use('/api/contracts', contractRouter);
 
 // Serve static files
 app.use(express.static('build'));
