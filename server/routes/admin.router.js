@@ -13,23 +13,33 @@ router.get('/admin', (req, res) => {
     });
 });
 
-router.delete('/', (req, res) => {
-    if (req.isAuthenticated) {
-        console.log(req.body);
-        const queryText = `DELETE FROM "designer_calendar_item" WHERE "id" =  $1 AND designer_id = $2`
+router.delete('/', async (req, res) => {
+    const connection = await pool.connect()    
+    try {
+        await connection.query('BEGIN');
+        console.log("the user is",req.user.id);
 
-        pool.query( queryText, [req.body.id, req.user.designer_id] )
-        .then( ( response ) => {
-            console.log(response.rows);
-            
-            res.send( response.rows )
-        })
-        .catch( ( error ) => {
-            console.log(error);
-            res.sendStatus(500)
-        })
-    } else {
-        res.sendStatus(403)
+        // Check if the user is authenticated
+        let projListSQL = '';
+
+        
+        managerDelSQL = `SELECT * FROM "" WHERE "user_id" = $1`;
+        
+
+        let rawFiles = await connection.query( managerDelSQL, [1]);
+
+        const fileList = rawFiles.rows
+
+        console.log(fileList);
+        
+        await connection.query('COMMIT');
+        res.send(fileList);
+    } catch ( error ) {
+        await connection.query('ROLLBACK');
+        console.log(`Transaction Error - Rolling back new account`, error);
+        res.sendStatus(500); 
+    } finally {
+        connection.release()
     }
 });
 
