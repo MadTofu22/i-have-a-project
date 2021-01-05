@@ -32,16 +32,16 @@ class AdminPage extends Component {
     //   this.props.dispatch({ type: 'FETCH_DESIGNERS' });
     // }
 
-    // deleteUser = (event, param) => {
-    //     console.log(event, param)
-    //     let userData = {
-    //       id: param
-    //     }
-    //     this.props.dispatch({
-    //       type: 'DELETE_USER',
-    //       payload: userData
-    //     })
-    //   }  
+    deleteUser = (event, param) => {
+        console.log("hello",event, param)
+        // let userData = {
+        //   id: param
+        // }
+        // this.props.dispatch({
+        //   type: 'DELETE_USER',
+        //   payload: userData
+        // })
+      }  
             render() {
                 return (
                 
@@ -74,16 +74,16 @@ class AdminPage extends Component {
                                     { field: 'first_name', headerName: 'First Name' },
                                     { field: 'last_name', headerName: 'Last Name' },
                                     { field: 'manager', headerName: 'Manager' },
+
+                                    // And here's how to implement passing the specific id # to a function
+                                    
                                     {
                                         field: 'action',
                                         headerName: 'Action',
-                                        renderCell: () => (
-                                            <button>
+                                        renderCell: (params) => (
+                                            <button onClick={() => this.deleteUser(params.row.id, params.row.manager)}>
                                             Delete
                                           </button>
-                                            // <IconButton aria-label="delete">
-                                            //     <DeleteIcon fontSize="large"/>
-                                            // </IconButton>
                                         )
                                       }
                                 ]}
