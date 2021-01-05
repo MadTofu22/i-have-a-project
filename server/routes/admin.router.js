@@ -38,23 +38,34 @@ router.delete('/', async (req, res) => {
         // designerIdArray.push(altReference);
 
         // 3. Use designer id list to eliminate values from the following table using designer_id:
+        array.forEach(element => {
+            
+        
         //     1. Users
-        const sqlDesignerOne = `` ;
-        let  = await connection.query( sqlOne, [element]);
+        const sqlDesignerUsers = `DELETE FROM "users" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerUsers, [element]);
         //     2. Skills
-        const sqlDesignerTwo = `` ;
+        const sqlDesignerSkills = `DELETE FROM "skills" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerSkills, [element]);
         //     3. projects_designers_join
-        const sqlDesignerThree = `` ;
+        const sqlDesignerProjectsDesignerJoin = `DELETE FROM "projects_designers_join" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerProjectsDesignerJoin, [element]);
         //     4. designer_calendar_item
-        const sqlDesignerFour = `` ;
+        const sqlDesignerDesignerCalendarItem = `DELETE FROM "designer_calendar_item" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerDesignerCalendarItem, [element]);
         //     5. Career
-        const sqlDesignerFive = `` ;
+        const sqlDesignerCareer = `DELETE FROM "career" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerCareer, [element]);
         //     6. Education
-        const sqlDesignerSix = `` ;
+        const sqlDesignerEducation = `DELETE FROM "education" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerEducation, [element]);
         //     7. designer_software_join
-        const sqlDesignerSeven = `` ;
-        //     8. contract_requests (?)
-        const sqlDesignerEight = `` ;
+        const sqlDesignerDesignerSoftwareJoin = `DELETE FROM "designer_software_join" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerDesignerSoftwareJoin, [element]);
+        //     8. contract_requests
+        const sqlDesignerContractRequests = `DELETE FROM "contract_requests" WHERE 'designer_id' = $1` ;
+        await connection.query( sqlDesignerContractRequests, [element]);
+        });
         // 4. Delete from “designers”
         const sqlThree = `` ;
         // 5. Use manager_id from “projects” to get id, use to delete from projects_designer_join.
