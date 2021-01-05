@@ -13,7 +13,8 @@ router.get('/outbox/:id', (req, res) => {
         SELECT * FROM contract_requests
         JOIN projects ON projects.id = contract_requests.project_id
         JOIN software ON software.id = contract_requests.software_id
-        WHERE requesting_manager_id = $1;`;
+        WHERE requesting_manager_id = $1
+        GROUP BY contract_requests.id, projects.id, software.id;`;
 
     const designerQueryText = `
         SELECT * FROM contract_requests
@@ -22,10 +23,11 @@ router.get('/outbox/:id', (req, res) => {
         WHERE requesting_manager_id = $1;`;
 
     const managerQueryText = `
-        SELECT * FROM contract_requests
+        SELECT "user".* FROM contract_requests
         JOIN designers ON designers.id = contract_requests.contracted_designer_id
         JOIN "user" ON "user".id = designers.manager_id
-        WHERE requesting_manager_id = $1;`;
+        WHERE requesting_manager_id = $1
+        group by "user".id;`;
 
     
 
@@ -55,10 +57,6 @@ router.get('/outbox/:id', (req, res) => {
             res.sendStatus(500);
         });
 });
-
-packageResponseData = (data) => {
-    return data;
-} 
 
 router.post('/', (req, res) => {
     
