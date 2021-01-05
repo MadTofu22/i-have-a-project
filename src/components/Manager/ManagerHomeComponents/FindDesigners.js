@@ -3,96 +3,102 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+
+
+
 class FindNewDesigner extends Component {
 
     state = {
-      startDate: '',
-      hoursOfCommitment: '',
-      deadline: '',
-      software: '',
+      newSearch: {
+        start: '',
+        requested_hours: '',
+        due_date: '',
+        software_id: 0
+      },
+      softwareInit: 0
     };
-  
-    // searchDesigner = () =>
 
-    handleInputChangeFor = propertyName => (event) => {
+    handleChange = (event, keyname) => {
+      console.log(event.target.value, 'value of change');
+      
       this.setState({
-        [propertyName]: event.target.value,
+        newSearch: {
+          ...this.state.newSearch,
+          [keyname]: event.target.value
+        }
       });
     }
-    
+    searchDesigner = () => {
+      this.props.dispatch({
+        type: "FIND_DESIGNER",
+        payload: this.state.newSearch
+      })
+    }
+
     render() {
       return (
         <div>
           <form onSubmit={this.searchDesigner}>
             <h1>Find New Designer</h1>
             <div>
-              <label htmlFor="startDate">
-                Start Date:
-                <input
-                  type="text"
-                  name="startDate"
-                  value={this.state.startDate}
-                  onChange={this.handleInputChangeFor('startDate')}
+                <TextField
+                  id="start"
+                  label="Start Date"
+                  type="date"
+                  InputLabelProps={{
+                  shrink: true,
+                  }}
+                  onChange={(event) => this.handleChange(event, 'start')}
                 />
-              </label>
             </div>
             <div>
-              <label htmlFor="hoursOfCommitment">
-                Hours Of Commitment:
-                <input
-                  type="text"
-                  name="hoursOfCommitment"
-                  value={this.state.hoursOfCommitment}
-                  onChange={this.handleInputChangeFor('hoursOfCommitment')}
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="deadline">
-                Project Deadline:
-                <input
-                  type="text"
-                  name="deadline"
-                  value={this.state.passwordConfirmation}
-                  onChange={this.handleInputChangeFor('deadline')}
-                />
-              </label>
-            </div>
-            <div>
-              <h4>Fluent Softwares</h4>
-              <input type="checkbox" value="AutoCad" name="AutoCad"/>
-              <label for="AutoCad">AutoCAD</label>
-              <input type="checkbox" value="SketchUp Pro" name="SketchUp Pro"/>
-              <label for="SketchUp Pro">SketchUp Pro</label>
-              <input type="checkbox" value="TurboCAD" name="TurboCAD"/>
-              <label for="TurboCAD">TurboCAD</label>
-              <input type="checkbox" value="Autodesk Revit" name="Autodesk Revit"/>
-              <label for="Autodesk Revit">Autodesk Revit</label>
-            </div>
-    
 
-            <div>
-           
-              <input
-                className="Search"
-                type="submit"
-                name="submit"
-                value="Search"
-                
-              />
+                <TextField
+                  id="date"
+                  label="Due Date"
+                  type="date"
+                  InputLabelProps={{
+                  shrink: true,
+                  }}
+                  onChange={(event) => this.handleChange(event, 'due_date')}
+                />
             </div>
-          </form>
-       
-       <table id="designerSearchTable"> 
-       
-        <th>(Designer Search Outputs)</th>
-         <th> Designer Name </th>
-         <th> Rate </th>
-         <th> Skills </th>
-         <th> Education </th>
-         
-          </table>
+            <div>
+                <TextField
+                    onChange={(event) => this.handleChange(event, 'hoursCommitted')}
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Hours"
+                    type="number"
+                    helperText="Hours Designer will need to be available for"
+                />
+            </div>
+            <div>
+                  {this.props.store.software.length > 0 ?
+                    <TextField
+                      select 
+                      onChange={(event) =>this.handleChange(event, 'software')}
+                      defaultValue={this.state.newSearch.software_id}
+                      helperText="Select a Primary Software"
+                    > 
+                               <MenuItem value={0}>Select a Software</MenuItem>
+                        {this.props.store.software.map( (softwareObj) => {
+                        return <MenuItem key={softwareObj.id} value={softwareObj.id}>{softwareObj.label}</MenuItem>
+                      })}
+                    </TextField>
+                  :
+                  <></>
+                  }
+            </div>
 
+
+            <input type="submit" value="Search" />
+            </form>
         </div>
       );
     }

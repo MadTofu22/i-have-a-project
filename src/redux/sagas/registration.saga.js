@@ -25,20 +25,14 @@ function* registerUser(action) {
 // Handles creating a single designer when a manager sends an email to invite the designer
 function* registerDesigner(action) {
 	try {
-		const softwareList = [
-			'AutoCAD',
-			'Blendr',
-			'Adobe Illustrator',
-			'MS Paint',
-			'FreeCAD',
-		];
+		const softwareList = yield axios.get('/api/profile/software')
 		const designerResponse = yield axios.post(`/api/profile/designers/${action.payload.designerData.manager_id}`, action.payload.designerData);
 		const designer_id = designerResponse.data.rows[0].id;
 		console.log('in registerDesigner saga - designer_id:', designer_id);
 		yield axios.post(`/api/designers/register/${designer_id}`, action.payload.userData);
 		
-		for (let software of softwareList) {
-			yield axios.post(`/api/profile/software/${designer_id}`, {label: software, proficient: false});
+		for (let software of softwareList.data) {
+			yield axios.post(`/api/profile/software/${designer_id}`, {label: software.label, software_id: software.id, proficient: false});
 		}
 
 	} catch (error) {
