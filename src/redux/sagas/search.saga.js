@@ -1,17 +1,34 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-function* sampleName() {
+function* fetchsoftware() {
   try {
-    const response = yield axios.get('/api/sampleName');
-    yield put({ type: 'SAMPLE_DISPATCH_CALL', payload: response.data });
+    const response = yield axios.get('/api/profile/software');
+    yield put({ type: 'SET_SOFTWARE_LIST', payload: response.data });
   } catch (error) {
-    console.log('User get request failed', error);
+    console.log('software fetch failed', error);
+  }
+}
+function* findDesignerSearch(action) {
+  try {    
+    console.log(action.payload);
+    
+    const response = yield axios.get('/api/search', action.payload);
+    console.log(response.data);
+    yield put({
+      type: "SET_SEARCH",
+      payload: response.data
+    })
+  } catch (error) {
+    console.log(error);
   }
 }
 
+
+
 function* searchSaga() {
-  yield takeLatest('FETCH_USER', sampleName);
+  yield takeLatest('FETCH_SOFTWARE_LIST', fetchsoftware);
+  yield takeEvery('FIND_DESIGNER', findDesignerSearch)
 }
 
 export default searchSaga;

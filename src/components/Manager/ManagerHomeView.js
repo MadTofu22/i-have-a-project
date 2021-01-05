@@ -55,6 +55,11 @@ class ManagerHomeView extends Component {
         console.log('testing invite - inviteData:', inviteData);
         this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
     }
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "FETCH_SOFTWARE_LIST"
+        })
+    }
 
     render () {
         const pages = [

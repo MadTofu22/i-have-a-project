@@ -82,3 +82,10 @@ CREATE TABLE "software" (
 	"id" SERIAL primary key,
 	"label" varchar(80) not null
 );
+
+INSERT INTO "software" ("label")
+VALUES ("AutoCAD"),
+("Blendr"),
+("Adobe Illustrator"),
+("MS Paint"),
+("FreeCAD");

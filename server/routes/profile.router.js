@@ -32,6 +32,23 @@ router.get('/career/:id', (req, res) => {
     });
 });
 
+// gets the list of software 
+router.get('/software', (req, res) => {
+    if (req.isAuthenticated) {
+        const queryText = `SELECT * FROM "software"`
+        pool.query(queryText)
+        .then( (response) => {
+            res.send(response.rows)
+        })
+        .catch( (error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+    } else {
+        res.sendStatus(403)
+    }
+})
+
 // Gets the specified, by id, designer's education hisotry
 router.get('/education/:id', (req, res) => {
     console.log('in profile.router - retrieving education data, id=', req.params.id);
@@ -63,7 +80,9 @@ router.get('/skills/:id', (req, res) => {
 // Gets the specified, by id, designer's software proficiencies
 router.get('/software/:id', (req, res) => {
     console.log('in profile.router - retrieving software data, id=', req.params.id);
-    const queryText = `SELECT * FROM software WHERE designer_id = $1;`;
+    const queryText = `SELECT * FROM "software" 
+                            JOIN "designer_software_join" on "designer_software_join"."software_id" = "software"."id"
+                            WHERE designer_id = $1;`;
 
     pool.query(queryText, [req.params.id])
     .then(response => {
@@ -172,16 +191,13 @@ router.put('/skills/:id', (req, res) => {
 router.put('/software/:id', (req, res) => {
 
     const queryParams = [
-        
         req.body.id,
         req.body.proficient,
-        req.body.label,
     ];
     const queryText = `
-        UPDATE software SET
-            proficient = $2,
-            label = $3
-        WHERE id = $1;`;
+        UPDATE "designer_software_join" SET
+            proficient = $2
+            WHERE id = $1;`;
     pool.query(queryText, queryParams)
     .then(response => {
         res.sendStatus(200);
@@ -276,11 +292,11 @@ router.post('/skills/:id', (req, res) => {
 router.post('/software/:id', (req, res) => {
     const queryParams = [
         req.params.id,
-        req.body.label,
+        req.body.software_id,
         req.body.proficient,
     ];
     const queryText = `
-        INSERT INTO software (designer_id, label, proficient)
+        INSERT INTO "designer_software_join" (designer_id, software_id, proficient)
         VALUES ($1, $2, $3);`;
 
     pool.query(queryText, queryParams)
