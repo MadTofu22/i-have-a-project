@@ -19,11 +19,11 @@ class ContractRequests extends Component {
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_INBOX",
-            payload: this.props.store.user.id
+            payload: {id: this.props.store.user.id}
         })
         this.props.dispatch({
             type: "FETCH_OUTBOX",
-            payload: this.props.store.user.id
+            payload: {id: this.props.store.user.id}
         })
     }
 

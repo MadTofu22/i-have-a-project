@@ -5,8 +5,8 @@ function* fetchOutbox (action){
     try{
         console.log('outbox');
         
-        const response = yield axios.get(`/api/contracts/outbox/${action.payload}`);
-        console.log(response.data);
+        const response = yield axios.get(`/api/contracts/outbox/${action.payload.id}`);
+        console.log(response.data.id);
 
         yield put ({ type: 'SET_OUTBOX', payload: response.data});
     } catch (error) {
@@ -18,8 +18,8 @@ function* fetchInbox (action){
     try{
         console.log('inbox');
         
-        const response = yield axios.get(`/api/contracts/inbox/${action.payload}`);
-        console.log(response.data);
+        const response = yield axios.get(`/api/contracts/inbox/${action.payload.id}`);
+        console.log(response.data.id);
 
         yield put ({ type: 'SET_INBOX', payload: response.data});
     } catch (error) {
