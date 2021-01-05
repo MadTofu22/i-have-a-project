@@ -86,7 +86,7 @@ create table "designer_software_join" (
 CREATE TABLE "contract_requests" (
 	"id" SERIAL PRIMARY KEY,
 	"requesting_manager_id" INT REFERENCES "users" NOT NULL,
-	"contracted_manager_id" INT REFERENCES "designers" NOT NULL,
+	"contracted_manager_id" INT REFERENCES "user" NOT NULL,
 	"contracted_designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "contract_requests" NOT NULL
 	"software_id" INT REFERENCES "software" NOT NULL,
