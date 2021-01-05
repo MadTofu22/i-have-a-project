@@ -1,10 +1,10 @@
-const outbox = (state = {}, action) => {
+const inbox = (state = {}, action) => {
     switch (action.type) {
-      case 'SET_OUTBOX':
+      case 'SET_INBOX':
         return action.payload;
       default:
         return state;
     }
   };
 
-  export default outbox;
+  export default inbox;

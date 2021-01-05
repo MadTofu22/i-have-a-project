@@ -16,8 +16,18 @@ class ContractRequests extends Component {
         requestedStatus: ''
     };
 
-    componentDidMount(){
-        
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "FETCH_INBOX",
+            payload: this.state.newProject
+        })
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "FETCH_OUTBOX",
+            payload: this.state.newProject
+        })
     }
     render () {
         // let inboxTable = Object.keys(this.state.inboxItems[0])
