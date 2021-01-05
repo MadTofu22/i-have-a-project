@@ -44,9 +44,12 @@ value ('1', '4', 'Communication'),
 ('1', '5', 'Modern Style'),
 ('1', '1', 'Cowyboy Theme');
 
-insert into software (designer_id, "label", proficient)
-values ('1', 'AutoCAD', true),
-('1', 'Blendr', false),
-('1', 'Adobe Illustrator', true),
-('1', 'MS Paint', false),
-('1', 'FreeCAD', false);
+insert into software (label)
+values ('AutoCAD'), ('Blendr'), ('Adobe Illustrator'), ('MS Paint'), ('FreeCAD');
+
+insert into designer_software_join (designer_id, "label", proficient)
+values ('1', '1', true),
+('1', '2', false),
+('1', '3', true),
+('1', '4', false),
+('1', '5', false);
