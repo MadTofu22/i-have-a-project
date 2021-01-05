@@ -130,6 +130,31 @@ router.put('/:request_id', (req, res) => {
         });
 });
 
+// Handles creating a new contract request
+router.post('/', (req, res) => {
+
+    const queryParams = [
+        req.user.id,
+        req.body.contracted_manager_id,
+        req.body.contracted_designer_id,
+        req.body.project_id,
+        req.body.software_id,
+        req.body.requested_hours,
+        req.body.date_sent,
+    ];
+    const queryText = `
+        INSERT INTO contract_requests (requesting_manager_id, contracted_manager_id, contracted_designer_id, project_id, software_id, requested_hours, date_sent, request_status)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending');`;
+
+    pool.query(queryText, queryParams)
+        .then(response => {
+            console.log('in contracts.router POST - SUCCESS - contract_data', queryParams);
+            res.sendStatus(200);
+        }).catch(error => {
+            console.log('Error in contracts.router POST', error);
+        });
+});
+
 
 
 module.exports = router;
