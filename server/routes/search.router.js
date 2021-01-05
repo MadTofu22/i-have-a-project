@@ -9,13 +9,13 @@ const isBetween = require('dayjs/plugin/isBetween')
 dayjs.extend(isBetween)
 
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     if (req.isAuthenticated) {
         console.log(req.body, req.user);
         
-        const filterBySoftware = `SELECT * FROM "desingers"
-                                    JOIN "designer_software_join ON
-                                        "designer"."id" = "designer_software_join"."designer_id"
+        const filterBySoftware = `SELECT * FROM "designers"
+                                    JOIN "designer_software_join" ON
+                                        "designers"."id" = "designer_software_join"."designer_id"
                                     WHERE "software_id" = $1`
 
         const getBaseAvailability = `SELECT "id", "availability_hours", "weekend_availability" FROM "designers"
@@ -24,37 +24,57 @@ router.get('/', async (req, res) => {
                                         WHERE "designer_id" = $1`
 
         const start = req.body.start
-            let startWeek = start.week()
-            let startDayOfWeek = dayjs(start).day()
+            let startWeek =  dayjs(start).week()
+            let startDayOfWeek =  dayjs(start).day()
+        
 
         const due_date = req.body.due_date
-            let dueDateWeek = due_date.week()
+            let dueDateWeek =  dayjs(due_date).week()
             let dueDateDayOfWeek = dayjs(due_date).day()
         
         const searchWeekSpan = dueDateWeek - startWeek
-        const availableDesigners = [];
+            console.log(searchWeekSpan, 'span');
+            
+        let availableDesigners = [];
+
+        console.log('start:', start);
+        console.log('start day', startDayOfWeek);
+        console.log('start week:', startWeek);
+        console.log('due:', due_date);
+        console.log('dueweek:', dueDateWeek);
+        console.log('due week', dueDateDayOfWeek);
 
 
-        const checkAvail = async (designerID) => {
+        const checkAvail = async (designerID) => {            
             const baseAvailres = await connection.query(getBaseAvailability, [designerID])
             const eventsRes = await connection.query(getEventsForDesigner, [designerID])
             let events = eventsRes.rows
-            let baseAvail = baseAvailres.rows[0]
+                
+            let baseAvail = await baseAvailres.rows[0]
+                console.log(baseAvail, 'obj');
             let dailyAvail = 0
             let totalWorkingDays = 0
-
+                
+            try {
+                
             if (baseAvail.weekend_availability) {
-                dailyAvail = baseAvail.availability_hours / 7
-                daysWorkingPerWeek = 7
+                dailyAvail = await baseAvail.availability_hours / 7
+                daysWorkingPerWeek =  7
             } else {
-                dailyAvail = baseAvail.availability_hours / 5
+                dailyAvail = await baseAvail.availability_hours / 5
                 daysWorkingPerWeek = 5
             }
+            console.log(baseAvail, 'obj');
+            console.log(dailyAvail, 'Daily Avail');
+            
             // loop through length of project and find number of days
             for (let week = 0; week <= searchWeekSpan; week++) {
+
+                console.log(week,'weekcount');
+                
                 if (baseAvail.weekend_availability) {
-                    for (let dayofWeek = startDayOfWeek; index <= 6; dayofWeek++) {
-                        if (week === searchWeekSpan && week <= dueDateDayOfWeek) {
+                    for (let dayofWeek = startDayOfWeek; dayofWeek <= 6; dayofWeek++) {
+                        if (week === searchWeekSpan && dayofWeek === dueDateDayOfWeek) {
                             break;
                         } else {
                             totalWorkingDays += 1
@@ -62,38 +82,58 @@ router.get('/', async (req, res) => {
                     } 
                     break;
                 } else {
-                    for (let index = startDayOfWeek; index <= 6; index++) {
-                        let isNotWeekend = index > 0 || index < 6
-                        if (week === searchWeekSpan && week <= dueDateDayOfWeek) {
+                    console.log('no weekend avail');
+                    
+                    for (let dayofWeek = startDayOfWeek; dayofWeek <= 6; dayofWeek++) {
+                        console.log('startday', dayofWeek, 'span', searchWeekSpan );
+                        
+                        let isNotWeekend = dayofWeek > 0 || dayofWeek < 6
+                        if (week === searchWeekSpan && dayofWeek === dueDateDayOfWeek) {
+                            totalWorkingDays += 1
                             break;
                         } else if (isNotWeekend) {
                             totalWorkingDays += 1
+                            console.log(totalWorkingDays, 'daycount');
                         }
                     } 
-                    break;
                 }
             }
             let designerAvailWithinProj = totalWorkingDays * dailyAvail
+            
             for (const event of events) {
                 if (dayjs(event.start).isBetween(start, due_date)) {
                     designerAvailWithinProj -= event.hoursCommitted
                 }
             }
+            console.log(designerID, 'has ', designerAvailWithinProj, 'hours avail within search param');
             return designerAvailWithinProj
+
+            } catch (error) {
+                console.log(error);
+                
+            } 
         }
 
 
         const connection = await pool.connect();
         try {
             await connection.query("BEGIN")
-            const filteredBySoftware = await connection.query(filterBySoftware, [req.body.software_id])
-            filteredBySoftware.forEach( ( designer) =>{
-                if (checkAvail(designer.id) >= requested_hours) {
+            const filteredBySoftware = await connection.query(filterBySoftware, [req.body.software])
+            console.log(filteredBySoftware.rows);
+            let designersWithSoftware = filteredBySoftware.rows
+            for (const designer of designersWithSoftware) {
+                const hours = await checkAvail(designer.designer_id)
+                
+                if (hours >= req.body.hoursCommitted) {
+      
                     availableDesigners.push(designer)
                 }
-            }) 
+            }
+            console.log('avail designers list', availableDesigners);
+            
             await connection.query('COMMIT')
-            res.sendStatus(res.send(availableDesigners))
+            
+            res.send(availableDesigners)
         } catch (error) {
             await connection.query('ROLLBACK')
             console.log(error);

@@ -11,9 +11,10 @@ function* fetchsoftware() {
 }
 function* findDesignerSearch(action) {
   try {    
-    console.log(action.payload);
+    console.log('hello from find designer saga', action.payload);
     
-    const response = yield axios.get('/api/search', action.payload);
+    const response = yield axios.post('/api/search', action.payload);
+    
     console.log(response.data);
     yield put({
       type: "SET_SEARCH",
