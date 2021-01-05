@@ -19,16 +19,16 @@ class ContractRequests extends Component {
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_INBOX",
-            payload: this.state.newProject
+            payload: this.props.store.user.id
+        })
+        this.props.dispatch({
+            type: "FETCH_OUTBOX",
+            payload: this.props.store.user.id
         })
     }
 
-    componentDidMount = () => {
-        this.props.dispatch({
-            type: "FETCH_OUTBOX",
-            payload: this.state.newProject
-        })
-    }
+
+
     render () {
         // let inboxTable = Object.keys(this.state.inboxItems[0])
     

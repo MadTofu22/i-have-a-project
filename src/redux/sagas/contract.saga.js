@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fetchOutbox (){
+function* fetchOutbox (action){
     try{
         console.log('outbox');
         
-        const response = yield axios.get('/api/outbox');
+        const response = yield axios.get(`/api/contracts/outbox/${action.payload}`);
         console.log(response.data);
 
         yield put ({ type: 'SET_OUTBOX', payload: response.data});
@@ -14,11 +14,11 @@ function* fetchOutbox (){
     }
 }
 
-function* fetchInbox (){
+function* fetchInbox (action){
     try{
         console.log('inbox');
         
-        const response = yield axios.get('/api/inbox');
+        const response = yield axios.get(`/api/contracts/inbox/${action.payload}`);
         console.log(response.data);
 
         yield put ({ type: 'SET_INBOX', payload: response.data});
