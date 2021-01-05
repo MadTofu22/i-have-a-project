@@ -19,7 +19,7 @@ class FindNewDesigner extends Component {
         [propertyName]: event.target.value,
       });
     }
-  
+    
     render() {
       return (
         <div>

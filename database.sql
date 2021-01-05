@@ -61,19 +61,36 @@ CREATE TABLE "career" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"title" varchar(100) NOT NULL,
-	"location" varchar(100),
+	"location" varchar(100)
 );
 
 CREATE TABLE "education" (
 	"id" SERIAL PRIMARY KEY,
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"degree" varchar(100) NOT NULL,
-	"location" varchar(100),
+	"location" varchar(100)
 );
 
-create table "software" (
+CREATE TABLE "software" (
+	"id" SERIAL primary key,
+	"label" varchar(80) not null
+);
+
+create table "designer_software_join" (
 	"id" SERIAL primary key,
 	"designer_id" INT references "designers" not null,
-	"label" varchar(80) not null,
+	"software_id" INT references "software" not null,
 	"proficient" boolean not null
+);
+
+CREATE TABLE "contract_requests" (
+	"id" SERIAL PRIMARY KEY,
+	"requesting_manager_id" INT REFERENCES "users" NOT NULL,
+	"contracted_manager_id" INT REFERENCES "designers" NOT NULL,
+	"contracted_designer_id" INT REFERENCES "designers" NOT NULL,
+	"project_id" INT REFERENCES "contract_requests" NOT NULL
+	"software_id" INT REFERENCES "software" NOT NULL,
+	"requested_hours" INT,
+	"date_sent" DATE,
+	"request_status" VARCHAR(36) NOT NULL
 );
