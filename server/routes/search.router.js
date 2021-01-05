@@ -13,28 +13,37 @@ router.post('/', async (req, res) => {
     if (req.isAuthenticated) {
         console.log(req.body, req.user);
         
+        // first check to limit how many designers we check avail on 
         const filterBySoftware = `SELECT * FROM "designers"
                                     JOIN "designer_software_join" ON
                                         "designers"."id" = "designer_software_join"."designer_id"
-                                    WHERE "software_id" = $1`
-
+                                    WHERE "software_id" = $1
+                                        AND "proficient" = TRUE`
+        // gets their normal work hours // and if weekend is included in that work time
         const getBaseAvailability = `SELECT "id", "availability_hours", "weekend_availability" FROM "designers"
                                         WHERE "id" = $1`
+        // get all calendar events for a user
         const getEventsForDesigner = `SELECT * FROM "designer_calendar_item"
-                                        WHERE "designer_id" = $1`
-
+                                        WHERE "designer_id" = $1
+                                            AND "available" = FALSE`
+        // start date 
         const start = req.body.start
+            // calendar week of year
             let startWeek =  dayjs(start).week()
+            // calendar day of week
             let startDayOfWeek =  dayjs(start).day()
         
-
+        // due date
         const due_date = req.body.due_date
+            // calendar week due date
             let dueDateWeek =  dayjs(due_date).week()
+            // calendar day of week end
             let dueDateDayOfWeek = dayjs(due_date).day()
         
+        // how many weeks does the search span (0 means partial week)
         const searchWeekSpan = dueDateWeek - startWeek
             console.log(searchWeekSpan, 'span');
-            
+        // initialize results array
         let availableDesigners = [];
 
         console.log('start:', start);
@@ -43,7 +52,6 @@ router.post('/', async (req, res) => {
         console.log('due:', due_date);
         console.log('dueweek:', dueDateWeek);
         console.log('due week', dueDateDayOfWeek);
-
 
         const checkAvail = async (designerID) => {            
             const baseAvailres = await connection.query(getBaseAvailability, [designerID])
@@ -54,7 +62,8 @@ router.post('/', async (req, res) => {
                 console.log(baseAvail, 'obj');
             let dailyAvail = 0
             let totalWorkingDays = 0
-                
+            
+            // how many days does the designer work per week?
             try {
                 
             if (baseAvail.weekend_availability) {
@@ -64,10 +73,8 @@ router.post('/', async (req, res) => {
                 dailyAvail = await baseAvail.availability_hours / 5
                 daysWorkingPerWeek = 5
             }
-            console.log(baseAvail, 'obj');
-            console.log(dailyAvail, 'Daily Avail');
             
-            // loop through length of project and find number of days
+            // loop through length of project and find number of days the designer is working
             for (let week = 0; week <= searchWeekSpan; week++) {
 
                 console.log(week,'weekcount');
@@ -75,6 +82,7 @@ router.post('/', async (req, res) => {
                 if (baseAvail.weekend_availability) {
                     for (let dayofWeek = startDayOfWeek; dayofWeek <= 6; dayofWeek++) {
                         if (week === searchWeekSpan && dayofWeek === dueDateDayOfWeek) {
+                            totalWorkingDays += 1
                             break;
                         } else {
                             totalWorkingDays += 1
@@ -98,8 +106,10 @@ router.post('/', async (req, res) => {
                     } 
                 }
             }
+            // how many total hours in the given time span do they normally have available
             let designerAvailWithinProj = totalWorkingDays * dailyAvail
             
+            // subtract calendar events that occur within the given time span
             for (const event of events) {
                 if (dayjs(event.start).isBetween(start, due_date)) {
                     designerAvailWithinProj -= event.hoursCommitted
@@ -118,9 +128,11 @@ router.post('/', async (req, res) => {
         const connection = await pool.connect();
         try {
             await connection.query("BEGIN")
+            // filter designers by software
             const filteredBySoftware = await connection.query(filterBySoftware, [req.body.software])
             console.log(filteredBySoftware.rows);
             let designersWithSoftware = filteredBySoftware.rows
+            // loop through designers found and push any that are available to array
             for (const designer of designersWithSoftware) {
                 const hours = await checkAvail(designer.designer_id)
                 
