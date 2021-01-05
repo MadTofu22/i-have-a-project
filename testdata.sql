@@ -10,11 +10,11 @@ VALUES ('simong@gmail.com', 'link', 'manager', 'Simon', 'Germscheid', 'Prime Dig
 ('peterp@gmail.com', '2021', 'manager', 'Peter', 'P', 'Prime Digital Academy', null),
 ('testManager1', 'test', 'manager', 'testManager1', 'testManager1', 'test1', null),
 ('testManager2', 'test', 'manager', 'testManager2', 'testManager2', 'test2', null),
-('testDesigner1', 'test', 'designer', 'testDesigner1', 'testDesigner1', 'test1', null),
-('testDesigner2', 'test', 'designer', 'testDesigner2', 'testDesigner2', 'test2', null),
-('testDesigner3', 'test', 'designer', 'testDesigner3', 'testDesigner3', 'test1', null),
-('testDesigner4', 'test', 'designer', 'testDesigner4', 'testDesigner4', 'test2', null),
-('testDesigner5', 'test', 'designer', 'testDesigner5', 'testDesigner5', 'test1', null);
+('testDesigner1', 'test', 'designer', 'testDesigner1', 'testDesigner1', 'test1', '3'),
+('testDesigner2', 'test', 'designer', 'testDesigner2', 'testDesigner2', 'test2', '4'),
+('testDesigner3', 'test', 'designer', 'testDesigner3', 'testDesigner3', 'test1', '5'),
+('testDesigner4', 'test', 'designer', 'testDesigner4', 'testDesigner4', 'test2', '6'),
+('testDesigner5', 'test', 'designer', 'testDesigner5', 'testDesigner5', 'test1', '7');
 
 -- Project Test Data 
 
@@ -33,11 +33,11 @@ VALUES ('1', 'Active', '10.10.2021', '9.10.2020', 'a current project for manager
 INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate", "availability_hours", "weekend_availability")
 VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '25', '30', 'true'),
 ('1', '6513986342', 'www.linkedin.com', 'photoURL', '35', '20', 'false'),
-('7', 'designer1', 'photo1', '40', '20', false),
-('8', 'designer2', 'photo2', '40', '20', false),
-('7', 'designer3', 'photo3', '40', '20', false),
-('8', 'designer4', 'photo4', '40', '20', false),
-('7', 'designer5', 'photo5', '40', '20', false);
+('7', '6513986342', 'designer1', 'photo1', '40', '20', false),
+('8', '6513986342', 'designer2', 'photo2', '40', '20', false),
+('7', '6513986342', 'designer3', 'photo3', '40', '20', false),
+('8', '6513986342', 'designer4', 'photo4', '40', '20', false),
+('7', '6513986342', 'designer5', 'photo5', '40', '20', false);
 
 -- Skills Test Data
 
