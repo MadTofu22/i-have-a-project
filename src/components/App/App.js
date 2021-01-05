@@ -48,11 +48,11 @@ class App extends Component {
   componentDidUpdate = () => {
     if (this.props.store.user.id !== this.state.user.id) {
       let redirect;
-      if(this.props.store.user.user_type === 'Designer'){
+      if(this.props.store.user.user_type.toLowerCase() === 'designer'){
         redirect = '/DesignerHomeView'
-      } else if ( this.props.store.user.user_type === 'Manager'){
+      } else if ( this.props.store.user.user_type.toLowerCase() === 'manager'){
         redirect = '/ManagerHomeView'
-      } else if ( this.props.store.user.user_type === 'Admin'){
+      } else if ( this.props.store.user.user_type.toLowerCase() === 'admin'){
         redirect = '/AdminPage'
       }
       console.log(redirect);      
@@ -101,11 +101,12 @@ class App extends Component {
               path={'/AdminPage'}
               component={AdminPage}
             />
-            <Route 
+            {/* Cut? This is handled by the manager Add Team Member Invite */}
+            {/* <Route 
               exact
               path={'/DesignerRegistration'}
               component={DesignerRegistration}
-            />
+            /> */}
 
             <Route
             exact

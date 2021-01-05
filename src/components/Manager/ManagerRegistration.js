@@ -19,6 +19,15 @@ class ManagerRegistration extends Component {
         event.preventDefault();
   
       if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
+        
+        console.log('in ManagerRegistration - payload to be sent = ', {
+          username: this.state.email,
+          password: this.state.password,
+          company: this.state.company,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+        });
+
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
