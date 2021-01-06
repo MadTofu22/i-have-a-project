@@ -62,7 +62,7 @@ class App extends Component {
       this.setState({
         user: this.props.store.user,
         userHome: redirect
-      })
+      });
     }
   }
 
@@ -104,12 +104,6 @@ class App extends Component {
               path={'/AdminPage'}
               component={AdminPage}
             />
-            {/* Cut? This is handled by the manager Add Team Member Invite */}
-            {/* <Route 
-              exact
-              path={'/DesignerRegistration'}
-              component={DesignerRegistration}
-            /> */}
 
             <Route
             exact

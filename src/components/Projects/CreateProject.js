@@ -143,7 +143,7 @@ class CreateProject extends Component {
 						value={this.state.newProject.status}
 						>
 						{this.state.status.map((option) => (
-							<MenuItem  value={option}>
+							<MenuItem key={option} value={option}>
 							{option}
 							</MenuItem>
 						))}
