@@ -18,7 +18,8 @@ router.post('/', async (req, res) => {
                                     JOIN "designer_software_join" ON
                                         "designers"."id" = "designer_software_join"."designer_id"
                                     WHERE "software_id" = $1
-                                        AND "proficient" = TRUE`
+                                        AND "proficient" = TRUE
+                                        AND NOT "manager_id" = $2`
         // gets their normal work hours // and if weekend is included in that work time
         const getBaseAvailability = `SELECT "id", "availability_hours", "weekend_availability" FROM "designers"
                                         WHERE "id" = $1`
