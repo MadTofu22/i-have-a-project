@@ -6,14 +6,14 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 class ContractRequests extends Component {   
 
     state = {
-        requestingManager: [],
-        contractedManager: '',
-        contractedDesigner: '',
-        project: '',
-        software: '',
-        requestedHours: 0,
-        dateSent:0,
-        requestedStatus: ''
+        inquiringManager: [],
+        requestedDesigner: '',
+        projectTimeline: '',
+        dateReceived: 0,
+        TeamManager: '',
+        ProjectName: '',
+        dateSubmitted: 0,
+        status: ''
     };
 
     setLocalState = () => {
