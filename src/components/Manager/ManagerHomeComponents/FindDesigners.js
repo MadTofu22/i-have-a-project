@@ -5,8 +5,6 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import { theme } from '../../App/Material-UI/MUITheme';
 import { ThemeProvider, Typography, Toolbar, AppBar } from '@material-ui/core';
 import Button from '@material-ui/core/Button';

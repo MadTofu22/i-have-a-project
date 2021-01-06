@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 import AddTeamMember from '../../Modals/AddTeamMember'
 

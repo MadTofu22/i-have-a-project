@@ -5,7 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider, Button } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import styles from './Login.css'
+import './Login.css'
 
 class LoginPage extends Component {
   state = {

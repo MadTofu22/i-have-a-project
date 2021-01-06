@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { Container, Box, spacing, Button, ThemeProvider } from '@material-ui/core';
+import { Button, ThemeProvider } from '@material-ui/core';
 import { theme } from '../../App/Material-UI/MUITheme';
 import '../Manager.css';
 

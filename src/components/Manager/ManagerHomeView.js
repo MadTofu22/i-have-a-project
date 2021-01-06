@@ -12,7 +12,7 @@ import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     

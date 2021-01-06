@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Button, Grid } from '@material-ui/core';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 class NavButton extends Component {
 

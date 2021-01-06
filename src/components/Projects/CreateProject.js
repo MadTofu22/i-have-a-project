@@ -14,7 +14,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import styles from './Projects.css'
+import './Projects.css'
 import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider } from '@material-ui/core';
 
