@@ -62,7 +62,7 @@ class App extends Component {
       this.setState({
         user: this.props.store.user,
         userHome: redirect
-      })
+      });
     }
   }
 

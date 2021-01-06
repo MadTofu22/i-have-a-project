@@ -16,6 +16,7 @@ class LoginPage extends Component {
         payload: {
           username: this.state.email,
           password: this.state.password,
+          history: this.props.history,
         },
       });
     } else {
