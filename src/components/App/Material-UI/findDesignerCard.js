@@ -14,12 +14,15 @@ import Slider from '@material-ui/core/Slider';
 function FindDesignerCard(props) {
 
     const requestDesigner = () => {
-        this.props.dispatch({
-            type: "",
-            payload: props.designeInfor
+        props.dispatch({
+            type: "CREATE_CONTRACT_REQUEST",
+            payload: {
+                        designer: props.designeInfor,
+                        search: props.search
+                }
         })
     }
-    
+
 
 	return (
          

@@ -49,15 +49,18 @@ function* createContractRequest(action) {
         req.body.requested_hours,
         req.body.date_sent,
      */
+    console.log('saga', action.payload);
+    
     let newRequest = {
-        contracted_manager_id: action.payload.designerInfo.manager_id,
-        contracted_designer_id: action.payload.designerinfo.designer_id,
-        project_id: action.payload.designerinfo.project_id,
-        software_id: action.payload.designerinfo.software_id,
-        requested_hours: action.payload.designerinfo.requested_hours,
+        contracted_manager_id: action.payload.designer.designerInfo.manager_id,
+        contracted_designer_id: action.payload.designer.designerInfo.designer_id,
+        project_id: action.payload.search.project_id,
+        software_id: action.payload.designer.designerInfo.software_id,
+        requested_hours: action.payload.search.requested_hours,
     }
     yield axios.post('/api/contracts', newRequest)
   } catch (error) {
+    console.log(error);
     
   }
 }

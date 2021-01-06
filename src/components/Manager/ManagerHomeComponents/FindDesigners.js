@@ -104,8 +104,8 @@ class FindNewDesigner extends Component {
                         value={this.props.store.projects.length > 0 && this.state.newSearch.project_id }
                       >
                           <option value={``}>Project Name</option>
-                          {this.props.store.projects.map( (project) => {
-                            return <option key={project.project_id} value={project.project_id}>{project.project_name}</option>
+                          {this.props.store.projects.map( (project) => {                            
+                            return <option key={project.id} value={project.id}>{project.project_name}</option>
                           })}
                       </select>
                     </>
@@ -130,16 +130,15 @@ class FindNewDesigner extends Component {
               <input type="submit" value="Search" />
             </form>
 
-            {this.props.store.search.length > 0 ?
+            {this.props.store.search.length > 0 &&
               this.props.store.search.map( (desingerObj) => {
                 return <FindDesignerCard 
                           designeInfor={desingerObj}
                           key={desingerObj.designer_id}
+                          search={this.state.newSearch}
                         />
                 
               })
-            :
-            <></>
             }
         </div>
       );
