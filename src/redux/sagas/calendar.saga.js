@@ -31,7 +31,7 @@ function* fetchCalendarEventsByID() {
       let formattedEvent = {
         ...conditionalProperties,
         start: event.start.slice(0,10),
-        id: event.event_Id,
+        id: event.event_id,
         designer_Id: event.designer_id,
         hoursCommitted: event.hoursCommitted,
         project_id: event.project_id,
@@ -54,7 +54,7 @@ function* updateCalendarEvent(action) {
 }
 function* DeleteCalendarEvent(action) {
   try {
-    yield axios.delete('/api/calendar', action.payload);
+    yield axios.delete(`/api/calendar/${action.payload.id}`);
     yield put({
       type: "FETCH_CALENDAR_EVENTS_BY_ID"
     })

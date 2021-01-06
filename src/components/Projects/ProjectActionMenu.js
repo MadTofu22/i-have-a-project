@@ -20,10 +20,6 @@ const ProjectActionMenu = (props) =>{
     const [hoursModalOpen, setModalOpen] = useState(false)
     const [estHours, setHours] = useState('')
 
-    useEffect(() => {
-        setHours(props.rowProps.row.hours_est)
-    }, [estHours, props.rowProps.row.hours_est])
-
     const handleClickOpen = (event) => {
         if (menuPosition) {
             return;
@@ -51,19 +47,24 @@ const ProjectActionMenu = (props) =>{
         props.dispatch({
             type: "UPDATE_DESIGNER_HOURS",
             payload: {
-                designer_id: props.rowProps.row.designer_id,
+                designer_id: props.rowProps.row.id,
                 project_id: props.project_id,
                 hours_est: estHours
             }
         })
         handleItemClick()
     }
+    const handleSetHours = (event) => {
+        console.log('hours set', event.target.value, estHours);
+        
+        setHours(event.target.value)
+    }
 
     const removeDesigner = () => {
         props.dispatch({
             type: "REMOVE_DESIGNER_FROM_PROJECT",
             payload: {
-                designer_id: props.rowProps.row.designer_id,
+                designer_id: props.rowProps.row.id,
                 project_id: props.project_id
             }
         })
@@ -91,13 +92,13 @@ const ProjectActionMenu = (props) =>{
             <DialogTitle id="title">Update estimated hours for {props.rowProps.row.first_name + ' ' + props.rowProps.row.last_name}</DialogTitle>
                 <DialogContent>
                     <TextField
-                        onChange={(event) => setHours(event.target.value)}
+                        onChange={(event) => handleSetHours(event)}
                         autoFocus
                         margin="dense"
                         id="name"
                         label="Hours Estimate"
                         type="number"
-                        defaultValue={estHours}
+                        defaultValue={props.rowProps.row.hours_est}
                     >
                     </TextField>
                 </DialogContent>
