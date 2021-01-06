@@ -61,7 +61,7 @@ class Calendar extends Component {
 // converts date format from FullCalendar passed as info from eventClick
 	OpenCalendarEventModal = (info) => {
 		let eventInfo = {
-			id: Number(info.event.id),
+			id: info.event.id,
 			title: info.event.title,
 			start: info.event.start.toISOString().slice(0, 10),
 			hoursCommitted: info.event.extendedProps.hoursCommitted,

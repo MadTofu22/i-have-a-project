@@ -69,7 +69,7 @@ class AddCalendarEvent extends Component{
      
     this.props.dispatch({
       type: "CREATE_CALENDAR_EVENT",
-      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.designer_id}
     })    
     this.setState({
       open: false
@@ -105,6 +105,9 @@ class AddCalendarEvent extends Component{
       type: "DELETE_CALENDAR_EVENT",
       payload: {id: this.props.clickEvent.id}
     })
+    this.setState({
+      open: false
+    })
     this.props.closeClickEvent()
   }
 
@@ -132,10 +135,11 @@ class AddCalendarEvent extends Component{
                   <Select 
                     onChange={(event) =>this.handleEventChange(event, 'project_id')}
                     labelId="projectSelect"
-                    value={this.state.clickEvent.project_id}
+                    value={this.props.store.projects.length > 0 && this.state.clickEvent.project_id }
                   >
+                          <MenuItem key={0} value={``} >Select a Project</MenuItem>
                       {this.props.store.projects.map( (project) => {
-                        return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
+                        return <MenuItem key={project.project_id} value={project.project_id}>{project.project_name}</MenuItem>
                       })}
                   </Select>
               </DialogContent>

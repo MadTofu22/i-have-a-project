@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { Button, ThemeProvider } from '@material-ui/core';
+import { theme } from '../../App/Material-UI/MUITheme';
 import '../Manager.css';
 
 class ManagerCalendar extends Component {
@@ -15,8 +17,9 @@ class ManagerCalendar extends Component {
     render () {
         return (
             <>
+                <ThemeProvider theme={theme}>
                 <div className='managerCalendarSection'>
-                    <h2 className='manager'>My Calendar</h2>
+                    {/* <h2 className='manager'>My Calendar</h2> */}
                     <FullCalendar
                         className='managerMonth'
                         plugins={[dayGridPlugin]}
@@ -28,7 +31,8 @@ class ManagerCalendar extends Component {
                 <div className='designerCalendarSection'>
                     <div className='designerInfoBlock'>
                         <h2 className='designerNameHeader'>Designer Name</h2>
-                        <button className='viewDesignerButton'>View Profile</button>
+                        <Button variant="contained" color="primary" style={{ margin: 20 }}>
+                            View Profile</Button>
                         <ul className='designerStatsLists'>
                             <li>#Projects: 3</li>
                             <li>Hours Available: 35</li>
@@ -47,7 +51,8 @@ class ManagerCalendar extends Component {
                 <div className='designerCalendarSection'>
                     <div className='designerInfoBlock'>
                         <h2 className='designerNameHeader'>Designer Name</h2>
-                        <button className='viewDesignerButton'>View Profile</button>
+                        <Button variant="contained" color="primary" style={{ margin: 20 }}>
+                            View Profile</Button>
                         <ul className='designerStatsLists'>
                             <li>#Projects: 3</li>
                             <li>Hours Available: 35</li>
@@ -66,7 +71,8 @@ class ManagerCalendar extends Component {
                 <div className='designerCalendarSection'>
                     <div className='designerInfoBlock'>
                         <h2 className='designerNameHeader'>Designer Name</h2>
-                        <button className='viewDesignerButton'>View Profile</button>
+                        <Button variant="contained" color="primary" style={{ margin: 20 }}>
+                            View Profile</Button>
                         <ul className='designerStatsLists'>
                             <li>#Projects: 3</li>
                             <li>Hours Available: 35</li>
@@ -82,6 +88,7 @@ class ManagerCalendar extends Component {
                         dayMinWidth='5vw'
                     />
                 </div>
+                </ThemeProvider>
             </>
         );
     }

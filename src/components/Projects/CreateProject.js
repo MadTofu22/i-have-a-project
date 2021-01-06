@@ -14,6 +14,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import './Projects.css'
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider } from '@material-ui/core';
 
 import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
@@ -87,32 +90,41 @@ class CreateProject extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className='createProjectForm'>
+				<ThemeProvider theme={theme}>
 				<form onSubmit={this.handleSubmit}>
+					<h1>Enter New Project Information</h1>
 					<TextField 
 						id="outlined-basic" 
 						label="Project Name" 
 						variant="outlined" 
 						onChange={(event) => this.handlechange(event, 'project_name')}
 					/>
+					<br></br>
+					<br></br>
 					<TextField
 						id="date"
 						label="Start Date"
 						type="date"
+						variant="outlined" 
 						InputLabelProps={{
 						shrink: true,
 						}}
 						onChange={(event) => this.handlechange(event, 'start')}
 					/>
+					<br></br>
+					<br></br>
 					<TextField
 						id="date"
 						label="Due Date"
 						type="date"
+						variant="outlined" 
 						InputLabelProps={{
 						shrink: true,
 						}}
 						onChange={(event) => this.handlechange(event, 'due_date')}
 					/>
+					<br></br>
 					<TextField
 						id="notes"
 						label="Short Description"
@@ -121,6 +133,7 @@ class CreateProject extends Component {
 						onChange={(event) => this.handlechange(event, 'notes')}
 						helperText="Enter Quick Description of Project"
 					/>
+					<br></br>
 					<TextField
 						id="project-status"
 						select
@@ -135,16 +148,18 @@ class CreateProject extends Component {
 							</MenuItem>
 						))}
 					</TextField>
+					<br></br>
 					<AddDesignerToProject 
 						addSelectedDesigners={this.addSelectedDesigners} 
 						SelectedDesigners={this.state.newProject.TeamDesigners}
 					/>
+					<br></br>
 					<TableContainer component={Paper}>
 						<Table aria-label="simple table">
 							<TableHead>
 							<TableRow>
-								<TableCell>Designer Name</TableCell>
-								<TableCell align="right">Committed Hours</TableCell>
+								{/* <TableCell>Designer Name</TableCell>
+								<TableCell align="right">Committed Hours</TableCell> */}
 							</TableRow>
 							</TableHead>
 							<TableBody>
@@ -182,11 +197,12 @@ class CreateProject extends Component {
 					<Button 
 						type="submit"
 						variant="contained" 
-						color="primary"
+						color="secondary"
 					>
 						Create Project
 					</Button>
 				</form>
+				</ThemeProvider>
 			</div>
 		);
 	}

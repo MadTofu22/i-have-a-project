@@ -65,7 +65,7 @@ function* addDesignerToProject(action){
 }
 function* removeDesignerFromProject(action) {
   try {
-    yield axios.delete('/api/projects/removeDesigner', action.payload)
+    yield axios.delete(`/api/projects/removeDesigner/${action.payload.designer_id}/${action.payload.project_id}`, action.payload)
     yield put({
       type: "FETCH_PROJECT_DETAILS",
       payload: action.payload.project_id
@@ -79,7 +79,7 @@ function* updateDesignerHours(action) {
     yield axios.put(`/api/projects/hours_est`, action.payload)
     yield put({
       type: "FETCH_PROJECT_DETAILS",
-      payload: action.payload.projectDetails.id
+      payload: action.payload.project_id
     })
   } catch (error) {
     console.log(error);

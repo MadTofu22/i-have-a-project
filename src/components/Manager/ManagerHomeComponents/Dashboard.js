@@ -14,7 +14,7 @@ class Dashboard extends Component {
                 {
                     field: 'id',
                     headerName: '#',
-                    width: 42,
+                    width: 60,
                 },
                 {
                     field: 'manager_id', // Total number of designers assigned to the project
@@ -65,7 +65,7 @@ class Dashboard extends Component {
 
     render () {
         return (
-            <>
+            <div className='dashboardAllSections'>
                 <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Projects at a Glance:</h3>
                     {this.props.store.projects.length > 0 ?
@@ -91,7 +91,7 @@ class Dashboard extends Component {
                     <h3 className='sectionHeader'>Contract Requests:</h3>
                     <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
                 </div>
-            </>
+            </div>
         );
     }
 }

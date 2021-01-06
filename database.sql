@@ -43,7 +43,6 @@ CREATE TABLE "projects_designers_join" (
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL,
 	"hours_est" int,
-	"request_status" varchar(30)
 );
 
 CREATE TABLE "designer_calendar_item" (
@@ -83,24 +82,21 @@ create table "designer_software_join" (
 	"proficient" boolean not null
 );
 
-CREATE TABLE "software" (
-	"id" SERIAL primary key,
-	"label" varchar(80) not null
-);
 
 INSERT INTO "software" ("label")
-VALUES ("AutoCAD"),
-("Blendr"),
-("Adobe Illustrator"),
-("MS Paint"),
-("FreeCAD");
+VALUES
+('AutoCAD'),
+('Blendr'),
+('Adobe Illustrator'),
+('MS Paint'),
+('FreeCAD');
 
 CREATE TABLE "contract_requests" (
 	"id" SERIAL PRIMARY KEY,
-	"requesting_manager_id" INT REFERENCES "users" NOT NULL,
+	"requesting_manager_id" INT REFERENCES "user" NOT NULL,
 	"contracted_manager_id" INT REFERENCES "user" NOT NULL,
 	"contracted_designer_id" INT REFERENCES "designers" NOT NULL,
-	"project_id" INT REFERENCES "projects" NOT NULL
+	"project_id" INT REFERENCES "projects" NOT NULL,
 	"software_id" INT REFERENCES "software" NOT NULL,
 	"requested_hours" INT,
 	"date_sent" DATE,

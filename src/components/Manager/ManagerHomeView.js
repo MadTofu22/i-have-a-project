@@ -11,6 +11,8 @@ import Calendar from './ManagerHomeComponents/Calendar';
 import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     
@@ -34,7 +36,11 @@ class ManagerHomeView extends Component {
 	handleLogout = () => {
         this.props.history.push('/Login');
         this.props.dispatch({type: 'LOGOUT'});
-	}
+    }
+    
+    goToCreateProject = () => {
+        this.props.history.push('/CreateProject')
+    }
 
     componentDidMount = () => {
         this.props.dispatch({
@@ -71,6 +77,7 @@ class ManagerHomeView extends Component {
 
         return (
             <Router>
+                <ThemeProvider theme={theme}>
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to Your Home View</h1>
@@ -89,6 +96,16 @@ class ManagerHomeView extends Component {
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
+                         <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
+                        <Button className='headerButton'>Account Settings</Button>
+                        <Button 
+							className='headerButton' 
+							onClick={() => this.handleLogout()}
+							>Logout
+						</Button>
+
+                        {/* This button will run a test to ensure the saga creates the designer in the DB */}
+                        <Button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</Button>
                     </div>
                 </div>
 
@@ -121,6 +138,7 @@ class ManagerHomeView extends Component {
                         component={FindDesigners}
                     />
                 </div>
+                </ThemeProvider>
             </Router>
         );
     }

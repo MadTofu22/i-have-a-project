@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
-// import mapStoreToProps from '../../../redux/mapStoreToProps';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
+
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import './AdminPage.css'
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -46,21 +46,21 @@ class AdminPage extends Component {
                 return (
                 
                  
-                    <div style={{ height: 250, width: '100%' }}>
+                    <div className='adminInformation' style={{ height: 250, width: '100%' }}>
                         <h1>Administrative Services</h1>
                         <div className='adminDataGrid'>
                         <DataGrid
                             columns={[
-                                    { field: 'id', headerName: 'Manager ID' },
+                                    { field: 'id', headerName: 'Manager ID', width:150 },
                                     { field: 'username', headerName: 'Name' },
                                     { field: 'company', headerName: 'Company' },
                                     {
-                                        field: 'action',
-                                        headerName: 'Action',
+                                        field: 'delete',
+                                        headerName: 'Delete',
                                         renderCell: () => (
-                                          <button>
-                                            Delete
-                                          </button>
+                                        <IconButton aria-label="delete">
+                                            <DeleteIcon fontSize="small" />
+                                          </IconButton>
                                         ),
                                       }
                                 ]}
@@ -70,17 +70,17 @@ class AdminPage extends Component {
                         <div className='adminDataGrid'>
                         <DataGrid
                             columns={[
-                                    { field: 'designer_id', headerName: 'Designer ID' },
-                                    { field: 'first_name', headerName: 'First Name' },
-                                    { field: 'last_name', headerName: 'Last Name' },
-                                    { field: 'manager', headerName: 'Manager' },
+                                    { field: 'id', headerName: 'Designer ID', width: 150 },
+                                    { field: 'first_name', headerName: 'First Name', width: 150 },
+                                    { field: 'last_name', headerName: 'Last Name', width: 150 },
+                                    { field: 'manager', headerName: 'Manager', width: 150 },
                                     {
-                                        field: 'action',
-                                        headerName: 'Action',
+                                        field: 'delete',
+                                        headerName: 'Delete',
                                         renderCell: () => (
-                                            <button>
-                                            Delete
-                                          </button>
+                                            <IconButton aria-label="delete">
+                                            <DeleteIcon fontSize="small" />
+                                          </IconButton>
                                             // <IconButton aria-label="delete">
                                             //     <DeleteIcon fontSize="large"/>
                                             // </IconButton>
