@@ -121,7 +121,8 @@ function AddTeamMember(props) {
   return (
     <div>
 
-    <button onClick={handleClickOpen}>Invite Team Member</button> 
+    <Button variant="contained" color="secondary" style={{ margin: 20 }}
+                onClick={handleClickOpen}>Invite Team Member</Button> 
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Enter Team Member Info</DialogTitle>
