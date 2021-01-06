@@ -26,7 +26,7 @@ class AddCalendarEvent extends Component{
 				start: '',
 				hoursCommitted: 0,
         renderModal: false,
-        project_id: ``
+        project_id: null
   	}
   }
   componentDidUpdate = () => {
@@ -69,7 +69,7 @@ class AddCalendarEvent extends Component{
      
     this.props.dispatch({
       type: "CREATE_CALENDAR_EVENT",
-      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+      payload: {...this.state.clickEvent, designer_id: this.props.store.user.designer_id}
     })    
     this.setState({
       open: false
@@ -104,6 +104,9 @@ class AddCalendarEvent extends Component{
     this.props.dispatch({
       type: "DELETE_CALENDAR_EVENT",
       payload: {id: this.props.clickEvent.id}
+    })
+    this.setState({
+      open: false
     })
     this.props.closeClickEvent()
   }

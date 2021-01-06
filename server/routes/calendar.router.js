@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated) {
         const queryText = `SELECT  
-                            "event_Id",
+                            "event_id",
                             "designer_id",
                             "project_id",
                             "designer_calendar_item".start,
@@ -99,7 +99,7 @@ router.put('/', (req, res) => {
                                 "start" = $2,
                                 "hoursCommitted" = $3,
                                 "name" = $4
-                            WHERE "event_Id" = $5`
+                            WHERE "event_id" = $5`
 
             const getProjectDetails = `SELECT "project_name" from "projects" WHERE "id" = $1`
 
@@ -133,7 +133,7 @@ router.put('/', (req, res) => {
                             SET "start" = $1,
                                 "hoursCommitted" = $2,
                                 "name" = $3
-                            WHERE "event_Id" = $4
+                            WHERE "event_id" = $4
                             `
                                 
             name = req.body.title
@@ -172,19 +172,16 @@ router.put('/', (req, res) => {
 /**
  * delete route template
  */
-router.delete('/', (req, res) => {
-    if (req.isAuthenticated) {
-        console.log(req.body);
-        
-        
-        const queryText = `DELETE FROM "designer_calendar_item"
-                                WHERE "id" =  $1 AND designer_id = $2`
-
-        pool.query( queryText, [req.body.id, req.user.designer_id] )
-        .then( ( response ) => {
-            console.log(response.rows);
+router.delete('/:event_id', (req, res) => {
+    if (req.isAuthenticated) {        
+            console.log('request body', req.body);
             
-            res.send( response.rows )
+        const queryText = `DELETE FROM "designer_calendar_item"
+                                WHERE "event_id" = $1 AND designer_id = $2`
+
+        pool.query( queryText, [req.params.event_id, req.user.designer_id] )
+        .then( () => {
+            res.sendStatus(200)
         })
         .catch( ( error ) => {
             console.log(error);

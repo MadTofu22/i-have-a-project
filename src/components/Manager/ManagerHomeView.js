@@ -36,7 +36,11 @@ class ManagerHomeView extends Component {
 	handleLogout = () => {
         this.props.history.push('/Login');
         this.props.dispatch({type: 'LOGOUT'});
-	}
+    }
+    
+    goToCreateProject = () => {
+        this.props.history.push('/CreateProject')
+    }
 
     // This function handles sending an invite email to a designer and creates their account in the DB
     sendInvite = (inviteData) => {
@@ -101,7 +105,7 @@ class ManagerHomeView extends Component {
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
-                         <Button className='headerButton'>Create New Project</Button>
+                         <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
                         <Button className='headerButton'>Account Settings</Button>
                         <Button 
 							className='headerButton' 
