@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
+import { theme } from '../../App/Material-UI/MUITheme';
+import { ThemeProvider, Typography, Toolbar, AppBar, Button, Grid } from '@material-ui/core';
 
 class NavButton extends Component {
 
@@ -10,7 +12,14 @@ class NavButton extends Component {
     }
 
     render () {
+        
         return (
+            <ThemeProvider theme={theme}>
+                
+            <Button 
+          position="flex" 
+          color="primary" 
+          className="app-header">
             <div 
                 className={
                     this.props.location.pathname === this.props.page.path ?
@@ -22,6 +31,8 @@ class NavButton extends Component {
             >
                 <h2 className='navBtnLabel'>{this.props.page.label}</h2>
             </div>
+            </Button>
+            </ThemeProvider>
         );
     }
 }

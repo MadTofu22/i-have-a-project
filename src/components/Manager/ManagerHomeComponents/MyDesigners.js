@@ -3,6 +3,8 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
+import { theme } from '../../App/Material-UI/MUITheme';
+import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
 
 import AddTeamMember from '../../Modals/AddTeamMember'
 
@@ -10,11 +12,11 @@ class MyDesigners extends Component {
    
     state = {
 		team: [
-			{id: 1, name: 'Simon', projects: 3, scheduledHours: 40, AvailbleHours: 50},
-			{id: 2, name: 'Elliot', projects: 3, scheduledHours: 40, AvailbleHours: 50},
-			{id: 3, name: 'Rachel', projects: 3, scheduledHours: 40, AvailbleHours: 50},
-			{id: 4, name: 'Peter', projects: 3, scheduledHours: 40, AvailbleHours: 50},
-			{id: 5, name: 'Tom', projects: 3, scheduledHours: 40, availbleHours: 50},
+			{id: 1, name: 'Simon', projects: 3, scheduledHours: 40, AvailableHours: 50},
+			{id: 2, name: 'Elliot', projects: 3, scheduledHours: 40, AvailableHours: 50},
+			{id: 3, name: 'Rachel', projects: 3, scheduledHours: 40, AvailableHours: 50},
+			{id: 4, name: 'Peter', projects: 3, scheduledHours: 40, AvailableHours: 50},
+			{id: 5, name: 'Tom', projects: 3, scheduledHours: 40, availableHours: 50},
         ],
         contracted: [
 			{id: 1, name: 'Simon', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
@@ -30,8 +32,8 @@ class MyDesigners extends Component {
     }
 	render() {
 		return (
-            
-            <div style={{width: '100%'}}>
+            <ThemeProvider theme={theme}>
+            <div style={{width: '100%'}} className="myDesignerInfo">
                 <AddTeamMember 
                     managerName='Test Name'
                     managerEmail='Test Email'
@@ -40,30 +42,36 @@ class MyDesigners extends Component {
                 />
                 <div style={{ height: 250, width: '100%', padding: '20px' }}>
                     <DataGrid
+                    autoHeight={true}
                         columns={[
                                 { field: 'id', headerName: 'ID' },
                                 { field: 'name', headerName: 'Designer' },
-                                { field: 'projects', headerName: '# of Projects' },
-                                { field: 'scheduledHours', headerName: 'Scheduled Hours'},
-                                { field: 'availableHours' , headerName: 'Available Hours' }
+                                { field: 'projects', headerName: '# of Projects', width: 150 },
+                                { field: 'scheduledHours', headerName: 'Scheduled Hours', width: 200},
+                                { field: 'availableHours' , headerName: 'Available Hours', width: 200 }
                             ]}
                         rows={this.state.team}
                     />
                 </div>
-                <div style={{ height: 250, width: '100%' }}>
-                <button onClick={() => this.handleNavTo('')}>Find Designer</button>
+                <br></br>
+                <Button variant="contained" color="secondary" style={{ margin: 20 }}
+                onClick={() => this.handleNavTo('')}>Find Designer</Button>
+                <div style={{ height: 250, width: '100%', padding: '20px' }}>
+            
                 <DataGrid
+                    autoHeight={true}
                     columns={[
                             { field: 'id', headerName: 'ID' },
                             { field: 'name', headerName: 'Designer' },
-                            { field: 'contractedFor', headerName: 'Project Name' },
-                            { field: 'scheduledHours', headerName: 'Scheduled Hours'},
-                            { field: 'manager' , headerName: 'Manager' }
+                            { field: 'contractedFor', headerName: 'Project Name', width: 200 },
+                            { field: 'scheduledHours', headerName: 'Scheduled Hours', width: 200},
+                            { field: 'manager' , headerName: 'Manager', width: 200 }
                         ]}
                     rows={this.state.contracted}
                 />
                 </div>
             </div>
+            </ThemeProvider>
 		);
 	}
 }
