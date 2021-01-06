@@ -17,11 +17,17 @@
 .headerButton {
     justify-self: center;
     margin: auto 1em;
-    align-self: end;
+    align-self: auto;
+    display:flex; 
+    flex-direction: column;
+    
 }
 
 .managerNavBar {
-    display: inline-flex;
+    position: absolute;
+    left: 0px;
+    display:flex; 
+    flex-direction: column;
     max-height: 6vh;
     margin: 0em auto;
 }
@@ -65,12 +71,14 @@
 .dashboardSection {
     height: 40vh;
     width: 40vw;
-    margin: 2.5vh 2.5vw;
+    margin: 7vh 2.5vw;
+    padding-left: 10px;
 }
 
 /* Calendar Component Styling */
 .managerCalendarSection {
-    width: 90vw;
+    width: 70vw;
+    margin-left: 5vw;
 }
 
 h2.manager {
@@ -85,7 +93,7 @@ h2.designer {
 
 .designerCalendarSection {
     display: inline-flex;
-    margin: 2vh 0vw;
+    margin: 2vh 7vw;
     width: 90vw;
 }
 
@@ -95,4 +103,9 @@ h2.designer {
 
 .designerInfoBlock {
     width: 35%;
+    margin-left: 12%;
+}
+
+.myDesignerInfo {
+    margin-left: 15%
 }
