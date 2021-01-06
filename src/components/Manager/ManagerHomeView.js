@@ -39,7 +39,10 @@ class ManagerHomeView extends Component {
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_SOFTWARE_LIST"
-        })
+        });
+        this.props.dispatch({
+            type: "FETCH_MANAGER_PROJECTS"
+        });
     }
 
     render () {
@@ -71,7 +74,11 @@ class ManagerHomeView extends Component {
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to Your Home View</h1>
-                        <button className='headerButton'>Create New Project</button>
+                        <button 
+                            className='headerButton'
+                            onClick={() => this.props.history.push('/CreateProject')}
+                            >Create New Project
+                        </button>
                         <button 
 							className='headerButton' 
 							onClick={() => this.handleLogout()}
