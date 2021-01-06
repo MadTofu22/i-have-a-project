@@ -42,6 +42,10 @@ function* logoutUser(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
+    // now that the session has ended on the server
+    // remove the client-side user object to let
+    // the client-side code know the user is logged out
+    yield put({ type: 'UNSET_USER' });
 
     // the config includes credentials which
     // allow the server session to recognize the user
@@ -49,10 +53,6 @@ function* logoutUser(action) {
     // it will end the session
     yield axios.post('/api/user/logout', config);
 
-    // now that the session has ended on the server
-    // remove the client-side user object to let
-    // the client-side code know the user is logged out
-    yield put({ type: 'UNSET_USER' });
   } catch (error) {
     console.log('Error with user logout:', error);
   }

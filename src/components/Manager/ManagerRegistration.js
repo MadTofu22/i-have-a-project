@@ -19,6 +19,7 @@ class ManagerRegistration extends Component {
         event.preventDefault();
   
       if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
+
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
