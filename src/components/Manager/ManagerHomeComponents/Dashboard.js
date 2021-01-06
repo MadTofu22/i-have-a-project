@@ -14,7 +14,7 @@ class Dashboard extends Component {
                 {
                     field: 'id',
                     headerName: '#',
-                    width: 42,
+                    width: 60,
                 },
                 {
                     field: 'name', // Name of the project
@@ -53,18 +53,18 @@ class Dashboard extends Component {
                 },
             ],
             rows: [
-                {id: 1, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 2, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 3, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 4, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 5, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 6, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 7, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 8, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 9, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 10, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 11, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
-                {id: 12, name: 'Test Proeject', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 1, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 2, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 3, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 4, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 5, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 6, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 7, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 8, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 9, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 10, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 11, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
+                {id: 12, name: 'Test Project', numDesigers: 0, hrsScheduled: 0, hrsRequired: 0, hrsAvailable: 0, hrsActual: 0, status: 'Planned'},
             ],
         },
         
@@ -72,10 +72,10 @@ class Dashboard extends Component {
 
     render () {
         return (
-            <>
+            <div className='dashboardAllSections'>
                 <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Projects at a Glance:</h3>
-                    <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
+                    <DataGrid autoPageSize='true' className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
                 </div>
                 <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Contract Designers this Month:</h3>
@@ -89,7 +89,7 @@ class Dashboard extends Component {
                     <h3 className='sectionHeader'>Contract Requests:</h3>
                     <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
                 </div>
-            </>
+            </div>
         );
     }
 }
