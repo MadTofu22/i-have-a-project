@@ -123,13 +123,13 @@ router.post('/', async (req, res) => {
         try {
             await connection.query("BEGIN")
             // filter designers by software
-            const filteredBySoftware = await connection.query(filterBySoftware, [req.body.software])
+            const filteredBySoftware = await connection.query(filterBySoftware, [req.body.software_id])
             let designersWithSoftware = filteredBySoftware.rows
             // loop through designers found and push any that are available to array
             for (const designer of designersWithSoftware) {
                 const hours = await checkAvail(designer.designer_id)
                 
-                if (hours >= req.body.hoursCommitted) {
+                if (hours >= req.body.requested_hours) {
       
                     availableDesigners.push(designer)
                 }

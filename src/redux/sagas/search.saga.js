@@ -11,17 +11,54 @@ function* fetchsoftware() {
 }
 function* findDesignerSearch(action) {
   try {    
+    let searchResults = []
     console.log('hello from find designer saga', action.payload);
     
     const response = yield axios.post('/api/search', action.payload);
+
+    for (const designer of response.data) {
+      console.log(designer.designer_id);
+      
+      const fetchDesignerData = yield axios.get(`/api/designers/${designer.designer_id}`)
+      const designerSkills = yield axios.get(`/api/profile/skills/${designer.designer_id}`)
+      
+       searchResults.push({
+        designerName: fetchDesignerData.data,
+        designerInfo: designer,
+        skills: designerSkills.data.rows
+      })
+    }
+    console.log(searchResults);
     
-    console.log(response.data);
     yield put({
       type: "SET_SEARCH",
-      payload: response.data
+      payload: searchResults
     })
   } catch (error) {
     console.log(error);
+  }
+}
+function* createContractRequest(action) {
+  try {
+    /**
+     * req.user.id,
+        req.body.contracted_manager_id,
+        req.body.contracted_designer_id,
+        req.body.project_id,
+        req.body.software_id,
+        req.body.requested_hours,
+        req.body.date_sent,
+     */
+    let newRequest = {
+        contracted_manager_id: action.payload.designerInfo.manager_id,
+        contracted_designer_id: action.payload.designerinfo.designer_id,
+        project_id: action.payload.designerinfo.project_id,
+        software_id: action.payload.designerinfo.software_id,
+        requested_hours: action.payload.designerinfo.requested_hours,
+    }
+    yield axios.post('/api/contracts', newRequest)
+  } catch (error) {
+    
   }
 }
 
@@ -30,6 +67,7 @@ function* findDesignerSearch(action) {
 function* searchSaga() {
   yield takeLatest('FETCH_SOFTWARE_LIST', fetchsoftware);
   yield takeEvery('FIND_DESIGNER', findDesignerSearch)
+  yield takeLatest('CREATE_CONTRACT_REQUEST', createContractRequest)
 }
 
 export default searchSaga;
