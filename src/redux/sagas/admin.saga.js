@@ -12,14 +12,14 @@ function* loadUserAccounts() {
 function* deleteUserAccounts(action) {
   try {
     const response = yield axios.delete('/api/admin/delete', action.payload);
-    yield put({ type: 'LOAD_USERS', payload: response.data });
+    yield put({ type: 'FETCH_USERS', payload: response.data });
   } catch (error) {
     console.log('User delete request failed', error);
   }
 }
 
 function* adminSaga() {
-  yield takeLatest('LOAD_USERS', loadUserAccounts);
+  yield takeLatest('FETCH_USERS', loadUserAccounts);
   yield takeLatest('DELETE_USERS', deleteUserAccounts);
 }
 

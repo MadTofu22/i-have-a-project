@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import './AdminPage.css'
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -27,10 +28,12 @@ class AdminPage extends Component {
             {id: 5, first_name: 'Leroy', last_name: 'Dahl', manager: 'Kris'},
         ],
     };
-    // componentDidMount() {
-    //   this.props.dispatch({ type: 'FETCH_MANAGERS' });
-    //   this.props.dispatch({ type: 'FETCH_DESIGNERS' });
-    // }
+    componentDidMount() {
+      this.props.dispatch({ type: 'FETCH_USERS' });
+      this.setState({
+          users: this.props.admin.adminUserList
+      });
+    }
 
     deleteUser = (event, param) => {
         console.log("hello",event, param)
@@ -97,7 +100,9 @@ class AdminPage extends Component {
 }
 
 
-export default withRouter(AdminPage);
+
+  const AdminPageWithRouter = withRouter(AdminPage);
+export default connect(mapStoreToProps)(AdminPageWithRouter);
 
 // (connect(mapStoreToProps)
 
