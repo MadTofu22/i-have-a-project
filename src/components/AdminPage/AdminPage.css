@@ -2,4 +2,9 @@
     display: flex;
     padding: 30px;
     height: 300px;
+    margin: 2vw
+}
+
+.adminInformation {
+    margin-left: 2vw;
 }

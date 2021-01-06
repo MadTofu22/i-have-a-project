@@ -4,9 +4,10 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import profileSaga from './profile.saga';
 
-import calendarSaga from './calendar.saga';
-import projectSaga from './projects.saga';
-import designerSaga from './desginer.saga';
+import calendarSaga from './calendar.saga'
+import projectSaga from './projects.saga'
+import designerSaga from './desginer.saga'
+import searchSaga from './search.saga'
 import contractSaga from './contract.saga';
 
 // rootSaga is the primary saga.
@@ -25,6 +26,7 @@ export default function* rootSaga() {
     projectSaga(),
     designerSaga(),
     profileSaga(),
-    contractSaga()
+    contractSaga(),
+    searchSaga(),
   ]);
 }

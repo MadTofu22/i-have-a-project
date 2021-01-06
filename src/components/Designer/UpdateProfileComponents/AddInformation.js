@@ -43,7 +43,7 @@ class AddInformation extends Component {
 		})
 	}
 
-
+	// This function adds a new career or education item to the users history.
 	handleHistoryInputChange = (event, section, property) => {
 
 		this.setState({
@@ -129,6 +129,19 @@ class AddInformation extends Component {
 				</label>
 				<input 
 					type='text'
+					id='availability_hours'
+					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
+					defaultValue={this.state.profile.designer.availability_hours}
+				/>
+				<br/>
+				{/* NEED TO ADD WEEKEND AVAILABILITY FLAG */}
+				<label
+					htmlFor='availability_hours'
+					className='buildProfileLabel'
+					>Available on Weekends?
+				</label>
+				<input 
+					type='checkbox'
 					id='availability_hours'
 					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
 					defaultValue={this.state.profile.designer.availability_hours}

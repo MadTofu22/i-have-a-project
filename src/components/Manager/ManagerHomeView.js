@@ -11,6 +11,8 @@ import Calendar from './ManagerHomeComponents/Calendar';
 import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     
@@ -32,8 +34,8 @@ class ManagerHomeView extends Component {
 
     // Handles logging out the user 
 	handleLogout = () => {
+        this.props.history.push('/Login');
         this.props.dispatch({type: 'LOGOUT'});
-		this.props.history.push('/');
 	}
 
     // This function handles sending an invite email to a designer and creates their account in the DB
@@ -54,6 +56,11 @@ class ManagerHomeView extends Component {
         };
         console.log('testing invite - inviteData:', inviteData);
         this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
+    }
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "FETCH_SOFTWARE_LIST"
+        })
     }
 
     render () {
@@ -82,24 +89,25 @@ class ManagerHomeView extends Component {
 
         return (
             <Router>
+                <ThemeProvider theme={theme}>
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to Your Home View</h1>
-                        <button className='headerButton'>Create New Project</button>
-                        <button className='headerButton'>Account Settings</button>
-                        <button 
-							className='headerButton' 
-							onClick={() => this.handleLogout()}
-							>Logout
-						</button>
-
-                        {/* This button will run a test to ensure the saga creates the designer in the DB */}
-                        <button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</button>
                     </div>
                     <div className='managerNavBar'>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
+                         <Button className='headerButton'>Create New Project</Button>
+                        <Button className='headerButton'>Account Settings</Button>
+                        <Button 
+							className='headerButton' 
+							onClick={() => this.handleLogout()}
+							>Logout
+						</Button>
+
+                        {/* This button will run a test to ensure the saga creates the designer in the DB */}
+                        <Button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</Button>
                     </div>
                 </div>
 
@@ -132,6 +140,7 @@ class ManagerHomeView extends Component {
                         component={FindDesigners}
                     />
                 </div>
+                </ThemeProvider>
             </Router>
         );
     }

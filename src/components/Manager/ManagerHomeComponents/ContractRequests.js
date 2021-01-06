@@ -50,8 +50,10 @@ class ContractRequests extends Component {
                             <tr>
                                 {this.state.requestingManager.map((inbox) => {
                                     return (
+                                        <>
                                         <td>{inbox.designerResponse.requestingManager}</td>
                                         <td>{inbox.contractedDesigner}</td>
+                                        </>
                                     )
                                 })}
                             </tr>       

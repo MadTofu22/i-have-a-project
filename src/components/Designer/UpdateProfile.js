@@ -27,7 +27,8 @@ class UpdateProfile extends Component {
 			oldData: this.props.store.profile,
 			newData,
 		}
-		console.log('in saveAndNavigate - profileData', profileData)
+		
+		console.log('in saveAndNavigate - profileData', profileData);
 		this.props.dispatch({type: 'UPDATE_PROFILE', payload: profileData});
 		this.props.history.push(path);
 	}
