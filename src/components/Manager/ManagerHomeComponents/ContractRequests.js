@@ -3,10 +3,10 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
-class ContractRequests extends Component {
-    
+class ContractRequests extends Component {   
+
     state = {
-        requestingManager: '',
+        requestingManager: [],
         contractedManager: '',
         contractedDesigner: '',
         project: '',
@@ -16,22 +16,24 @@ class ContractRequests extends Component {
         requestedStatus: ''
     };
 
+    setLocalState = () => {
+        
+    }
+
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_INBOX",
             payload: {id: this.props.store.user.id}
         })
+        console.log("in component did mount", this.props.store.user.id)
+
         this.props.dispatch({
             type: "FETCH_OUTBOX",
             payload: {id: this.props.store.user.id}
         })
     }
 
-
-
     render () {
-        // let inboxTable = Object.keys(this.state.inboxItems[0])
-    
         return (
             <>
             <div>Inbox:</div>
@@ -46,7 +48,12 @@ class ContractRequests extends Component {
                     </thead> 
                         <tbody>
                             <tr>
-                                <td></td>
+                                {this.state.requestingManager.map((inbox) => {
+                                    return (
+                                        <td>{inbox.designerResponse.requestingManager}</td>
+                                        <td>{inbox.contractedDesigner}</td>
+                                    )
+                                })}
                             </tr>       
                         </tbody>
                 </table>
