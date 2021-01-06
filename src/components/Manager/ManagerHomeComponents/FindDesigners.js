@@ -19,14 +19,11 @@ class FindNewDesigner extends Component {
         requested_hours: '',
         due_date: '',
         software_id: 0,
-        project_id: 0
-      },
-      softwareInit: 0
+        project_id: ``
+      }
     };
 
-    handleChange = (event, keyname) => {
-      console.log(event.target.value, 'value of change');
-      
+    handleChange = (event, keyname) => {      
       this.setState({
         newSearch: {
           ...this.state.newSearch,
@@ -37,7 +34,7 @@ class FindNewDesigner extends Component {
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
-     if (event.target.value > 0 && Number(event.target.value) ) {
+     if (event.target.value >= 0 && Number(event.target.value) ) {
         this.setState({
           newSearch: {
             ...this.state.newSearch,
@@ -52,11 +49,7 @@ class FindNewDesigner extends Component {
         payload: this.state.newSearch
       })
     }
-    componentDidMount = () => {
-      this.props.dispatch({
-        type: "FETCH_MANAGER_PROJECTS"
-      })
-    }
+
 
     render() {
       return (
@@ -102,21 +95,21 @@ class FindNewDesigner extends Component {
                 />
             </div>
             <div>
-                  {this.props.store.projects.length > 0 ?
+                  {this.props.store.projects.length > 0 &&
                     <>
-                      <InputLabel id="projectSelect">Select Project</InputLabel>
-                      <Select 
-                        onChange={(event) =>this.handleChange(event, 'project_id')}
-                        labelId="projectSelect"
-                        defaultValue={this.state.newSearch.project_id}
+                      <InputLabel>Choos a Project</InputLabel>
+                      <select 
+                        type='select'
+                        onChange={(event) => this.handleChange(event, 'project_id')}
+                        value={this.props.store.projects.length > 0 && this.state.newSearch.project_id }
                       >
+                          <option value={``}>Project Name</option>
                           {this.props.store.projects.map( (project) => {
-                            return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
+                            return <option key={project.project_id} value={project.project_id}>{project.project_name}</option>
                           })}
-                      </Select>
+                      </select>
                     </>
-                  :
-                  <></>
+
                   }
             </div>
             <div>
