@@ -7,6 +7,9 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import { theme } from '../../App/Material-UI/MUITheme';
+import { ThemeProvider, Typography, Toolbar, AppBar } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -32,6 +35,7 @@ class FindNewDesigner extends Component {
         }
       });
     }
+
     searchDesigner = () => {
       this.props.dispatch({
         type: "FIND_DESIGNER",
@@ -39,16 +43,43 @@ class FindNewDesigner extends Component {
       })
     }
 
+
     render() {
       return (
-        <div>
+        <div style={{
+          position: 'absolute', 
+          left: '50%', 
+          top: '50%',
+          transform: 'translate(-50%, -50%)'
+      }}>
+          <ThemeProvider theme={theme}>
+          <AppBar 
+          position="static" 
+          color="primary" 
+          className="app-header" 
+          style={{ margin: 20 }}  
+          alignItems="center"
+          justify="center">
+            <Toolbar>
+              <Typography variant="h6" color="inherit">
+                Find A Designer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </ThemeProvider>
           <form onSubmit={this.searchDesigner}>
-            <h1>Find New Designer</h1>
+
+
+            
+            <ThemeProvider theme={theme}>
+            
             <div>
+            
                 <TextField
                   id="start"
                   label="Start Date"
                   type="date"
+                  style={{ margin: 20 }}
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -61,6 +92,7 @@ class FindNewDesigner extends Component {
                   id="date"
                   label="Due Date"
                   type="date"
+                  style={{ margin: 20 }}
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -75,6 +107,7 @@ class FindNewDesigner extends Component {
                     id="name"
                     label="Hours"
                     type="number"
+                    style={{ margin: 20 }}
                     helperText="Hours Designer will need to be available for"
                 />
             </div>
@@ -95,11 +128,13 @@ class FindNewDesigner extends Component {
                   <></>
                   }
             </div>
-
-
-            <input type="submit" value="Search" />
+            <Button variant="contained" color="secondary" style={{ margin: 20 }}>
+            {/* <input type="submit" value="Search" /> */}Submit
+            </Button>
+            </ThemeProvider>
+            
             </form>
-        </div>
+            </div>
       );
     }
   }

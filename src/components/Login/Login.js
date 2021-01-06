@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider, Button } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import styles from './Login.css'
 
 class LoginPage extends Component {
   state = {
@@ -31,7 +37,8 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='loginElements'>
+        <ThemeProvider theme={theme}>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -43,15 +50,24 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="email">
               Username:
-              <input
+          <Input
+          id="input-with-icon-adornment"
+          startAdornment=
+          {<InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>}
+          value={this.state.username}
+                onChange={this.handleInputChangeFor('email')}></Input>
+          {/* <label htmlFor="email">
+              Username: */}
+              {/* <input
                 type="text"
                 name="email"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('email')}
-              />
-            </label>
+              /> */}
+            {/* </label> */}
           </div>
           <div>
             <label htmlFor="password">
@@ -74,14 +90,14 @@ class LoginPage extends Component {
           </div>
         </form>
         
-          <button
-            type="button"
+          <Button
+          variant="contained" color="secondary" style={{ margin: 20 }}
             className="link-button"
             onClick={() => {this.props.history.push('/ManagerRegistration')}}
           >
             Register
-          </button>
-        
+          </Button>
+          </ThemeProvider>
       </div>
     );
   }

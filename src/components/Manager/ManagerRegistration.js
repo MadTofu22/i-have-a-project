@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 class ManagerRegistration extends Component {
 
@@ -19,6 +21,7 @@ class ManagerRegistration extends Component {
         event.preventDefault();
   
       if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
+
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
@@ -59,7 +62,8 @@ class ManagerRegistration extends Component {
   
     render() {
       return (
-        <div>
+        <div className="managerRegInfo">
+          <ThemeProvider theme={theme}>
           {this.props.store.errors.registrationMessage && (
             <h2
               className="alert"
@@ -149,14 +153,14 @@ class ManagerRegistration extends Component {
             </div>
           </form>
           
-            <button
-              type="button"
+            <Button
+              variant="contained" color="secondary" style={{ margin: 20 }}
               className="link-button"
               onClick={() => {this.props.history.push('/home')}}
             >
               Login
-            </button>
-          
+            </Button>
+            </ThemeProvider>
         </div>
       );
     }
