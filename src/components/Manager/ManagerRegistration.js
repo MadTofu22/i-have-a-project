@@ -153,7 +153,7 @@ class ManagerRegistration extends Component {
             <button
               type="button"
               className="link-button"
-              onClick={() => {this.props.history.push('/home')}}
+              onClick={() => {this.props.history.push('/Login')}}
             >
               Login
             </button>
