@@ -54,8 +54,8 @@ class ManagerHomeView extends Component {
     render () {
         const pages = [
             {
-                path: '/ManagerHomeView/Dashboard', 
-                label: 'Dashboard'
+                path: '/ManagerHomeView/Projects', 
+                label: 'Projects'
             },
             {
                 path: '/ManagerHomeView/Designers', 
@@ -111,10 +111,10 @@ class ManagerHomeView extends Component {
 
                 {/* Routes to each component */}
                 <div className='homeComponentWrapper'>
-                    <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Dashboard' />
+                    <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Projects' />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/Dashboard`}
+                        path={`/ManagerHomeView/Projects`}
                         component={Dashboard}
                     />
                     <Route
