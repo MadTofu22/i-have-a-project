@@ -39,6 +39,52 @@ router.get('/', (req, res) => {
         res.sendStatus(403)
     }
 });
+router.get('/manager', async (req, res) => {
+
+    if (req.isAuthenticated) {
+        const getDesigners = `SELECT 
+                                    "designer_id",
+                                    "first_name",
+                                    "last_name",
+                                    "rate"
+                                FROM "designers"
+                                JOIN "user" ON "user".designer_id = designers.id
+                            WHERE manager_id = $1;`;
+        const getDesignerProjects = `SELECT * FROM "projects_designers_join" WHERE "designer_id" = $1`
+        const desingerCalendarItems = `SELECT * FROM "designer_calendar_item"
+                                            WHERE "designer_id" = $1;`
+
+
+        const connection = await pool.connect();
+        let desingerInfo = []
+        try{
+            await connection.query('BEGIN;');
+            const designers = await connection.query(getDesigners, [req.user.id])
+            for (const designer of designers.rows) {
+                const desingerProjects = await connection.query(getDesignerProjects, [designer.designer_id])
+                const desingerCalendar = await connection.query(desingerCalendarItems, [designer.designer_id])
+                let designerObj = {
+                    projects: desingerProjects.rows,
+                    calendar: desingerCalendar.rows,
+                    designerInfo: designer
+                }
+                desingerInfo.push(designerObj)
+            }
+            await connection.query('COMMIT');
+            console.log(desingerInfo[0].designerInfo.first_name);
+            
+            res.send(desingerInfo)
+        } catch (error) {
+            await connection.query('ROLLBACK;');
+            console.log(error);
+            res.sendStatus(500);
+        } finally {
+            connection.release();
+        }
+    } else {
+        res.sendStatus(403)
+    }
+})
 
 /**
  * POST route template
@@ -154,16 +200,6 @@ router.put('/', (req, res) => {
         }
 
 
-        // pool.query( queryText, [ req.user.designer_id] )
-        // .then( ( response ) => {
-        //     console.log(response.rows);
-            
-        //     res.send( response.rows )
-        // })
-        // .catch( ( error ) => {
-        //     console.log(error);
-        //     res.sendStatus(500)
-        // })
     } else {
         res.sendStatus(403)
     }
