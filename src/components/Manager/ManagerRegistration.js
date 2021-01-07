@@ -156,7 +156,7 @@ class ManagerRegistration extends Component {
             <Button
               variant="contained" color="secondary" style={{ margin: 20 }}
               className="link-button"
-              onClick={() => {this.props.history.push('/home')}}
+              onClick={() => {this.props.history.push('/Login')}}
             >
               Login
             </Button>

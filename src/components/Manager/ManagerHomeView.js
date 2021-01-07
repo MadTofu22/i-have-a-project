@@ -12,7 +12,7 @@ import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     
@@ -36,38 +36,29 @@ class ManagerHomeView extends Component {
 	handleLogout = () => {
         this.props.history.push('/Login');
         this.props.dispatch({type: 'LOGOUT'});
-	}
-
-    // This function handles sending an invite email to a designer and creates their account in the DB
-    sendInvite = (inviteData) => {
-        inviteData = {
-            userData: {
-                email: 'ukkonendevs@gmail.com',
-                password: this.createRandomPassword(),
-                user_type: 'Designer',
-                first_name: 'Ukkonen',
-                last_name: 'Dev',
-                company: this.props.store.user.company,
-            },
-            designerData: {
-                manager_id: this.props.store.user.id,
-                rate: 60,
-            },
-        };
-        console.log('testing invite - inviteData:', inviteData);
-        this.props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
     }
+    
+    goToCreateProject = () => {
+        this.props.history.push('/CreateProject')
+    }
+
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_SOFTWARE_LIST"
+        });
+        this.props.dispatch({
+            type: "FETCH_MANAGER_PROJECTS"
+        });
+        this.props.dispatch({
+            type: "FETCH_DESIGNERS"
         })
     }
 
     render () {
         const pages = [
             {
-                path: '/ManagerHomeView/Dashboard', 
-                label: 'Dashboard'
+                path: '/ManagerHomeView/Projects', 
+                label: 'Projects'
             },
             {
                 path: '/ManagerHomeView/Designers', 
@@ -93,12 +84,22 @@ class ManagerHomeView extends Component {
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to Your Home View</h1>
+                        <button 
+                            className='headerButton'
+                            onClick={() => this.props.history.push('/CreateProject')}
+                            >Create New Project
+                        </button>
+                        <button 
+							className='headerButton' 
+							onClick={() => this.handleLogout()}
+							>Logout
+						</button>
                     </div>
                     <div className='managerNavBar'>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
-                         <Button className='headerButton'>Create New Project</Button>
+                         <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
                         <Button className='headerButton'>Account Settings</Button>
                         <Button 
 							className='headerButton' 
@@ -113,10 +114,10 @@ class ManagerHomeView extends Component {
 
                 {/* Routes to each component */}
                 <div className='homeComponentWrapper'>
-                    <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Dashboard' />
+                    <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Projects' />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/Dashboard`}
+                        path={`/ManagerHomeView/Projects`}
                         component={Dashboard}
                     />
                     <Route

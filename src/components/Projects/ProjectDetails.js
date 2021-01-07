@@ -27,15 +27,15 @@ class ProjectDetails extends Component {
     }
     goBackHome = () =>{
         let usertype = this.props.store.user.user_type
-        if (usertype === 'Manager') {
-            this.props.history.push(`/ManagerHomeView`)
+        if (usertype === 'manager') {
+            this.props.history.push(`/ManagerHomeView/Dashboard`)
         } else if (usertype === 'Designer') {
             this.props.history.push(`/DesignerHomeView/Projects`)
         }
     }
     formatTableColumns = () => {
         let columnFormat = []
-        if (this.props.store.user.user_type === 'Manager') {
+        if (this.props.store.user.user_type === 'manager') {
             columnFormat = [
                 { field: 'id', headerName: 'ID' },
                 { field: 'first_name', headerName: 'First Name' },
@@ -72,7 +72,7 @@ class ProjectDetails extends Component {
                     :
                     <></>
                 }
-                {this.props.store.user.user_type === 'Manager' ?
+                {this.props.store.user.user_type === 'manager' ?
                     <>
                     <button onClick={this.goToEditPage}>Edit Project</button>
                     <AddDesigner project_id={this.props.match.params.project_id} />

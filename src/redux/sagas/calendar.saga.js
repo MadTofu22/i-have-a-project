@@ -31,7 +31,7 @@ function* fetchCalendarEventsByID() {
       let formattedEvent = {
         ...conditionalProperties,
         start: event.start.slice(0,10),
-        id: event.event_Id,
+        id: event.event_id,
         designer_Id: event.designer_id,
         hoursCommitted: event.hoursCommitted,
         project_id: event.project_id,
@@ -54,7 +54,7 @@ function* updateCalendarEvent(action) {
 }
 function* DeleteCalendarEvent(action) {
   try {
-    yield axios.delete('/api/calendar', action.payload);
+    yield axios.delete(`/api/calendar/${action.payload.id}`);
     yield put({
       type: "FETCH_CALENDAR_EVENTS_BY_ID"
     })
@@ -72,12 +72,25 @@ function* createCalendarEvent(action) {
     console.log(error);
   }
 }
+function* fetchManagerCalendar(action) {
+
+  try {
+    const calendarData = yield axios.get('/api/calendar/manager')
+    yield put({
+      type: "SET_MANAGER_CALENDAR",
+      payload: calendarData.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* calendarSaga() {
   yield takeLatest('FETCH_CALENDAR_EVENTS_BY_ID', fetchCalendarEventsByID);
   yield takeLatest('CREATE_CALENDAR_EVENT', createCalendarEvent)
   yield takeEvery('UPDATE_CALENDAR_EVENT', updateCalendarEvent);
   yield takeEvery('DELETE_CALENDAR_EVENT', DeleteCalendarEvent)
+  yield takeLatest('FETCH_MANAGER_CALENDAR', fetchManagerCalendar)
 }
 
 export default calendarSaga;

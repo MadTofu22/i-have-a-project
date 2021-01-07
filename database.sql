@@ -43,7 +43,6 @@ CREATE TABLE "projects_designers_join" (
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL,
 	"hours_est" int,
-	"request_status" varchar(30)
 );
 
 CREATE TABLE "designer_calendar_item" (
@@ -83,8 +82,15 @@ create table "designer_software_join" (
 	"proficient" boolean not null
 );
 
+<<<<<<< HEAD
 INSERT INTO "software" ("label")
 VALUES ('AutoCAD'),
+=======
+
+INSERT INTO "software" ("label")
+VALUES
+('AutoCAD'),
+>>>>>>> 7502d9cdb755f840cbf25799cc873e148878e0f3
 ('Blendr'),
 ('Adobe Illustrator'),
 ('MS Paint'),

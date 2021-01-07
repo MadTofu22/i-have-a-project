@@ -14,7 +14,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import styles from './Projects.css'
+import './Projects.css'
 import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider } from '@material-ui/core';
 
@@ -58,7 +58,7 @@ class CreateProject extends Component {
 	handleSubmit = () => {
 		this.props.dispatch({
 			type: "CREATE_PROJECT",
-			payload: this.state.newProject
+			payload: {project: this.state.newProject, nav: this.props.history}
 		})
 	}
 	componentDidMount = () => {
@@ -143,7 +143,7 @@ class CreateProject extends Component {
 						value={this.state.newProject.status}
 						>
 						{this.state.status.map((option) => (
-							<MenuItem  value={option}>
+							<MenuItem key={option} value={option}>
 							{option}
 							</MenuItem>
 						))}

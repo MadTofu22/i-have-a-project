@@ -20,7 +20,7 @@ class DesignerHomeView extends Component {
 	componentDidMount = () => {
 		this.props.dispatch({
 			type: 'FETCH_DESIGNER_PROJECTS',
-			payload: this.props.store.user.id
+			payload: this.props.store.user.designer_id
 		});
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
