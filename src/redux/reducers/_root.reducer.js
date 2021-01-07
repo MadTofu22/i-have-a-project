@@ -9,6 +9,7 @@ import designer from './designer.saga'
 import projectDetails from './projectDetails.reducer'
 import software from './software.reducer'
 import search from './search.reducer'
+import admin from './admin.reducer';
 import managerCalendar from './managerCalendar.reducer'
 
 // rootReducer is the primary reducer for our entire project
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   projectDetails,
   software,
   search,
+  admin,
   managerCalendar,
 });
 

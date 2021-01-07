@@ -82,10 +82,8 @@ create table "designer_software_join" (
 	"proficient" boolean not null
 );
 
-
 INSERT INTO "software" ("label")
-VALUES
-('AutoCAD'),
+VALUES ('AutoCAD'),
 ('Blendr'),
 ('Adobe Illustrator'),
 ('MS Paint'),
