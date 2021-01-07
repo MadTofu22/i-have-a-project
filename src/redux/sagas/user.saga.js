@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
-function* fetchUser() {
+function* fetchUser(action) {
   try {
     const config = {
       headers: { 'Content-Type': 'application/json' },
@@ -19,6 +19,7 @@ function* fetchUser() {
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
     yield put({ type: 'SET_USER', payload: response.data });
+    yield action.payload.history.push('/home');
   } catch (error) {
     console.log('User get request failed', error);
   }
