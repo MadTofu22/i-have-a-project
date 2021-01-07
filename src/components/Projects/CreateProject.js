@@ -58,7 +58,7 @@ class CreateProject extends Component {
 	handleSubmit = () => {
 		this.props.dispatch({
 			type: "CREATE_PROJECT",
-			payload: this.state.newProject
+			payload: {project: this.state.newProject, nav: this.props.history}
 		})
 	}
 	componentDidMount = () => {
