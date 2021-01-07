@@ -72,7 +72,7 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/Login" />
-            
+
              <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to Home Page based on user 
@@ -80,15 +80,23 @@ class App extends Component {
               exact
               path="/Login"
               component={Login}
-              authRedirect={this.state.userHome}
+              authRedirect={'/home'}
             />
              <ProtectedRoute
               path="/DesignerHomeView"
               component={DesignerHomeView}
             />
+             <ProtectedRoute
+             // with authRedirect:
+              // - if logged in, redirects to Home Page based on user 
+              // if not logged in shows login
+              exact
+              path="/home"
+              component={Login}
+              authRedirect={this.state.userHome}
+            />
 
-            {/* Te+mp route to help with display and testing */}
-            <Route
+            <ProtectedRoute
               path={`/ManagerHomeView`}
               component={ManagerHomeView}
             />
@@ -111,11 +119,11 @@ class App extends Component {
             />
 
             <Redirect exact from='/UpdateProfile' to='/UpdateProfile/Info' />
-            <Route
+            <ProtectedRoute
               path={'/UpdateProfile'}
               component={UpdateProfile}
             />
-            <Route 
+            <ProtectedRoute 
               path={'/CreateProject'}
               component={CreateProject}
             />

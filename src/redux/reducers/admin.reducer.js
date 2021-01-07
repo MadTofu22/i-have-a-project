@@ -1,10 +1,11 @@
-const sampleReducer = (state = {}, action) => {
+const adminUserList = (state = [], action) => {
     switch (action.type) {
-      case 'SAMPLE_CASE':
+      case 'UPDATE_USERS_LIST_IN_STORE':
+        console.log("in action.payload for admin reducer", action.payload);
         return action.payload;
       default:
         return state;
     }
   };
 
-  export default sampleReducer;
+  export default adminUserList;

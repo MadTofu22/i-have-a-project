@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/:designer_id', (req, res) => {
-    console.log(req.params)
+    console.log('get designer projects', req.params)
     
     if(req.isAuthenticated){
         
@@ -155,7 +155,7 @@ router.post('/addDesigner', (req, res) => {
                                 Values($1, $2)`
 
     if (req.isAuthenticated) {
-        pool.query(addDesigner, [req.body.designer_id, req.body.project_id])
+        pool.query(addDesigner, [req.body.id, req.body.project_id])
         .then( (response) => {
             console.log(response)
             res.sendStatus(201)

@@ -24,19 +24,9 @@ class MyProfile extends Component {
 				graduation_date: '01-15-21',
 				degree: 'Fullstack Software Engineering',
 			}],
-			certification: [{
-				graduation_date: '',
-				certification: ''
-			}],
+			certification: [],
 			skills: [
-				{
-					label: 'React',
-					proficiency: 5
-				},
-				{
-					label: 'JavaScript',
-					proficiency: 5
-				}
+				
 			],
 			availability: [{
 
@@ -44,6 +34,17 @@ class MyProfile extends Component {
 		}
 	};
 	
+	componentDidMount = () => {
+		if(this.props.store.profile) {
+			this.setProfileData();
+		}
+	}
+
+	setProfileData = () => {
+		this.setState = ({
+			profile: this.props.store.profile
+		})
+	}
 
 	render() {
 		return (
@@ -51,7 +52,9 @@ class MyProfile extends Component {
 				<div className="left-ProfileColumn">
 					
 					<div className="profileImg">
-						profile image
+						<img
+							src=''
+						></img>
 					</div>
 					<div className="profileName">
 						{this.state.profile.first_name} {this.state.profile.last_name}
