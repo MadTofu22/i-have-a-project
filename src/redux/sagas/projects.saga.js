@@ -22,7 +22,8 @@ function* fetchProjectDetails(action) {
 }
 function* createProject(action) {
   try {
-    yield axios.post('/api/projects', action.payload)
+    yield axios.post('/api/projects', action.payload.project)
+    yield action.payload.nav.push('/ManagerHomeView')
     yield put({
       type: 'FETCH_MANAGER_PROJECTS'
     })
