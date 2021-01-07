@@ -16,10 +16,6 @@ class ContractRequests extends Component {
         status: ''
     };
 
-    setLocalState = () => {
-        
-    }
-
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_INBOX",
@@ -35,7 +31,10 @@ class ContractRequests extends Component {
 
     render () {
         return (
+        
             <>
+            {/* {JSON.stringify(this.props.store.outbox)} */}
+            {/* {JSON.stringify(this.props.store.inbox)} */}
             <div>Inbox:</div>
                 <table> 
                     <thead>
@@ -48,14 +47,7 @@ class ContractRequests extends Component {
                     </thead> 
                         <tbody>
                             <tr>
-                                {this.state.requestingManager.map((inbox) => {
-                                    return (
-                                        <>
-                                        <td>{inbox.designerResponse.requestingManager}</td>
-                                        <td>{inbox.contractedDesigner}</td>
-                                        </>
-                                    )
-                                })}
+                             
                             </tr>       
                         </tbody>
                 </table>
@@ -74,9 +66,21 @@ class ContractRequests extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>       
+                    
+                    {this.props.store.outbox.length > 0 ?
+                                this.props.store.outbox.map((outbox) => {
+                                    return(
+                                        <tr>
+                                        <td>{outbox.designerData.first_name + " " + outbox.designerData.last_name}</td>
+                                        <td>{outbox.managerData.first_name}</td>
+                                        </tr>
+                                    )
+                                })
+                                :
+                                <>
+                                </>
+                                }
+                          
                 </tbody>
             </table>
             <button onClick={() => this.handleOutboxAccept}>accept</button>

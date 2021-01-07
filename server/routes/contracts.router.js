@@ -15,7 +15,7 @@ router.get('/outbox/:id', async (req, res) => {
 
         const designerQueryText = `
             SELECT "user".*, designers.* FROM "designers"
-            JOIN "user" ON "user".designer_id = designers.id
+            LEFT JOIN "user" ON "user".designer_id = designers.id
             WHERE designers.id = $1;`;
 
         const managerQueryText = `
