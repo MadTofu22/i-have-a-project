@@ -37,7 +37,7 @@ class UpdateProfile extends Component {
 		console.log('UpdateProfile component has rendered - this.state:', this.state);
 		return (
 			<Router>
-				<h1>Build Your Perofile!</h1>
+				<h1>Build Your Profile!</h1>
 				<div className='profileInputContainer'>
 					<Route exact path='/UpdateProfile/Skills'>
 						<AddSkills 

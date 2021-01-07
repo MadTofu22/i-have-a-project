@@ -6,6 +6,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import { theme } from '../App/Material-UI/MUITheme';
+import { ThemeProvider } from '@material-ui/core';
 
 class EditProject extends Component {
 	state = {
@@ -67,6 +69,7 @@ class EditProject extends Component {
 
 	render() {
 		return (
+            <ThemeProvider theme={theme}>
 			<div>
                 {  this.props.store.projectDetails.projectDetails ?
                     <form onSubmit={this.handleSubmit}>
@@ -77,6 +80,8 @@ class EditProject extends Component {
                         onChange={(event) => this.handlechange(event, 'project_name')}
                         value={this.state.projectDetails.project_name}
                     />
+                    	<br></br>
+					<br></br>
                     <TextField
                         id="date"
                         label="Start Date"
@@ -87,6 +92,8 @@ class EditProject extends Component {
                         onChange={(event) => this.handlechange(event, 'start')}
                         value={this.state.projectDetails.start.slice(0, 10)}
                     />
+                    	<br></br>
+					<br></br>
                     <TextField
                         id="date"
                         label="Due Date"
@@ -97,6 +104,8 @@ class EditProject extends Component {
                         onChange={(event) => this.handlechange(event, 'due_date')}
                         value={this.state.projectDetails.due_date.slice(0, 10)}
                     />
+                    	<br></br>
+					<br></br>
                     <TextField
                         id="notes"
                         label="Short Description"
@@ -121,6 +130,8 @@ class EditProject extends Component {
                                 </MenuItem>)
                         })}
                     </TextField>
+                    <br></br>
+					<br></br>
                     <Button 
                         type="submit"
                         variant="contained" 
@@ -133,6 +144,7 @@ class EditProject extends Component {
                 <></>
                 }
 			</div>
+            </ThemeProvider>
 		);
 	}
 }

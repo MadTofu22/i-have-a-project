@@ -8,6 +8,9 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import ProjectActionMenu from './ProjectActionMenu'
 
+import Button from '@material-ui/core/Button'
+import HomeIcon from '@material-ui/icons/Home';
+
 class ProjectDetails extends Component {
     
     state = {
@@ -63,11 +66,21 @@ class ProjectDetails extends Component {
     render () {
         return (
             <div >
+
+                <h1>Projects</h1>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<HomeIcon/>}
+                    onClick={this.goBackHome}
+                >Home</Button>
                 {this.props.store.projectDetails.projectDetails ? 
                     <>
-                        <div>{this.props.store.projectDetails.projectDetails.project_name}</div>
-                        <div>{this.props.store.projectDetails.projectDetails.notes}</div>
-                        <div>{this.props.store.projectDetails.projectDetails.start + '--' + this.props.store.projectDetails.projectDetails.due_date}</div>
+                        <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
+                        <p>Project Description: {this.props.store.projectDetails.projectDetails.notes}</p>
+                        <div>Project Start:  {this.props.store.projectDetails.projectDetails.start.slice(0,10)}</div>
+                        <div>Project End:  {this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}</div>
                     </>
                     :
                     <></>
@@ -80,7 +93,6 @@ class ProjectDetails extends Component {
                     :
                     <></>
                 }
-                <button onClick={this.goBackHome}>Back</button>
                 {this.props.store.projectDetails.projectDesigners ?
                     <div style={{ height: 300, width: '100%' }}>
                         <h2>Project Designers</h2>

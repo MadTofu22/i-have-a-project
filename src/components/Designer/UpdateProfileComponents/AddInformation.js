@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import TextField from '@material-ui/core/TextField';
 
 class AddInformation extends Component {
 
@@ -83,7 +84,7 @@ class AddInformation extends Component {
 	render() {
 		console.log('UpdateProfile/info has rendered - this.props:', this.props, this.state)
 		return (
-			<>
+			<div className="addInfoWrap">
 				<h2>Add Information</h2>
 				{JSON.stringify(this.state.profile)}
 				<br/>
@@ -92,7 +93,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 				>Phone Number:
 				</label>
-				<input
+				<TextField
 					type='text'
 					id='phoneNum'
 					defaultValue={this.state.profile.designer.phone}
@@ -103,7 +104,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 				>Profile Image URL:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='imgUrl'
 					defaultValue={this.state.profile.designer.photo}
@@ -115,7 +116,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 					>LinkedIn Page:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='linkedinUrl'
 					onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
@@ -127,7 +128,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 					>Hours Available per Week:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='availability_hours'
 					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
@@ -152,7 +153,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 				>Degree:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='educationDegree'
 					ref={this.educationTitleInputRef}
@@ -163,7 +164,7 @@ class AddInformation extends Component {
 					className='buildProfileLabel'
 				>Institution:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='educationLocation'
 					ref={this.educationLocationInputRef}
@@ -183,7 +184,7 @@ class AddInformation extends Component {
 				>
 					Position:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='careerTitle'
 					ref={this.careerTitleInputRef}
@@ -195,7 +196,7 @@ class AddInformation extends Component {
 				>
 					Company:
 				</label>
-				<input 
+				<TextField 
 					type='text'
 					id='careerLocation'
 					ref={this.careerLocationInputRef}
@@ -219,7 +220,7 @@ class AddInformation extends Component {
 				>
 					Save and go to Skills
 				</button>
-			</>
+			</div>
 		);
 	}
 }
