@@ -25,8 +25,8 @@ VALUES ('1', 'Active', '10.10.2021', '9.10.2020', 'a current project for manager
 ('7', 'active', '2/01/2021', '1/01/2021', 'project4', 'project4'),
 ('7', 'active', '2/01/2021', '1/01/2021', 'project5', 'project5'),
 ('7', 'active', '2/01/2021', '1/01/2021', 'project6', 'project6'),
-('8', 'active', '2/01/2021', '1/01/2021', 'project7', 'project7'),
-('8', 'active', '2/01/2021', '1/01/2021', 'project8', 'project8');
+('7', 'active', '2/01/2021', '1/01/2021', 'project7', 'project7'),
+('7', 'active', '2/01/2021', '1/01/2021', 'project8', 'project8');
 
 -- Designers Test Data
 
