@@ -76,7 +76,7 @@ class Dashboard extends Component {
                             onRowClick={(rowParams) => this.handleClickProjects(rowParams)}
                          />
                         :
-                        ''
+                        <div>No Projects found.</div>
                     }
                 </div>
                 {/* <div className='dashboardSection'>

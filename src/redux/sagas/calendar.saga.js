@@ -72,12 +72,25 @@ function* createCalendarEvent(action) {
     console.log(error);
   }
 }
+function* fetchManagerCalendar(action) {
+
+  try {
+    const calendarData = yield axios.get('/api/calendar/manager')
+    yield put({
+      type: "SET_MANAGER_CALENDAR",
+      payload: calendarData.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* calendarSaga() {
   yield takeLatest('FETCH_CALENDAR_EVENTS_BY_ID', fetchCalendarEventsByID);
   yield takeLatest('CREATE_CALENDAR_EVENT', createCalendarEvent)
   yield takeEvery('UPDATE_CALENDAR_EVENT', updateCalendarEvent);
   yield takeEvery('DELETE_CALENDAR_EVENT', DeleteCalendarEvent)
+  yield takeLatest('FETCH_MANAGER_CALENDAR', fetchManagerCalendar)
 }
 
 export default calendarSaga;
