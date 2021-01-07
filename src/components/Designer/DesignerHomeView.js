@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
 	HashRouter as Router,
+	Redirect,
 	Route,
 	withRouter
   } from 'react-router-dom';
@@ -70,6 +71,7 @@ class DesignerHomeView extends Component {
 								return <NavButtonDesigner key={index} page={page} />
 							})}
 						</div>
+						<Redirect exact path='/DesignerHomeView' to='/DesignerHomeView/MyProfile' />
 						<Route
 							exact
 							path={`/DesignerHomeView/MyProfile`}
