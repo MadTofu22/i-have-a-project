@@ -79,7 +79,7 @@ class Dashboard extends Component {
                         ''
                     }
                 </div>
-                <div className='dashboardSection'>
+                {/* <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Contract Designers this Month:</h3>
                     <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
                 </div>
@@ -90,7 +90,7 @@ class Dashboard extends Component {
                 <div className='dashboardSection'>
                     <h3 className='sectionHeader'>Contract Requests:</h3>
                     <DataGrid className='projectsTable' rows={this.state.projectsData.rows} columns={this.state.projectsData.columns} pageSize={10} />
-                </div>
+                </div> */}
             </div>
         );
     }
