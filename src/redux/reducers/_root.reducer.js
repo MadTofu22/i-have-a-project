@@ -9,11 +9,8 @@ import designer from './designer.saga'
 import projectDetails from './projectDetails.reducer'
 import software from './software.reducer'
 import search from './search.reducer'
-<<<<<<< HEAD
 import admin from './admin.reducer';
-=======
 import managerCalendar from './managerCalendar.reducer'
->>>>>>> 7502d9cdb755f840cbf25799cc873e148878e0f3
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,11 +28,8 @@ const rootReducer = combineReducers({
   projectDetails,
   software,
   search,
-<<<<<<< HEAD
   admin,
-=======
   managerCalendar,
->>>>>>> 7502d9cdb755f840cbf25799cc873e148878e0f3
 });
 
 export default rootReducer;
