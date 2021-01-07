@@ -45,8 +45,8 @@ class ManagerCalendar extends Component {
                                     className='designerWeek'
                                     plugins={[dayGridPlugin]}
                                     initialView='dayGridWeek'
-                                    height='20vh'
-                                    dayMinWidth='5vw'
+                                    height='200px'
+                                    dayMinWidth='4vw'
                                     events={element.calendar}
                                 />
                                 </div>

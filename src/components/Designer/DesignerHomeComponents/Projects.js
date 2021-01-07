@@ -27,7 +27,7 @@ class Projects extends Component {
 						onRowClick={(rowParams) => this.handleClickProjects(rowParams)}
 					/>
 				:
-						<></>
+						<div>You don't have any projects assigned yet!</div>
 				}
 				
    			</div>

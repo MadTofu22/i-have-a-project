@@ -77,17 +77,19 @@ class Calendar extends Component {
 
 	render() {
 		return (
-			<div className="CalendarWrap">
+			<div className="calendarWrap">
 				<AddCalendarEvent  
 					closeClickEvent={this.closeClickEvent}
 					clickEvent={this.state.clickEvent}
 				/>
-				<FullCalendar
-					plugins={[ dayGridPlugin ]}
-					initialView="dayGridMonth"
-					events={this.state.events}
-					eventClick={(info) => this.OpenCalendarEventModal(info)}
-      			/>
+				<div className="">
+					<FullCalendar
+						plugins={[ dayGridPlugin ]}
+						initialView="dayGridMonth"
+						events={this.state.events}
+						eventClick={(info) => this.OpenCalendarEventModal(info)}
+					/>
+				</div>
 			</div>
 			
 		);

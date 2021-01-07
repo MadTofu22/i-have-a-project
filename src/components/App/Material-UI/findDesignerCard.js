@@ -34,23 +34,24 @@ function FindDesignerCard(props) {
                     <Typography variant="h5" component="h2">
                         {props.designeInfor.photo}
                     </Typography>
-                    {props.designeInfor.skills.map(skill => {
-                        return (
-                            <>
-                                <Typography gutterBottom>
-                                    {skill.label}
-                                </Typography>
-                                <Slider 
-                                        value={skill.proficiency}
-                                        step={1}
-                                        marks
-                                        min={1}
-                                        max={5}  
-                                />
-                            </>
-                        )
-                    })}
-
+                    <div style={{width: '100%', height: '150px', overflow: 'scroll'}}>
+                        {props.designeInfor.skills.map(skill => {
+                            return (
+                                <>
+                                    <Typography gutterBottom>
+                                        {skill.label}
+                                    </Typography>
+                                    <Slider 
+                                            value={skill.proficiency}
+                                            step={1}
+                                            marks
+                                            min={1}
+                                            max={5}  
+                                    />
+                                </>
+                            )
+                        })}
+                    </div>
                 </CardContent>
                 <CardActions>
                     <Button onClick={requestDesigner} size="small">Request Designer</Button>
