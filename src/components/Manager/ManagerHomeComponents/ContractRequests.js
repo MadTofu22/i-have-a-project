@@ -88,6 +88,7 @@ class ContractRequests extends Component {
                                         <td>{outbox.contractData.project_name}</td>
                                         <td>{outbox.designerData.rate}</td>
                                         <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
+                                        <td>{outbox.contractData.status}</td>
                                         </tr>
                                     )
                                 })
