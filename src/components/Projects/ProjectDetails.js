@@ -7,9 +7,13 @@ import AddDesigner from '../Modals/AddDesigner'
 import { DataGrid } from '@material-ui/data-grid';
 
 import ProjectActionMenu from './ProjectActionMenu'
+import Paper from '@material-ui/core/Paper';
 
 import Button from '@material-ui/core/Button'
 import HomeIcon from '@material-ui/icons/Home';
+import TextField from '@material-ui/core/TextField';
+
+
 
 class ProjectDetails extends Component {
     
@@ -78,9 +82,27 @@ class ProjectDetails extends Component {
                 {this.props.store.projectDetails.projectDetails ? 
                     <>
                         <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
-                        <p>Project Description: {this.props.store.projectDetails.projectDetails.notes}</p>
-                        <div>Project Start:  {this.props.store.projectDetails.projectDetails.start.slice(0,10)}</div>
-                        <div>Project End:  {this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}</div>
+                        <p>Project Description: <Paper  style={{width: '300px', height: '20px', padding: '30px'}}>{this.props.store.projectDetails.projectDetails.notes}</Paper></p>
+
+
+                                <TextField
+                                    id="date"
+                                    label="Start Date"
+                                    type="date"
+                                    value={this.props.store.projectDetails.projectDetails.start.slice(0,10)}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />
+                                <TextField
+                                    id="date"
+                                    label="Due Date"
+                                    type="date"
+                                    value={this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />
                     </>
                     :
                     <></>

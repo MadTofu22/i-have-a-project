@@ -131,8 +131,7 @@ class FindNewDesigner extends Component {
                   }
             </div>
               <input type="submit" value="Search" />
-            </form>
-
+            </form>   
             {this.props.store.search.length > 0 &&
               this.props.store.search.map( (desingerObj) => {
                 return <FindDesignerCard 
@@ -140,7 +139,6 @@ class FindNewDesigner extends Component {
                           key={desingerObj.designer_id}
                           search={this.state.newSearch}
                         />
-                
               })
             }
         </div>

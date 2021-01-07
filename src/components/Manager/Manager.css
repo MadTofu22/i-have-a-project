@@ -93,6 +93,7 @@ h2.designer {
 
 .designerCalendarSection {
     display: inline-flex;
+    height: 100px;
     margin: 2vh 7vw;
     width: 90vw;
 }
