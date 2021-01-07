@@ -104,7 +104,7 @@ class App extends Component {
               path={'/ManagerRegistration'}
               component={ManagerRegistration}
             />
-             <Route 
+             <ProtectedRoute
               exact
               path={'/AdminPage'}
               component={AdminPage}
