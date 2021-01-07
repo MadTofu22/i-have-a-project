@@ -29,6 +29,18 @@ class ContractRequests extends Component {
         })
     }
 
+    dateFunction = (date) => {
+        console.log("date", date)
+        let day = date.slice(8,10)
+        console.log("date", day)
+        let month = date.slice(5,7)
+        console.log("date", month)
+        let year = date.slice(0,4)
+        console.log("date", year)
+        let americanDateFormat = month + "/" + day + "/" + year
+        return americanDateFormat
+    }
+
     render () {
         return (
         
@@ -70,9 +82,12 @@ class ContractRequests extends Component {
                     {this.props.store.outbox.length > 0 ?
                                 this.props.store.outbox.map((outbox) => {
                                     return(
-                                        <tr>
+                                        <tr>                                        
                                         <td>{outbox.designerData.first_name + " " + outbox.designerData.last_name}</td>
-                                        <td>{outbox.managerData.first_name}</td>
+                                        <td>{outbox.managerData.first_name + " " + outbox.managerData.last_name}</td>
+                                        <td>{outbox.contractData.project_name}</td>
+                                        <td>{outbox.designerData.rate}</td>
+                                        <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
                                         </tr>
                                     )
                                 })
