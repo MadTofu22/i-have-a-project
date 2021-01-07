@@ -49,6 +49,9 @@ class ManagerHomeView extends Component {
         this.props.dispatch({
             type: "FETCH_MANAGER_PROJECTS"
         });
+        this.props.dispatch({
+            type: "FETCH_DESIGNERS"
+        })
     }
 
     render () {
