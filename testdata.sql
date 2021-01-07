@@ -4,7 +4,7 @@
 
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
 VALUES ('simong@gmail.com', 'link', 'manager', 'Simon', 'Germscheid', 'Prime Digital Academy', null),
-('tstutler@gmail.com', 'biscuits', 'admin', 'Tom', 'Stutler', 'Prime Digital Academy', null),
+('tstutler@gmail.com', 'biscuits', 'manager', 'Tom', 'Stutler', 'Prime Digital Academy', null),
 ('elliotmalc@gmail.com', 'alchemy', 'designer', 'Elliot', 'Malcolm', 'Prime Digital Academy', '2'),
 ('rsmith@gmail.com', 'travis<3', 'designer', 'Rachel', 'Smith', 'Prime Digital Academy', '1'),
 ('peterp@gmail.com', '2021', 'manager', 'Peter', 'P', 'Prime Digital Academy', null),
@@ -34,9 +34,9 @@ INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate", "av
 VALUES ('2', '6124387648', 'www.linkedin.com', 'photoURL', '25', '30', 'true'),
 ('1', '6513986342', 'www.linkedin.com', 'photoURL', '35', '20', 'false'),
 ('7', '6513986342', 'designer1', 'photo1', '40', '20', false),
-('8', '6513986342', 'designer2', 'photo2', '40', '20', false),
+('7', '6513986342', 'designer2', 'photo2', '40', '20', false),
 ('7', '6513986342', 'designer3', 'photo3', '40', '20', false),
-('8', '6513986342', 'designer4', 'photo4', '40', '20', false),
+('7', '6513986342', 'designer4', 'photo4', '40', '20', false),
 ('7', '6513986342', 'designer5', 'photo5', '40', '20', false);
 
 -- Skills Test Data
@@ -77,7 +77,7 @@ values ('1', '1', true),
 ('1', '5', false);
 
 insert into contract_requests (requesting_manager_id, contracted_manager_id , contracted_designer_id, project_id, software_id, requested_hours, date_sent, request_status)
-values ('7', '8', '4', '4', '1', '20', '1/1/2021', 'pending'), 
-('7', '8', '6', '5', '1', '20', '1/1/2021', 'pending'),
+values ('7', '7', '4', '4', '1', '20', '1/1/2021', 'pending'), 
+('7', '7', '6', '5', '1', '20', '1/1/2021', 'pending'),
 ('7', '1', '1', '6', '1', '20', '1/1/2021', 'pending'),
 ('7', '1', '2', '6', '1', '20', '1/1/2021', 'pending');

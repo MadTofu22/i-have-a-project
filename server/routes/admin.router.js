@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     console.log('in admin.router');
-    const queryText = `SELECT * FROM "user";`;
+    const queryText = `SELECT * FROM "user" WHERE NOT user_type = 'admin';`;
     pool.query(queryText).then(response => {
         // console.log(response.rows);
         res.send(response.rows);
