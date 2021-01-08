@@ -44,6 +44,7 @@ class App extends Component {
     console.log(this.state.userHome);
     
   }
+  
   componentDidUpdate = () => {
 
     if ((this.props.store.user.id !== this.state.user.id) && this.props.store.user.id) {
