@@ -126,6 +126,7 @@ class AddInformation extends Component {
 		this.setState({
 			...this.state,
 			newProfile: {
+				...this.state.newProfile,
 				[section]: {
 					...this.state.newProfile[section],
 					[property]: event.target.value,
