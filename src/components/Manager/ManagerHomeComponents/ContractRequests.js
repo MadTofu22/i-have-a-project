@@ -41,7 +41,9 @@ class ContractRequests extends Component {
         return americanDateFormat
     }
 
-
+    handleInboxAccept = () => {
+        
+    }    
 
     render () {
         return (
@@ -62,13 +64,18 @@ class ContractRequests extends Component {
                         <tbody>
                         {this.props.store.inbox.length > 0 ?
                                 this.props.store.inbox.map((inbox) => {
+                                    if (inbox.status !== 'complete'){
                                     return(
                                         <tr>                                        
                                         <td>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</td>
                                         <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
+                                        <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
+                                        <td><button onClick={() => this.handleInboxAccept}>accept</button></td>
+                                        <td><button onClick={() => this.handelInboxAccept}>deny</button></td>
                                         </tr>
                                     )
+                                    }
                                 })
                                 :
                                 <>
@@ -77,8 +84,6 @@ class ContractRequests extends Component {
                                  
                         </tbody>
                 </table>
-            <button onClick={() => this.handleInboxAccept}>accept</button>
-            <button onClick={() => this.handelInboxAccept}>deny</button>
             <div>Outbox:</div>
             <table>
                 <thead>
@@ -103,6 +108,7 @@ class ContractRequests extends Component {
                                         <td>{outbox.designerData.rate}</td>
                                         <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
                                         <td>{outbox.contractData.status}</td>
+                                        <td><button onClick={() => this.handleOutboxDelete}>delete</button></td>
                                         </tr>
                                     )
                                 })
@@ -113,8 +119,7 @@ class ContractRequests extends Component {
                           
                 </tbody>
             </table>
-            <button onClick={() => this.handleOutboxAccept}>accept</button>
-            <button onClick={() => this.handleOutboxDeny}>deny</button>
+    
             </>
         );
     }
