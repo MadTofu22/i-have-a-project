@@ -50,7 +50,7 @@
 .navBtn:hover {
     display: flex;
     height: 3vh;
-    margin: 1.25vh .25em 0vh .25em;
+
     background: radial-gradient(rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -93,6 +93,7 @@ h2.designer {
 
 .designerCalendarSection {
     display: inline-flex;
+    height: 100px;
     margin: 2vh 7vw;
     width: 90vw;
 }

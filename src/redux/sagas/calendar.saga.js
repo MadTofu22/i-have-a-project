@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* fetchCalendarEventsByID() {
   try {
@@ -17,19 +17,7 @@ function* fetchCalendarEventsByID() {
   function transformData(calendarEvents) {
     let transformedResults = [];
     for (const event of calendarEvents) {
-      let conditionalProperties = ''
-      if (event.project_name != null) {
-        conditionalProperties = {
-          title: event.project_name,
-          Status: event.status
-        }
-      } else {
-        conditionalProperties = {
-          title: event.name,
-        }
-      }
       let formattedEvent = {
-        ...conditionalProperties,
         start: event.start.slice(0,10),
         id: event.event_id,
         designer_Id: event.designer_id,
@@ -46,7 +34,7 @@ function* updateCalendarEvent(action) {
   try {
     yield axios.put(`/api/calendar/`, action.payload)
     yield put({
-      type: "FETCH_CALENDAR_EVENTS_BY_ID"
+      type: "DETERMINE_CALENDAR_FETCH"
     })
   } catch (error) {
     console.log(error);
@@ -56,7 +44,7 @@ function* DeleteCalendarEvent(action) {
   try {
     yield axios.delete(`/api/calendar/${action.payload.id}`);
     yield put({
-      type: "FETCH_CALENDAR_EVENTS_BY_ID"
+      type: "DETERMINE_CALENDAR_FETCH"
     })
   } catch (error) {
     console.log(error);
@@ -84,12 +72,30 @@ function* fetchManagerCalendar(action) {
     console.log(error);
   }
 }
+function* determineFetch() {
+  try {
+    const store =  yield select()
+    let userType = store.user.user_type
+    if (userType === 'manager') {
+      yield put({
+        type: "FETCH_MANAGER_CALENDAR"
+      })
+    } else {
+      yield put({
+        type: "FETCH_CALENDAR_EVENTS_BY_ID"
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* calendarSaga() {
   yield takeLatest('FETCH_CALENDAR_EVENTS_BY_ID', fetchCalendarEventsByID);
   yield takeLatest('CREATE_CALENDAR_EVENT', createCalendarEvent)
   yield takeEvery('UPDATE_CALENDAR_EVENT', updateCalendarEvent);
   yield takeEvery('DELETE_CALENDAR_EVENT', DeleteCalendarEvent)
+  yield takeLatest('DETERMINE_CALENDAR_FETCH', determineFetch);
   yield takeLatest('FETCH_MANAGER_CALENDAR', fetchManagerCalendar)
 }
 
