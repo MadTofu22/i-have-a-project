@@ -69,52 +69,69 @@ class ProjectDetails extends Component {
 
     render () {
         return (
-            <div >
+            <div className="projectEditForm">
 
                 <h1>Projects</h1>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    startIcon={<HomeIcon/>}
-                    onClick={this.goBackHome}
-                >Home</Button>
+               
                 {this.props.store.projectDetails.projectDetails ? 
                     <>
                         <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
-                        <p>Project Description: <Paper  style={{width: '300px', height: '20px', padding: '30px'}}>{this.props.store.projectDetails.projectDetails.notes}</Paper></p>
-
-
-                                <TextField
-                                    id="date"
-                                    label="Start Date"
-                                    type="date"
-                                    value={this.props.store.projectDetails.projectDetails.start.slice(0,10)}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
-                                <TextField
-                                    id="date"
-                                    label="Due Date"
-                                    type="date"
-                                    value={this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                startIcon={<HomeIcon/>}
+                                onClick={this.goBackHome}
+                            >Home</Button>
+                        {this.props.store.user.user_type === 'manager' ?
+                            <>
+                            <button onClick={this.goToEditPage}>Edit Project</button>
+                            <AddDesigner project_id={this.props.match.params.project_id} />
+                            </>
+                            :
+                            <></>
+                        }
+                        <div className="timeLineWrap">
+                                <div   className="date">
+                                    <TextField
+                                            id="date"
+                                            label="Start Date"
+                                            type="date"
+                                            value={this.props.store.projectDetails.projectDetails.start.slice(0,10)}
+                                            InputLabelProps={{
+                                            shrink: true,
+                                            }}
+                                        />
+                                </div>
+                                <div   className="date">
+                                    <TextField
+                                        id="date"
+                                        label="Due Date"
+                                        type="date"
+                                        value={this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </div>
+                            </div> 
+                        <p>Project Description: 
+                            <Paper  
+                                style={{
+                                    width: '250px', 
+                                    height: '150px', 
+                                    padding: '30px',
+                                    overflow: 'scroll'
+                                }}
+                            >{this.props.store.projectDetails.projectDetails.notes}
+                            </Paper>
+                            </p>
+                            
                     </>
                     :
                     <></>
                 }
-                {this.props.store.user.user_type === 'manager' ?
-                    <>
-                    <button onClick={this.goToEditPage}>Edit Project</button>
-                    <AddDesigner project_id={this.props.match.params.project_id} />
-                    </>
-                    :
-                    <></>
-                }
+               
                 {this.props.store.projectDetails.projectDesigners ?
                     <div style={{ height: 300, width: '100%' }}>
                         <h2>Project Designers</h2>
