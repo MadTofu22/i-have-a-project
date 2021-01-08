@@ -10,11 +10,11 @@ const  dayjs = require('dayjs')
 router.get('/outbox/:id', async (req, res) => {
     if (req.isAuthenticated) {
         const contractQueryText = `
-            SELECT * FROM contract_requests
+            SELECT *, contract_requests.id AS contract_id FROM contract_requests
             JOIN projects ON projects.id = contract_requests.project_id
             JOIN software ON software.id = contract_requests.software_id
-            WHERE requesting_manager_id = $1
-            GROUP BY contract_requests.id, projects.id, software.id;`;
+            WHERE requesting_manager_id = $1;`;
+            // GROUP BY contract_requests.id, projects.id, software.id
 
         const designerQueryText = `
             SELECT "user".*, designers.* FROM "designers"
@@ -44,7 +44,7 @@ router.get('/outbox/:id', async (req, res) => {
                 });
             }
             await connection.query('COMMIT');
-            // console.log('in contract outbox GET - resultArr:', resultArr);
+            console.log('in contract outbox GET - resultArr:', resultArr);
             res.send(resultArr);
         } catch (error) {
             await connection.query('ROLLBACK;');

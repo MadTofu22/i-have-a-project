@@ -117,7 +117,7 @@ class ContractRequests extends Component {
                                         <td>{outbox.designerData.rate}</td>
                                         <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
                                         <td>{outbox.contractData.status}</td>
-                                        <td><button onClick={() => this.handleOutboxDelete(outbox.contractData.id, this.props.store.user.id)}>delete</button></td>
+                                        <td><button onClick={() => this.handleOutboxDelete(outbox.contractData.contract_id, this.props.store.user.id)}>delete</button></td>
                                         </tr>
                                     )
                                 })
