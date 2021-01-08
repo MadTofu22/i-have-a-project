@@ -50,17 +50,17 @@ class ContractRequests extends Component {
     }    
 
     handleInboxAccept = (id, managerId) => {
-        console.log(id)
+        console.log(id, 'in handleInboxAccept')
         this.props.dispatch({
-            type: 'ACCEPT_PROJECT',
+            type: 'UPDATE_REQUEST',
             payload: {id, managerId}
         })
     }  
 
     handelInboxDeny = (id, managerId) => {
-        console.log(id)
+        console.log(id, 'in handleInboxDeny')
         this.props.dispatch({
-            type: 'DENY_PROJECT',
+            type: 'UPDATE_REQUEST',
             payload: {id, managerId}
         })
     } 
@@ -91,8 +91,8 @@ class ContractRequests extends Component {
                                         <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td><button onClick={() => this.handleInboxAccept}>accept</button></td>
-                                        <td><button onClick={() => this.handelInboxDeny}>deny</button></td>
+                                        <td><button onClick={() => this.handleInboxAccept(inbox.contractData.contract_id, this.props.store.user.id)}>accept</button></td>
+                                        <td><button onClick={() => this.handelInboxDeny(inbox.contractData.contract_id, this.props.store.user.id)}>deny</button></td>
                                         </tr>
                                     )
                                     }

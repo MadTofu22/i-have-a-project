@@ -62,11 +62,10 @@ router.get('/outbox/:id', async (req, res) => {
 router.get('/inbox/:id', async (req, res) => {
     if (req.isAuthenticated) {
         const contractQueryText = `
-            SELECT * FROM contract_requests
+            SELECT *, contract_requests.id AS contract_id FROM contract_requests
             JOIN projects ON projects.id = contract_requests.project_id
-            JOIN software ON software.id = contract_requests.software_id
-            WHERE contracted_manager_id = $1
-            GROUP BY contract_requests.id, projects.id, software.id;`;
+            JOIN software ON software.id = contract_requests.software_idç
+            WHERE contracted_manager_id = $1;`;
 
         const designerQueryText = `
             SELECT "user".*, designers.* FROM "designers"
@@ -117,9 +116,9 @@ router.put('/:request_id', (req, res) => {
         SET request_status = $1
         WHERE id=$2;`;
 
-    pool.query(queryText, [req.body.newStatus, req.params.request_id])
+    pool.query(queryText, [req.body.status, req.params.request_id])
         .then(response => {
-            console.log('in contracts.router PUT, request', req.params.request_id, 'has been updated to status', req.body.newStatus);
+            console.log('in contracts.router PUT, request', req.params.request_id, 'has been updated to status', req.body.status);
             res.sendStatus(200);
         }).catch(error => {
             console.log('Error in contracts.router PUT', error);

@@ -40,10 +40,24 @@ function* deleteProject (action){
     }
 }
 
+function* acceptAndDenyProject (action){
+    try{
+        console.log('updateProject in update saga project id=', action.payload.id)
+        yield axios.put(`/api/contracts/${action.payload.id}`, {status: 'completed'})
+        yield put({
+            type: "FETCH_INBOX",
+            payload: {id:action.payload.managerId}
+        })
+    }catch (error){
+        console.log(error);
+    }
+}
+
 function* contractSaga() {
     yield takeLatest('FETCH_OUTBOX', fetchOutbox);
     yield takeLatest('FETCH_INBOX', fetchInbox);
-    yield takeLatest ('DELETE_PROJECT', deleteProject)
+    yield takeLatest ('DELETE_PROJECT', deleteProject);
+    yield takeLatest ('UPDATE_REQUEST', acceptAndDenyProject);
 }
 
 export default contractSaga;
