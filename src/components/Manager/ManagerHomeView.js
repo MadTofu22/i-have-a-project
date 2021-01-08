@@ -12,7 +12,7 @@ import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider, Button, Box, Container } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     
@@ -81,21 +81,10 @@ class ManagerHomeView extends Component {
         return (
             <Router>
                 <ThemeProvider theme={theme}>
+      
                 <div className='topSection'>
-                    <div className='titleContainer'>
-                        <h1 className='header'>Welcome to Your Home View</h1>
-                        <button 
-                            className='headerButton'
-                            onClick={() => this.props.history.push('/CreateProject')}
-                            >Create New Project
-                        </button>
-                        <button 
-							className='headerButton' 
-							onClick={() => this.handleLogout()}
-							>Logout
-						</button>
-                    </div>
                     <div className='managerNavBar'>
+                        <h2>iHaveAProject</h2>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
@@ -108,7 +97,8 @@ class ManagerHomeView extends Component {
 						</Button>
                     </div>
                 </div>
-
+                <Container maxWidth="md">
+                <Box bgcolor="primary.light" height>
                 {/* Routes to each component */}
                 <div className='homeComponentWrapper'>
                     <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Projects' />
@@ -138,6 +128,8 @@ class ManagerHomeView extends Component {
                         component={FindDesigners}
                     />
                 </div>
+                </Box>
+                </Container>
                 </ThemeProvider>
             </Router>
         );
