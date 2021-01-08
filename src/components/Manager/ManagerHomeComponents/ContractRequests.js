@@ -41,11 +41,6 @@ class ContractRequests extends Component {
         return americanDateFormat
     }
 
-    handleClickProjects = (row) => {
-		console.log(row.row.id);
-		this.props.history.push(`/projectDetails/${row.row.id}`)
-	}
-
     handleOutboxDelete = (id, managerId) => {
         console.log(id)
         this.props.dispatch({
@@ -53,6 +48,22 @@ class ContractRequests extends Component {
             payload: {id, managerId}
         })
     }    
+
+    handleInboxAccept = (id, managerId) => {
+        console.log(id)
+        this.props.dispatch({
+            type: 'ACCEPT_PROJECT',
+            payload: {id, managerId}
+        })
+    }  
+
+    handelInboxDeny = (id, managerId) => {
+        console.log(id)
+        this.props.dispatch({
+            type: 'DENY_PROJECT',
+            payload: {id, managerId}
+        })
+    } 
 
     render () {
         return (
@@ -81,7 +92,7 @@ class ContractRequests extends Component {
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
                                         <td><button onClick={() => this.handleInboxAccept}>accept</button></td>
-                                        <td><button onClick={() => this.handelInboxAccept}>deny</button></td>
+                                        <td><button onClick={() => this.handelInboxDeny}>deny</button></td>
                                         </tr>
                                     )
                                     }
