@@ -58,15 +58,15 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div className="pageWrapper">
-          <ThemeProvider theme={theme}>
-            <Container maxWidth="md">
-              <Box bgcolor="primary.light" height>
+        <div className="findDesignerWrap">
+          {/* <ThemeProvider theme={theme}> */}
+            {/* <Container maxWidth="md">
+              <Box bgcolor="primary.light" height> */}
                 <div className="titleWrap">
                  <h1 className="pageTitle">Find New Designer</h1>
                 </div>
           <form onSubmit={this.searchDesigner}>
-            <div className="contentWrap">
+            <div className="">
             <div>
  
                 <TextField
@@ -142,20 +142,21 @@ class FindNewDesigner extends Component {
               <input type="submit" value="Search" />
               </div>
             </form>
-
-            {this.props.store.search.length > 0 &&
-              this.props.store.search.map( (desingerObj) => {
-                return <FindDesignerCard 
-                          designeInfor={desingerObj}
-                          key={desingerObj.designer_id}
-                          search={this.state.newSearch}
-                        />
-                
-              })
-            }
-            </Box>
-            </Container>
-            </ThemeProvider>
+                  <div className="searchResults">
+                      {this.props.store.search.length > 0 &&
+                  this.props.store.search.map( (desingerObj) => {
+                    return <FindDesignerCard 
+                              designeInfor={desingerObj}
+                              key={desingerObj.designer_id}
+                              search={this.state.newSearch}
+                            />
+                    
+                  })
+                  }
+            </div>
+            {/* </Box>
+            </Container> */}
+            {/* </ThemeProvider> */}
         </div>
       );
     }

@@ -11,7 +11,24 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+
+
 function FindDesignerCard(props) {
+
+    const [open, setOpen] = React.useState(false);
+
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     const requestDesigner = () => {
         props.dispatch({
@@ -22,11 +39,13 @@ function FindDesignerCard(props) {
                 }
         })
     }
-
+    const openProfileMenu = () => {
+        setOpen(true)
+    }
 
 	return (
-         
-             <Card >
+         <>
+             <Card style={{width:'250px', height: '300px'}}>
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
                         {props.designeInfor.designerName.first_name + ' ' + props.designeInfor.designerName.last_name}
@@ -56,8 +75,18 @@ function FindDesignerCard(props) {
                 </CardContent>
                 <CardActions>
                     <Button onClick={requestDesigner} size="small">Request Designer</Button>
+                    <Button onClick={openProfileMenu} size="small">More</Button>
                 </CardActions>
             </Card>
+
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="title">User Profile</DialogTitle>
+            
+                <DialogContent>
+                    
+                </DialogContent>
+          </Dialog>
+        </>
 	);
 }
 

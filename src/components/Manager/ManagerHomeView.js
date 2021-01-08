@@ -97,9 +97,10 @@ class ManagerHomeView extends Component {
 						</Button>
                     </div>
                 </div>
-                <Container maxWidth="md">
-                <Box bgcolor="primary.light" height>
+                {/* <Container maxWidth="md">
+                <Box bgcolor="primary.light" height> */}
                 {/* Routes to each component */}
+                
                 <div className='homeComponentWrapper'>
                     <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Projects' />
                     <Route 
@@ -128,8 +129,8 @@ class ManagerHomeView extends Component {
                         component={FindDesigners}
                     />
                 </div>
-                </Box>
-                </Container>
+                {/* </Box>
+                </Container> */}
                 </ThemeProvider>
             </Router>
         );
