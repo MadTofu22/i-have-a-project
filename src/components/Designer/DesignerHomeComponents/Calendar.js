@@ -19,7 +19,6 @@ class Calendar extends Component {
 			hoursCommitted: 0
 		  }],
 		clickEvent: {
-				dialog: 'Add New Event',
 				id: 0,
 				title: '',
 				start: '',
@@ -47,7 +46,6 @@ class Calendar extends Component {
 			clickEvent: {
 					dialog: 'Add New Event',
 					id: 0,
-					title: '',
 					start: '',
 					hoursCommitted: 0,
 					renderModal: false,
@@ -60,12 +58,12 @@ class Calendar extends Component {
 
 // converts date format from FullCalendar passed as info from eventClick
 	OpenCalendarEventModal = (info) => {
+		console.log('infoevent', info.event);
+		
 		let eventInfo = {
 			id: info.event.id,
-			title: info.event.title,
 			start: info.event.start.toISOString().slice(0, 10),
 			hoursCommitted: info.event.extendedProps.hoursCommitted,
-			project_id: info.event.extendedProps.project_id,
 			renderModal: true,
 			dialog: 'Edit Event'
 		}
@@ -81,6 +79,7 @@ class Calendar extends Component {
 				<AddCalendarEvent  
 					closeClickEvent={this.closeClickEvent}
 					clickEvent={this.state.clickEvent}
+					designer={{id: this.props.store.user.designer_id}}
 				/>
 				<div className="">
 					<FullCalendar
