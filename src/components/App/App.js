@@ -17,16 +17,15 @@ import DesignerHomeView from '../Designer/DesignerHomeView'
 import ManagerHomeView from '../Manager/ManagerHomeView';
 import ManagerRegistration from '../Manager/ManagerRegistration';
 import Login from '../Login/Login';
-import AdminPage from '../AdminPage/AdminPage'
-import EditProject from '../Projects/EditProject'
+import AdminPage from '../AdminPage/AdminPage';
+import EditProject from '../Projects/EditProject';
 
 import DesignerRegistration from '../Designer/DesignerRegistration';
 
-
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 import UpdateProfile from '../Designer/UpdateProfile';
-import CreateProject from '../Projects/CreateProject'
-import ProjectDetails from '../Projects/ProjectDetails'
+import CreateProject from '../Projects/CreateProject';
+import ProjectDetails from '../Projects/ProjectDetails';
 
 
 
@@ -45,6 +44,7 @@ class App extends Component {
     console.log(this.state.userHome);
     
   }
+  
   componentDidUpdate = () => {
 
     if ((this.props.store.user.id !== this.state.user.id) && this.props.store.user.id) {
@@ -62,7 +62,7 @@ class App extends Component {
       this.setState({
         user: this.props.store.user,
         userHome: redirect
-      })
+      });
     }
   }
 
@@ -73,7 +73,7 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/Login" />
-            
+
              <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to Home Page based on user 
@@ -81,15 +81,23 @@ class App extends Component {
               exact
               path="/Login"
               component={Login}
-              authRedirect={this.state.userHome}
+              authRedirect={'/home'}
             />
              <ProtectedRoute
               path="/DesignerHomeView"
               component={DesignerHomeView}
             />
+             <ProtectedRoute
+             // with authRedirect:
+              // - if logged in, redirects to Home Page based on user 
+              // if not logged in shows login
+              exact
+              path="/home"
+              component={Login}
+              authRedirect={this.state.userHome}
+            />
 
-            {/* Te+mp route to help with display and testing */}
-            <Route
+            <ProtectedRoute
               path={`/ManagerHomeView`}
               component={ManagerHomeView}
             />
@@ -99,17 +107,11 @@ class App extends Component {
               path={'/ManagerRegistration'}
               component={ManagerRegistration}
             />
-             <Route 
+             <ProtectedRoute
               exact
               path={'/AdminPage'}
               component={AdminPage}
             />
-            {/* Cut? This is handled by the manager Add Team Member Invite */}
-            {/* <Route 
-              exact
-              path={'/DesignerRegistration'}
-              component={DesignerRegistration}
-            /> */}
 
             <Route
             exact
@@ -118,11 +120,11 @@ class App extends Component {
             />
 
             <Redirect exact from='/UpdateProfile' to='/UpdateProfile/Info' />
-            <Route
+            <ProtectedRoute
               path={'/UpdateProfile'}
               component={UpdateProfile}
             />
-            <Route 
+            <ProtectedRoute 
               path={'/CreateProject'}
               component={CreateProject}
             />
@@ -145,5 +147,3 @@ class App extends Component {
 }
 
 export default connect(mapStoreToProps)(App);
-
-

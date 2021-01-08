@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { theme } from '../App/Material-UI/MUITheme';
+import {withRouter} from 'react-router-dom';
 import { ThemeProvider, Button } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import styles from './Login.css'
+import './Login.css'
 
 class LoginPage extends Component {
   state = {
@@ -22,6 +23,7 @@ class LoginPage extends Component {
         payload: {
           username: this.state.email,
           password: this.state.password,
+          history: this.props.history,
         },
       });
     } else {
@@ -110,4 +112,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default withRouter(connect(mapStateToProps)(LoginPage));

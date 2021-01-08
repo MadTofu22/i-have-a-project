@@ -14,9 +14,19 @@ class UpdateProfile extends Component {
 	};
 
 	componentDidMount = () => {
+
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
 			payload: this.props.store.user.designer_id
+		});
+		this.setState({
+			profile: this.props.store.profile,
+		});
+	}
+	setData = () => {
+		console.log('setting data in update profile')
+		this.setState({
+			profile: this.props.store.profile,
 		});
 	}
 
@@ -36,23 +46,26 @@ class UpdateProfile extends Component {
 	render() {
 		console.log('UpdateProfile component has rendered - this.state:', this.state);
 		return (
+			this.props.store.profile.skills ?
 			<Router>
-				<h1>Build Your Perofile!</h1>
+				<h1>Build Your Profile!</h1>
 				<div className='profileInputContainer'>
-					<Route exact path='/UpdateProfile/Skills'>
+					{/* <Route exact path='/UpdateProfile/Skills'>
 						<AddSkills 
 							saveAndNavigate={this.saveAndNavigate}
-							profile={this.state.profile}
+							profile={this.props.store.profile}
 						/>
-					</Route>
+					</Route> */}
 					<Route exact path='/UpdateProfile/Info'>
 						<AddInformation
 							saveAndNavigate={this.saveAndNavigate}
-							profile={this.state.profile}
+							profile={this.props.store.profile}
 						/>
 					</Route>
 				</div>
 			</Router>
+			:
+			<h1>Profile Data Loading{this.setData}</h1>
 		);
 	}
 }

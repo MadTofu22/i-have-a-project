@@ -22,7 +22,6 @@ class NavButton extends Component {
                     <h2 className='navBtnLabel'>{this.props.page.label}</h2>
                 </div>
             </>
-
         );
     }
 }

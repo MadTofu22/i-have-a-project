@@ -2,6 +2,9 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const  dayjs = require('dayjs')
+
+
 
 // Get all of the contract requests a manager has sent out
 router.get('/outbox/:id', async (req, res) => {
@@ -125,6 +128,7 @@ router.put('/:request_id', (req, res) => {
 
 // Handles creating a new contract request
 router.post('/', (req, res) => {
+    let now = new Date()
 
     const queryParams = [
         req.user.id,
@@ -133,8 +137,10 @@ router.post('/', (req, res) => {
         req.body.project_id,
         req.body.software_id,
         req.body.requested_hours,
-        req.body.date_sent,
+        now,
     ];
+    console.log(queryParams);
+    
     const queryText = `
         INSERT INTO contract_requests (requesting_manager_id, contracted_manager_id, contracted_designer_id, project_id, software_id, requested_hours, date_sent, request_status)
         VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending');`;

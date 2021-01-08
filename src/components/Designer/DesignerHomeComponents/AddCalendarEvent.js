@@ -18,29 +18,20 @@ class AddCalendarEvent extends Component{
 
   state = {
     open: false,
-    allocatedToProject: false,
     clickEvent: {
-        dialog: 'Add New Event',
+        dialog: 'Add Availability',
 				id: 0,
-				title: '',
 				start: '',
-				hoursCommitted: 0,
+				hoursCommitted: '',
         renderModal: false,
-        project_id: null
   	}
   }
   componentDidUpdate = () => {
     console.log('propsinfo', this.props.clickEvent);
-    let isProject = false;
 
     if (this.props.clickEvent.id !== this.state.clickEvent.id) {
-      if (this.props.clickEvent.project_id != null) {
-        isProject = true
-        console.log('is project', isProject);
-      }
       this.setState({
         clickEvent: this.props.clickEvent,
-        allocatedToProject: isProject
       })
       if (this.props.clickEvent.id !== 0 ) {
         this.setState({
@@ -69,18 +60,12 @@ class AddCalendarEvent extends Component{
      
     this.props.dispatch({
       type: "CREATE_CALENDAR_EVENT",
-      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+      payload: {...this.state.clickEvent, designer_id: this.props.designer.id}
     })    
     this.setState({
       open: false
     })
     this.props.closeClickEvent()
-  }
-
-  toggleProjectSelect = () => { 
-     this.setState({
-      allocatedToProject: !this.state.allocatedToProject
-     })
   }
   handleEventChange = (event, keyname) => { 
     this.setState({
@@ -93,7 +78,7 @@ class AddCalendarEvent extends Component{
   handleUpdateEvent = () => {
     this.props.dispatch({
       type: "UPDATE_CALENDAR_EVENT",
-      payload: {...this.state.clickEvent, designer_id: this.props.store.user.id}
+      payload: {...this.state.clickEvent, designer_id: this.props.designer.id}
     })    
     this.setState({
       open: false
@@ -105,6 +90,9 @@ class AddCalendarEvent extends Component{
       type: "DELETE_CALENDAR_EVENT",
       payload: {id: this.props.clickEvent.id}
     })
+    this.setState({
+      open: false
+    })
     this.props.closeClickEvent()
   }
 
@@ -112,52 +100,14 @@ class AddCalendarEvent extends Component{
     return (
       <div>
   
-      <button onClick={this.handleClickOpen}>Add Events</button> 
+      <button onClick={this.handleClickOpen}>Add Availability</button> 
   
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" >
           <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
-
-          <DialogContent>
-            Allocate to Project?
-            <Switch 
-              checked={this.state.allocatedToProject} 
-              onChange={this.toggleProjectSelect} 
-              color="primary"
-            /> 
-          </DialogContent>
-
-            { this.state.allocatedToProject ? 
-              <DialogContent>
-                <InputLabel id="projectSelect">Select Project</InputLabel>
-                  <Select 
-                    onChange={(event) =>this.handleEventChange(event, 'project_id')}
-                    labelId="projectSelect"
-                    value={this.state.clickEvent.project_id}
-                  >
-                      {this.props.store.projects.map( (project) => {
-                        return <MenuItem value={project.project_id}>{project.project_name}</MenuItem>
-                      })}
-                  </Select>
-              </DialogContent>
-            :
-            <DialogContent>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Event Name"
-                type="text"
-                fullWidth
-                value={this.state.clickEvent.title}
-                onChange={(event) => this.handleEventChange(event, 'title' )}
-                required={true}
-              />
-            </DialogContent>
-            }
             <DialogContent>
               <TextField
                 id="date"
-                label="Event Date"
+                label="Availability Date"
                 type="date"
                 defaultValue={this.state.clickEvent.start}
                 InputLabelProps={{
@@ -171,13 +121,14 @@ class AddCalendarEvent extends Component{
                   autoFocus
                   margin="dense"
                   id="hours"
-                  label="Length of Event? (hours)"
+                  label="Availability (hours)"
                   type="number"
                   min={1} 
                   max={12}
                   fullWidth
                   required={true}
                   value={this.state.clickEvent.hoursCommitted}
+                  helperText="How Many hours are you available on this date?"
                   onChange={(event) => this.handleEventChange(event, 'hoursCommitted')}
                 />
             </DialogContent>

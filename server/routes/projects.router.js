@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/:designer_id', (req, res) => {
-    console.log(req.params)
+    console.log('get designer projects', req.params)
     
     if(req.isAuthenticated){
         
@@ -38,14 +38,14 @@ router.get('/details/:project_id', async (req, res) => {
         const getProjectDesigners = `SELECT "user"."designer_id" AS id, "rate", "hours_est", "first_name", "last_name" FROM "projects_designers_join" 
                                         Join "user" on "projects_designers_join"."designer_id" = "user"."designer_id"
                                         WHERE project_id = $1 
-                                        AND "accepted" = $2`
+                                        `
 
 
         const connection = await pool.connect();
         try {
             await connection.query("BEGIN")
                 const projectInfo = await connection.query(getProjectInfo, [req.params.project_id])
-                const projectDesigners = await connection.query(getProjectDesigners, [req.params.project_id, true])
+                const projectDesigners = await connection.query(getProjectDesigners, [req.params.project_id])
                 const designerProjectEvents  = await connection.query(getProjectEvents, [req.params.project_id])
 
                 console.log({
@@ -143,8 +143,8 @@ router.post('/', async (req, res) => {
                             Values($1, $2, $3, $4, $5, $6)
                             RETURNING "id"`
         const addDesigner = `INSERT INTO "projects_designers_join" 
-                                ("designer_id", "project_id", "hours_est", "accepted" )
-                                Values($1, $2, $3, TRUE)`
+                                ("designer_id", "project_id", "hours_est")
+                                Values($1, $2, $3)`
             
         const connection = await pool.connect();
         try {
@@ -178,7 +178,7 @@ router.post('/addDesigner', (req, res) => {
                                 Values($1, $2)`
 
     if (req.isAuthenticated) {
-        pool.query(addDesigner, [req.body.designer_id, req.body.project_id])
+        pool.query(addDesigner, [req.body.id, req.body.project_id])
         .then( (response) => {
             console.log(response)
             res.sendStatus(201)
@@ -191,14 +191,16 @@ router.post('/addDesigner', (req, res) => {
         res.sendStatus(403)
     }
 })
-router.delete('/removeDesigner', (req, res) => {
+router.delete('/removeDesigner/:designer_id/:project_id', (req, res) => {
 
+    console.log('remove desinger', req.params);
+    
     const removeDesigner = `DELETE FROM "projects_designers_join" 
                                 WHERE "designer_id" = $1
                                 AND "project_id" = $2`
 
     if (req.isAuthenticated) {
-        pool.query(removeDesigner, [req.body.designer_id, req.body.project_id])
+        pool.query(removeDesigner, [req.params.designer_id, req.params.project_id])
         .then( (response) => {
             console.log(response)
             res.sendStatus(200)
@@ -213,6 +215,9 @@ router.delete('/removeDesigner', (req, res) => {
 })
 
 router.put('/hours_est', (req, res) => {
+
+    console.log('update hours', req.body);
+    
     const updateHours = `UPDATE "projects_designers_join" 
                             SET "hours_est" = $1
                             WHERE "project_id" = $2

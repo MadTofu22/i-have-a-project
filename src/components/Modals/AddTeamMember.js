@@ -56,8 +56,8 @@ function AddTeamMember(props) {
           email,
           password: createRandomPassword(),
           user_type: 'Designer',
-          firstName,
-          lastName,
+          first_name: firstName,
+          last_name: lastName,
           company: props.managerCompany,
       },
       designerData: {

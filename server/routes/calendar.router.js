@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated) {
         const queryText = `SELECT  
-                            "event_Id",
+                            "event_id",
                             "designer_id",
                             "project_id",
                             "designer_calendar_item".start,
@@ -39,6 +39,52 @@ router.get('/', (req, res) => {
         res.sendStatus(403)
     }
 });
+router.get('/manager', async (req, res) => {
+
+    if (req.isAuthenticated) {
+        const getDesigners = `SELECT 
+                                    "designer_id",
+                                    "first_name",
+                                    "last_name",
+                                    "rate"
+                                FROM "designers"
+                                JOIN "user" ON "user".designer_id = designers.id
+                            WHERE manager_id = $1;`;
+        const getDesignerProjects = `SELECT * FROM "projects_designers_join" WHERE "designer_id" = $1`
+        const desingerCalendarItems = `SELECT * FROM "designer_calendar_item"
+                                            WHERE "designer_id" = $1;`
+
+
+        const connection = await pool.connect();
+        let desingerInfo = []
+        try{
+            await connection.query('BEGIN;');
+            const designers = await connection.query(getDesigners, [req.user.id])
+            for (const designer of designers.rows) {
+                const desingerProjects = await connection.query(getDesignerProjects, [designer.designer_id])
+                const desingerCalendar = await connection.query(desingerCalendarItems, [designer.designer_id])
+                let designerObj = {
+                    projects: desingerProjects.rows,
+                    calendar: desingerCalendar.rows,
+                    designerInfo: designer
+                }
+                desingerInfo.push(designerObj)
+            }
+            await connection.query('COMMIT');
+            console.log(desingerInfo[0].designerInfo.first_name);
+            
+            res.send(desingerInfo)
+        } catch (error) {
+            await connection.query('ROLLBACK;');
+            console.log(error);
+            res.sendStatus(500);
+        } finally {
+            connection.release();
+        }
+    } else {
+        res.sendStatus(403)
+    }
+})
 
 /**
  * POST route template
@@ -99,7 +145,7 @@ router.put('/', (req, res) => {
                                 "start" = $2,
                                 "hoursCommitted" = $3,
                                 "name" = $4
-                            WHERE "event_Id" = $5`
+                            WHERE "event_id" = $5`
 
             const getProjectDetails = `SELECT "project_name" from "projects" WHERE "id" = $1`
 
@@ -133,7 +179,7 @@ router.put('/', (req, res) => {
                             SET "start" = $1,
                                 "hoursCommitted" = $2,
                                 "name" = $3
-                            WHERE "event_Id" = $4
+                            WHERE "event_id" = $4
                             `
                                 
             name = req.body.title
@@ -154,16 +200,6 @@ router.put('/', (req, res) => {
         }
 
 
-        // pool.query( queryText, [ req.user.designer_id] )
-        // .then( ( response ) => {
-        //     console.log(response.rows);
-            
-        //     res.send( response.rows )
-        // })
-        // .catch( ( error ) => {
-        //     console.log(error);
-        //     res.sendStatus(500)
-        // })
     } else {
         res.sendStatus(403)
     }
@@ -172,19 +208,16 @@ router.put('/', (req, res) => {
 /**
  * delete route template
  */
-router.delete('/', (req, res) => {
-    if (req.isAuthenticated) {
-        console.log(req.body);
-        
-        
-        const queryText = `DELETE FROM "designer_calendar_item"
-                                WHERE "id" =  $1 AND designer_id = $2`
-
-        pool.query( queryText, [req.body.id, req.user.designer_id] )
-        .then( ( response ) => {
-            console.log(response.rows);
+router.delete('/:event_id', (req, res) => {
+    if (req.isAuthenticated) {        
+            console.log('request body', req.body);
             
-            res.send( response.rows )
+        const queryText = `DELETE FROM "designer_calendar_item"
+                                WHERE "event_id" = $1 AND designer_id = $2`
+
+        pool.query( queryText, [req.params.event_id, req.user.designer_id] )
+        .then( () => {
+            res.sendStatus(200)
         })
         .catch( ( error ) => {
             console.log(error);

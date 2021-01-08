@@ -23,5 +23,19 @@
 .rightProfileColumn{
     width: 50%;
 }
+.skillLabelContainer{
+    width:40%
+}
+
 
 /* Build Profile Styling */
+.sectionContainer{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.addInfoWrap{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}

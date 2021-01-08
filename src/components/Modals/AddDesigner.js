@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-
+import DialogContentText from '@material-ui/core/DialogContentText';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -49,7 +48,12 @@ function AddDesigner(props) {
                 })}
             </DialogContent>
           :
-          <></>
+          <DialogContent>
+          <DialogContentText>
+          You don't have any designers yet!
+          </DialogContentText>
+        </DialogContent>
+          
         }
       </Dialog>
     </div>

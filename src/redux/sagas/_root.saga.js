@@ -9,6 +9,7 @@ import projectSaga from './projects.saga'
 import designerSaga from './desginer.saga'
 import searchSaga from './search.saga'
 import contractSaga from './contract.saga';
+import adminSaga from './admin.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -28,5 +29,6 @@ export default function* rootSaga() {
     profileSaga(),
     contractSaga(),
     searchSaga(),
+    adminSaga(),
   ]);
 }

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 
 class AddedSkillLabel extends Component {
     
@@ -24,9 +26,9 @@ class AddedSkillLabel extends Component {
     render () {
         console.log(this)
         return (
-            <div className='skillLabelContainer'>
+            <Paper className='skillLabelContainer'>
                 <h4>{this.props.skill.label}</h4>
-                <input 
+                <TextField 
                     type='number' 
                     className='ratingInput' 
                     defaultValue={this.props.skill.proficiency} 
@@ -46,7 +48,7 @@ class AddedSkillLabel extends Component {
                     value='Delete' 
                     onClick={() => this.props.removeSkill(this.props.index)} 
                 />
-            </div>
+            </Paper>
         );
     }
 }

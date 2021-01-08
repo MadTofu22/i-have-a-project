@@ -4,71 +4,53 @@ import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Button } from '@material-ui/core';
+import { ThemeProvider, Button } from '@material-ui/core';
 
 import AddTeamMember from '../../Modals/AddTeamMember'
 
 class MyDesigners extends Component {
    
-    state = {
-		team: [
-			{id: 1, name: 'Simon', projects: 3, scheduledHours: 40, AvailableHours: 50},
-			{id: 2, name: 'Elliot', projects: 3, scheduledHours: 40, AvailableHours: 50},
-			{id: 3, name: 'Rachel', projects: 3, scheduledHours: 40, AvailableHours: 50},
-			{id: 4, name: 'Peter', projects: 3, scheduledHours: 40, AvailableHours: 50},
-			{id: 5, name: 'Tom', projects: 3, scheduledHours: 40, availableHours: 50},
-        ],
-        contracted: [
-			{id: 1, name: 'Simon', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
-			{id: 2, name: 'Elliot', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
-			{id: 3, name: 'Rachel', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
-			{id: 4, name: 'Peter', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
-			{id: 5, name: 'Tom', contractedFor: 'projectname', scheduledHours: 40, manager: 'Prime'},
-		]
-    };
     
     handleNavTo = () => {
         this.props.history.push('/ManagerHomeView/Search');
+    }
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "FETCH_DESIGNERS"
+        })
     }
 	render() {
 		return (
             <ThemeProvider theme={theme}>
             <div style={{width: '100%'}} className="myDesignerInfo">
-                <AddTeamMember 
-                    managerName='Test Name'
-                    managerEmail='Test Email'
-                    managerCompany='Test Company'
-                    managerId='1'
-                />
-                <div style={{ height: 250, width: '100%', padding: '20px' }}>
-                    <DataGrid
-                    autoHeight={true}
-                        columns={[
-                                { field: 'id', headerName: 'ID' },
-                                { field: 'name', headerName: 'Designer' },
-                                { field: 'projects', headerName: '# of Projects', width: 150 },
-                                { field: 'scheduledHours', headerName: 'Scheduled Hours', width: 200},
-                                { field: 'availableHours' , headerName: 'Available Hours', width: 200 }
-                            ]}
-                        rows={this.state.team}
+                {this.props.store.user && 
+                    <AddTeamMember 
+                        managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
+                        managerEmail={this.props.store.user.email}
+                        managerCompany={this.props.store.user.company}
+                        managerId={this.props.store.user.id}
                     />
+                }
+                <div style={{ height: 250, width: '100%', padding: '20px' }}>
+                    <h1>Team Designers</h1>
+                    {this.props.store.designer.length > 0 ?
+                        <DataGrid
+                        autoHeight={true}
+                            columns={[
+                                    { field: 'id', headerName: 'ID' },
+                                    { field: 'first_name', headerName: 'First Name' },
+                                    { field: 'last_name', headerName: 'Last Name'}
+                                ]}
+                            rows={this.props.store.designer}
+                        />
+                    :
+                    <></>}
                 </div>
                 <br></br>
                 <Button variant="contained" color="secondary" style={{ margin: 20 }}
                 onClick={() => this.handleNavTo('')}>Find Designer</Button>
                 <div style={{ height: 250, width: '100%', padding: '20px' }}>
-            
-                <DataGrid
-                    autoHeight={true}
-                    columns={[
-                            { field: 'id', headerName: 'ID' },
-                            { field: 'name', headerName: 'Designer' },
-                            { field: 'contractedFor', headerName: 'Project Name', width: 200 },
-                            { field: 'scheduledHours', headerName: 'Scheduled Hours', width: 200},
-                            { field: 'manager' , headerName: 'Manager', width: 200 }
-                        ]}
-                    rows={this.state.contracted}
-                />
+                            <h1>Contract Designers</h1>
                 </div>
             </div>
             </ThemeProvider>

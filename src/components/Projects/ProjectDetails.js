@@ -7,6 +7,13 @@ import AddDesigner from '../Modals/AddDesigner'
 import { DataGrid } from '@material-ui/data-grid';
 
 import ProjectActionMenu from './ProjectActionMenu'
+import Paper from '@material-ui/core/Paper';
+
+import Button from '@material-ui/core/Button'
+import HomeIcon from '@material-ui/icons/Home';
+import TextField from '@material-ui/core/TextField';
+
+
 
 class ProjectDetails extends Component {
     
@@ -27,15 +34,15 @@ class ProjectDetails extends Component {
     }
     goBackHome = () =>{
         let usertype = this.props.store.user.user_type
-        if (usertype === 'Manager') {
-            this.props.history.push(`/ManagerHomeView`)
+        if (usertype === 'manager') {
+            this.props.history.push(`/ManagerHomeView/Dashboard`)
         } else if (usertype === 'Designer') {
             this.props.history.push(`/DesignerHomeView/Projects`)
         }
     }
     formatTableColumns = () => {
         let columnFormat = []
-        if (this.props.store.user.user_type === 'Manager') {
+        if (this.props.store.user.user_type === 'manager') {
             columnFormat = [
                 { field: 'id', headerName: 'ID' },
                 { field: 'first_name', headerName: 'First Name' },
@@ -63,16 +70,44 @@ class ProjectDetails extends Component {
     render () {
         return (
             <div >
+
+                <h1>Projects</h1>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<HomeIcon/>}
+                    onClick={this.goBackHome}
+                >Home</Button>
                 {this.props.store.projectDetails.projectDetails ? 
                     <>
-                        <div>{this.props.store.projectDetails.projectDetails.project_name}</div>
-                        <div>{this.props.store.projectDetails.projectDetails.notes}</div>
-                        <div>{this.props.store.projectDetails.projectDetails.start + '--' + this.props.store.projectDetails.projectDetails.due_date}</div>
+                        <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
+                        <p>Project Description: <Paper  style={{width: '300px', height: '20px', padding: '30px'}}>{this.props.store.projectDetails.projectDetails.notes}</Paper></p>
+
+
+                                <TextField
+                                    id="date"
+                                    label="Start Date"
+                                    type="date"
+                                    value={this.props.store.projectDetails.projectDetails.start.slice(0,10)}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />
+                                <TextField
+                                    id="date"
+                                    label="Due Date"
+                                    type="date"
+                                    value={this.props.store.projectDetails.projectDetails.due_date.slice(0,10)}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />
                     </>
                     :
                     <></>
                 }
-                {this.props.store.user.user_type === 'Manager' ?
+                {this.props.store.user.user_type === 'manager' ?
                     <>
                     <button onClick={this.goToEditPage}>Edit Project</button>
                     <AddDesigner project_id={this.props.match.params.project_id} />
@@ -80,7 +115,6 @@ class ProjectDetails extends Component {
                     :
                     <></>
                 }
-                <button onClick={this.goBackHome}>Back</button>
                 {this.props.store.projectDetails.projectDesigners ?
                     <div style={{ height: 300, width: '100%' }}>
                         <h2>Project Designers</h2>
