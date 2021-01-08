@@ -35,7 +35,9 @@ function* registerDesigner(action) {
 		for (let software of softwareList.data) {
 			yield axios.post(`/api/profile/software/${designer_id}`, {label: software.label, software_id: software.id, proficient: false});
 		}
-
+		yield put({
+			type: "FETCH_DESIGNERS"
+		})
 	} catch (error) {
 		console.log('Error with user registration:', error);
 	}

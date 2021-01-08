@@ -42,6 +42,7 @@ function FindDesignerCard(props) {
                                         {skill.label}
                                     </Typography>
                                     <Slider 
+                                            style={{width: '90%'}}
                                             value={skill.proficiency}
                                             step={1}
                                             marks
