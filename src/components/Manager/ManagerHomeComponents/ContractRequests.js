@@ -41,6 +41,8 @@ class ContractRequests extends Component {
         return americanDateFormat
     }
 
+
+
     render () {
         return (
         
@@ -62,7 +64,9 @@ class ContractRequests extends Component {
                                 this.props.store.inbox.map((inbox) => {
                                     return(
                                         <tr>                                        
-                                        {/* <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td> */}
+                                        <td>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</td>
+                                        <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
+                                        <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         </tr>
                                     )
                                 })
