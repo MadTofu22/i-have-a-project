@@ -85,7 +85,6 @@ class AddInformation extends Component {
 		return (
 			<>
 				<h2>Add Information</h2>
-				{JSON.stringify(this.state.profile)}
 				<br/>
 				<label
 					htmlFor='phoneNum'
@@ -95,7 +94,7 @@ class AddInformation extends Component {
 				<input
 					type='text'
 					id='phoneNum'
-					defaultValue={this.state.profile.designer.phone}
+					defaultValue={this.state.profile.designer ? this.state.profile.designer.phone : ''}
 					onChange={(event) => this.handleInputChange(event, 'designer', 'phone')}
 				/>
 				<label
@@ -106,7 +105,7 @@ class AddInformation extends Component {
 				<input 
 					type='text'
 					id='imgUrl'
-					defaultValue={this.state.profile.designer.photo}
+					defaultValue={this.state.profile.designer ? this.state.profile.designer.photo : ''}
 					onChange={(event) => this.handleInputChange(event, 'designer', 'photo')}
 				/>
 				<br/>
@@ -119,10 +118,12 @@ class AddInformation extends Component {
 					type='text'
 					id='linkedinUrl'
 					onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
-					defaultValue={this.state.profile.designer.linkedin}
+					defaultValue={this.state.profile.designer ? this.state.profile.designer.linkedin : ''}
 				/>
 				<br/>
-				<label
+
+				{/* This code was used when we intended to handle availability as subtractive */}
+				{/* <label
 					htmlFor='availability_hours'
 					className='buildProfileLabel'
 					>Hours Available per Week:
@@ -131,10 +132,10 @@ class AddInformation extends Component {
 					type='text'
 					id='availability_hours'
 					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
-					defaultValue={this.state.profile.designer.availability_hours}
+					defaultValue={this.state.profile.designer ? this.state.profile.designer.availability_hours : ''}
 				/>
 				<br/>
-				{/* NEED TO ADD WEEKEND AVAILABILITY FLAG */}
+				
 				<label
 					htmlFor='availability_hours'
 					className='buildProfileLabel'
@@ -146,7 +147,7 @@ class AddInformation extends Component {
 					onChange={(event) => this.handleInputChange(event, 'designer', 'availability_hours')}
 					defaultValue={this.state.profile.designer.availability_hours}
 				/>
-				<br/>
+				<br/> */}
 				<label
 					htmlFor='educationDegree'
 					className='buildProfileLabel'
@@ -172,9 +173,9 @@ class AddInformation extends Component {
 				<button onClick={() => this.updateHistoryList('education')}>Add</button>
 				<h4>Added Education</h4>
 				<ul>
-					{this.state.profile.education.map((row, index) => {
+					{this.state.profile.education ? this.state.profile.education.map((row, index) => {
 						return <li key={index}>{row.degree} from {row.location}</li>
-					})}
+					}) : ''}
 				</ul>
 				<br/>
 				<label
@@ -204,9 +205,9 @@ class AddInformation extends Component {
 				<button onClick={() => this.updateHistoryList('career')}>Add</button>
 				<h4>Added Work Experience</h4>
 				<ul>
-					{this.state.profile.career.map((job, index) => {
+					{this.state.profile.career ? this.state.profile.career.map((job, index) => {
 						return <li key={index}>{job.title} at {job.location}</li>
-					})}
+					}) : ''}
 				</ul>
 				<br/>
 				<button

@@ -11,28 +11,7 @@ class AddSkills extends Component {
 		super(props);
 		this.skillInputRef = React.createRef();
 		this.state = {
-			softwareList: [
-				{
-					label: 'AutoCAD',
-					checkedState: false,
-				},
-				{
-					label: 'Blendr',
-					checkedState: false,
-				},
-				{
-					label: 'Adobe Illustrator',
-					checkedState: false,
-				},
-				{
-					label: 'Software 4',
-					checkedState: false,
-				},
-				{
-					label: 'Software 5',
-					checkedState: false,
-				},
-			],
+			softwareList: [],
 			profile: props.profile,
 			currentSkillInput: '',
 		};
@@ -134,13 +113,14 @@ class AddSkills extends Component {
 				<h2>Add Skills</h2>
 				<div className='sectionContainer'>
 					<h4>Software</h4>
-					{this.state.profile.software.map((software, index) => {
+					{this.state.profile.software ? this.state.profile.software.map((software, index) => {
 						return (
 							<>
 								<input 
 									type='checkbox'
 									id={`software${index}`} 
 									name={`software${index}`} 
+									key={index} 
 									value={software.label}
 									checked={software.proficient}
 									onChange={() => this.handleCheckboxChange(index)} 
@@ -149,12 +129,12 @@ class AddSkills extends Component {
 								<br/>
 							</>
 						)
-					})}
+					}) : ''}
 					<div className='skillsSection'>
 						<label htmlFor='skillInput'>Enter Skill</label>
 						<input type='text' name='skillInput' id='skillInput' className='skillsTextField' ref={this.skillInputRef} onChange={this.handleSkillInputChange} />
 						<input type='button' id='addSkill' value='Add' onClick={this.addSkill} />
-						{this.state.profile.skills.map((skill, index) => {
+						{this.state.profile.skills ? this.state.profile.skills.map((skill, index) => {
 							return <AddedSkillLabel 
 										key={index} 
 										index={index} 
@@ -162,7 +142,7 @@ class AddSkills extends Component {
 										removeSkill={this.removeSkill} 
 										updateSkill={this.updateSkill} 
 									/>
-						})}
+						}) : ''}
 					</div>
 					<br/>
 					<button
