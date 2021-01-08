@@ -41,8 +41,17 @@ class ContractRequests extends Component {
         return americanDateFormat
     }
 
-    handleInboxAccept = () => {
-        
+    handleClickProjects = (row) => {
+		console.log(row.row.id);
+		this.props.history.push(`/projectDetails/${row.row.id}`)
+	}
+
+    handleOutboxDelete = (id) => {
+        console.log(id)
+        this.props.dispatch({
+            type: 'DELETE_PROJECT',
+            payload: {id}
+        })
     }    
 
     render () {
