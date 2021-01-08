@@ -12,7 +12,7 @@ import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider, Button, Box, Container } from '@material-ui/core';
 
 class ManagerHomeView extends Component {
     
@@ -81,6 +81,7 @@ class ManagerHomeView extends Component {
         return (
             <Router>
                 <ThemeProvider theme={theme}>
+      
                 <div className='topSection'>
                     <div className='titleContainer'>
                         <h1 className='header'>Welcome to iHaveAProject</h1>
@@ -98,7 +99,8 @@ class ManagerHomeView extends Component {
 						</Button>
                     </div>
                 </div>
-
+                <Container maxWidth="md">
+                <Box bgcolor="primary.light" height>
                 {/* Routes to each component */}
                 <div className='homeComponentWrapper'>
                     <Redirect exact from='/ManagerHomeView' to='/ManagerHomeView/Projects' />
@@ -128,6 +130,8 @@ class ManagerHomeView extends Component {
                         component={FindDesigners}
                     />
                 </div>
+                </Box>
+                </Container>
                 </ThemeProvider>
             </Router>
         );
