@@ -83,10 +83,8 @@ class ManagerHomeView extends Component {
                 <ThemeProvider theme={theme}>
       
                 <div className='topSection'>
-                    <div className='titleContainer'>
-                        <h1 className='header'>Welcome to iHaveAProject</h1>
-                    </div>
                     <div className='managerNavBar'>
+                        <h2>iHaveAProject</h2>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
