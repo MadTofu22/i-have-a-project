@@ -83,17 +83,7 @@ class ManagerHomeView extends Component {
                 <ThemeProvider theme={theme}>
                 <div className='topSection'>
                     <div className='titleContainer'>
-                        <h1 className='header'>Welcome to Your Home View</h1>
-                        <button 
-                            className='headerButton'
-                            onClick={() => this.props.history.push('/CreateProject')}
-                            >Create New Project
-                        </button>
-                        <button 
-							className='headerButton' 
-							onClick={() => this.handleLogout()}
-							>Logout
-						</button>
+                        <h1 className='header'>Welcome to iHaveAProject</h1>
                     </div>
                     <div className='managerNavBar'>
                         {pages.map((page, index) => {
