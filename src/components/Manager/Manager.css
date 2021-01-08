@@ -31,6 +31,7 @@
     height: 100%;
     box-shadow: 0px 0px 20px grey;
     background-color: rgb(243, 210, 168);
+    z-index: 1
 }
 
 .navBtn {
@@ -47,17 +48,7 @@
     margin-top: 15px;
 }
 
-.navBtnLabel {
-}
 
-.homeComponentWrapper {    
-    flex-wrap: wrap;
-    width: 90%;
-    height: auto;
-    margin: 15vh auto 0vh auto;
-    margin-left: 10%;
-    box-shadow: 3px 2px 2px grey;
-}
 
 /* Dashboard Component Styling */
 .dashboardSection {
@@ -117,17 +108,17 @@ h2.designer {
     margin-right: 0;
     margin-left: auto;
     outline: 1px solid black;
-    padding: 50px;
     /* transform: scale(0.95, 0.95); */
     /* transform: scaleY(0.95); */
+}
+.findDesignerWrap{
+    height: 800px;
 }
 
 .titleWrap {
     transform: scale(0.99, 0.95);
-    max-width: 72%;
     /* margin-right: 0; */
-    margin-left: auto;
-    }
+}
 
 .contentWrap {
     text-align: center;
@@ -146,12 +137,15 @@ h2.designer {
 }
 
 .homeComponentWrapper {
+    margin-left: 10%;
+    height: 400px;
     text-align: center;
-    max-width: 80%;
-    margin-left: auto;
     background-color: rgb(249, 190, 165);
-    margin-right: 0;
-    padding-top: 5%;
-    padding-bottom: 4%;
     transform: scale(0.99, 0.95);
+}
+
+.searchResults{
+    height: 300px;
+    margin-left: 10%;
+    display: inline-flex;
 }
