@@ -154,6 +154,16 @@ router.post('/', (req, res) => {
         });
 });
 
+router.delete('/', (req, res) => {
+    const queryText = `DELETE FROM contract_requests where id = $1;`;
 
+    pool.query(queryText, [req.body.id])
+        .then(response => {
+            console.log('in contracts.router DELETE - SUCCESS');
+            res.sendStatus(200);
+        }).catch(error => {
+            console.log('Error in contracts.router DELETE', error);
+        });
+});
 
 module.exports = router;
