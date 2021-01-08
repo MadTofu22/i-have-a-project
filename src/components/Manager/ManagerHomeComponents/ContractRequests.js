@@ -46,11 +46,11 @@ class ContractRequests extends Component {
 		this.props.history.push(`/projectDetails/${row.row.id}`)
 	}
 
-    handleOutboxDelete = (id) => {
+    handleOutboxDelete = (id, managerId) => {
         console.log(id)
         this.props.dispatch({
             type: 'DELETE_PROJECT',
-            payload: {id}
+            payload: {id, managerId}
         })
     }    
 
@@ -117,7 +117,7 @@ class ContractRequests extends Component {
                                         <td>{outbox.designerData.rate}</td>
                                         <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
                                         <td>{outbox.contractData.status}</td>
-                                        <td><button onClick={() => this.handleOutboxDelete}>delete</button></td>
+                                        <td><button onClick={() => this.handleOutboxDelete(outbox.contractData.id, this.props.store.user.id)}>delete</button></td>
                                         </tr>
                                     )
                                 })

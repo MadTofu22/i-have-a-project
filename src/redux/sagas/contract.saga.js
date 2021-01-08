@@ -27,13 +27,13 @@ function* fetchInbox (action){
     }
 }
 
-function* deleteProject(){
+function* deleteProject (action){
     try{
-        console.log('deleteProject')
-        yield axios.delete('/api/contracts')
+        console.log('deleteProject in delete saga project')
+        yield axios.delete(`/api/contracts/${action.payload.id}`)
         yield put({
-            type: "FETCH_INBOX",
-            payload: action.payload.id
+            type: "FETCH_OUTBOX",
+            payload: {id:action.payload.managerId}
         })
     }catch (error){
         console.log(error);

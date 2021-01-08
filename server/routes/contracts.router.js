@@ -44,7 +44,7 @@ router.get('/outbox/:id', async (req, res) => {
                 });
             }
             await connection.query('COMMIT');
-            console.log('in contract outbox GET - resultArr:', resultArr);
+            // console.log('in contract outbox GET - resultArr:', resultArr);
             res.send(resultArr);
         } catch (error) {
             await connection.query('ROLLBACK;');
@@ -96,7 +96,7 @@ router.get('/inbox/:id', async (req, res) => {
                 });
             }
             await connection.query('COMMIT');
-            console.log('in contract inbox GET - resultArr:', resultArr);
+            // console.log('in contract inbox GET - resultArr:', resultArr);
             res.send(resultArr);
         } catch (error) {
             await connection.query('ROLLBACK;');
@@ -154,10 +154,10 @@ router.post('/', (req, res) => {
         });
 });
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
     const queryText = `DELETE FROM contract_requests where id = $1;`;
 
-    pool.query(queryText, [req.body.id])
+    pool.query(queryText, [req.params.id])
         .then(response => {
             console.log('in contracts.router DELETE - SUCCESS');
             res.sendStatus(200);
