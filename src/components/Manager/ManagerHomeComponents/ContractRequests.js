@@ -58,9 +58,19 @@ class ContractRequests extends Component {
                         </tr>
                     </thead> 
                         <tbody>
-                            <tr>
-                             
-                            </tr>       
+                        {this.props.store.inbox.length > 0 ?
+                                this.props.store.inbox.map((inbox) => {
+                                    return(
+                                        <tr>                                        
+                                        {/* <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td> */}
+                                        </tr>
+                                    )
+                                })
+                                :
+                                <>
+                                </>
+                                }
+                                 
                         </tbody>
                 </table>
             <button onClick={() => this.handleInboxAccept}>accept</button>

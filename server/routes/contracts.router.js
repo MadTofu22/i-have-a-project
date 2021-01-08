@@ -67,7 +67,7 @@ router.get('/inbox/:id', async (req, res) => {
 
         const designerQueryText = `
             SELECT "user".*, designers.* FROM "designers"
-            JOIN "user" ON "user".designer_id = designers.id
+            Left JOIN "user" ON "user".designer_id = designers.id
             WHERE designers.id = $1;`;
 
         const managerQueryText = `
@@ -83,7 +83,7 @@ router.get('/inbox/:id', async (req, res) => {
             
             for (let contract of contractResponse.rows) {
 
-                const managerResponse = await connection.query(managerQueryText, [contract.requiring_manager_id]);
+                const managerResponse = await connection.query(managerQueryText, [contract.requesting_manager_id]);
                 const designerResponse = await connection.query(designerQueryText, [contract.contracted_designer_id]);
 
                 resultArr.push({
