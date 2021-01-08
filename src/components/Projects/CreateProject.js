@@ -100,6 +100,14 @@ class CreateProject extends Component {
 						variant="outlined" 
 						onChange={(event) => this.handlechange(event, 'project_name')}
 					/>
+
+					<Button 
+						type="submit"
+						variant="contained" 
+						color="secondary"
+					>
+						Create Project
+					</Button>
 					<br></br>
 					<br></br>
 					<TextField
@@ -193,14 +201,6 @@ class CreateProject extends Component {
 					        </TableBody>
       					</Table>
    					</TableContainer>
-
-					<Button 
-						type="submit"
-						variant="contained" 
-						color="secondary"
-					>
-						Create Project
-					</Button>
 				</form>
 				</ThemeProvider>
 			</div>

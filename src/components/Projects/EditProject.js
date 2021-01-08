@@ -33,12 +33,14 @@ class EditProject extends Component {
 	}
 
 	handlechange = (event, keyname) => {
-		this.setState({
-			projectDetails: {
-				...this.state.projectDetails,
-				[keyname]: event.target.value
-			}
-		});
+        if (event.target.value.length < 500) {
+            this.setState({
+                projectDetails: {
+                    ...this.state.projectDetails,
+                    [keyname]: event.target.value
+                }
+            });
+        }
 	}
 	handleSubmit = () => {
 		this.props.dispatch({
@@ -55,6 +57,9 @@ class EditProject extends Component {
 			type: "FETCH_DESIGNERS"
 		})
     }
+    handeBackToProjectDetails = () => {
+        this.props.history.push(`/projectDetails/${this.props.match.params.project_id}`)
+    }
     componentDidUpdate = () => {
         console.log(this.props.store.projectDetails.projectDetails.id);
         
@@ -70,7 +75,9 @@ class EditProject extends Component {
 	render() {
 		return (
             <ThemeProvider theme={theme}>
-			<div>
+              
+			<div className="projectEditForm">
+            <h1>Edit Project</h1>
                 {  this.props.store.projectDetails.projectDetails ?
                     <form onSubmit={this.handleSubmit}>
                     <TextField 
@@ -82,6 +89,22 @@ class EditProject extends Component {
                     />
                     	<br></br>
 					<br></br>
+                    <TextField
+                        id="project-status"
+                        select
+                        label="Status"
+                        onChange={(event) => this.handlechange(event, 'status')}
+                        helperText="Select Project Status"
+                        value={this.state.projectDetails.status}
+                        >
+                        {this.state.status.map((option, index) => {
+                            return(
+                                <MenuItem key={index} value={option}>
+                                    {option}
+                                </MenuItem>)
+                        })}
+                    </TextField>
+                    <br/>
                     <TextField
                         id="date"
                         label="Start Date"
@@ -107,31 +130,27 @@ class EditProject extends Component {
                     	<br></br>
 					<br></br>
                     <TextField
+                        className="descriptionTextArea"
                         id="notes"
-                        label="Short Description"
+                        label="Description"
                         multiline
-                        rows={4}
+                        rows={5}
                         onChange={(event) => this.handlechange(event, 'notes')}
-                        helperText="Enter Quick Description of Project"
+                        helperText="Enter Description of Project"
                         value={this.state.projectDetails.notes}
                     />
-                    <TextField
-                        id="project-status"
-                        select
-                        label="Status"
-                        onChange={(event) => this.handlechange(event, 'status')}
-                        helperText="Select Project Status"
-                        value={this.state.projectDetails.status}
-                        >
-                        {this.state.status.map((option, index) => {
-                            return(
-                                <MenuItem key={index} value={option}>
-                                    {option}
-                                </MenuItem>)
-                        })}
-                    </TextField>
+                    <br/>
+                    <br/>
+                    
                     <br></br>
 					<br></br>
+                    <Button 
+                        variant="contained" 
+                        color="secondary"
+                        onClick={this.handeBackToProjectDetails}
+                    >
+                        Back
+                    </Button>
                     <Button 
                         type="submit"
                         variant="contained" 
