@@ -37,7 +37,7 @@ class FindNewDesigner extends Component {
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
-     if (event.target.value >= 0 && Number(event.target.value) ) {
+     if (event.target.value >= 0 && Number(event.target.value || event.target.value === '') ) {
         this.setState({
           newSearch: {
             ...this.state.newSearch,

@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
                 console.log('entered for loop for checking availability')
                 const designerAvailabilityResponse = await connection.query(getDesignerAvailability, [designer.designer_id, req.body.start, req.body.due_date]);
                 console.log('designer_id=', designer.id, 'available hours = ', designerAvailabilityResponse.rows[0].sum)
-                if (designerAvailabilityResponse.rows[0].sum >= req.body.requested_hours) {
+                if (Number(designerAvailabilityResponse.rows[0].sum ) >= Number(req.body.requested_hours)) {
                     designerResults.push(designer);
                 }
             }

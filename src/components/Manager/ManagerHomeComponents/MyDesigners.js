@@ -23,12 +23,14 @@ class MyDesigners extends Component {
 		return (
             <ThemeProvider theme={theme}>
             <div style={{width: '100%'}} className="myDesignerInfo">
-                <AddTeamMember 
-                    managerName='Test Name'
-                    managerEmail='Test Email'
-                    managerCompany='Test Company'
-                    managerId='1'
-                />
+                {this.props.store.user && 
+                    <AddTeamMember 
+                        managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
+                        managerEmail={this.props.store.user.email}
+                        managerCompany={this.props.store.user.company}
+                        managerId={this.props.store.user.id}
+                    />
+                }
                 <div style={{ height: 250, width: '100%', padding: '20px' }}>
                     <h1>Team Designers</h1>
                     {this.props.store.designer.length > 0 ?
