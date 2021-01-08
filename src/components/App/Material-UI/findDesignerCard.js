@@ -17,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 
+
 function FindDesignerCard(props) {
 
     const [open, setOpen] = React.useState(false);
@@ -38,6 +39,8 @@ function FindDesignerCard(props) {
                         search: props.search
                 }
         })
+
+
     }
     const openProfileMenu = () => {
         setOpen(true)
