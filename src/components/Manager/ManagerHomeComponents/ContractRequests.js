@@ -84,7 +84,7 @@ class ContractRequests extends Component {
                         <tbody>
                         {this.props.store.inbox.length > 0 ?
                                 this.props.store.inbox.map((inbox) => {
-                                    if (inbox.status !== 'complete'){
+                                    if (inbox.contractData.request_status !== 'completed'){
                                     return(
                                         <tr>                                        
                                         <td>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</td>
