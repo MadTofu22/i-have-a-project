@@ -9,6 +9,7 @@
 
 .header {
     background-color: rgb(247, 229, 206);
+    text-align: center;
 }
 
 .titleContainer {
@@ -36,8 +37,11 @@
     left: 0px;
     display:flex; 
     flex-direction: column;
-    max-height: 6vh;
+    /* max-height: 6vh; */
+    height: 100%;
     margin: 0em auto;
+    color:rgb(206, 30, 156);
+    box-shadow: 3px 2px 2px grey;
 }
 
 .navBtn {
@@ -67,12 +71,13 @@
 }
 
 .homeComponentWrapper {
-    display: inline-flex;
+    /* display: inline-flex; */
     flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+    width: 90%;
     height: auto;
     margin: 15vh auto 0vh auto;
+    margin-left: 10%;
+    box-shadow: 3px 2px 2px grey;
 }
 
 /* Dashboard Component Styling */
@@ -161,3 +166,13 @@ h2.designer {
     background-size: 100%;
 }
 
+.homeComponentWrapper {
+    text-align: center;
+    max-width: 80%;
+    margin-left: auto;
+    background-color: rgb(249, 190, 165);
+    margin-right: 0;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    transform: scale(0.99, 0.95);
+}

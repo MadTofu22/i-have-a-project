@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './Projects.css'
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, Container, Box } from '@material-ui/core';
 
 import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
@@ -92,6 +92,8 @@ class CreateProject extends Component {
 		return (
 			<div className='createProjectForm'>
 				<ThemeProvider theme={theme}>
+				<Container maxWidth="md">
+              <Box bgcolor="primary.light" height>
 				<form onSubmit={this.handleSubmit}>
 					<h1>Enter New Project Information</h1>
 					<TextField 
@@ -202,6 +204,8 @@ class CreateProject extends Component {
       					</Table>
    					</TableContainer>
 				</form>
+				</Box>
+				</Container>
 				</ThemeProvider>
 			</div>
 		);

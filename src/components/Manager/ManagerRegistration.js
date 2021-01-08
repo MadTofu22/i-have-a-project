@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider, Button, Container, Box } from '@material-ui/core';
 
 class ManagerRegistration extends Component {
 
@@ -64,6 +64,8 @@ class ManagerRegistration extends Component {
       return (
         <div className="managerRegInfo">
           <ThemeProvider theme={theme}>
+          <Container maxWidth="md">
+          <Box bgcolor="primary.light" height>
           {this.props.store.errors.registrationMessage && (
             <h2
               className="alert"
@@ -160,6 +162,8 @@ class ManagerRegistration extends Component {
             >
               Login
             </Button>
+            </Box>
+            </Container>
             </ThemeProvider>
         </div>
       );
