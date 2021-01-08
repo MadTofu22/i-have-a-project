@@ -99,16 +99,13 @@ class ManagerHomeView extends Component {
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
-                         <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
+                        <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
                         <Button className='headerButton'>Account Settings</Button>
                         <Button 
 							className='headerButton' 
 							onClick={() => this.handleLogout()}
 							>Logout
 						</Button>
-
-                        {/* This button will run a test to ensure the saga creates the designer in the DB */}
-                        <Button className='headerButton' onClick={() => this.sendInvite()}>TEST INVITE DESIGNER</Button>
                     </div>
                 </div>
 
