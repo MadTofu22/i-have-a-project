@@ -1,3 +1,5 @@
+
+
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -6,7 +8,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar } from '@material-ui/core';
+import { ThemeProvider, Typography, Toolbar, AppBar, Container, Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
@@ -37,7 +39,7 @@ class FindNewDesigner extends Component {
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
-     if (event.target.value >= 0 && Number(event.target.value || event.target.value === '') ) {
+     if (event.target.value >= 0 && Number(event.target.value) ) {
         this.setState({
           newSearch: {
             ...this.state.newSearch,
@@ -56,10 +58,17 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div>
+        <div className="pageWrapper">
+          <ThemeProvider theme={theme}>
+            <Container maxWidth="md">
+              <Box bgcolor="primary.light" height>
+                <div className="titleWrap">
+                 <h1 className="pageTitle">Find New Designer</h1>
+                </div>
           <form onSubmit={this.searchDesigner}>
-            <h1>Find New Designer</h1>
+            <div className="contentWrap">
             <div>
+ 
                 <TextField
                   id="start"
                   label="Start Date"
@@ -131,7 +140,9 @@ class FindNewDesigner extends Component {
                   }
             </div>
               <input type="submit" value="Search" />
-            </form>   
+              </div>
+            </form>
+
             {this.props.store.search.length > 0 &&
               this.props.store.search.map( (desingerObj) => {
                 return <FindDesignerCard 
@@ -139,13 +150,17 @@ class FindNewDesigner extends Component {
                           key={desingerObj.designer_id}
                           search={this.state.newSearch}
                         />
+                
               })
             }
+            </Box>
+            </Container>
+            </ThemeProvider>
         </div>
       );
     }
   }
-  
+
 
 
 export default withRouter(connect(mapStoreToProps)(FindNewDesigner));

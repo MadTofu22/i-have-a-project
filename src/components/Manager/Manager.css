@@ -7,6 +7,14 @@
     background-color: white;
 }
 
+.header {
+    background-color: rgb(247, 229, 206);
+}
+
+.titleContainer {
+    background-color: rgb(247, 229, 206);
+}
+
 .titleContainer {
     display: inline-flex;
     width: 100vw;
@@ -115,3 +123,41 @@ h2.designer {
 .managerRegInfo {
     text-align: center;
 }
+
+
+
+.pageTitle {
+    text-align: center;
+    background-color:rgb(173, 196, 215);
+    height: 50px;
+    margin-right: 0;
+    margin-left: auto;
+    outline: 1px solid black;
+    padding: 50px;
+    /* transform: scale(0.95, 0.95); */
+    /* transform: scaleY(0.95); */
+}
+
+.titleWrap {
+    transform: scale(0.99, 0.95);
+    max-width: 72%;
+    /* margin-right: 0; */
+    margin-left: auto;
+    }
+
+.contentWrap {
+    text-align: center;
+    border-radius: 100px;
+    background-color: rgb(249, 190, 165);
+    max-width: 70%;
+    margin-left: auto;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    transform: scale(0.99, 0.95);
+}
+
+.pageWrapper {
+    background-color: rgb(247, 229, 206);
+    background-size: 100%;
+}
+
