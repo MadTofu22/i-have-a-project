@@ -8,6 +8,7 @@ import calendarSaga from './calendar.saga'
 import projectSaga from './projects.saga'
 import designerSaga from './desginer.saga'
 import searchSaga from './search.saga'
+import contractSaga from './contract.saga';
 import adminSaga from './admin.saga'
 
 // rootSaga is the primary saga.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     projectSaga(),
     designerSaga(),
     profileSaga(),
+    contractSaga(),
     searchSaga(),
     adminSaga(),
   ]);

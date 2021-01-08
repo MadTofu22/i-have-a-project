@@ -7,6 +7,8 @@ import calendar from './calendar.reducer'
 import projects from './projects.reducer'
 import designer from './designer.saga'
 import projectDetails from './projectDetails.reducer'
+import outbox from './outbox.reducer'
+import inbox from './inbox.reducer'
 import software from './software.reducer'
 import search from './search.reducer'
 import admin from './admin.reducer';
@@ -26,6 +28,8 @@ const rootReducer = combineReducers({
   designer,
   profile,
   projectDetails,
+  outbox,
+  inbox,
   software,
   search,
   admin,
