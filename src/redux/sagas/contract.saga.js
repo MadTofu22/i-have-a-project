@@ -27,9 +27,23 @@ function* fetchInbox (action){
     }
 }
 
+function* deleteProject(){
+    try{
+        console.log('deleteProject')
+        yield axios.delete('/api/contracts')
+        yield put({
+            type: "FETCH_INBOX",
+            payload: action.payload.id
+        })
+    }catch (error){
+        console.log(error);
+    }
+}
+
 function* contractSaga() {
     yield takeLatest('FETCH_OUTBOX', fetchOutbox);
     yield takeLatest('FETCH_INBOX', fetchInbox);
+    yield takeLatest ('DELETE_PROJECT', deleteProject)
 }
 
 export default contractSaga;
