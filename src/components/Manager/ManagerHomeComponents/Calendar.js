@@ -65,7 +65,7 @@ class ManagerCalendar extends Component {
 
     render () {
         return (
-            <>
+            <div className="projectDashWrap">
                 <ThemeProvider theme={theme}>
                 <h2 className='manager'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?
@@ -109,7 +109,7 @@ class ManagerCalendar extends Component {
                    }
                
                 </ThemeProvider>
-            </>
+            </div>
         );
     }
 }

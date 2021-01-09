@@ -210,12 +210,11 @@ router.put('/', (req, res) => {
  */
 router.delete('/:event_id', (req, res) => {
     if (req.isAuthenticated) {        
-            console.log('request body', req.body);
             
         const queryText = `DELETE FROM "designer_calendar_item"
-                                WHERE "event_id" = $1 AND designer_id = $2`
+                                WHERE "event_id" = $1`
 
-        pool.query( queryText, [req.params.event_id, req.user.designer_id] )
+        pool.query( queryText, [req.params.event_id] )
         .then( () => {
             res.sendStatus(200)
         })

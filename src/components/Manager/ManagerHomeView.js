@@ -13,6 +13,7 @@ import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider, Button, Box, Container } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 class ManagerHomeView extends Component {
     
@@ -80,16 +81,16 @@ class ManagerHomeView extends Component {
 
         return (
             <Router>
-                <ThemeProvider theme={theme}>
       
                 <div className='topSection'>
-                    <div className='managerNavBar'>
-                        <h2>iHaveAProject</h2>
+                    <div  className='managerNavBar'>
+                        <h2 className="titleWrap">iHaveAProject</h2>
+                        <Divider className="menuDivider"  variant="middle"/>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
                         })}
+                        <Divider className="menuDivider"  variant="middle"/>
                         <Button onClick={this.goToCreateProject} className='headerButton'>Create New Project</Button>
-                        <Button className='headerButton'>Account Settings</Button>
                         <Button 
 							className='headerButton' 
 							onClick={() => this.handleLogout()}
@@ -131,7 +132,10 @@ class ManagerHomeView extends Component {
                 </div>
                 {/* </Box>
                 </Container> */}
+<<<<<<< HEAD
                 </ThemeProvider>
+=======
+>>>>>>> fa9d72ce42782e3bdb83e0e0a42130918b900786
             </Router>
         );
     }

@@ -58,7 +58,7 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div className="findDesignerWrap">
+        <div className="projectDashWrap">
           {/* <ThemeProvider theme={theme}> */}
             {/* <Container maxWidth="md">
               <Box bgcolor="primary.light" height> */}
@@ -144,21 +144,10 @@ class FindNewDesigner extends Component {
             </form>
                   <div className="searchResults">
                       {this.props.store.search.length > 0 &&
-                  this.props.store.search.map( (designerObj) => {
-
-                    const projectInfo = {
-                      id: this.state.newSearch.project_id, 
-                      software_label: this.props.store.software[designerObj.designerInfo.software_id].label, 
-                      start: this.state.newSearch.start, 
-                      end: this.state.newSearch.due_date,
-                      hours: this.state.newSearch.requested_hours,
-                    }
-                    console.log('in find designers, designerObj =', designerObj, 'projectInfo=', projectInfo, 'this.props.store.user', this.props.store.user);
+                  this.props.store.search.map( (desingerObj) => {
                     return <FindDesignerCard 
-                              designerInfo={designerObj}
-                              projectInfo={projectInfo}
-                              requestingManagerInfo={this.props.store.user}
-                              key={designerObj.designer_id}
+                              designeInfor={desingerObj}
+                              key={desingerObj.designer_id}
                               search={this.state.newSearch}
                             />
                     
