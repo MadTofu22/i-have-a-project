@@ -38,6 +38,8 @@
     background-color: rgba(38, 151, 127, 0.904);
     z-index: 3;
     opacity: 1;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .navBtn {
@@ -141,7 +143,7 @@ h2.designer {
 }
 
 .homeComponentWrapper {
-    margin-left: 260px;
+    margin-left: 280px;
     height: 100%;
     padding: 40px;
     margin-top: 30px;
