@@ -75,7 +75,7 @@ class Calendar extends Component {
 
 	render() {
 		return (
-			<div className="projectDashWrap">
+			<div className="componentViewWrap">
 				<AddCalendarEvent  
 					closeClickEvent={this.closeClickEvent}
 					clickEvent={this.state.clickEvent}

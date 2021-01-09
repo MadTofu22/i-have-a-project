@@ -118,16 +118,7 @@ h2.designer {
     transform: scale(0.99, 0.95);
 
 }
-.projectDashWrap{
-    background-color: rgb(255, 255, 255);
-    opacity: .96;
-    margin-top: 5%;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 0px 0px 50px rgba(12, 12, 12, 0.76);
-    border-radius: .5%;
 
-}
 .pageWrapper {
     background-color: rgb(247, 229, 206);
     background-size: 100%;

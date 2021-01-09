@@ -14,7 +14,7 @@ class MyProfile extends Component {
 
 	render() {
 		return (
-			<div className="projectDashWrap">
+			<div className="componentViewWrap">
 				<div className="left-ProfileColumn">
 					
 					<div className="profileImg">
