@@ -5,6 +5,8 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import AddedSkillLabel from './AddedSkillLabel';
 
+import './profile.css'
+
 class AddInformation extends Component {
 
 	constructor (props) {
@@ -161,7 +163,7 @@ class AddInformation extends Component {
 	render() {
 		console.log('UpdateProfile/info has rendered - this.props:', this.props, this.state)
 		return (
-			<>
+			<div className="componentViewWrap">
 				<div className="addInfoWrap">
 					<h2>Add Information</h2>
 					<br/>
@@ -321,7 +323,7 @@ class AddInformation extends Component {
 					>Save and Go Home
 					</button>
 				</div>
-			</>
+			</div>
 		);
 	}
 }

@@ -110,7 +110,7 @@ class ManagerCalendar extends Component {
 
     render () {
         return (
-            <div className="projectDashWrap">
+            <div className="componentViewWrap">
                 <ThemeProvider theme={theme}>
                 <h2 className='pageTitle'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?

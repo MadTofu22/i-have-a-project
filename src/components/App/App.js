@@ -92,7 +92,6 @@ class App extends Component {
               // if not logged in shows login
               exact
               path="/home"
-              component={Login}
               authRedirect={this.state.userHome}
             />
 
