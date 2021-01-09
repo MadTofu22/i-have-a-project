@@ -80,10 +80,6 @@ function FindDesignerCard(props) {
         setOpen(true)
     }
 
-    const openProfileMenu = () => {
-        setOpen(true)
-    }
-
 	return (
          <>
              <Card style={{width:'250px', height: '300px'}}>

@@ -44,7 +44,7 @@ class ContractRequests extends Component {
     handleOutboxDelete = (id, managerId) => {
         console.log(id)
         this.props.dispatch({
-            type: 'DELETE_PROJECT',
+            type: 'DELETE_REQUEST',
             payload: {id, managerId}
         })
     }    
@@ -53,7 +53,7 @@ class ContractRequests extends Component {
         console.log(id, 'in handleInboxAccept')
         this.props.dispatch({
             type: 'UPDATE_REQUEST',
-            payload: {id, managerId}
+            payload: {id, managerId, action: 'accepted'}
         })
     }  
 
@@ -61,7 +61,7 @@ class ContractRequests extends Component {
         console.log(id, 'in handleInboxDeny')
         this.props.dispatch({
             type: 'UPDATE_REQUEST',
-            payload: {id, managerId}
+            payload: {id, managerId, action: 'denied'}
         })
     } 
 
@@ -92,8 +92,8 @@ class ContractRequests extends Component {
                                         <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td><button onClick={() => this.handleInboxAccept(inbox.contractData.contract_id, this.props.store.user.id)}>accept</button></td>
-                                        <td><button onClick={() => this.handelInboxDeny(inbox.contractData.contract_id, this.props.store.user.id)}>deny</button></td>
+                                        <td><button onClick={() => this.handleInboxAccept(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id)}>accept</button></td>
+                                        <td><button onClick={() => this.handelInboxDeny(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id)}>deny</button></td>
                                         </tr>
                                     )
                                     }
@@ -102,7 +102,6 @@ class ContractRequests extends Component {
                                 <>
                                 </>
                                 }
-                                 
                         </tbody>
                 </table>
             <div>Outbox:</div>
