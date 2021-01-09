@@ -12,7 +12,8 @@ import inbox from './inbox.reducer'
 import software from './software.reducer'
 import search from './search.reducer'
 import admin from './admin.reducer';
-import managerCalendar from './managerCalendar.reducer'
+import managerCalendar from './managerCalendar.reducer';
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.

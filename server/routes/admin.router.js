@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/delete', async (req, res) => {
+router.post('/delete/', async (req, res) => {
     const connection = await pool.connect(); 
     try {
         await connection.query('BEGIN');
