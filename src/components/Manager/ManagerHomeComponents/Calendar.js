@@ -8,6 +8,11 @@ import { Button, ThemeProvider } from '@material-ui/core';
 import { theme } from '../../App/Material-UI/MUITheme';
 import '../Manager.css';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider'
+
 import AddCalendarEvent from '../../Designer/DesignerHomeComponents/AddCalendarEvent'
 
 class ManagerCalendar extends Component {
@@ -67,7 +72,7 @@ class ManagerCalendar extends Component {
         return (
             <div className="projectDashWrap">
                 <ThemeProvider theme={theme}>
-                <h2 className='manager'>Designer Weekly Calendars</h2>
+                <h2 className='pageTitle'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?
                         this.props.store.managerCalendar.map( (element) => {
                                 for (const event of element.calendar) {
@@ -79,19 +84,39 @@ class ManagerCalendar extends Component {
                                 <div className='designerCalendarSection'>
                                 <div className='designerInfoBlock'>
                                         <h2 className='designerNameHeader'>{element.designerInfo.first_name + ' ' + element.designerInfo.last_name}</h2>
-                                    <Button variant="contained" color="primary" style={{ margin: 20 }}>
-                                        View Profile</Button>
+                                    
+                                     <List component="nav" aria-label="main mailbox folders">
+                                        <ListItem button>
+                                            View Designer Profile
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            <AddCalendarEvent 
+                                                closeClickEvent={this.closeClickEvent}
+                                                clickEvent={this.state.clickEvent}
+                                                designer={{id: element.designerInfo.designer_id}}
+                                            />
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            # of Projects Assigned: {element.projects.length}
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            Hours Available: 35
+                                        </ListItem>
+                                            <Divider  variant="middle"/>
+                                        <ListItem>
+                                            Billable Rate: ${element.designerInfo.rate}
+                                        </ListItem>
+                                    </List>
+                                
                                     <ul className='designerStatsLists'>
-                                        <li>#Projects: {element.projects.length}</li>
-                                        <li>Hours Available: 35</li>
-                                        <li>Billable Rate: ${element.designerInfo.rate}</li>
+                                       
+                                       
+                                        <li></li>
                                     </ul>
                                 </div>
-                                <AddCalendarEvent 
-                                    closeClickEvent={this.closeClickEvent}
-                                    clickEvent={this.state.clickEvent}
-                                    designer={{id: element.designerInfo.designer_id}}
-                                />
                                 <FullCalendar
                                     className='designerWeek'
                                     plugins={[dayGridPlugin]}
