@@ -23,7 +23,7 @@ class MyDesigners extends Component {
 		return (
            
                 <div className="projectDashWrap">
-                 <h3 className='pageTitle titleWrap'>My Designers:</h3>
+                 <h3 className=''>My Designers:</h3>
 
             <div style={{width: '100%'}} className="myDesignerInfo">
                 {this.props.store.user && 
