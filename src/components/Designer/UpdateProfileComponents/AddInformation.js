@@ -165,36 +165,27 @@ class AddInformation extends Component {
 				<div className="addInfoWrap">
 					<h2>Add Information</h2>
 					<br/>
-					<label
-						htmlFor='phoneNum'
-						className='buildProfileLabel'
-					>Phone Number:
-					</label>
 					<TextField
+						variant="outlined" 
 						type='text'
 						id='phoneNum'
+						label="Phone Number"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.phone : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'phone')}
 					/>
-					<label
-						htmlFor='imgUrl'
-						className='buildProfileLabel'
-					>Profile Image URL:
-					</label>
 					<TextField 
 						type='text'
+						variant="outlined" 
 						id='imgUrl'
+						label="Profile Image URL"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.photo : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'photo')}
 					/>
 					<br/>
-					<label
-						htmlFor='linkedinUrl'
-						className='buildProfileLabel'
-						>LinkedIn Page:
-					</label>
 					<TextField 
 						type='text'
+						variant="outlined" 
+						label="LinkedIn Page"
 						id='linkedinUrl'
 						onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.linkedin : ''}
@@ -227,24 +218,18 @@ class AddInformation extends Component {
 						defaultValue={this.state.profile.designer.availability_hours}
 					/>
 					<br/> */}
-					<label
-						htmlFor='educationDegree'
-						className='buildProfileLabel'
-					>Degree:
-					</label>
 					<TextField 
 						type='text'
+						variant="outlined" 
+						label="Degree"
 						id='educationDegree'
 						ref={this.educationTitleInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'education', 'degree')}
 					/>
-					<label
-						htmlFor='educationDegree'
-						className='buildProfileLabel'
-					>Institution:
-					</label>
 					<TextField 
 						type='text'
+						variant="outlined" 
+						label="Institution"
 						id='educationLocation'
 						ref={this.educationLocationInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'education', 'location')}
@@ -257,27 +242,19 @@ class AddInformation extends Component {
 						}) : ''}
 					</ul>
 					<br/>
-					<label
-						htmlFor='careerTitle'
-						className='buildProfileLabel'
-					>
-						Position:
-					</label>
-					<TextField 
+					<TextField
+						variant="outlined" 
 						type='text'
-						id='careerTitle'
+						label='Career Title'
 						ref={this.careerTitleInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'career', 'title')}
 					/>
-					<label
-						htmlFor='careerTitle'
-						className='buildProfileLabel'
-					>
-						Company:
-					</label>
-					<TextField 
+				
+					<TextField
+						variant="outlined" 
 						type='text'
 						id='careerLocation'
+						label="Company"
 						ref={this.careerLocationInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'career', 'location')}
 					/>
