@@ -4,7 +4,6 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 5%;
 }
 .profileImg{
     width: 150px;
@@ -23,6 +22,7 @@
 .prpfileContactInfo{
     padding-top: 2%;
     padding-bottom: 2%;
+    text-align: left;
 }
 .prpfileContactInfo p{
     padding-left: 2%;
@@ -32,13 +32,22 @@
 }
 .right-ProfileColumn{
     width: 50%;
-    padding-top: 8%;
 }
 .skillLabelContainer{
     width:40%
 }
+.sectionList{
+    text-align: left;
+    padding-left: 15%;
+}
 .projectsTableWrap{
     padding-bottom: 20px;
+}
+.sectionHeader{
+    font-size: 22px;
+    text-align: left;
+    padding-top: 3%;
+    padding-left: 12%;
 }
 
 /* Build Profile Styling */
