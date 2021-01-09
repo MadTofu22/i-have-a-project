@@ -1,14 +1,24 @@
 /* Designer Home Profile Components */
-.myProfileWrap, .designerNavBar{
+.myProfileWrap{
     display: inline-flex;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 5%;
 }
 .profileImg{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border: 1px dashed black;
+    margin-left: 10%;
+    margin-right: auto;
+}
+.profileName{
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-right: auto;
+    text-align: left;
+    font-size: 30px;
 }
 .prpfileContactInfo{
     padding-top: 2%;
@@ -20,13 +30,16 @@
 .left-ProfileColumn{
     width: 50%;
 }
-.rightProfileColumn{
+.right-ProfileColumn{
     width: 50%;
+    padding-top: 8%;
 }
 .skillLabelContainer{
     width:40%
 }
-
+.projectsTableWrap{
+    padding-bottom: 20px;
+}
 
 /* Build Profile Styling */
 

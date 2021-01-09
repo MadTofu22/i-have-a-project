@@ -82,7 +82,7 @@ class Calendar extends Component {
 					clickEvent={this.state.clickEvent}
 					designer={{id: this.props.store.user.designer_id}}
 				/>
-				<div className="">
+				<div className="calendarWrap">
 					<FullCalendar
 						plugins={[ dayGridPlugin ]}
 						initialView="dayGridMonth"

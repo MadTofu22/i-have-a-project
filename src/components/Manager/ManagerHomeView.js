@@ -88,7 +88,10 @@ class ManagerHomeView extends Component {
       
 
                     <div  className='managerNavBar'>
-                        <h2 className="titleWrap">iHaveAProject</h2>
+                        <h2 
+                            className="titleWrap"
+                            onClick={()=> this.props.history.push('/home')}
+                        >iHaveAProject</h2>
                         <Divider className="menuDivider"  variant="middle"/>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />

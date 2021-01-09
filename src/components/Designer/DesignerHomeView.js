@@ -60,6 +60,11 @@ class DesignerHomeView extends Component {
 		return (
 			<div className="">
 				<div className="designerNavBar">
+						<h2 
+							className="titleWrap"
+							onClick={()=> this.props.history.push('/home')}
+							>iHaveAProject</h2>
+                        <Divider className="menuDivider"  variant="middle"/>
 						<div className=''>
 							{pages.map((page, index) => {
 								return <NavButtonDesigner key={index} page={page} />
