@@ -11,31 +11,82 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+
+// Import and initialize emailjs
+import emailjs, {init} from 'emailjs-com';
+init("user_KwJe2ulviLUzklqweZQDa");
+
 function FindDesignerCard(props) {
 
+    const [open, setOpen] = React.useState(false);
+
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
     const requestDesigner = () => {
+        console.log('in find designers, designerInfo =', props.designerInfo);
         props.dispatch({
             type: "CREATE_CONTRACT_REQUEST",
             payload: {
-                        designer: props.designeInfor,
+                        designer: props.designerInfo,
                         search: props.search
                 }
+        });
+
+        props.dispatch({
+            type: "FETCH_REQUEST_INFO",
+            payload: {
+                manager_id: props.designerInfo.designerInfo.manager_id
+            }
         })
+        
+        const serviceId = 'ihap_service_1234'; 
+        const templateId = 'template_93nx0fo';
+        const templateParams = {
+            designer_name: props.designerInfo.designerName.first_name + '' + props.designerInfo.designerName.last_name,
+            // to_manager_name: ,
+            // to_email: email,
+            software: props.projectInfo.software_label,
+            designer_rate: props.designerInfo.designerInfo.rate,
+            from_name: props.requestingManagerInfo.first_name + '' + props.requestingManagerInfo.last_name,
+            from_email: props.requestingManagerInfo.managerEmail,
+            from_phone: props.requestingManagerInfo.phone,
+            project_link: `https://localhost:3000/#/projectDetails/${props.projectInfo.project_id}`,
+        }
+    
+        emailjs.send(serviceId, templateId, templateParams)
+            .then(response => {
+            console.log('SUCCESS! Email sent with the following params', templateParams);
+            }, error => {
+            console.log('Error in handleSendInvites:', error);
+        });
+    }
+    const openProfileMenu = () => {
+        setOpen(true)
     }
 
-
 	return (
-         
-             <Card >
+         <>
+             <Card style={{width:'250px', height: '300px'}}>
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
-                        {props.designeInfor.designerName.first_name + ' ' + props.designeInfor.designerName.last_name}
+                        {props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {props.designeInfor.photo}
+                        {props.designerInfo.photo}
                     </Typography>
                     <div style={{width: '100%', height: '150px', overflow: 'scroll'}}>
-                        {props.designeInfor.skills.map(skill => {
+                        {props.designerInfo.skills.map(skill => {
                             return (
                                 <>
                                     <Typography gutterBottom>
@@ -56,8 +107,18 @@ function FindDesignerCard(props) {
                 </CardContent>
                 <CardActions>
                     <Button onClick={requestDesigner} size="small">Request Designer</Button>
+                    <Button onClick={openProfileMenu} size="small">More</Button>
                 </CardActions>
             </Card>
+
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="title">User Profile</DialogTitle>
+            
+                <DialogContent>
+                    
+                </DialogContent>
+          </Dialog>
+        </>
 	);
 }
 

@@ -1,18 +1,17 @@
 /* Manager Home View Styling */
-.topSection {
-    display: block;
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    background-color: white;
+
+
+.header {
+    background-color: rgb(247, 229, 206);
+    text-align: center;
+    width: 50%;
+    margin-left: 30%;
 }
 
 .titleContainer {
-    display: inline-flex;
-    width: 100vw;
-    height: 8vh;
-    justify-content: center;
+    background-color: rgb(247, 229, 206);
 }
+
 
 .headerButton {
     justify-self: center;
@@ -24,48 +23,32 @@
 }
 
 .managerNavBar {
-    position: absolute;
+    position: fixed;
     left: 0px;
+    top: 0px;
     display:flex; 
     flex-direction: column;
-    max-height: 6vh;
-    margin: 0em auto;
+    height: 100%;
+    box-shadow: 0px 0px 20px grey;
+    background-color: rgb(243, 210, 168);
+    z-index: 1
 }
 
 .navBtn {
     display: flex;
-    height: 3vh;
-    margin: 1vh .5vh;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .navBtnClicked {
     display: flex;
-    height: 3vh;
-    margin: 1vh .25em;
-    background: radial-gradient(rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
-    border-left: .25em solid rgba(255, 255, 255, 0.5);
-    border-right: .25em solid rgba(255, 255, 255, 0.5);
+    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-.navBtn:hover {
-    display: flex;
-    height: 3vh;
 
-    background: radial-gradient(rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.navBtnLabel {
-    margin: 0em .25em;
-}
-
-.homeComponentWrapper {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    margin: 15vh auto 0vh auto;
-}
 
 /* Dashboard Component Styling */
 .dashboardSection {
@@ -93,9 +76,10 @@ h2.designer {
 
 .designerCalendarSection {
     display: inline-flex;
-    height: 100px;
+    height: 200px;
     margin: 2vh 7vw;
     width: 90vw;
+    padding-bottom: 5%;
 }
 
 .designerWeek {
@@ -113,4 +97,55 @@ h2.designer {
 
 .managerRegInfo {
     text-align: center;
+}
+
+
+
+.pageTitle {
+    text-align: center;
+    background-color:rgb(173, 196, 215);
+    height: 50px;
+    margin-right: 0;
+    margin-left: auto;
+    outline: 1px solid black;
+    /* transform: scale(0.95, 0.95); */
+    /* transform: scaleY(0.95); */
+}
+.findDesignerWrap{
+    height: 800px;
+}
+
+.titleWrap {
+    transform: scale(0.99, 0.95);
+    /* margin-right: 0; */
+}
+
+.contentWrap {
+    text-align: center;
+    border-radius: 100px;
+    background-color: rgb(249, 190, 165);
+    max-width: 70%;
+    margin-left: auto;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    transform: scale(0.99, 0.95);
+}
+
+.pageWrapper {
+    background-color: rgb(247, 229, 206);
+    background-size: 100%;
+}
+
+.homeComponentWrapper {
+    margin-left: 10%;
+    height: 400px;
+    text-align: center;
+    background-color: rgb(249, 190, 165);
+    transform: scale(0.99, 0.95);
+}
+
+.searchResults{
+    height: 300px;
+    margin-left: 10%;
+    display: inline-flex;
 }

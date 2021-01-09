@@ -19,13 +19,15 @@ function* findDesignerSearch(action) {
     for (const designer of response.data) {
       console.log(designer.designer_id);
       
-      const fetchDesignerData = yield axios.get(`/api/designers/${designer.designer_id}`)
-      const designerSkills = yield axios.get(`/api/profile/skills/${designer.designer_id}`)
+      const fetchDesignerData = yield axios.get(`/api/designers/${designer.designer_id}`);
+      const designerSkills = yield axios.get(`/api/profile/skills/${designer.designer_id}`);
+      const fetchDesignerData = yield axios.get(`/api/search/manager/${designer.manager_id}`);
       
        searchResults.push({
         designerName: fetchDesignerData.data,
         designerInfo: designer,
-        skills: designerSkills.data.rows
+        managerInfo: fetchManagerData.data,
+        skills: designerSkills.data.rows,
       })
     }
     console.log(searchResults);

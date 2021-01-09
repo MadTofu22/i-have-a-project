@@ -4,7 +4,7 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { theme } from '../App/Material-UI/MUITheme';
 import {withRouter} from 'react-router-dom';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider, Button, Container, Box } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import './Login.css'
 
@@ -41,6 +41,8 @@ class LoginPage extends Component {
     return (
       <div className='loginElements'>
         <ThemeProvider theme={theme}>
+        <Container maxWidth="md">
+        <Box bgcolor="primary.light" height>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -99,6 +101,8 @@ class LoginPage extends Component {
           >
             Register
           </Button>
+          </Box>
+          </Container>
           </ThemeProvider>
       </div>
     );

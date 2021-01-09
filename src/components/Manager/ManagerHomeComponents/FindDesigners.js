@@ -1,3 +1,5 @@
+
+
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -6,7 +8,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar } from '@material-ui/core';
+import { ThemeProvider, Typography, Toolbar, AppBar, Container, Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
@@ -37,7 +39,7 @@ class FindNewDesigner extends Component {
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
-     if (event.target.value >= 0 && Number(event.target.value || event.target.value === '') ) {
+     if (event.target.value >= 0 && Number(event.target.value) ) {
         this.setState({
           newSearch: {
             ...this.state.newSearch,
@@ -56,10 +58,17 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div>
+        <div className="findDesignerWrap">
+          {/* <ThemeProvider theme={theme}> */}
+            {/* <Container maxWidth="md">
+              <Box bgcolor="primary.light" height> */}
+                <div className="titleWrap">
+                 <h1 className="pageTitle">Find New Designer</h1>
+                </div>
           <form onSubmit={this.searchDesigner}>
-            <h1>Find New Designer</h1>
+            <div className="">
             <div>
+ 
                 <TextField
                   id="start"
                   label="Start Date"
@@ -131,21 +140,31 @@ class FindNewDesigner extends Component {
                   }
             </div>
               <input type="submit" value="Search" />
-            </form>   
-            {this.props.store.search.length > 0 &&
-              this.props.store.search.map( (desingerObj) => {
-                return <FindDesignerCard 
-                          designeInfor={desingerObj}
-                          key={desingerObj.designer_id}
-                          search={this.state.newSearch}
-                        />
-              })
-            }
+              </div>
+            </form>
+                  <div className="searchResults">
+                      {this.props.store.search.length > 0 &&
+                  this.props.store.search.map( (designerObj) => {
+                    console.log('in find designers, designerObj =', designerObj);
+                    return <FindDesignerCard 
+                              designerInfo={designerObj}
+                              projectInfo={{id: this.state.project_id, software_label: this.props.store.software[designerObj.designerInfo.software_id]}}
+                              requestingManagerInfo={this.props.store.user}
+                              key={designerObj.designer_id}
+                              search={this.state.newSearch}
+                            />
+                    
+                  })
+                  }
+            </div>
+            {/* </Box>
+            </Container> */}
+            {/* </ThemeProvider> */}
         </div>
       );
     }
   }
-  
+
 
 
 export default withRouter(connect(mapStoreToProps)(FindNewDesigner));

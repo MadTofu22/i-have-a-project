@@ -27,13 +27,26 @@ function* fetchInbox (action){
     }
 }
 
-function* deleteProject(){
+function* deleteProject (action){
     try{
-        console.log('deleteProject')
-        yield axios.delete('/api/contracts')
+        console.log('deleteProject in delete saga project');
+        yield axios.delete(`/api/contracts/${action.payload.id}`);
+        yield put({
+            type: "FETCH_OUTBOX",
+            payload: {id:action.payload.managerId}
+        })
+    }catch (error){
+        console.log(error);
+    }
+}
+
+function* acceptAndDenyProject (action){
+    try{
+        console.log('updateProject in update saga project id=', action.payload.id)
+        yield axios.put(`/api/contracts/${action.payload.id}`, {status: 'completed'})
         yield put({
             type: "FETCH_INBOX",
-            payload: action.payload.id
+            payload: {id:action.payload.managerId}
         })
     }catch (error){
         console.log(error);
@@ -43,7 +56,8 @@ function* deleteProject(){
 function* contractSaga() {
     yield takeLatest('FETCH_OUTBOX', fetchOutbox);
     yield takeLatest('FETCH_INBOX', fetchInbox);
-    yield takeLatest ('DELETE_PROJECT', deleteProject)
+    yield takeLatest ('DELETE_PROJECT', deleteProject);
+    yield takeLatest ('UPDATE_REQUEST', acceptAndDenyProject);
 }
 
 export default contractSaga;

@@ -74,8 +74,8 @@ function AddTeamMember(props) {
   }
 
   const sendEmail = (inviteData) => {
-    const serviceId = 'ihap_service_1234'; // process.env.REACT_APP_EMAILJS_SERVICEID;
-    const templateId = 'template_93nx0fo'; // process.env.REACT_APP_EMAILJS_TEMPLATEID;
+    const serviceId = 'ihap_service_1234'; 
+    const templateId = 'template_93nx0fo';
     const templateParams = {
       to_name: firstName + '' + lastName,
       to_email: email,
