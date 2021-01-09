@@ -25,12 +25,12 @@ class Dashboard extends Component {
                 {
                     field: 'start', // Total number of hours scheduled for this project across all designers
                     headerName: 'Start Date',
-                    width: 250,
+                    width: 230,
                 },
                 {
                     field: 'due_date', // Total number of required hours estimated to be completed for this project
                     headerName: 'Due',
-                    width: 250,
+                    width: 230,
                 },
                 {
                     field: 'status',

@@ -7,10 +7,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import Switch from '@material-ui/core/Switch';
-import MenuItem from '@material-ui/core/MenuItem';
+
+
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import IconButton from '@material-ui/core/IconButton'
 
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
@@ -99,9 +99,11 @@ class AddCalendarEvent extends Component{
   render() {
     return (
       <div>
-  
-      <button onClick={this.handleClickOpen}>Add Availability</button> 
-  
+          <div onClick={this.handleClickOpen}>
+            <EventAvailableIcon/> Add Availability
+          </div>
+          
+
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" >
           <DialogTitle id="form-dialog-title">{this.state.clickEvent.dialog}</DialogTitle>
             <DialogContent>
