@@ -50,7 +50,7 @@ class ManagerCalendar extends Component {
 					renderModal: false,
 					project_id: null
 			}
-		})
+		});
 	}
 
 	
@@ -76,10 +76,15 @@ class ManagerCalendar extends Component {
                 <h2 className='pageTitle'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?
                         this.props.store.managerCalendar.map( (element) => {
-                                for (const event of element.calendar) {
-                                    event['id'] = event.event_id
-                                    event['start'] = event.start.slice(0,10)
-                                }                          
+                            let totalAvailability = 0;
+                            let today = new Date();
+                            today = today.slice(0,10);
+                            for (const event of element.calendar) {
+                                event['id'] = event.event_id
+                                event['start'] = event.start.slice(0,10)
+                                if (Date(event.start.slice(0.10)) >= today)
+                                totalAvailability += event.hoursCommitted;
+                            }
                             
                             return (
                                 <div className='designerCalendarSection'>
@@ -114,7 +119,7 @@ class ManagerCalendar extends Component {
                                             <Divider  variant="middle" />
                                         <ListItem>
                                             <ListItemText>
-                                                Hours Available: 35
+                                                Total Hours Available: {totalAvailability}
                                             </ListItemText>
                                         </ListItem>
                                             <Divider  variant="middle"/>
