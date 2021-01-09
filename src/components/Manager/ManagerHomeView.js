@@ -132,10 +132,6 @@ class ManagerHomeView extends Component {
                 </div>
                 {/* </Box>
                 </Container> */}
-<<<<<<< HEAD
-                </ThemeProvider>
-=======
->>>>>>> fa9d72ce42782e3bdb83e0e0a42130918b900786
             </Router>
         );
     }
