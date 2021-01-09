@@ -28,14 +28,22 @@ class FindNewDesigner extends Component {
       }
     };
 
-    handleChange = (event, keyname) => {      
+    handleChange = (event, keyname) => {
       this.setState({
         newSearch: {
           ...this.state.newSearch,
           [keyname]: event.target.value
         }
       });
+
+      if (keyname === 'project_id') {
+        this.props.dispatch({
+          type: 'FETCH_PROJECT_DETAILS',
+          payload: event.target.value,
+        })
+      }
     }
+
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
@@ -112,7 +120,7 @@ class FindNewDesigner extends Component {
             <div>
                   {this.props.store.projects.length > 0 &&
                     <>
-                      <InputLabel>Choos a Project</InputLabel>
+                      <InputLabel>Choose a Project</InputLabel>
                       <select 
                         type='select'
                         onChange={(event) => this.handleChange(event, 'project_id')}
@@ -156,6 +164,7 @@ class FindNewDesigner extends Component {
                       start: this.state.newSearch.start, 
                       end: this.state.newSearch.due_date,
                       hours: this.state.newSearch.requested_hours,
+                      desc: this.props.store.projectDetails.projectDetails.notes,
                     }
                     console.log('in find designers, designerObj =', designerObj, 'projectInfo=', projectInfo, 'this.props.store.user', this.props.store.user);
 
@@ -168,7 +177,7 @@ class FindNewDesigner extends Component {
                             />
                     
                   })
-                  }
+                }
             </div>
             {/* </Box>
             </Container> */}

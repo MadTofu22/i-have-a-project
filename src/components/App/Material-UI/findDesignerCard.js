@@ -63,7 +63,7 @@ function FindDesignerCard(props) {
             project_start: props.projectInfo.start,
             project_end: props.projectInfo.end,
             project_hours: props.projectInfo.hours,
-            project_link: `http://localhost:3000/#/projectDetails/${props.projectInfo.id}`, 
+            project_description: props.projectInfo.desc, 
         }
         
         console.log('attempting to send email, templateParmas=', templateParams);
