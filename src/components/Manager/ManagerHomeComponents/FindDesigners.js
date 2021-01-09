@@ -66,7 +66,7 @@ class FindNewDesigner extends Component {
                  <h1 className="pageTitle">Find New Designer</h1>
                 </div>
           <form onSubmit={this.searchDesigner}>
-            <div className="">
+            <div className="findDesignerInputs">
             <div>
  
                 <TextField
@@ -101,7 +101,7 @@ class FindNewDesigner extends Component {
                     id="name"
                     label="Hours"
                     type="number"
-                    helperText="Hours Designer will need to be available for"
+                    helperText="Hours Designer will need to commit to your project"
                     required
                     value={this.state.newSearch.requested_hours}
                 />
@@ -109,7 +109,7 @@ class FindNewDesigner extends Component {
             <div>
                   {this.props.store.projects.length > 0 &&
                     <>
-                      <InputLabel>Choos a Project</InputLabel>
+                      <InputLabel>Choose a Project</InputLabel>
                       <select 
                         type='select'
                         onChange={(event) => this.handleChange(event, 'project_id')}
@@ -130,7 +130,7 @@ class FindNewDesigner extends Component {
                       onChange={(event) =>this.handleChange(event, 'software_id')}
                       value={this.state.newSearch.software_id}
                     > 
-                        <MenuItem value={0}>Select a Software</MenuItem>
+                        <MenuItem value={0}>Select a Required Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {
                         return <MenuItem key={softwareObj.id} value={softwareObj.id}>{softwareObj.label}</MenuItem>
                       })}
