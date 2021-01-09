@@ -5,6 +5,8 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
 import { theme } from '../../App/Material-UI/MUITheme';
 import { ThemeProvider, Button } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import AddTeamMember from '../../Modals/AddTeamMember'
 
@@ -19,11 +21,23 @@ class MyDesigners extends Component {
             type: "FETCH_DESIGNERS"
         })
     }
+
+    deleteUser = (userId, type) => {
+        console.log("hello from delete MyDesigners", userId)
+        let userData = {
+          designer_id: userId
+        }
+        this.props.dispatch({
+          type: 'DELETE_TEAM_MEMEBER',
+          payload: userData
+        })
+    } 
+
 	render() {
 		return (
            
                 <div className="projectDashWrap">
-                 <h3 className='pageTitle titleWrap'>My Designers:</h3>
+                 <h3 className=''>My Designers:</h3>
 
             <div style={{width: '100%'}} className="myDesignerInfo">
                 {this.props.store.user && 
@@ -43,7 +57,16 @@ class MyDesigners extends Component {
                             columns={[
                                     { field: 'id', headerName: 'ID'},
                                     { field: 'first_name', headerName: 'First Name', width: '25%'},
-                                    { field: 'last_name', headerName: 'Last Name', width: '25%'}
+                                    { field: 'last_name', headerName: 'Last Name', width: '25%'},
+                                    {
+                                        field: 'delete',
+                                        headerName: 'Delete',
+                                        renderCell: (params) => (
+                                            <IconButton aria-label="delete" onClick={() => this.deleteUser(params.row.id)}>
+                                                <DeleteIcon fontSize="small" />
+                                            </IconButton>
+                                        )
+                                    }
                                 ]}
                             rows={this.props.store.designer}
                         />

@@ -30,6 +30,7 @@ class AddedSkillLabel extends Component {
                 <h4>{this.props.skill.label}</h4>
                 <TextField 
                     type='number' 
+                    variant="outlined" 
                     className='ratingInput' 
                     defaultValue={this.props.skill.proficiency} 
                     min='1' 

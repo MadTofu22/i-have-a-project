@@ -8,6 +8,12 @@ import { Button, ThemeProvider } from '@material-ui/core';
 import { theme } from '../../App/Material-UI/MUITheme';
 import '../Manager.css';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import Divider from '@material-ui/core/Divider'
+
 import AddCalendarEvent from '../../Designer/DesignerHomeComponents/AddCalendarEvent'
 
 class ManagerCalendar extends Component {
@@ -67,7 +73,7 @@ class ManagerCalendar extends Component {
         return (
             <div className="projectDashWrap">
                 <ThemeProvider theme={theme}>
-                <h2 className='manager'>Designer Weekly Calendars</h2>
+                <h2 className='pageTitle'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?
                         this.props.store.managerCalendar.map( (element) => {
                                 for (const event of element.calendar) {
@@ -79,28 +85,57 @@ class ManagerCalendar extends Component {
                                 <div className='designerCalendarSection'>
                                 <div className='designerInfoBlock'>
                                         <h2 className='designerNameHeader'>{element.designerInfo.first_name + ' ' + element.designerInfo.last_name}</h2>
-                                    <Button variant="contained" color="primary" style={{ margin: 20 }}>
-                                        View Profile</Button>
-                                    <ul className='designerStatsLists'>
-                                        <li>#Projects: {element.projects.length}</li>
-                                        <li>Hours Available: 35</li>
-                                        <li>Billable Rate: ${element.designerInfo.rate}</li>
-                                    </ul>
+                                    
+                                     <List component="nav" aria-label="main mailbox folders">
+                                        <ListItem>
+                                        <PermIdentityIcon />
+                                            <Button>
+                                                <ListItemText>
+                                                    View Profile
+                                                </ListItemText>
+                                            </Button>
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            <Button>
+                                                <AddCalendarEvent 
+                                                    closeClickEvent={this.closeClickEvent}
+                                                    clickEvent={this.state.clickEvent}
+                                                    designer={{id: element.designerInfo.designer_id}}
+                                                />
+                                            </Button>
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            <ListItemText>
+                                                # of Projects Assigned: {element.projects.length}
+                                            </ListItemText> 
+                                        </ListItem>
+                                            <Divider  variant="middle" />
+                                        <ListItem>
+                                            <ListItemText>
+                                                Hours Available: 35
+                                            </ListItemText>
+                                        </ListItem>
+                                            <Divider  variant="middle"/>
+                                        <ListItem>
+                                            <ListItemText>
+                                                Billable Rate: ${element.designerInfo.rate}
+                                            </ListItemText>
+                                        </ListItem>
+                                    </List>
                                 </div>
-                                <AddCalendarEvent 
-                                    closeClickEvent={this.closeClickEvent}
-                                    clickEvent={this.state.clickEvent}
-                                    designer={{id: element.designerInfo.designer_id}}
-                                />
+                                <div className="managerCalendarWrap">
                                 <FullCalendar
                                     className='designerWeek'
                                     plugins={[dayGridPlugin]}
                                     initialView='dayGridWeek'
-                                    height='200px'
-                                    dayMinWidth='4vw'
+                                    height='240px'
+                                    dayMinWidth='6vw'
                                     events={element.calendar}
                                     eventClick={(info) => this.OpenCalendarEventModal(info)}
                                 />
+                                </div>
                                 </div>
                             )
                         })

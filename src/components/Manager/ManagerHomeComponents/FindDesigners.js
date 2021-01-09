@@ -28,14 +28,22 @@ class FindNewDesigner extends Component {
       }
     };
 
-    handleChange = (event, keyname) => {      
+    handleChange = (event, keyname) => {
       this.setState({
         newSearch: {
           ...this.state.newSearch,
           [keyname]: event.target.value
         }
       });
+
+      if (keyname === 'project_id') {
+        this.props.dispatch({
+          type: 'FETCH_PROJECT_DETAILS',
+          payload: event.target.value,
+        })
+      }
     }
+
     handleHours = (event) => {
       console.log(event.target.value, 'value of change');
       
@@ -73,6 +81,7 @@ class FindNewDesigner extends Component {
                   id="start"
                   label="Start Date"
                   type="date"
+                  variant="outlined"
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -86,6 +95,7 @@ class FindNewDesigner extends Component {
                   id="date"
                   label="Due Date"
                   type="date"
+                  variant="outlined"
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -98,6 +108,7 @@ class FindNewDesigner extends Component {
                     onChange={(event) => this.handleHours(event)}
                     autoFocus
                     margin="dense"
+                    variant="outlined"
                     id="name"
                     label="Hours"
                     type="number"
@@ -129,6 +140,7 @@ class FindNewDesigner extends Component {
                     <Select
                       onChange={(event) =>this.handleChange(event, 'software_id')}
                       value={this.state.newSearch.software_id}
+                      variant="outlined"
                     > 
                         <MenuItem value={0}>Select a Required Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {
@@ -142,17 +154,30 @@ class FindNewDesigner extends Component {
               <input type="submit" value="Search" />
               </div>
             </form>
-                  <div className="searchResults">
-                      {this.props.store.search.length > 0 &&
-                  this.props.store.search.map( (desingerObj) => {
+                <div className="searchResults">
+                {this.props.store.search.length > 0 &&
+                  this.props.store.search.map( (designerObj) => {
+
+                    const projectInfo = {
+                      id: this.state.newSearch.project_id, 
+                      software_label: this.props.store.software[designerObj.designerInfo.software_id].label, 
+                      start: this.state.newSearch.start, 
+                      end: this.state.newSearch.due_date,
+                      hours: this.state.newSearch.requested_hours,
+                      desc: this.props.store.projectDetails.projectDetails.notes,
+                    }
+                    console.log('in find designers, designerObj =', designerObj, 'projectInfo=', projectInfo, 'this.props.store.user', this.props.store.user);
+
                     return <FindDesignerCard 
-                              designeInfor={desingerObj}
-                              key={desingerObj.designer_id}
+                              designerInfo={designerObj}
+                              projectInfo={projectInfo}
+                              requestingManagerInfo={this.props.store.user}
+                              key={designerObj.designer_id}
                               search={this.state.newSearch}
                             />
                     
                   })
-                  }
+                }
             </div>
             {/* </Box>
             </Container> */}

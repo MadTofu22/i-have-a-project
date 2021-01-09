@@ -30,13 +30,11 @@ class ProjectDetails extends Component {
 		})
     }
     goToEditPage = () =>{
-        this.props.history.push(`/projectEdit/${this.props.match.params.project_id}`)
+        this.props.history.push(`/ManagerHomeView/EditProject/${this.props.match.params.project_id}`)
     }
     goBackHome = () =>{
         let usertype = this.props.store.user.user_type
-        if (usertype === 'manager') {
-            this.props.history.push(`/ManagerHomeView/Dashboard`)
-        } else if (usertype === 'Designer') {
+        if (usertype === 'Designer') {
             this.props.history.push(`/DesignerHomeView/Projects`)
         }
     }

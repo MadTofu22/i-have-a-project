@@ -14,8 +14,18 @@ function* fetchDesigners() {
   }
 }
 
+function* deleteDesignerInfo(action) {
+  try {
+    const response = yield axios.post('/api/manager/delete/delete', action.payload);
+    yield put({ type: 'FETCH_DESIGNERS', payload: response.data });
+  } catch (error) {
+    console.log('User delete request failed', error);
+  }
+}
+
 function* designerSaga() {
   yield takeLatest('FETCH_DESIGNERS', fetchDesigners);
+  yield takeLatest('DELETE_TEAM_MEMEBER', deleteDesignerInfo);
 }
 
 export default designerSaga;
