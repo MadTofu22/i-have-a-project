@@ -86,7 +86,7 @@ class ManagerHomeView extends Component {
         return (
             <Router>
       
-                <div className='topSection'>
+
                     <div  className='managerNavBar'>
                         <h2 className="titleWrap">iHaveAProject</h2>
                         <Divider className="menuDivider"  variant="middle"/>
@@ -101,7 +101,6 @@ class ManagerHomeView extends Component {
 							>Logout
 						</Button>
                     </div>
-                </div>
                 {/* <Container maxWidth="md">
                 <Box bgcolor="primary.light" height> */}
                 {/* Routes to each component */}

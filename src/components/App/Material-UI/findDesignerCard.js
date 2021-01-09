@@ -103,12 +103,12 @@ function FindDesignerCard(props) {
                                         {skill.label}
                                     </Typography>
                                     <Slider 
-                                            style={{width: '90%'}}
-                                            value={skill.proficiency}
-                                            step={1}
-                                            marks
-                                            min={1}
-                                            max={5}  
+                                        style={{width: '90%'}}
+                                        value={skill.proficiency}
+                                        step={1}
+                                        marks
+                                        min={1}
+                                        max={5}  
                                     />
                                 </>
                             )
@@ -145,7 +145,6 @@ function FindDesignerCard(props) {
                             </div>
                             <div className="profileContactInfo">
                                 <h2>Contact Info: </h2>
-                                {/* <p>Email: {props.store.user ? this.props.store.user.email : ''}</p> */}
                                 <p>Phone: {props.store.profile.designer ? props.store.profile.designer.phone : ''}</p>
                                 <p>Linkedin URL: {props.store.profile.designer ? props.store.profile.designer.linkedin : ''}</p>
                             </div>

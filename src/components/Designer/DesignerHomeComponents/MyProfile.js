@@ -6,33 +6,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import '../Designer.css'
 
 class MyProfile extends Component {
-	state = {
-		profile: {
-			photo: '',
-			first_name: 'Simon',
-			last_name: 'Germscheid',
-			email: 'email@email.com',
-			phone: '999-999-9999',
-			rate: 0,
-			linkedin: 'linkedin.site/profilename',
-			career: [{
-				start_date: '05-20-18',
-				end_date: '05-20-20',
-				title: 'Legit Title'
-			}],
-			education: [{
-				graduation_date: '01-15-21',
-				degree: 'Fullstack Software Engineering',
-			}],
-			certification: [],
-			skills: [
-				
-			],
-			availability: [{
 
-			}]
-		}
-	};
 	
 	componentDidMount = () => {
 		this.props.dispatch({type: 'FETCH_PROFILE'});
@@ -40,7 +14,7 @@ class MyProfile extends Component {
 
 	render() {
 		return (
-			<div className="myProfileWrap">
+			<div className="projectDashWrap">
 				<div className="left-ProfileColumn">
 					
 					<div className="profileImg">

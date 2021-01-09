@@ -9,6 +9,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
   background-color: rgb(247, 229, 206);
+  background-image: url(../../images/pencils.jpg);
 }
 
 img {
@@ -116,6 +117,7 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
 
 .MuiDataGrid-columnsContainer{
   font-size: 30px;

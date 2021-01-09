@@ -1,6 +1,37 @@
-.loginElements {
-    text-align: center;
-    /* margin-left: auto;
+
+.loginElements{
+    margin-top: 10%;
+
+}
+.loginElements{
+    background-color: rgba(255, 255, 255, 0.986);
+    width: 30%;
+    margin-left: auto;
+    color: rgb(255, 255, 255);
+    border-radius: 2%;
     margin-right: auto;
-    width: 8em */
+    text-align: left;
+}
+.loginForm{
+    border-radius: 2%;
+}
+.loginTitle{
+    text-align: center;
+    padding: 2%;
+    color: black;
+}
+.loginBTN{
+    width: 80px;
+    margin-left: auto;
+
+}
+.registerOption{
+    color: black;
+    height: 40px;
+}
+.loginInput{
+    padding-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
 }

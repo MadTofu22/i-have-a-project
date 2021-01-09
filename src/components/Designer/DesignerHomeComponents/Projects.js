@@ -14,7 +14,7 @@ class Projects extends Component {
 
 	render() {
 		return (
-			<div style={{ height: 250, width: '100%' }}>
+			<div className="projectDashWrap" style={{ height: 250, width: '100%' }}>
 				{this.props.store.projects.length > 1 ?
 					<DataGrid
 						columns={[
