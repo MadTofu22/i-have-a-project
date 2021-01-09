@@ -58,7 +58,7 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div className="findDesignerWrap">
+        <div className="projectDashWrap">
           {/* <ThemeProvider theme={theme}> */}
             {/* <Container maxWidth="md">
               <Box bgcolor="primary.light" height> */}

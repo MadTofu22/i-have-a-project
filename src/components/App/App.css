@@ -2,7 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
-
+  margin-top: -25px;
 }
 
 body {
@@ -55,6 +55,9 @@ Button
 .btn_sizeFull {
   display: block;
   width: 100%;
+}
+.appWrap{
+  height: 100%;
 }
 
 .btn:hover {
@@ -112,4 +115,11 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+.MuiDataGrid-columnsContainer{
+  font-size: 30px;
+}
+.MuiDataGrid-colCell{
+  width: 100px;
 }

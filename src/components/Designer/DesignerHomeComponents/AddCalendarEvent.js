@@ -88,7 +88,7 @@ class AddCalendarEvent extends Component{
   handleDeleteEvent = () => {
     this.props.dispatch({
       type: "DELETE_CALENDAR_EVENT",
-      payload: {id: this.props.clickEvent.id}
+      payload: {...this.props.clickEvent}
     })
     this.setState({
       open: false
