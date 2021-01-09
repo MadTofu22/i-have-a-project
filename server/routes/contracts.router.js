@@ -153,6 +153,7 @@ router.post('/', (req, res) => {
         });
 });
 
+
 router.delete('/:id', (req, res) => {
     const queryText = `DELETE FROM contract_requests where id = $1;`;
 

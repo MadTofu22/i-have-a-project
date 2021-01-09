@@ -80,15 +80,12 @@ function FindDesignerCard(props) {
         setOpen(true)
     }
 
-    const openProfileMenu = () => {
-        setOpen(true)
-    }
-
 	return (
          <>
              <Card style={{width:'250px', height: '300px'}}>
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
+                        
                         {props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name}
                     </Typography>
                     <Typography variant="h5" component="h2">
