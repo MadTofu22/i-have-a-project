@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
-class ContractRequests extends Component {   
+class ContractRequests extends Component {
 
     state = {
         inquiringManager: [],
@@ -49,21 +49,12 @@ class ContractRequests extends Component {
         })
     }    
 
-    handleInboxAccept = (id, managerId) => {
-        console.log(id, 'in handleInboxAccept')
+    handleInboxAction = (id, designerId, managerId, projectId, action) => {
         this.props.dispatch({
             type: 'UPDATE_REQUEST',
-            payload: {id, managerId, action: 'accepted'}
+            payload: {id, designerId, managerId, projectId, action}
         })
-    }  
-
-    handelInboxDeny = (id, managerId) => {
-        console.log(id, 'in handleInboxDeny')
-        this.props.dispatch({
-            type: 'UPDATE_REQUEST',
-            payload: {id, managerId, action: 'denied'}
-        })
-    } 
+    }
 
     render () {
         return (
@@ -92,8 +83,8 @@ class ContractRequests extends Component {
                                         <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td><button onClick={() => this.handleInboxAccept(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id)}>accept</button></td>
-                                        <td><button onClick={() => this.handelInboxDeny(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id)}>deny</button></td>
+                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'accepted')}>accept</button></td>
+                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'denied')}>deny</button></td>
                                         </tr>
                                     )
                                     }

@@ -44,8 +44,8 @@ function* updateRequest (action){
     try{
         console.log('updateProject in update saga project id=', action.payload.id)
         yield axios.put(`/api/contracts/${action.payload.id}`, {status: 'completed'})
-        if (action.payload.action) {
-            
+        if (action.payload.action === 'accepted') {
+            yield axios.post(`/api/projects/addDesigner`, {id: action.payload.designerId, project_id: action.payload.projectId});
         }
 
         yield put({
