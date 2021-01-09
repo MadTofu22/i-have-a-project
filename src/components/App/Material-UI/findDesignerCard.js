@@ -23,6 +23,7 @@ init("user_KwJe2ulviLUzklqweZQDa");
 function FindDesignerCard(props) {
 
     const [open, setOpen] = React.useState(false);
+    const [requested, setRequested] = React.useState(false);
 
 
     const handleClickOpen = () => {
@@ -63,7 +64,7 @@ function FindDesignerCard(props) {
             project_start: props.projectInfo.start,
             project_end: props.projectInfo.end,
             project_hours: props.projectInfo.hours,
-            project_link: `http://localhost:3000/#/projectDetails/${props.projectInfo.id}`, 
+            project_description: props.projectInfo.desc, 
         }
         
         console.log('attempting to send email, templateParmas=', templateParams);
@@ -74,6 +75,8 @@ function FindDesignerCard(props) {
             }, error => {
             console.log('Error in requestDesigner:', error);
         });
+
+        setRequested(true)
     }
 
     const openProfileMenu = () => {
@@ -116,7 +119,7 @@ function FindDesignerCard(props) {
                     </div>
                 </CardContent>
                 <CardActions>
-                    <Button onClick={requestDesigner} size="small">Request Designer</Button>
+                    <Button onClick={requestDesigner} disabled={requested} size="small">{requested ? 'Request Sent' : 'Request Designer'}</Button>
                     <Button onClick={openProfileMenu} size="small">More</Button>
                 </CardActions>
             </Card>
