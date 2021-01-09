@@ -22,7 +22,7 @@ class MyDesigners extends Component {
 	render() {
 		return (
            
-                <div className="projectDashWrap">
+                <div className="componentViewWrap">
                  <h3 className=''>My Designers:</h3>
 
             <div style={{width: '100%'}} className="myDesignerInfo">

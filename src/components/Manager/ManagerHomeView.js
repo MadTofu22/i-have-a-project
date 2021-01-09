@@ -134,12 +134,12 @@ class ManagerHomeView extends Component {
                     />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/ProjectDetails/:id`}
+                        path={`/ManagerHomeView/ProjectDetails/:project_id`}
                         component={ProjectDetails}
                     />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/EditProject/:id`}
+                        path={`/ManagerHomeView/EditProject/:project_id`}
                         component={EditProject}
                     />
                     <Route 

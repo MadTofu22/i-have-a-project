@@ -11,6 +11,8 @@ import NavButtonDesigner from './DesignerHomeComponents/NavButtonDesigner.js'
 import Calendar from './DesignerHomeComponents/Calendar.js'
 import MyProfile from '././DesignerHomeComponents/MyProfile.js'
 import Projects from '././DesignerHomeComponents/Projects.js'
+import ProjectDetails from '../Projects/ProjectDetails';
+
 
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
@@ -57,7 +59,7 @@ class DesignerHomeView extends Component {
 	
 		return (
 			<div className="">
-				<div className="managerNavBar">
+				<div className="designerNavBar">
 						<div className=''>
 							{pages.map((page, index) => {
 								return <NavButtonDesigner key={index} page={page} />
@@ -89,6 +91,11 @@ class DesignerHomeView extends Component {
 							exact
 							path={`/DesignerHomeView/projects`}
 							component={Projects}
+						/>
+						<Route
+							exact
+							path={`/DesignerHomeView/ProjectDetails/:project_id`}
+							component={ProjectDetails}
 						/>
 					</Router>
 					</div>

@@ -17,9 +17,6 @@ import TextField from '@material-ui/core/TextField';
 
 class ProjectDetails extends Component {
     
-    state = {
-
-    };
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_PROJECT_DETAILS",
@@ -42,11 +39,12 @@ class ProjectDetails extends Component {
         let columnFormat = []
         if (this.props.store.user.user_type === 'manager') {
             columnFormat = [
-                { field: 'id', headerName: 'ID' },
-                { field: 'first_name', headerName: 'First Name' },
-                { field: 'last_name', headerName: 'Last Name' },
-                { field: 'hours_est', headerName: 'Est. Time' },
+                { field: 'id', headerName: 'ID'},
+                { field: 'first_name', headerName: 'First Name', width: 200},
+                { field: 'last_name', headerName: 'Last Name', width: 200},
+                { field: 'hours_est', headerName: 'Est. Time', width: 200},
                 {field: 'action',
+                    width: 200, 
                     headerName: 'Action',
                     renderCell: (params) => {
                        return(<ProjectActionMenu rowProps={params} project_id={this.props.match.params.project_id}/>)
@@ -56,9 +54,9 @@ class ProjectDetails extends Component {
         } else if (this.props.store.user.user_type === 'Designer') {
             columnFormat = [
                 { field: 'id', headerName: 'ID' },
-                { field: 'first_name', headerName: 'First Name' },
-                { field: 'last_name', headerName: 'Last Name' },
-                { field: 'hours_est', headerName: 'Est. Time' }
+                { field: 'first_name', headerName: 'First Name', width: 200 },
+                { field: 'last_name', headerName: 'Last Name', width: 200 },
+                { field: 'hours_est', headerName: 'Est. Time', width: 200 }
             ]
         }
         return columnFormat
@@ -67,27 +65,21 @@ class ProjectDetails extends Component {
 
     render () {
         return (
-            <div className="projectEditForm">
+            <div className="componentViewWrap">
 
                 <h1>Projects</h1>
                
                 {this.props.store.projectDetails.projectDetails ? 
                     <>
                         <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                size="large"
-                                startIcon={<HomeIcon/>}
-                                onClick={this.goBackHome}
-                            >Home</Button>
+
                         {this.props.store.user.user_type === 'manager' ?
-                            <>
-                            <button onClick={this.goToEditPage}>Edit Project</button>
-                            <AddDesigner project_id={this.props.match.params.project_id} />
-                            </>
+                                <>
+                                    <button onClick={this.goToEditPage}>Edit Project</button>
+                                    <AddDesigner project_id={this.props.match.params.project_id} />
+                                </>
                             :
-                            <></>
+                                <></>
                         }
                         <div className="timeLineWrap">
                                 <div   className="date">

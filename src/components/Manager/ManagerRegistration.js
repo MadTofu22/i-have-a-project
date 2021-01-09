@@ -62,7 +62,7 @@ class ManagerRegistration extends Component {
   
     render() {
       return (
-        <div className="managerRegInfo">
+        <div className="componentViewWrap">
           <ThemeProvider theme={theme}>
           <Container maxWidth="md">
           <Box bgcolor="primary.light" height>

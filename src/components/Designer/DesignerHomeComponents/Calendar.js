@@ -44,7 +44,7 @@ class Calendar extends Component {
 	closeClickEvent = () => {
 		this.setState({
 			clickEvent: {
-					dialog: 'Add New Event',
+					dialog: 'Add Availability',
 					id: 0,
 					start: '',
 					hoursCommitted: 0,
@@ -65,7 +65,7 @@ class Calendar extends Component {
 			start: info.event.start.toISOString().slice(0, 10),
 			hoursCommitted: info.event.extendedProps.hoursCommitted,
 			renderModal: true,
-			dialog: 'Edit Event'
+			dialog: 'Edit Availability'
 		}
 		console.log('event info', eventInfo)
 		this.setState({
@@ -76,6 +76,7 @@ class Calendar extends Component {
 	render() {
 		return (
 			<div className="componentViewWrap">
+					<h3 className='pageTitle'>My Calendar Availability:</h3>
 				<AddCalendarEvent  
 					closeClickEvent={this.closeClickEvent}
 					clickEvent={this.state.clickEvent}
