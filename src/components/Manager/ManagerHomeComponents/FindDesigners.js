@@ -66,17 +66,14 @@ class FindNewDesigner extends Component {
 
     render() {
       return (
-        <div className="projectDashWrap">
-          {/* <ThemeProvider theme={theme}> */}
-            {/* <Container maxWidth="md">
-              <Box bgcolor="primary.light" height> */}
+        <div className="componentViewWrap">
+          <ThemeProvider theme={theme}>
                 <div className="titleWrap">
                  <h1 className="pageTitle">Find New Designer</h1>
                 </div>
           <form onSubmit={this.searchDesigner}>
             <div className="">
             <div>
- 
                 <TextField
                   id="start"
                   label="Start Date"
@@ -179,9 +176,7 @@ class FindNewDesigner extends Component {
                   })
                 }
             </div>
-            {/* </Box>
-            </Container> */}
-            {/* </ThemeProvider> */}
+            </ThemeProvider>
         </div>
       );
     }

@@ -11,6 +11,11 @@ import NavButtonDesigner from './DesignerHomeComponents/NavButtonDesigner.js'
 import Calendar from './DesignerHomeComponents/Calendar.js'
 import MyProfile from '././DesignerHomeComponents/MyProfile.js'
 import Projects from '././DesignerHomeComponents/Projects.js'
+import ProjectDetails from '../Projects/ProjectDetails';
+
+
+import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 
 
 class DesignerHomeView extends Component {
@@ -53,24 +58,29 @@ class DesignerHomeView extends Component {
 		];
 	
 		return (
-			<>
-				<div>Designer Home</div>
-					<Router>
-						<button 
-							className='headerBarButton' 
-							onClick={() => this.props.history.push('/UpdateProfile')}
-							>Update Profile
-						</button>
-						<button 
-							className='headerBarButton' 
-							onClick={() => this.handleLogout()}
-							>Logout
-						</button>
-						<div className='designerNavBar'>
+			<div className="">
+				<div className="designerNavBar">
+						<h2 
+							className="titleWrap"
+							onClick={()=> this.props.history.push('/home')}
+							>iHaveAProject</h2>
+                        <Divider className="menuDivider"  variant="middle"/>
+						<div className=''>
 							{pages.map((page, index) => {
 								return <NavButtonDesigner key={index} page={page} />
 							})}
 						</div>
+						<Divider className="menuDivider"  variant="middle"/>
+                        <Button onClick={() => this.props.history.push('/UpdateProfile')} className='headerButton'>Update Profile</Button>
+                        <Button 
+							className='headerButton' 
+							onClick={() => this.handleLogout()}
+							>Logout
+						</Button>
+					</div>
+					<div className="designerView">
+					<Router>
+						
 						<Redirect exact path='/DesignerHomeView' to='/DesignerHomeView/MyProfile' />
 						<Route
 							exact
@@ -87,8 +97,14 @@ class DesignerHomeView extends Component {
 							path={`/DesignerHomeView/projects`}
 							component={Projects}
 						/>
+						<Route
+							exact
+							path={`/DesignerHomeView/ProjectDetails/:project_id`}
+							component={ProjectDetails}
+						/>
 					</Router>
-			</>
+					</div>
+			</div>
 		);
 	}
 }

@@ -86,9 +86,12 @@ class ManagerHomeView extends Component {
         return (
             <Router>
       
-                <div className='topSection'>
+
                     <div  className='managerNavBar'>
-                        <h2 className="titleWrap">iHaveAProject</h2>
+                        <h2 
+                            className="titleWrap"
+                            onClick={()=> this.props.history.push('/home')}
+                        >iHaveAProject</h2>
                         <Divider className="menuDivider"  variant="middle"/>
                         {pages.map((page, index) => {
                             return <NavButton key={index} page={page} />
@@ -101,7 +104,6 @@ class ManagerHomeView extends Component {
 							>Logout
 						</Button>
                     </div>
-                </div>
                 {/* <Container maxWidth="md">
                 <Box bgcolor="primary.light" height> */}
                 {/* Routes to each component */}
@@ -135,12 +137,12 @@ class ManagerHomeView extends Component {
                     />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/ProjectDetails/:id`}
+                        path={`/ManagerHomeView/ProjectDetails/:project_id`}
                         component={ProjectDetails}
                     />
                     <Route 
                         exact
-                        path={`/ManagerHomeView/EditProject/:id`}
+                        path={`/ManagerHomeView/EditProject/:project_id`}
                         component={EditProject}
                     />
                     <Route 

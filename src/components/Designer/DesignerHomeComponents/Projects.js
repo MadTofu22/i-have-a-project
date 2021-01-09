@@ -9,13 +9,15 @@ class Projects extends Component {
 
 	handleClickProjects = (row) => {
 		console.log(row.row.project_id);
-		this.props.history.push(`/projectDetails/${row.row.project_id}`)
+		this.props.history.push(`/DesignerHomeView/ProjectDetails/${row.row.project_id}`)
 	}
 
 	render() {
 		return (
-			<div style={{ height: 250, width: '100%' }}>
+			<div className="componentViewWrap" >
+				 <h3 className='pageTitle'>My Projects:</h3>
 				{this.props.store.projects.length > 1 ?
+					<div className="projectsTableWrap">
 					<DataGrid
 						columns={[
 								{ field: 'id', headerName: 'Project ID', width: 200, },
@@ -26,6 +28,7 @@ class Projects extends Component {
 						rows={this.props.store.projects}
 						onRowClick={(rowParams) => this.handleClickProjects(rowParams)}
 					/>
+					</div>
 				:
 						<div>You don't have any projects assigned yet!</div>
 				}
