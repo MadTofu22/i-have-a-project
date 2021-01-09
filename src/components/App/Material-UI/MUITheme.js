@@ -21,7 +21,7 @@ export const theme = createMuiTheme({
       },
     typography: {
         fontFamily: '"Helvetica Neue"',
-        size: 100
+        size: 200
     }
     
 });

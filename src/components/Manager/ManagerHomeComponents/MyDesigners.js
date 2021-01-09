@@ -21,7 +21,10 @@ class MyDesigners extends Component {
     }
 	render() {
 		return (
-            <ThemeProvider theme={theme}>
+           
+                <div className="projectDashWrap">
+                 <h3 className='pageTitle titleWrap'>My Designers:</h3>
+
             <div style={{width: '100%'}} className="myDesignerInfo">
                 {this.props.store.user && 
                     <AddTeamMember 
@@ -35,16 +38,17 @@ class MyDesigners extends Component {
                     <h1>Team Designers</h1>
                     {this.props.store.designer.length > 0 ?
                         <DataGrid
+                        style={{height: 250, width: '100%', padding: '20px'}}
                         autoHeight={true}
                             columns={[
-                                    { field: 'id', headerName: 'ID' },
-                                    { field: 'first_name', headerName: 'First Name' },
-                                    { field: 'last_name', headerName: 'Last Name'}
+                                    { field: 'id', headerName: 'ID'},
+                                    { field: 'first_name', headerName: 'First Name', width: '25%'},
+                                    { field: 'last_name', headerName: 'Last Name', width: '25%'}
                                 ]}
                             rows={this.props.store.designer}
                         />
                     :
-                    <></>}
+                    <div>You don't have any designers yet</div>}
                 </div>
                 <br></br>
                 <Button variant="contained" color="secondary" style={{ margin: 20 }}
@@ -53,7 +57,7 @@ class MyDesigners extends Component {
                             <h1>Contract Designers</h1>
                 </div>
             </div>
-            </ThemeProvider>
+            </div>
 		);
 	}
 }

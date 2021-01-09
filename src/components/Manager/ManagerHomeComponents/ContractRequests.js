@@ -48,9 +48,10 @@ class ContractRequests extends Component {
     render () {
         return (
         
-            <>
-            {/* {JSON.stringify(this.props.store.outbox)} */}
-            {/* {JSON.stringify(this.props.store.inbox)} */}
+            <div className="projectDashWrap">
+            <div className="pageTitle titleWrap">
+                Contract Requests
+            </div>
             <div>Inbox:</div>
                 <table> 
                     <thead>
@@ -120,7 +121,7 @@ class ContractRequests extends Component {
                 </tbody>
             </table>
     
-            </>
+            </div>
         );
     }
 }
