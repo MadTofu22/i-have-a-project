@@ -73,9 +73,14 @@ h2.designer {
 .designerCalendarSection {
     display: inline-flex;
     height: 200px;
-    margin: 2vh 7vw;
     width: 90vw;
     padding-bottom: 5%;
+    padding-top: 5%;
+    margin-bottom: 3%;
+}
+.managerCalendarWrap{
+    width: 40%;
+    margin-left: 5%;
 }
 
 .designerWeek {
@@ -84,7 +89,7 @@ h2.designer {
 
 .designerInfoBlock {
     width: 35%;
-    margin-left: 12%;
+
 }
 
 

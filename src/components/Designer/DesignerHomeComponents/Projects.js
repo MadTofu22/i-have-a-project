@@ -18,10 +18,10 @@ class Projects extends Component {
 				{this.props.store.projects.length > 1 ?
 					<DataGrid
 						columns={[
-								{ field: 'id', headerName: 'Project ID' },
-								{ field: 'project_name', headerName: 'Name' },
-								{ field: 'status', headerName: 'Status' },
-								{ field: 'due_date', headerName: 'Due Date'}
+								{ field: 'id', headerName: 'Project ID', width: 200, },
+								{ field: 'project_name', headerName: 'Name', width: 250,},
+								{ field: 'status', headerName: 'Status', width: 250, },
+								{ field: 'due_date', headerName: 'Due Date', width: 250,}
 							]}
 						rows={this.props.store.projects}
 						onRowClick={(rowParams) => this.handleClickProjects(rowParams)}
