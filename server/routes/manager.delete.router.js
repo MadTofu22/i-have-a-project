@@ -2,33 +2,33 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    const connection = await pool.connect();
-    try {
-        console.log('in manager.delete.router', req.user.id);
-        const statusCheck = `SELECT "user_type" FROM "user" WHERE "id" = $1;`
-        const authorizedCheck = await connection.query(statusCheck, [req.user.id]);
-        console.log(authorizedCheck.rows[0].user_type);
-        if (authorizedCheck.rows[0].user_type === 'manager') {
-            const queryText = `SELECT * FROM "designers" WHERE manager_id = $1;`;
-            // console.log(response.rows);
-            const response = await connection.query(queryText);
-            console.log(response.rows);
-            await connection.query('COMMIT');
-            res.send(response.rows);
-        }
-        else {
-            res.sendStatus(403);
-        }
+// router.get('/', async (req, res) => {
+//     const connection = await pool.connect();
+//     try {
+//         console.log('in manager.delete.router', req.user.id);
+//         const statusCheck = `SELECT "user_type" FROM "user" WHERE "id" = $1;`
+//         const authorizedCheck = await connection.query(statusCheck, [req.user.id]);
+//         console.log(authorizedCheck.rows[0].user_type);
+//         if (authorizedCheck.rows[0].user_type === 'manager') {
+//             const queryText = `SELECT * FROM "designers" WHERE manager_id = $1;`;
+//             // console.log(response.rows);
+//             const response = await connection.query(queryText);
+//             console.log(response.rows);
+//             await connection.query('COMMIT');
+//             res.send(response.rows);
+//         }
+//         else {
+//             res.sendStatus(403);
+//         }
         
-    } catch ( error ) {
-        await connection.query('ROLLBACK');
-        console.log(`Transaction Error - Rolling back new account`, error);
-        res.sendStatus(500); 
-    } finally {
-        connection.release()
-    }
-});
+//     } catch ( error ) {
+//         await connection.query('ROLLBACK');
+//         console.log(`Transaction Error - Rolling back new account`, error);
+//         res.sendStatus(500); 
+//     } finally {
+//         connection.release()
+//     }
+// });
 
 router.post('/delete', async (req, res) => {
     const connection = await pool.connect(); 
