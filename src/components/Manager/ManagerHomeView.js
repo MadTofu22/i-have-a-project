@@ -15,6 +15,10 @@ import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider, Button, Box, Container } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
+import CreateProject from '../Projects/CreateProject';
+import ProjectDetails from '../Projects/ProjectDetails';
+import EditProject from '../Projects/EditProject';
+
 class ManagerHomeView extends Component {
     
     state = {
@@ -40,7 +44,7 @@ class ManagerHomeView extends Component {
     }
     
     goToCreateProject = () => {
-        this.props.history.push('/CreateProject')
+        this.props.history.push('/ManagerHomeView/CreateProject')
     }
 
     componentDidMount = () => {
@@ -129,6 +133,22 @@ class ManagerHomeView extends Component {
                         path={`/ManagerHomeView/Search`}
                         component={FindDesigners}
                     />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/ProjectDetails/:id`}
+                        component={ProjectDetails}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/EditProject/:id`}
+                        component={EditProject}
+                    />
+                    <Route 
+                        exact
+                        path={`/ManagerHomeView/CreateProject`}
+                        component={CreateProject}
+                    />
+
                 </div>
                 {/* </Box>
                 </Container> */}

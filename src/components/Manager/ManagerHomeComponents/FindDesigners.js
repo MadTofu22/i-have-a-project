@@ -73,6 +73,7 @@ class FindNewDesigner extends Component {
                   id="start"
                   label="Start Date"
                   type="date"
+                  variant="outlined"
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -86,6 +87,7 @@ class FindNewDesigner extends Component {
                   id="date"
                   label="Due Date"
                   type="date"
+                  variant="outlined"
                   InputLabelProps={{
                   shrink: true,
                   }}
@@ -98,6 +100,7 @@ class FindNewDesigner extends Component {
                     onChange={(event) => this.handleHours(event)}
                     autoFocus
                     margin="dense"
+                    variant="outlined"
                     id="name"
                     label="Hours"
                     type="number"
@@ -129,6 +132,7 @@ class FindNewDesigner extends Component {
                     <Select
                       onChange={(event) =>this.handleChange(event, 'software_id')}
                       value={this.state.newSearch.software_id}
+                      variant="outlined"
                     > 
                         <MenuItem value={0}>Select a Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {

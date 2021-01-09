@@ -18,14 +18,13 @@ import ManagerHomeView from '../Manager/ManagerHomeView';
 import ManagerRegistration from '../Manager/ManagerRegistration';
 import Login from '../Login/Login';
 import AdminPage from '../AdminPage/AdminPage';
-import EditProject from '../Projects/EditProject';
-
-import DesignerRegistration from '../Designer/DesignerRegistration';
 
 import FindDesigners from '../Manager/ManagerHomeComponents/FindDesigners'
 import UpdateProfile from '../Designer/UpdateProfile';
 import CreateProject from '../Projects/CreateProject';
 import ProjectDetails from '../Projects/ProjectDetails';
+import EditProject from '../Projects/EditProject';
+
 
 
 

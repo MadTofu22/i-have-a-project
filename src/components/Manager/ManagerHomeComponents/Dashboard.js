@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
     handleClickProjects = (row) => {
 		console.log(row.row.id);
-		this.props.history.push(`/projectDetails/${row.row.id}`)
+		this.props.history.push(`/ManagerHomeView/ProjectDetails/${row.row.id}`)
 	}
 
     render () {

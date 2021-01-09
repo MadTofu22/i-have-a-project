@@ -110,22 +110,18 @@ class ManagerCalendar extends Component {
                                             Billable Rate: ${element.designerInfo.rate}
                                         </ListItem>
                                     </List>
-                                
-                                    <ul className='designerStatsLists'>
-                                       
-                                       
-                                        <li></li>
-                                    </ul>
                                 </div>
+                                <div className="managerCalendarWrap">
                                 <FullCalendar
                                     className='designerWeek'
                                     plugins={[dayGridPlugin]}
                                     initialView='dayGridWeek'
-                                    height='200px'
-                                    dayMinWidth='4vw'
+                                    height='240px'
+                                    dayMinWidth='6vw'
                                     events={element.calendar}
                                     eventClick={(info) => this.OpenCalendarEventModal(info)}
                                 />
+                                </div>
                                 </div>
                             )
                         })
