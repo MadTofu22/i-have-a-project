@@ -9,16 +9,6 @@
 }
 
 
-.projectsTableWrap{
-    height: 600px;
-}
-
-.projectsTable{
-    height: 100%;
-
-}
-
-
 .headerButton {
     justify-self: center;
     margin: auto 1em;
@@ -55,13 +45,6 @@
     display: flex;
 }
 
-
-/* Calendar Component Styling */
-.managerCalendarSection {
-    width: 70vw;
-    margin-left: 5vw;
-}
-
 h2.manager {
     width: 90vw;
     text-align: center;
@@ -71,17 +54,22 @@ h2.designer {
     width: 20vw;
     text-align: left;
 }
+/* MANAGER CALENDAR*/
 
+.managerCalendarSection {
+    width: 70vw;
+    margin-left: 5vw;
+}
 .designerCalendarSection {
     display: inline-flex;
-    height: 200px;
-    width: 90vw;
+    height: 300px;
+    width: 75vw;
     padding-bottom: 5%;
     padding-top: 5%;
     margin-bottom: 3%;
 }
 .managerCalendarWrap{
-    width: 40%;
+    width: 60%;
     margin-left: 5%;
 }
 
@@ -90,9 +78,11 @@ h2.designer {
 }
 
 .designerInfoBlock {
-    width: 35%;
-
+    width: 20%;
+    
 }
+
+
 
 
 
@@ -130,7 +120,7 @@ h2.designer {
 }
 .projectDashWrap{
     background-color: rgb(255, 255, 255);
-    opacity: .9;
+    opacity: .96;
     margin-top: 5%;
     padding-left: 20px;
     padding-right: 20px;
@@ -141,6 +131,16 @@ h2.designer {
 .pageWrapper {
     background-color: rgb(247, 229, 206);
     background-size: 100%;
+}
+
+
+.projectsTableWrap{
+    height: 600px;
+}
+
+.projectsTable{
+    height: 100%;
+
 }
 
 .homeComponentWrapper {

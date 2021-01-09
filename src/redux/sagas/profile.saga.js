@@ -4,6 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchProfile (action) {
 	try {
 		const id = action.payload;
+		console.log('designerId', action.payload);
+		
 		const designerResponse = yield axios.get(`/api/profile/designers/${id}`);
 		const careerResponse = yield axios.get(`/api/profile/career/${id}`);
 		const educationResponse = yield axios.get(`/api/profile/education/${id}`);
