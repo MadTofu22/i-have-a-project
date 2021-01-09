@@ -16,6 +16,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
+// Import and initialize emailjs
+import emailjs, {init} from 'emailjs-com';
+init("user_KwJe2ulviLUzklqweZQDa");
 
 function FindDesignerCard(props) {
 
@@ -24,21 +27,55 @@ function FindDesignerCard(props) {
 
     const handleClickOpen = () => {
       setOpen(true);
-    };
+    }
   
     const handleClose = () => {
       setOpen(false);
-    };
+    }
 
     const requestDesigner = () => {
+        console.log('in find designers, designerInfo =', props.designerInfo);
         props.dispatch({
             type: "CREATE_CONTRACT_REQUEST",
             payload: {
-                        designer: props.designeInfor,
+                        designer: props.designerInfo,
                         search: props.search
                 }
-        })
+        });
+
+        props.dispatch({
+            type: "FETCH_REQUEST_INFO",
+            payload: {
+                manager_id: props.designerInfo.designerInfo.manager_id
+            }
+        });
+        
+        const serviceId = 'ihap_service_1234'; 
+        const templateId = 'template_sendRequest';
+        const templateParams = {
+            designer_name: props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name,
+            to_manager_name: props.designerInfo.managerInfo.first_name + ' ' + props.designerInfo.managerInfo.lastName,
+            to_email: props.designerInfo.managerInfo.email,
+            software: props.projectInfo.software_label,
+            designer_rate: props.designerInfo.designerInfo.rate,
+            from_name: props.requestingManagerInfo.first_name + ' ' + props.requestingManagerInfo.last_name,
+            from_email: props.requestingManagerInfo.email,
+            project_start: props.projectInfo.start,
+            project_end: props.projectInfo.end,
+            project_hours: props.projectInfo.hours,
+            project_link: `http://localhost:3000/#/projectDetails/${props.projectInfo.id}`, 
+        }
+        
+        console.log('attempting to send email, templateParmas=', templateParams);
+
+        emailjs.send(serviceId, templateId, templateParams)
+            .then(response => {
+            console.log('SUCCESS! Email for a contract request sent with the following params', templateParams);
+            }, error => {
+            console.log('Error in requestDesigner:', error);
+        });
     }
+
     const openProfileMenu = () => {
         setOpen(true)
     }
@@ -48,13 +85,14 @@ function FindDesignerCard(props) {
              <Card style={{width:'250px', height: '300px'}}>
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
-                        {props.designeInfor.designerName.first_name + ' ' + props.designeInfor.designerName.last_name}
+                        
+                        {props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {props.designeInfor.photo}
+                        {props.designerInfo.photo}
                     </Typography>
                     <div style={{width: '100%', height: '150px', overflow: 'scroll'}}>
-                        {props.designeInfor.skills.map(skill => {
+                        {props.designerInfo.skills.map(skill => {
                             return (
                                 <>
                                     <Typography gutterBottom>

@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
-class ContractRequests extends Component {   
+class ContractRequests extends Component {
 
     state = {
         inquiringManager: [],
@@ -41,9 +41,20 @@ class ContractRequests extends Component {
         return americanDateFormat
     }
 
-    handleInboxAccept = () => {
-        
+    handleOutboxDelete = (id, managerId) => {
+        console.log(id)
+        this.props.dispatch({
+            type: 'DELETE_REQUEST',
+            payload: {id, managerId}
+        })
     }    
+
+    handleInboxAction = (id, designerId, managerId, projectId, action) => {
+        this.props.dispatch({
+            type: 'UPDATE_REQUEST',
+            payload: {id, designerId, managerId, projectId, action}
+        })
+    }
 
     render () {
         return (
@@ -65,15 +76,15 @@ class ContractRequests extends Component {
                         <tbody>
                         {this.props.store.inbox.length > 0 ?
                                 this.props.store.inbox.map((inbox) => {
-                                    if (inbox.status !== 'complete'){
+                                    if (inbox.contractData.request_status !== 'completed'){
                                     return(
                                         <tr>                                        
                                         <td>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</td>
                                         <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
                                         <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
                                         <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td><button onClick={() => this.handleInboxAccept}>accept</button></td>
-                                        <td><button onClick={() => this.handelInboxAccept}>deny</button></td>
+                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'accepted')}>accept</button></td>
+                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'denied')}>deny</button></td>
                                         </tr>
                                     )
                                     }
@@ -82,7 +93,6 @@ class ContractRequests extends Component {
                                 <>
                                 </>
                                 }
-                                 
                         </tbody>
                 </table>
             <div>Outbox:</div>
@@ -109,7 +119,7 @@ class ContractRequests extends Component {
                                         <td>{outbox.designerData.rate}</td>
                                         <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
                                         <td>{outbox.contractData.status}</td>
-                                        <td><button onClick={() => this.handleOutboxDelete}>delete</button></td>
+                                        <td><button onClick={() => this.handleOutboxDelete(outbox.contractData.contract_id, this.props.store.user.id)}>delete</button></td>
                                         </tr>
                                     )
                                 })

@@ -146,12 +146,24 @@ class FindNewDesigner extends Component {
               <input type="submit" value="Search" />
               </div>
             </form>
-                  <div className="searchResults">
-                      {this.props.store.search.length > 0 &&
-                  this.props.store.search.map( (desingerObj) => {
+                <div className="searchResults">
+                {this.props.store.search.length > 0 &&
+                  this.props.store.search.map( (designerObj) => {
+
+                    const projectInfo = {
+                      id: this.state.newSearch.project_id, 
+                      software_label: this.props.store.software[designerObj.designerInfo.software_id].label, 
+                      start: this.state.newSearch.start, 
+                      end: this.state.newSearch.due_date,
+                      hours: this.state.newSearch.requested_hours,
+                    }
+                    console.log('in find designers, designerObj =', designerObj, 'projectInfo=', projectInfo, 'this.props.store.user', this.props.store.user);
+
                     return <FindDesignerCard 
-                              designeInfor={desingerObj}
-                              key={desingerObj.designer_id}
+                              designerInfo={designerObj}
+                              projectInfo={projectInfo}
+                              requestingManagerInfo={this.props.store.user}
+                              key={designerObj.designer_id}
                               search={this.state.newSearch}
                             />
                     

@@ -54,6 +54,17 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/manager/:manager_id', (req, res) => {
+    const queryText = `SELECT * FROM "user" WHERE id = $1;`;
+
+    pool.query(queryText, [req.params.manager_id])
+        .then(response => {
+            res.send(response.rows);
+        }).catch(error => {
+            console.log('Error in search.router GET');
+        });
+})
+
 // router.post('/', async (req, res) => {
 //     if (req.isAuthenticated) {
 //         console.log('search for designers', req.body);

@@ -57,7 +57,7 @@ router.get('/manager', async (req, res) => {
 
         const connection = await pool.connect();
         let desingerInfo = []
-        try{
+        try {
             await connection.query('BEGIN;');
             const designers = await connection.query(getDesigners, [req.user.id])
             for (const designer of designers.rows) {
@@ -73,7 +73,7 @@ router.get('/manager', async (req, res) => {
             await connection.query('COMMIT');
             console.log(desingerInfo[0].designerInfo.first_name);
             
-            res.send(desingerInfo)
+            res.send(desingerInfo);
         } catch (error) {
             await connection.query('ROLLBACK;');
             console.log(error);
