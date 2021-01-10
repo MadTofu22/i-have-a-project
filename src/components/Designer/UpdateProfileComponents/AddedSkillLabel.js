@@ -41,7 +41,7 @@ class AddedSkillLabel extends Component {
         console.log(this)
         return (
             <Paper className='componentViewWrap'>
-                <h4>{this.props.skill.label}</h4>
+                <h3>{this.props.skill.label}</h3>
                 <TextField 
                     type='number' 
                     variant="outlined" 
