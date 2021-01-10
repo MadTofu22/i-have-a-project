@@ -55,7 +55,8 @@ class CreateProject extends Component {
 			}
 		});
 	}
-	handleSubmit = () => {
+	handleSubmit = (event) => {
+		event.preventDefault()
 		this.props.dispatch({
 			type: "CREATE_PROJECT",
 			payload: {project: this.state.newProject, nav: this.props.history}
@@ -93,7 +94,7 @@ class CreateProject extends Component {
 			<div className='componentViewWrap'>
 				<ThemeProvider theme={theme}>
 				<h1>Enter New Project Information</h1>
-				<form onSubmit={this.handleSubmit} >
+				<form onSubmit={(event) => this.handleSubmit(event)} >
 					<div className="createProjectForm">
 						<div className="createProject-left">
 							<div className="projectInput">
