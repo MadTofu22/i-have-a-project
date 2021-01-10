@@ -23,9 +23,19 @@ function* deleteDesignerInfo(action) {
   }
 }
 
+function* updateDesignerRate(action) {
+  try {
+    const response = yield axios.put('/api/manager/ratechange', action.payload);
+    yield put({ type: 'FETCH_DESIGNERS', payload: response.data });
+  } catch (error) {
+    console.log('User delete request failed', error);
+  }
+}
+
 function* designerSaga() {
   yield takeLatest('FETCH_DESIGNERS', fetchDesigners);
   yield takeLatest('DELETE_TEAM_MEMEBER', deleteDesignerInfo);
+  yield takeLatest('UPDATE_DESIGNER_RATE', updateDesignerRate);
 }
 
 export default designerSaga;

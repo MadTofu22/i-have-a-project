@@ -25,20 +25,20 @@ class ChangeRate extends Component{
         renderModal: false,
   	}
   }
-  componentDidUpdate = () => {
-    console.log('propsinfo', this.props.clickEvent);
+//   componentDidUpdate = () => {
+//     console.log('propsinfo', this.props.clickEvent);
 
-    if (this.props.clickEvent.id !== this.state.clickEvent.id) {
-      this.setState({
-        clickEvent: this.props.clickEvent,
-      })
-      if (this.props.clickEvent.id !== 0 ) {
-        this.setState({
-          open: true
-        })
-      }    
-    }
-  }
+//     if (this.props.clickEvent.id !== this.state.clickEvent.id) {
+//       this.setState({
+//         clickEvent: this.props.clickEvent,
+//       })
+//       if (this.props.clickEvent.id !== 0 ) {
+//         this.setState({
+//           open: true
+//         })
+//       }    
+//     }
+//   }
 
   // potential to pass probs and trigger modal this way
 
@@ -52,7 +52,7 @@ class ChangeRate extends Component{
     this.setState({
       open: false
     })
-    this.props.closeClickEvent()
+    // this.props.closeClickEvent()
   };
 
 //    handleAddEvent = () => {
@@ -77,12 +77,12 @@ class ChangeRate extends Component{
   handleUpdateEvent = () => {
     this.props.dispatch({
       type: "UPDATE_DESIGNER_RATE",
-      payload: {...this.state.clickEvent, designer_id: this.props.designer.id}
+      payload: {rate: this.state.clickEvent.rate, designer_id: this.props.designer.id}
     })    
     this.setState({
       open: false
     })
-    this.props.closeClickEvent()
+    // this.props.closeClickEvent()
   }
 //   handleDeleteEvent = () => {
 //     this.props.dispatch({
@@ -99,8 +99,8 @@ class ChangeRate extends Component{
     return (
       <div>
           <div onClick={this.handleClickOpen}>
-            {/* Pass rate via here */}
-            <AttachMoneyIcon/> Change Rate
+            {/* FLAG Pass rate via here */}
+            <AttachMoneyIcon/> {this.props.rate}
           </div>
           
 
@@ -130,7 +130,7 @@ class ChangeRate extends Component{
                   fullWidth
                   required={true}
                   // FLAG
-                  value={this.state.clickEvent.rate}
+                  defaultValue={this.props.rate}
                   helperText="What hourly rate would you like to charge for this designer?"
                   onChange={(event) => this.handleEventChange(event, 'rate')}
                 />

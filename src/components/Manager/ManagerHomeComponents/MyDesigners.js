@@ -23,13 +23,13 @@ class MyDesigners extends Component {
 		// 	start: '',
 		// 	hoursCommitted: 0
 		//   }],
-		clickEvent: {
-				id: 0,
-				start: '',
-				hoursCommitted: 0,
-				renderModal: true,
-				project_id: null
-		}
+		// clickEvent: {
+		// 		id: 0,
+		// 		start: '',
+		// 		hoursCommitted: 0,
+		// 		renderModal: true,
+		// 		project_id: null
+		// }
 	};
     
     handleNavTo = () => {
@@ -52,18 +52,18 @@ class MyDesigners extends Component {
         })
     } 
     // Formulas for the rate change modal that are within component
-    closeClickEvent = () => {
-		this.setState({
-			clickEvent: {
-					dialog: 'Add Availability',
-					id: 0,
-					start: '',
-					hoursCommitted: 0,
-					renderModal: false,
-					project_id: null
-			}
-		});
-	}
+    // closeClickEvent = () => {
+	// 	this.setState({
+	// 		clickEvent: {
+	// 				dialog: 'Add Availability',
+	// 				id: 0,
+	// 				start: '',
+	// 				rate: 0,
+	// 				renderModal: false,
+	// 				project_id: null
+	// 		}
+	// 	});
+	// }
     
 
 	render() {
@@ -99,9 +99,11 @@ class MyDesigners extends Component {
                                                 {/*  aria-label="delete" onClick={() => this.deleteUser(params.row.id)} */}
                                                 <ChangeRate
                                                     fontSize="small"
-                                                    closeClickEvent={this.closeClickEvent}
-                                                    clickEvent={this.state.clickEvent}
+                                                    // closeClickEvent={this.closeClickEvent}
+                                                    // clickEvent={this.state.clickEvent}
                                                     designer={{id: params.row.id}}
+                                                    rate={params.row.rate}
+                                                    // Pipe in the rate via here
                                                 />
                                             </Button>
                                         </form>
