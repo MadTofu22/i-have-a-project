@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './Projects.css'
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Container, Box } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 
 import AddDesignerToProject from '../Modals/AddDesignerToProject'
 
@@ -90,80 +90,92 @@ class CreateProject extends Component {
 
 	render() {
 		return (
-			<div className='createProjectForm'>
+			<div className='componentViewWrap'>
 				<ThemeProvider theme={theme}>
-				<Container maxWidth="md">
-              <Box bgcolor="primary.light" height>
-				<form onSubmit={this.handleSubmit}>
-					<h1>Enter New Project Information</h1>
-					<TextField 
-						id="outlined-basic" 
-						label="Project Name" 
-						variant="outlined" 
-						onChange={(event) => this.handlechange(event, 'project_name')}
-					/>
+				<h1>Enter New Project Information</h1>
+				<form onSubmit={this.handleSubmit} >
+					<div className="createProjectForm">
+						<div className="createProject-left">
+							<div className="projectInput">
+								<TextField 
+									id="outlined-basic" 
+									label="Project Name" 
+									variant="outlined" 
+									onChange={(event) => this.handlechange(event, 'project_name')}
+								/>
+							</div>
+							<div className="projectInput">
+								<TextField
+									
+									id="date"
+									label="Start Date"
+									type="date"
+									variant="outlined" 
+									InputLabelProps={{
+									shrink: true,
+									}}
+									onChange={(event) => this.handlechange(event, 'start')}
+								/>
 
-					<Button 
-						type="submit"
-						variant="contained" 
-						color="secondary"
-					>
-						Create Project
-					</Button>
-					<br></br>
-					<br></br>
-					<TextField
-						id="date"
-						label="Start Date"
-						type="date"
-						variant="outlined" 
-						InputLabelProps={{
-						shrink: true,
-						}}
-						onChange={(event) => this.handlechange(event, 'start')}
-					/>
-					<br></br>
-					<br></br>
-					<TextField
-						id="date"
-						label="Due Date"
-						type="date"
-						variant="outlined" 
-						InputLabelProps={{
-						shrink: true,
-						}}
-						onChange={(event) => this.handlechange(event, 'due_date')}
-					/>
-					<br></br>
-					<TextField
-						id="notes"
-						label="Short Description"
-						multiline
-						rows={4}
-						onChange={(event) => this.handlechange(event, 'notes')}
-						helperText="Enter Quick Description of Project"
-					/>
-					<br></br>
-					<TextField
-						id="project-status"
-						select
-						label="Status"
-						onChange={(event) => this.handlechange(event, 'status')}
-						helperText="Select Project Status"
-						value={this.state.newProject.status}
-						>
-						{this.state.status.map((option) => (
-							<MenuItem key={option} value={option}>
-							{option}
-							</MenuItem>
-						))}
-					</TextField>
-					<br></br>
+								<TextField
+									id="date"
+									label="Due Date"
+									type="date"
+									variant="outlined" 
+									InputLabelProps={{
+									shrink: true,
+									}}
+									onChange={(event) => this.handlechange(event, 'due_date')}
+								/>
+							</div>
+							<div className="projectInput">
+								<TextField
+									id="notes"
+									variant="outlined"
+									label="Short Description"
+									multiline
+									rows={4}
+									onChange={(event) => this.handlechange(event, 'notes')}
+									helperText="Enter Quick Description of Project"
+								/>
+							</div>
+						</div>
+						<div className="createProject-right">
+								
+							<div  className="projectInput">
+							
+								<TextField
+									className="projectInput"
+									id="project-status"
+									select
+									label="Status"
+									onChange={(event) => this.handlechange(event, 'status')}
+									helperText="Select Project Status"
+									value={this.state.newProject.status}
+									>
+									{this.state.status.map((option) => (
+										<MenuItem key={option} value={option}>
+										{option}
+										</MenuItem>
+									))}
+								</TextField>
+							</div>
+							<div className="createBtn">
+								<Button 
+										type="submit"
+										variant="contained" 
+										color="secondary"
+									>
+										Create Project
+								</Button>
+							</div>
+						</div >
+						
+					</div>
 					<AddDesignerToProject 
-						addSelectedDesigners={this.addSelectedDesigners} 
-						SelectedDesigners={this.state.newProject.TeamDesigners}
+								addSelectedDesigners={this.addSelectedDesigners} 
+								SelectedDesigners={this.state.newProject.TeamDesigners}
 					/>
-					<br></br>
 					<TableContainer component={Paper}>
 						<Table aria-label="simple table">
 							<TableHead>
@@ -198,14 +210,15 @@ class CreateProject extends Component {
 									)
 								})
 							:
-								<></>
+								<TableCell >
+									No Designers Added Yet
+								</TableCell>
 							}
 					        </TableBody>
       					</Table>
    					</TableContainer>
 				</form>
-				</Box>
-				</Container>
+
 				</ThemeProvider>
 			</div>
 		);

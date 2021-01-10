@@ -5,6 +5,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { theme } from '../App/Material-UI/MUITheme';
 import { ThemeProvider, Button, Container, Box } from '@material-ui/core';
 
+import TextField from '@material-ui/core/TextField';
+
+
+
 class ManagerRegistration extends Component {
 
     state = {
@@ -14,7 +18,8 @@ class ManagerRegistration extends Component {
       company: '',
       firstName: '',
       lastName: '',
-      passwordIsMatch: null
+      passwordIsMatch: null,
+      passwordConfirmationMsg: ''
     };
   
     registerUser = (event) => {
@@ -50,6 +55,7 @@ class ManagerRegistration extends Component {
       if (propertyName === 'passwordConfirmation') {
         this.checkpasswordMatch();
       } 
+      this.returnPassworkResponse()
     }
 
     checkpasswordMatch = () => {
@@ -59,13 +65,26 @@ class ManagerRegistration extends Component {
         })
       }
     }
+    returnPassworkResponse = () => {
+      if (this.state.password === this.state.passwordConfirmation) {
+        this.setState({
+          passwordConfirmationMsg: ''
+        })
+      } else {
+        this.setState({
+          passwordConfirmationMsg: 'Please make sure your password matches!'
+        })
+      }
+    }
   
     render() {
       return (
-        <div className="managerRegInfo">
+        <div className="registerWrap">
+          <div className='registrationElements'>
+          <h1 className="loginTitle">IHaveAProject</h1>
+
           <ThemeProvider theme={theme}>
-          <Container maxWidth="md">
-          <Box bgcolor="primary.light" height>
+          <h3 className="loginTitle">Manager Registration</h3>
           {this.props.store.errors.registrationMessage && (
             <h2
               className="alert"
@@ -74,97 +93,114 @@ class ManagerRegistration extends Component {
               {this.props.store.errors.registrationMessage}
             </h2>
           )}
-          <form onSubmit={this.registerUser}>
-            <h1>Manager Registration</h1>
-            <div>
+          <form onSubmit={this.registerUser} className="registerForm">
+         
+            <div  className="registerInput">
+              <label>
+                  Name: 
+                  <div>
+                    <TextField
+                      label="First Name"
+                      type="firstName"
+                      name="firstName"
+                      value={this.state.firstName}
+                      onChange={this.handleInputChangeFor('firstName')}
+                      variant="outlined"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label="Last Name"
+                      type="lastName"
+                      name="lastName"
+                      value={this.state.lastName}
+                      required
+                      onChange={this.handleInputChangeFor('lastName')}
+                      variant="outlined"
+                    />
+                  </div>
+              </label>
+            </div>
+            <div className="registerInput">
               <label htmlFor="email">
                 Email:
-                <input
+                <TextField
                   type="text"
                   name="email"
+                  label="Email"
+                  helperText='This will be your username'
                   value={this.state.username}
                   onChange={this.handleInputChangeFor('email')}
+                  variant="outlined"
                   required
                 />
               </label>
             </div>
-            <div>
+            <div className="registerInput">
               <label htmlFor="password">
                 Password:
-                <input
+                <TextField
                   type="password"
+                  label="Password"
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
+                  variant="outlined"
                   required
                 />
               </label>
             </div>
-            <div>
+            <div className="registerInput">
               <label htmlFor="passwordConfirmation">
-                Password Confirmation:
-                <input
+                <TextField
                   type="password"
+                  label="Confirm Password"
+                  helperText={this.state.passwordConfirmationMsg}
                   value={this.state.passwordConfirmation}
                   onChange={this.handleInputChangeFor('passwordConfirmation')}
+                  variant="outlined"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label htmlFor="firstName">
-                First Name:
-                <input
-                  type="firstName"
-                  name="firstName"
-                  value={this.state.firstName}
-                  onChange={this.handleInputChangeFor('firstName')}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="lastName">
-                Last Name:
-                <input
-                  type="lastName"
-                  name="lastName"
-                  value={this.state.lastName}
-                  onChange={this.handleInputChangeFor('lastName')}
-                />
-              </label>
-            </div>
-            <div>
+            <div className="registerInput">
               <label htmlFor="company">
                 Company:
-                <input
+                <TextField
+                  label="Company"
                   type="company"
                   name="company"
                   value={this.state.company}
                   onChange={this.handleInputChangeFor('company')}
                   required
+                  variant="outlined"
                 />
               </label>
             </div>
-            <div>
-              <input
-                className="register"
+            <div className="registerInput">
+                <Button
+            
                 type="submit"
                 name="submit"
-                value="Register"
-              />
+                value="Log In"
+                variant="contained"
+                >Register</Button>
             </div>
           </form>
           
+          <div className="loginOption">
+              Already a Member?
             <Button
-              variant="contained" color="secondary" style={{ margin: 20 }}
-              className="link-button"
+              style={{color: 'blue'}}
+              variant='link' color="secondary" 
+              className="loginRegisterBtn"
               onClick={() => {this.props.history.push('/Login')}}
             >
               Login
             </Button>
-            </Box>
-            </Container>
+          </div>
             </ThemeProvider>
+          </div>
         </div>
       );
     }

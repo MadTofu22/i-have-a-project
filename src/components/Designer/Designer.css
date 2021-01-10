@@ -1,18 +1,28 @@
 /* Designer Home Profile Components */
-.myProfileWrap, .designerNavBar{
+.myProfileWrap{
     display: inline-flex;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 .profileImg{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border: 1px dashed black;
+    margin-left: 10%;
+    margin-right: auto;
+}
+.profileName{
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-right: auto;
+    text-align: left;
+    font-size: 30px;
 }
 .prpfileContactInfo{
     padding-top: 2%;
     padding-bottom: 2%;
+    text-align: left;
 }
 .prpfileContactInfo p{
     padding-left: 2%;
@@ -20,22 +30,54 @@
 .left-ProfileColumn{
     width: 50%;
 }
-.rightProfileColumn{
+.right-ProfileColumn{
     width: 50%;
 }
 .skillLabelContainer{
     width:40%
 }
-
+.sectionList{
+    text-align: left;
+    padding-left: 15%;
+}
+.projectsTableWrap{
+    padding-bottom: 20px;
+}
+.sectionHeader{
+    font-size: 22px;
+    text-align: left;
+    padding-top: 3%;
+    padding-left: 12%;
+}
 
 /* Build Profile Styling */
-.sectionContainer{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+
+.designerNavBar{
+    position: fixed;
+    left: 0px;
+    text-align: center;
+    top: 0px;
+    display:flex; 
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0px 0px 20px rgba(70, 66, 66, 0.76);
+    background-color: rgb(38, 151, 126);
+    z-index: 3;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 280px;
 }
-.addInfoWrap{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+.designerView{
+    margin-left: 280px;
+    height: 100%;
+    padding: 40px;
+    margin-top: 30px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    min-height: 76vh;
+    margin-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+

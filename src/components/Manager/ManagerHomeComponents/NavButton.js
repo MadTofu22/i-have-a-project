@@ -17,9 +17,9 @@ class NavButton extends Component {
             <ThemeProvider theme={theme}>
                 
             <Button 
-          position="flex" 
-          color="secondary" 
-          className="app-header">
+                position="flex" 
+                color="secondary" 
+                className="app-header">
             <div 
                 className={
                     this.props.location.pathname === this.props.page.path ?
