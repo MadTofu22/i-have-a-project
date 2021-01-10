@@ -30,7 +30,7 @@ class ManagerRegistration extends Component {
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
-            username: this.state.email,
+            username: this.state.username,
             password: this.state.password,
             company: this.state.company,
             firstName: this.state.firstName,
@@ -205,7 +205,7 @@ class ManagerRegistration extends Component {
           <div className="loginOption">
               Already a Member?
             <Button
-              style={{color: 'blue'}}
+              style={{color: 'blue', justifyContent: 'center'}}
               variant='link' color="secondary" 
               className="loginRegisterBtn"
               onClick={() => {this.props.history.push('/Login')}}
