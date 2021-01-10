@@ -200,12 +200,13 @@ h2.designer {
 .registerBTN{
     width: 80px;
     margin-left: auto;
-
+    text-align: center;
 }
+
 .loginOption{
     color: black;
     height: 40px;
-    text-align: right;
+    text-align: center;
 }
 .registerInput{
     padding-bottom: 10px;
