@@ -12,6 +12,7 @@ import Calendar from './DesignerHomeComponents/Calendar.js'
 import MyProfile from '././DesignerHomeComponents/MyProfile.js'
 import Projects from '././DesignerHomeComponents/Projects.js'
 import ProjectDetails from '../Projects/ProjectDetails';
+import NavButton from '../Manager/ManagerHomeComponents/NavButton';
 
 
 import Button from '@material-ui/core/Button'
@@ -65,11 +66,10 @@ class DesignerHomeView extends Component {
 							onClick={()=> this.props.history.push('/home')}
 							>iHaveAProject</h2>
                         <Divider className="menuDivider"  variant="middle"/>
-						<div className=''>
 							{pages.map((page, index) => {
-								return <NavButtonDesigner key={index} page={page} />
+								return <NavButton key={index} page={page} />
 							})}
-						</div>
+						
 						<Divider className="menuDivider"  variant="middle"/>
                         <Button onClick={() => this.props.history.push('/UpdateProfile')} className='headerButton'>Update Profile</Button>
                         <Button 

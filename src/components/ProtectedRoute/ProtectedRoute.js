@@ -1,9 +1,7 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
-import LoginPage from '../_TemplateComponents/LoginPage/LoginPage';
-import RegisterPage from '../_TemplateComponents/RegisterPage/RegisterPage';
-
+import LoginPage from '../Login/Login'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 
@@ -42,7 +40,7 @@ const ProtectedRoute = (props) => {
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
-    ComponentToShow = RegisterPage;
+    ComponentToShow = LoginPage;
   }
   if (props.store.user.id && authRedirect != null) {
     return <Redirect exact from={otherProps.path} to={authRedirect} />;

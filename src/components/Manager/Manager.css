@@ -144,7 +144,7 @@ h2.designer {
     background-position: center;
     min-height: 76vh;
     padding-top: 30px;
-    padding-bottom: 30px;
+   padding-bottom: 30px;
 }
 
 .searchResults{
@@ -153,7 +153,47 @@ h2.designer {
     display: inline-flex;
 }
 
-.findDesignerInputs {
-    padding-left: 5vh;
+/* MANAGER REGISTRATION*/
+.registrationElements{
+    margin-top: 10%;
+
+}
+.registrationElements{
+    background-color: rgba(255, 255, 255, 0.986);
+    width: 40%;
+    margin-left: auto;
+    color: rgb(255, 255, 255);
+    border-radius: 2%;
+    margin-right: auto;
     text-align: left;
+}
+.registerForm{
+    border-radius: 2%;
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.registrationTitle{
+    text-align: center;
+    padding: 2%;
+    color: black;
+}
+.registerBTN{
+    width: 80px;
+    margin-left: auto;
+
+}
+.loginOption{
+    color: black;
+    height: 40px;
+    text-align: right;
+}
+.registerInput{
+    padding-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
+}
+.registerWrap{
+    margin-top: 5%;
 }

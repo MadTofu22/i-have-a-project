@@ -13,7 +13,7 @@ class MyProfile extends Component {
 
 	
 	componentDidMount = () => {
-		this.props.dispatch({type: 'FETCH_PROFILE'});
+		this.props.dispatch({type: 'FETCH_PROFILE', payload: this.props.store.user.designer_id});
 	}
 
 	render() {
@@ -95,7 +95,7 @@ class MyProfile extends Component {
 										<div className="sectionList" style={{overflow: 'scroll'}}>
 								{this.props.store.profile.skills ?
 									this.props.store.profile.skills.map((skill) => {
-										return (<>
+										return (<div key={skill.id}>
 												<Typography gutterBottom>
 													{skill.label}
 												</Typography>
@@ -107,7 +107,7 @@ class MyProfile extends Component {
 													min={1}
 													max={5}  
 												/>
-												</>)
+												</div>)
 					
 									})
 									:
