@@ -8,9 +8,6 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import ProjectActionMenu from './ProjectActionMenu'
 import Paper from '@material-ui/core/Paper';
-
-import Button from '@material-ui/core/Button'
-import HomeIcon from '@material-ui/icons/Home';
 import TextField from '@material-ui/core/TextField';
 
 

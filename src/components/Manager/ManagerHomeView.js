@@ -12,7 +12,7 @@ import ContractRequests from './ManagerHomeComponents/ContractRequests';
 import MyDesigners from './ManagerHomeComponents/MyDesigners';
 import FindDesigners from './ManagerHomeComponents/FindDesigners';
 import { theme } from '../App/Material-UI/MUITheme';
-import { ThemeProvider, Button, Box, Container } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
 import CreateProject from '../Projects/CreateProject';
