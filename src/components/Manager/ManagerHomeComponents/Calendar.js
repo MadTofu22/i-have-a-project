@@ -50,7 +50,7 @@ class ManagerCalendar extends Component {
 					renderModal: false,
 					project_id: null
 			}
-		})
+		});
 	}
 
 	
@@ -67,7 +67,46 @@ class ManagerCalendar extends Component {
 		this.setState({
 			clickEvent: eventInfo
 		})
-	}
+    }
+    
+    // This fucnction gets todays date in a format that can be compared to an event date
+    getTodaysDate = () => {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+
+        return `${dd}-${mm}-${yyyy}`
+    }
+
+    // This function takes in a calendar event date and compares it to todays date to see if the hours committed should be added.
+    isDateValid = (eventDate) => {
+        let today = this.getTodaysDate();
+        
+        if (Number(eventDate.slice(0,4)) < Number(today.slice(6,10))) { // compare year for each date
+            console.log('in isValidDate year check event:', Number(eventDate.slice(0,4)), '< today:',Number(today.slice(6,10)), 'is true');
+            return false;
+        } else if (Number(eventDate.slice(0,4)) > Number(today.slice(6,10))) { 
+            return true;
+        } else {
+            console.log('in isValidDate year check event:', Number(eventDate.slice(0,4)), '< today:',Number(today.slice(6,10)), 'is false');
+            if (Number(eventDate.slice(5,7)) < Number(today.slice(3,5))) { // compare month for each date
+                console.log('in isValidDate month check event:', Number(eventDate.slice(5,7)), '< today:',Number(today.slice(3,5)), 'is true');
+                return false;
+            } else if (Number(eventDate.slice(5,7)) > Number(today.slice(3,5))) { 
+                return true;
+            } else {
+                console.log('in isValidDate month check event:', Number(eventDate.slice(5,7)), '< today:',Number(today.slice(3,5)), 'is false');
+                if (Number(eventDate.slice(8,10)) < Number(today.slice(0,2))) { // compare day for each date
+                    console.log('in isValidDate day check event:', Number(eventDate.slice(8,10)), '< today:',Number(today.slice(0,2)), 'is true');
+                    return false;
+                } else {
+                    console.log('in isValidDate day check event:', Number(eventDate.slice(8,10)), '< today:',Number(today.slice(0,2)), 'is false');
+                    return true; // eventDate >= today
+                }
+            }
+        }
+    }
 
     render () {
         return (
@@ -76,10 +115,17 @@ class ManagerCalendar extends Component {
                 <h2 className='pageTitle'>Designer Weekly Calendars</h2>
                    {this.props.store.managerCalendar.length > 0 ?
                         this.props.store.managerCalendar.map( (element) => {
-                                for (const event of element.calendar) {
-                                    event['id'] = event.event_id
-                                    event['start'] = event.start.slice(0,10)
-                                }                          
+                            let totalAvailability = 0;
+                            let today = this.getTodaysDate();
+                            
+                            for (const event of element.calendar) {
+                                event['id'] = event.event_id
+                                event['start'] = event.start.slice(0,10)
+                                console.log('in manager calendar, today =', today, '; event date =', event.start.slice(0,10));
+                                if (this.isDateValid(event.start.slice(0, 10))) {
+                                    totalAvailability += event.hoursCommitted;
+                                }
+                            }
                             
                             return (
                                 <div className='designerCalendarSection'>
@@ -114,7 +160,7 @@ class ManagerCalendar extends Component {
                                             <Divider  variant="middle" />
                                         <ListItem>
                                             <ListItemText>
-                                                Hours Available: 35
+                                                Total Hours Available: {totalAvailability}
                                             </ListItemText>
                                         </ListItem>
                                             <Divider  variant="middle"/>
