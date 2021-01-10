@@ -5,6 +5,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import AddedSkillLabel from './AddedSkillLabel';
 
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -27,6 +28,16 @@ class AddInformation extends Component {
 				education: {},
 			},
 		};
+	}
+
+	componentDidMount = () => {
+		this.props.dispatch({
+			type: 'FETCH_PROFILE',
+			payload: this.props.store.user.designer_id
+		});
+		this.setState({
+			profile: this.props.store.profile,
+		});
 	}
 
 	// This function marks the state for the selected software as checked and toggles the save button enabled
@@ -94,17 +105,19 @@ class AddInformation extends Component {
 		});
 	}
 
-	// This function removes a skill from the local state skills list by it's index
+	// This function removes a skill from the local state skills list by it's index and removes it from the DB
 	removeProfileItem = (item, itemType, index) => {
 
-		let newSkillsList = this.state.profile.skills.slice();
-		newSkillsList.splice(index, 1);
+		let newItemList = this.state.profile.[itemType].slice();
+		newItemList.splice(index, 1);
 		
+		console.log('in removeProfileItem original list:',this.state.profile.[itemType],  '; newItemList:', newItemList);
+
 		this.setState({
 			...this.state,
 			profile: {
 				...this.state.profile,
-				skills: newSkillsList,
+				[itemType]: newItemList,
 			},
 		});
 
@@ -216,7 +229,7 @@ class AddInformation extends Component {
 						ref={this.educationLocationInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'education', 'location')}
 					/>
-					<button onClick={() => this.updateHistoryList('education')}>Add</button>
+					<Button color='default' onClick={() => this.updateHistoryList('education')}>Add</Button>
 					<h4>Added Education</h4>
 					<ul>
 						{this.state.profile.education ? this.state.profile.education.map((row, index) => {
@@ -240,15 +253,15 @@ class AddInformation extends Component {
 						ref={this.careerLocationInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'career', 'location')}
 					/>
-					<button onClick={() => this.updateHistoryList('career')}>Add</button>
+					<Button color='default' onClick={() => this.updateHistoryList('career')}>Add</Button>
 					<h4>Added Work Experience</h4>
 					<ul>
 						{this.state.profile.career ? this.state.profile.career.map((job, index) => {
 
 							return <li key={index}>
 									{job.title} at {job.location}
-									<IconButton aria-label="delete" onClick={() => this.removeProfileItem(job, 'careeer')}>
-											<DeleteIcon fontSize="small" />
+									<IconButton aria-label="delete" onClick={() => this.removeProfileItem(job, 'career', index)}>
+										<DeleteIcon fontSize="small" />
 									</IconButton>
 								</li>
 						}) : ''}
@@ -274,7 +287,7 @@ class AddInformation extends Component {
 					<div className='skillsSection'>
 						<label htmlFor='skillInput'>Enter Skill</label>
 						<input type='text' name='skillInput' id='skillInput' className='skillsTextField' ref={this.skillInputRef} onChange={this.handleSkillInputChange} />
-						<input type='button' id='addSkill' value='Add' onClick={this.addSkill} />
+						<Button id='addSkill' value='Add' color='default' onClick={this.addSkill}>Add</Button>
 						{this.state.profile.skills ? this.state.profile.skills.map((skill, index) => {
 							return <AddedSkillLabel 
 										key={index} 
@@ -286,10 +299,10 @@ class AddInformation extends Component {
 						}) : ''}
 					</div>
 					<br/>
-					<button
+					<Button
 						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
 					>Save and Go Home
-					</button>
+					</Button>
 				</div>
 			</div>
 		);

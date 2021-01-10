@@ -44,7 +44,7 @@ class AddedSkillLabel extends Component {
                 <IconButton aria-label="save" onClick={() => this.props.updateSkill(this.props.index, this.state.newRating)}>
                     <SaveIcon fontSize="small" />
                 </IconButton>
-                <IconButton aria-label="delete" onClick={() => this.props.removeProfileItem(this.props.skill, 'skill', this.props.index)}>
+                <IconButton aria-label="delete" onClick={() => this.props.removeProfileItem(this.props.skill, 'skills', this.props.index)}>
                     <DeleteIcon fontSize="small" />
                 </IconButton>
             </Paper>

@@ -4,7 +4,6 @@ import {HashRouter as Router, Route, withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Import components
-// import AddSkills from './UpdateProfileComponents/AddSkills';
 import AddInformation from './UpdateProfileComponents/AddInformation';
 
 class UpdateProfile extends Component {
@@ -50,12 +49,6 @@ class UpdateProfile extends Component {
 			<Router>
 				<h1>Build Your Profile!</h1>
 				<div className='profileInputContainer'>
-					{/* <Route exact path='/UpdateProfile/Skills'>
-						<AddSkills 
-							saveAndNavigate={this.saveAndNavigate}
-							profile={this.props.store.profile}
-						/>
-					</Route> */}
 					<Route exact path='/UpdateProfile/Info'>
 						<AddInformation
 							saveAndNavigate={this.saveAndNavigate}

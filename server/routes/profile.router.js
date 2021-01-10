@@ -308,7 +308,7 @@ router.post('/software/:id', (req, res) => {
     });    
 });
 
-router.delete('/skill/:id', (req, res) => {
+router.delete('/skills/:id', (req, res) => {
     const queryText = `DELETE FROM "skills" WHERE id = $1;`;
     
     pool.query(queryText, [req.params.id])
