@@ -10,6 +10,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import "./AddTeamMember.css";
+
 // Import and initialize emailjs
 import emailjs, {init} from 'emailjs-com';
 init("user_KwJe2ulviLUzklqweZQDa");
@@ -66,8 +68,8 @@ function AddTeamMember(props) {
       }
     };
 
-    props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
-    sendEmail(inviteData);
+    // props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
+    // sendEmail(inviteData);
 
     setOpen(false)
     setFirstName('')
@@ -118,6 +120,14 @@ function AddTeamMember(props) {
     }
   }
 
+  const fillInfo = () => {
+    setFirstName("Peter");
+    setLastName("Pierce");
+    setEmail("peterpierce@gmail.com");
+    setRate("55");
+    setMessage("Hey Peter! Please sign up for I Have A Project so we can get you some work!");
+  }
+
   return (
     <div>
 
@@ -126,6 +136,7 @@ function AddTeamMember(props) {
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Enter Team Member Info</DialogTitle>
+        <button id="hiddenButtonInvite" onClick={fillInfo}> Button </button>
         <DialogContent>
           <TextField
             autoFocus
