@@ -11,6 +11,7 @@ import AddTeamMember from '../../Modals/AddTeamMember'
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import ChangeRate from '../../Modals/ChangeRate';
 
 
 class MyDesigners extends Component {
@@ -73,7 +74,7 @@ class MyDesigners extends Component {
                                                     fontSize="small"
                                                     closeClickEvent={this.closeClickEvent}
                                                     clickEvent={this.state.clickEvent}
-                                                    designer={{id: element.designerInfo.designer_id}}
+                                                    designer={{id: params.row.id}}
                                                 />
                                             </Button>
                                         </form>

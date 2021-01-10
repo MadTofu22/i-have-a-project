@@ -12,7 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import IconButton from '@material-ui/core/IconButton'
 
-import mapStoreToProps from '../../../redux/mapStoreToProps';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class ChangeRate extends Component{
 
