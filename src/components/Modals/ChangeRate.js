@@ -7,7 +7,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import IconButton from '@material-ui/core/IconButton'
@@ -99,7 +99,8 @@ class ChangeRate extends Component{
     return (
       <div>
           <div onClick={this.handleClickOpen}>
-            <EventAvailableIcon/> Add Availability
+            {/* Pass rate via here */}
+            <AttachMoneyIcon/> Change Rate
           </div>
           
 
@@ -128,8 +129,9 @@ class ChangeRate extends Component{
                 //   max={0}
                   fullWidth
                   required={true}
-                  value={this.state.clickEvent.hoursCommitted}
-                  helperText="How Many hours are you available on this date?"
+                  // FLAG
+                  value={this.state.clickEvent.rate}
+                  helperText="What hourly rate would you like to charge for this designer?"
                   onChange={(event) => this.handleEventChange(event, 'rate')}
                 />
             </DialogContent>

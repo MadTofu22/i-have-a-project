@@ -16,6 +16,21 @@ import ChangeRate from '../../Modals/ChangeRate';
 
 class MyDesigners extends Component {
    
+    state = {
+		// events: [{
+		// 	id: 0,
+		// 	title: '',
+		// 	start: '',
+		// 	hoursCommitted: 0
+		//   }],
+		clickEvent: {
+				id: 0,
+				start: '',
+				hoursCommitted: 0,
+				renderModal: true,
+				project_id: null
+		}
+	};
     
     handleNavTo = () => {
         this.props.history.push('/ManagerHomeView/Search');
@@ -37,7 +52,18 @@ class MyDesigners extends Component {
         })
     } 
     // Formulas for the rate change modal that are within component
-
+    closeClickEvent = () => {
+		this.setState({
+			clickEvent: {
+					dialog: 'Add Availability',
+					id: 0,
+					start: '',
+					hoursCommitted: 0,
+					renderModal: false,
+					project_id: null
+			}
+		});
+	}
     
 
 	render() {
@@ -69,7 +95,8 @@ class MyDesigners extends Component {
                                     headerName: 'Rate',
                                     renderCell: (params) => (
                                         <form>
-                                            <Button aria-label="delete" onClick={() => this.deleteUser(params.row.id)}>
+                                            <Button>
+                                                {/*  aria-label="delete" onClick={() => this.deleteUser(params.row.id)} */}
                                                 <ChangeRate
                                                     fontSize="small"
                                                     closeClickEvent={this.closeClickEvent}
