@@ -3,8 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { DataGrid } from '@material-ui/data-grid';
-import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddTeamMember from '../../Modals/AddTeamMember'

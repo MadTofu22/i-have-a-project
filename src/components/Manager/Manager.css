@@ -1,14 +1,10 @@
 /* Manager Home View Styling */
-
-
 .header {
     background-color: rgb(247, 229, 206);
     text-align: center;
     width: 50%;
     margin-left: 30%;
 }
-
-
 .headerButton {
     justify-self: center;
     margin: auto 1em;
@@ -26,7 +22,7 @@
     flex-direction: column;
     height: 100%;
     box-shadow: 0px 0px 20px rgba(70, 66, 66, 0.76);
-    background-color: rgb(38, 151, 126);
+    background-color: rgb(238, 212, 60);
     z-index: 3;
     padding-right: 10px;
     padding-left: 10px;
@@ -76,21 +72,15 @@ h2.designer {
 .designerWeek {
     justify-self: right;
 }
-
 .designerInfoBlock {
     width: 20%;
     
 }
 
 
-
-
-
 .managerRegInfo {
     text-align: center;
 }
-
-
 
 .pageTitle {
     text-align: center;
@@ -99,8 +89,16 @@ h2.designer {
     color: rgb(0, 0, 0);
     padding-top: 20px;
 }
-.findDesignerWrap{
+.findDesignerPageWrap{
     height: 800px;
+}
+.findDesignerWrap{
+    width: 70%;
+    height: 350px;
+    display: inline-flex;
+}
+.searchColumn-left{
+    width: 60%;
 }
 .titleWrap {
     text-align: center;
@@ -115,22 +113,49 @@ h2.designer {
     padding-top: 5%;
     padding-bottom: 4%;
     transform: scale(0.99, 0.95);
-
 }
-
+.hoursSearchInput{
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.projectSearchInput{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
 .pageWrapper {
     background-color: rgb(247, 229, 206);
     background-size: 100%;
 }
+.softwareSearchInput{
+    padding-top: 10px;
+}
 
+.searchResults{
+    display: flex;
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+.searchBtn{
+    margin-top: 55px;
 
+}
 .projectsTableWrap{
     height: 600px;
 }
 
 .projectsTable{
     height: 100%;
-
+}
+.dateInput{
+    padding-top: 10px;
+    width: 300px;
+    padding-bottom: 20px;
+}
+.searchOptionLabel{
+    font-size: 20px;
+    width: 300px;
+    padding-bottom: 10px;
 }
 
 .homeComponentWrapper {
@@ -144,13 +169,7 @@ h2.designer {
     background-position: center;
     min-height: 76vh;
     padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.searchResults{
-    height: 300px;
-    margin-left: 10%;
-    display: inline-flex;
+   padding-bottom: 30px;
 }
 
 /* MANAGER REGISTRATION*/
@@ -181,12 +200,13 @@ h2.designer {
 .registerBTN{
     width: 80px;
     margin-left: auto;
-
+    text-align: center;
 }
+
 .loginOption{
     color: black;
     height: 40px;
-    text-align: right;
+    text-align: center;
 }
 .registerInput{
     padding-bottom: 10px;
