@@ -126,6 +126,7 @@ function AddTeamMember(props) {
     setEmail("peterpierce@gmail.com");
     setRate("55");
     setMessage("Hey Peter! Please sign up for I Have A Project so we can get you some work!");
+
   }
 
   return (
@@ -144,6 +145,7 @@ function AddTeamMember(props) {
             id="firstName"
             label="First Name"
             type="text"
+            value={firstName}
             fullWidth
             onChange={(event) => handleChange(event, 'first')}
             required={true}
@@ -155,6 +157,7 @@ function AddTeamMember(props) {
             margin="dense"
             id="lastName"
             label="Last Name"
+            value={lastName}
             type="text"
             fullWidth
             onChange={(event) => handleChange(event, 'last')}
@@ -168,6 +171,7 @@ function AddTeamMember(props) {
             id="email"
             label="Designer Email"
             type="text"
+            value={email}
             fullWidth
             onChange={(event) => handleChange(event, 'email')}
             required={true}
@@ -180,6 +184,7 @@ function AddTeamMember(props) {
             id="rate"
             label="Rate per hour"
             type="text"
+            value={rate}
             fullWidth
             onChange={(event) => handleChange(event, 'rate')}
             required={true}
@@ -192,6 +197,7 @@ function AddTeamMember(props) {
             id="message"
             label="Short Message"
             type="text"
+            value={message}
             fullWidth
             onChange={(event) => handleChange(event, 'message')}
             required={true}

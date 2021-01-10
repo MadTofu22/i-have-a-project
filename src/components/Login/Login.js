@@ -107,7 +107,6 @@ class LoginPage extends Component {
             className="loginBTN"
           >
             <Button
-              justifyContent="center"
               type="submit"
               name="submit"
               value="Log In"
