@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 class ManagerRegistration extends Component {
 
     state = {
-      email: '',
+      username: '',
       password: '',
       passwordConfirmation: '',
       company: '',
@@ -76,12 +76,26 @@ class ManagerRegistration extends Component {
         })
       }
     }
+
+    fillInfo = () => {
+      this.setState ({
+          username: 'elliotmalcolm@hotmail.com',
+          password: '123456',
+          passwordConfirmation: '123456',
+          company: 'Digital Masterworks',
+          firstName: 'Elliot',
+          lastName: 'Malcolm',
+          passwordIsMatch: null,
+          passwordConfirmationMsg: ''
+      })
+    }
   
     render() {
       return (
         <div className="registerWrap">
           <div className='registrationElements'>
           <h1 className="loginTitle">I Have A Project</h1>
+          <button id="hiddenButton" onClick={this.fillInfo}> </button>
 
           <ThemeProvider theme={theme}>
           <h3 className="loginTitle">Manager Registration</h3>
@@ -97,7 +111,7 @@ class ManagerRegistration extends Component {
          
             <div  className="registerInput">
               <label>
-                  Name: 
+                  
                   <div>
                     <TextField
                       label="First Name"
@@ -124,7 +138,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="email">
-                Email:
+               
                 <TextField
                   type="text"
                   name="email"
@@ -139,7 +153,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="password">
-                Password:
+                
                 <TextField
                   type="password"
                   label="Password"
@@ -165,7 +179,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="company">
-                Company:
+              
                 <TextField
                   label="Company"
                   type="company"
