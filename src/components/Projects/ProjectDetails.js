@@ -8,11 +8,9 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import ProjectActionMenu from './ProjectActionMenu'
 import Paper from '@material-ui/core/Paper';
-
-import Button from '@material-ui/core/Button'
-import HomeIcon from '@material-ui/icons/Home';
 import TextField from '@material-ui/core/TextField';
-
+import Button from '@material-ui/core/Button'
+import EditIcon from '@material-ui/icons/Edit';
 
 
 class ProjectDetails extends Component {
@@ -66,23 +64,26 @@ class ProjectDetails extends Component {
     render () {
         return (
             <div className="componentViewWrap">
-
-                <h1>Projects</h1>
-               
+                <h3 className="pageTitle">Project Details</h3>
+            <div className="projectDetailsWrap">
                 {this.props.store.projectDetails.projectDetails ? 
-                    <>
+                <div className="projectInfoWrap">
+                    <div className="projectActionMenu">
                         <h2><div>{this.props.store.projectDetails.projectDetails.project_name}</div></h2>
 
                         {this.props.store.user.user_type === 'manager' ?
-                                <>
-                                    <button onClick={this.goToEditPage}>Edit Project</button>
+                        <div>
+                                    
+                                    <Button onClick={this.goToEditPage}> <EditIcon/> Edit Project</Button>
                                     <AddDesigner project_id={this.props.match.params.project_id} />
-                                </>
+                                </div>
                             :
                                 <></>
                         }
-                        <div className="timeLineWrap">
-                                <div   className="date">
+                        
+                        <div className="projectTimeLineWrap">
+                            <h4>Timeline:</h4>
+                            <div   className="dateInput">
                                     <TextField
                                             id="date"
                                             label="Start Date"
@@ -92,8 +93,8 @@ class ProjectDetails extends Component {
                                             shrink: true,
                                             }}
                                         />
-                                </div>
-                                <div   className="date">
+                            </div>
+                            <div   className="dateInput">
                                     <TextField
                                         id="date"
                                         label="Due Date"
@@ -103,9 +104,11 @@ class ProjectDetails extends Component {
                                         shrink: true,
                                         }}
                                     />
-                                </div>
-                            </div> 
-                        <p>Project Description: 
+                            </div>
+                        </div>
+                        </div>
+                        <div className="descriptionWrap">
+                            Project Description: 
                             <Paper  
                                 style={{
                                     width: '250px', 
@@ -115,9 +118,9 @@ class ProjectDetails extends Component {
                                 }}
                             >{this.props.store.projectDetails.projectDetails.notes}
                             </Paper>
-                            </p>
+                        </div>
                             
-                    </>
+                    </div>
                     :
                     <></>
                 }
@@ -133,7 +136,7 @@ class ProjectDetails extends Component {
                     :
                     <></>
                 }
-                
+                </div>
             </div>
         );
     }

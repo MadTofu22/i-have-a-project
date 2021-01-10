@@ -8,12 +8,14 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Typography, Toolbar, AppBar, Container, Box } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
 import FindDesignerCard from '../../App/Material-UI/findDesignerCard'
 import InputLabel from '@material-ui/core/InputLabel';
+import { preventDefault } from '@fullcalendar/react';
 
 
 class FindNewDesigner extends Component {
@@ -56,7 +58,8 @@ class FindNewDesigner extends Component {
         });
      }
     }
-    searchDesigner = () => {
+    searchDesigner = (event) => {
+      event.preventDefault()
       this.props.dispatch({
         type: "FIND_DESIGNER",
         payload: this.state.newSearch
@@ -71,68 +74,78 @@ class FindNewDesigner extends Component {
                 <div className="titleWrap">
                  <h1 className="pageTitle">Find New Designer</h1>
                 </div>
-          <form onSubmit={this.searchDesigner}>
-            <div className="findDesignerInputs">
-            <div>
-                <TextField
-                  id="start"
-                  label="Start Date"
-                  type="date"
-                  variant="outlined"
-                  InputLabelProps={{
-                  shrink: true,
-                  }}
-                  onChange={(event) => this.handleChange(event, 'start')}
-                  required
-                />
-            </div>
-            <div>
+          <div className="findDesignerPageWrap">
+          <form onSubmit={(event) => this.searchDesigner(event)}>
+            <div className="findDesignerWrap">
+             <div className="searchColumn-left">
+                <label className="searchOptionLabel">
+                    Timeline:
+                  </label>
+                    <div className="dateInput">
+                      <TextField
+                        id="start"
+                        label="Start Date"
+                        type="date"
+                        variant="outlined"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        onChange={(event) => this.handleChange(event, 'start')}
+                        required
+                      />
+                    </div>
+                    <div className="dateInput">
+                        <TextField
+                          id="date"
+                          label="Due Date"
+                          type="date"
+                          variant="outlined"
+                          InputLabelProps={{
+                          shrink: true,
+                          }}
+                          onChange={(event) => this.handleChange(event, 'due_date')}
+                          required
+                        />
+                    </div>
+                    <div className="hoursSearchInput">
+                        <TextField
+                            onChange={(event) => this.handleHours(event)}
+                            autoFocus
+                            margin="dense"
+                            variant="outlined"
+                            id="name"
+                            label="Hours"
+                            type="number"
+                            helperText="Hours Designer will need to be available for"
+                            required
+                            value={this.state.newSearch.requested_hours}
+                        />
+                    </div>
+                </div>
+                
+                <div>
 
-                <TextField
-                  id="date"
-                  label="Due Date"
-                  type="date"
-                  variant="outlined"
-                  InputLabelProps={{
-                  shrink: true,
-                  }}
-                  onChange={(event) => this.handleChange(event, 'due_date')}
-                  required
-                />
-            </div>
-            <div>
-                <TextField
-                    onChange={(event) => this.handleHours(event)}
-                    autoFocus
-                    margin="dense"
-                    variant="outlined"
-                    id="name"
-                    label="Hours"
-                    type="number"
-                    helperText="Hours Designer will need to commit to your project"
-                    required
-                    value={this.state.newSearch.requested_hours}
-                />
-            </div>
-            <div>
+                <div>
+                    
+                  <label className="searchOptionLabel"> Details: </label>
                   {this.props.store.projects.length > 0 &&
-                    <>
+                    <div className="projectSearchInput">
                       <InputLabel>Choose a Project</InputLabel>
-                      <select 
+                      <Select 
                         type='select'
+                        variant="outlined"
                         onChange={(event) => this.handleChange(event, 'project_id')}
                         value={this.props.store.projects.length > 0 && this.state.newSearch.project_id }
                       >
-                          <option value={``}>Project Name</option>
                           {this.props.store.projects.map( (project) => {                            
-                            return <option key={project.id} value={project.id}>{project.project_name}</option>
+                            return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
                           })}
-                      </select>
-                    </>
+                      </Select>
+                    </div>
 
                   }
             </div>
-            <div>
+              <div className="softwareSearchInput">
                   {this.props.store.software.length > 0 ?
                     <Select
                       onChange={(event) =>this.handleChange(event, 'software_id')}
@@ -147,10 +160,15 @@ class FindNewDesigner extends Component {
                   :
                   <></>
                   }
-            </div>
-              <input type="submit" value="Search" />
-              </div>
-            </form>
+                    </div>
+                    <div  className="searchBtn">
+                    <Button type="submit" value="Search" variant="contained">Search</Button>
+                    </div>
+                   </div>
+                </div>
+                <Divider  variant="middle"/>
+
+             </form>
                 <div className="searchResults">
                 {this.props.store.search.length > 0 &&
                   this.props.store.search.map( (designerObj) => {
@@ -175,6 +193,7 @@ class FindNewDesigner extends Component {
                     
                   })
                 }
+              </div>
             </div>
             </ThemeProvider>
         </div>
