@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     console.log('get designers for manager');
 
     if (req.isAuthenticated) {
-        const queryText = `SELECT "first_name", "last_name", "designer_id" AS "id" FROM "designers"
+        const queryText = `SELECT "first_name", "last_name", "rate", "designer_id" AS "id" FROM "designers"
                                     JOIN "user" on "user"."designer_id" = "designers"."id"
                                     WHERE "manager_id" = $1;`
         pool.query(queryText, [req.user.id])
@@ -111,5 +111,8 @@ router.post('/register/:designer_id', (req, res) => {
         });
     }
 });
+
+
+// THROW UPDATE ROUTE HERE FOR RATE (NEED ID AND RATE)
 
 module.exports = router;

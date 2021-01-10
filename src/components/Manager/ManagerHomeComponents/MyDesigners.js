@@ -7,8 +7,11 @@ import { theme } from '../../App/Material-UI/MUITheme';
 import { ThemeProvider, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import AddTeamMember from '../../Modals/AddTeamMember'
+
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
 
 class MyDesigners extends Component {
    
@@ -32,6 +35,9 @@ class MyDesigners extends Component {
           payload: userData
         })
     } 
+    // Formulas for the rate change modal that are within component
+
+    
 
 	render() {
 		return (
@@ -56,8 +62,22 @@ class MyDesigners extends Component {
                         autoHeight={true}
                             columns={[
                                     { field: 'id', headerName: 'ID'},
-                                    { field: 'first_name', headerName: 'First Name', width: '25%'},
-                                    { field: 'last_name', headerName: 'Last Name', width: '25%'},
+                                    { field: 'first_name', headerName: 'First Name'},
+                                    { field: 'last_name', headerName: 'Last Name'},
+                                    {field: 'rate',
+                                    headerName: 'Rate',
+                                    renderCell: (params) => (
+                                        <form>
+                                            <Button aria-label="delete" onClick={() => this.deleteUser(params.row.id)}>
+                                                <ChangeRate
+                                                    fontSize="small"
+                                                    closeClickEvent={this.closeClickEvent}
+                                                    clickEvent={this.state.clickEvent}
+                                                    designer={{id: element.designerInfo.designer_id}}
+                                                />
+                                            </Button>
+                                        </form>
+                                    )},
                                     {
                                         field: 'delete',
                                         headerName: 'Delete',
