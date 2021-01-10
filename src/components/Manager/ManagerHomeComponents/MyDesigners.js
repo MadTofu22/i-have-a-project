@@ -7,29 +7,13 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddTeamMember from '../../Modals/AddTeamMember'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import ChangeRate from '../../Modals/ChangeRate';
 
 
 class MyDesigners extends Component {
-   
-    state = {
-		// events: [{
-		// 	id: 0,
-		// 	title: '',
-		// 	start: '',
-		// 	hoursCommitted: 0
-		//   }],
-		// clickEvent: {
-		// 		id: 0,
-		// 		start: '',
-		// 		hoursCommitted: 0,
-		// 		renderModal: true,
-		// 		project_id: null
-		// }
-	};
+
     
     handleNavTo = () => {
         this.props.history.push('/ManagerHomeView/Search');
@@ -50,20 +34,6 @@ class MyDesigners extends Component {
           payload: userData
         })
     } 
-    // Formulas for the rate change modal that are within component
-    // closeClickEvent = () => {
-	// 	this.setState({
-	// 		clickEvent: {
-	// 				dialog: 'Add Availability',
-	// 				id: 0,
-	// 				start: '',
-	// 				rate: 0,
-	// 				renderModal: false,
-	// 				project_id: null
-	// 		}
-	// 	});
-	// }
-    
 
 	render() {
 		return (
@@ -93,19 +63,14 @@ class MyDesigners extends Component {
                                     {field: 'rate',
                                     headerName: 'Rate',
                                     renderCell: (params) => (
-                                        <form>
-                                            <Button>
-                                                {/*  aria-label="delete" onClick={() => this.deleteUser(params.row.id)} */}
-                                                <ChangeRate
+                                            <>
+                                            <AttachMoneyIcon /> {params.row.rate}
+                                            <ChangeRate
                                                     fontSize="small"
-                                                    // closeClickEvent={this.closeClickEvent}
-                                                    // clickEvent={this.state.clickEvent}
                                                     designer={{id: params.row.id}}
                                                     rate={params.row.rate}
-                                                    // Pipe in the rate via here
-                                                />
-                                            </Button>
-                                        </form>
+                                            />
+                                            </>
                                     )},
                                     {
                                         field: 'delete',
