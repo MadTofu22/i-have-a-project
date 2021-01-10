@@ -6,6 +6,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button'
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 function AddDesigner(props) {
   const [open, setOpen] = React.useState(false);
@@ -31,7 +33,7 @@ function AddDesigner(props) {
   return (
     <div>
 
-    <button onClick={handleClickOpen}>Add Team Member</button> 
+    <Button onClick={handleClickOpen}><PersonAddIcon/> Add Designer</Button> 
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="title">Select Team Members</DialogTitle>
