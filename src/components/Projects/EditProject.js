@@ -76,7 +76,7 @@ class EditProject extends Component {
 		return (
             <ThemeProvider theme={theme}>
               
-			<div className="projectEditForm">
+			<div className="componentViewWrap">
             <h1>Edit Project</h1>
                 {  this.props.store.projectDetails.projectDetails ?
                     <form onSubmit={this.handleSubmit}>
