@@ -55,6 +55,7 @@
 .designerNavBar{
     position: fixed;
     left: 0px;
+    text-align: center;
     top: 0px;
     display:flex; 
     flex-direction: column;
