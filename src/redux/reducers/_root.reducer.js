@@ -13,6 +13,7 @@ import software from './software.reducer'
 import search from './search.reducer'
 import admin from './admin.reducer';
 import managerCalendar from './managerCalendar.reducer';
+import contractDesigners from './contractDesigners.reducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   search,
   admin,
   managerCalendar,
+  contractDesigners
 });
 
 export default rootReducer;

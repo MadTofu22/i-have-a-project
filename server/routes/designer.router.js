@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/:designer_id', (req, res) => {
+router.get('/desinger/:designer_id', (req, res) => {
 
     if (req.isAuthenticated) {
         const queryText = `SELECT "first_name", "last_name" FROM "user"
@@ -112,6 +112,53 @@ router.post('/register/:designer_id', (req, res) => {
     }
 });
 
+router.get('/contract', async (req, res) => {    
+    
+    const getContracts = ` SELECT * FROM "contract_requests"
+                                    WHERE "requesting_manager_id" = $1
+                                    AND "request_status" = 'completed'`
+
+    const getDesignerInfo = `SELECT "first_name", "last_name", "user"."designer_id", "rate" FROM "designers"
+                                JOIN "user" on "designers"."id" = "user"."designer_id"
+                                WHERE "designers"."id" = $1;`
+                                
+    const getManagerInfo = `SELECT "company" from "user" WHERE "id" = $1`
+    
+    if (req.isAuthenticated) {
+        const connection = await pool.connect();
+        
+        try {
+            let response = []
+
+            await connection.query("BEGIN")
+
+            const managerContracts = await connection.query(getContracts, [req.user.id])
+            console.log(managerContracts.rows);
+            
+            for (const contract of managerContracts.rows) {
+                const designerInfo = await connection.query(getDesignerInfo, [contract.contracted_designer_id])
+                const managerInfo = await connection.query(getManagerInfo, [contract.contracted_manager_id])
+                let contractObj = {
+                    info: contract,
+                    designer: designerInfo.rows[0],
+                    manager: managerInfo.rows[0]
+                }
+                
+                response.push(contractObj)
+            }
+            await connection.query("COMMIT")
+
+            res.send(response)
+        } catch (error) {
+            console.log(error);
+            res.sendStatus(500)
+        } finally {
+            connection.release()
+        }
+    } else {
+        res.sendStatus(403)
+    }
+})
 
 // THROW UPDATE ROUTE HERE FOR RATE (NEED ID AND RATE)
 
