@@ -57,7 +57,7 @@ class Dashboard extends Component {
     render () {
         return (
             <ThemeProvider class={theme}>
-            <div className='projectDashWrap'>
+            <div className='componentViewWrap'>
                 <h3 className='pageTitle'>My Projects:</h3>
                 <div className='projectsTableWrap'>
                     

@@ -59,7 +59,7 @@ class ContractRequests extends Component {
     render () {
         return (
         
-            <div className="projectDashWrap">
+            <div className="componentViewWrap">
             <div className="pageTitle titleWrap">
                 Contract Requests
             </div>
