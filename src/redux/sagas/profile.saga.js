@@ -4,6 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchProfile (action) {
 	try {
 		const id = action.payload;
+		console.log('designerId', action.payload);
+		
 		const designerResponse = yield axios.get(`/api/profile/designers/${id}`);
 		const careerResponse = yield axios.get(`/api/profile/career/${id}`);
 		const educationResponse = yield axios.get(`/api/profile/education/${id}`);
@@ -77,9 +79,19 @@ function* updateProfile(action) {
 	yield put({type: 'FETCH_PROFILE', payload: action.payload.designer_id});
 }
 
+function* deleteProfileItem (action) {
+	try {
+		yield axios.delete(`/api/profile/${action.payload.itemType}/${action.payload.item.id}`);
+	} catch (error) {
+		console.log('ERROR in deleteProfiltItem saga:', error);
+	}
+	
+}
+
 function* profileSaga() {
 	yield takeLatest('FETCH_PROFILE', fetchProfile);
 	yield takeLatest('UPDATE_PROFILE', updateProfile);
+	yield takeLatest('DELETE_SKILL', deleteProfileItem);
 }
 
 export default profileSaga;

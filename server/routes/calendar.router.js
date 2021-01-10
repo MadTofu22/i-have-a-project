@@ -50,9 +50,9 @@ router.get('/manager', async (req, res) => {
                                 FROM "designers"
                                 JOIN "user" ON "user".designer_id = designers.id
                             WHERE manager_id = $1;`;
-        const getDesignerProjects = `SELECT * FROM "projects_designers_join" WHERE "designer_id" = $1`
+        const getDesignerProjects = `SELECT * FROM "projects_designers_join" WHERE "designer_id" = $1;`;
         const desingerCalendarItems = `SELECT * FROM "designer_calendar_item"
-                                            WHERE "designer_id" = $1;`
+                                            WHERE "designer_id" = $1;`;
 
 
         const connection = await pool.connect();

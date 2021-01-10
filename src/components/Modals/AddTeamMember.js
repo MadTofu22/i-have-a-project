@@ -9,6 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 // Import and initialize emailjs
 import emailjs, {init} from 'emailjs-com';
@@ -121,8 +122,8 @@ function AddTeamMember(props) {
   return (
     <div>
 
-    <Button variant="contained" color="secondary" style={{ margin: 20 }}
-                onClick={handleClickOpen}>Invite Team Member</Button> 
+    <Button variant="contained" style={{ margin: 20 }}
+                onClick={handleClickOpen}><PersonAddIcon/> Invite Team Member</Button> 
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Enter Team Member Info</DialogTitle>

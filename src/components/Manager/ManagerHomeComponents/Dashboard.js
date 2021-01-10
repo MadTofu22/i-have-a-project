@@ -5,7 +5,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import {DataGrid} from '@material-ui/data-grid';
 
 import { theme } from '../../App/Material-UI/MUITheme';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 
 class Dashboard extends Component {
     
@@ -25,12 +25,12 @@ class Dashboard extends Component {
                 {
                     field: 'start', // Total number of hours scheduled for this project across all designers
                     headerName: 'Start Date',
-                    width: 250,
+                    width: 230,
                 },
                 {
                     field: 'due_date', // Total number of required hours estimated to be completed for this project
                     headerName: 'Due',
-                    width: 250,
+                    width: 230,
                 },
                 {
                     field: 'status',
@@ -57,7 +57,7 @@ class Dashboard extends Component {
     render () {
         return (
             <ThemeProvider class={theme}>
-            <div className='projectDashWrap'>
+            <div className='componentViewWrap'>
                 <h3 className='pageTitle'>My Projects:</h3>
                 <div className='projectsTableWrap'>
                     

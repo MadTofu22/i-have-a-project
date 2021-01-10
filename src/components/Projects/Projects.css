@@ -1,10 +1,4 @@
-.createProjectForm {
-    text-align: center;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4%;
-}
+
 .projectEditForm {
     width: 60%;
     margin-left: auto;
@@ -23,4 +17,46 @@
 .date{
     margin-left: 10px;
     width: 40%;
+}
+.projectInput{
+    padding-bottom: 15px;
+}
+.createProjectForm{
+    display: inline-flex;
+    text-align: left;
+    width: 70%; 
+    height: 400px;
+    padding-top: 3%;
+}
+.createProject-left{
+    width: 40%;
+    margin-left: 5%;
+    height: 150px;
+}
+.createProject-right{
+    margin-left: 5%;
+    width: 40%;
+}
+.createBtn{
+    margin-top: 65%;
+}
+.projectDetailsWrap{
+    height: 800px;
+}
+.projectActionMenu{
+    padding-left: 7%;
+    text-align: left;
+    width: 40%;
+    padding-right: 4%;
+}
+.projectInfoWrap{
+    display: flex;
+}
+.descriptionWrap{
+    padding-top: 8%;
+    width: 45%;
+    text-align: left;
+}
+.actionMenu{
+    padding-top: 80px;
 }

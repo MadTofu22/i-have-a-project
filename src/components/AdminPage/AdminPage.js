@@ -29,19 +29,21 @@ class AdminPage extends Component {
 
     render() {
         return (
-            <div className='adminInformation' style={{ height: 250, width: '100%' }}>
+            <div className="adminViewWrap">
+            <div className='adminInformation' style={{ height: 450, width: '100%' }}>
                 <h1>Administrative Services</h1>
                 <div className='adminDataGrid'>
                     <DataGrid
                         columns={[
-                                { field: 'first_name', headerName: 'First Name', width: 150 },
-                                { field: 'last_name', headerName: 'Last Name', width: 150 },
-                                { field: 'company', headerName: 'Company', width: 150 },
-                                { field: 'user_type', headerName: 'User Type', width: 150 },
+                                { field: 'first_name', headerName: 'First Name', width: 200 },
+                                { field: 'last_name', headerName: 'Last Name', width: 200 },
+                                { field: 'company', headerName: 'Company', width: 200 },
+                                { field: 'user_type', headerName: 'User Type', width: 200 },
                                 { field: 'id', headerName: 'ID #', width: 150 },
                                 {
                                     field: 'delete',
                                     headerName: 'Delete',
+                                    width: 200,
                                     renderCell: (params) => (
                                         <IconButton aria-label="delete" onClick={() => this.deleteUser(params.row.id, params.row.user_type)}>
                                             <DeleteIcon fontSize="small" />
@@ -52,6 +54,7 @@ class AdminPage extends Component {
                         rows={this.props.store.admin}
                     />
                 </div>
+            </div>
             </div>
         );
     }

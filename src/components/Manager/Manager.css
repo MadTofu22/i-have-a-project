@@ -1,24 +1,10 @@
 /* Manager Home View Styling */
-
-
 .header {
     background-color: rgb(247, 229, 206);
     text-align: center;
     width: 50%;
     margin-left: 30%;
 }
-
-
-.projectsTableWrap{
-    height: 600px;
-}
-
-.projectsTable{
-    height: 100%;
-
-}
-
-
 .headerButton {
     justify-self: center;
     margin: auto 1em;
@@ -38,7 +24,9 @@
     box-shadow: 0px 0px 20px rgba(70, 66, 66, 0.76);
     background-color: rgba(69, 122, 145, 0.886);
     z-index: 3;
-    opacity: 1;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 280px;
 }
 
 .navBtn {
@@ -53,13 +41,6 @@
     display: flex;
 }
 
-
-/* Calendar Component Styling */
-.managerCalendarSection {
-    width: 70vw;
-    margin-left: 5vw;
-}
-
 h2.manager {
     width: 90vw;
     text-align: center;
@@ -69,36 +50,37 @@ h2.designer {
     width: 20vw;
     text-align: left;
 }
+/* MANAGER CALENDAR*/
 
+.managerCalendarSection {
+    width: 70vw;
+    margin-left: 5vw;
+}
 .designerCalendarSection {
     display: inline-flex;
-    height: 200px;
-    width: 90vw;
+    height: 300px;
+    width: 75vw;
     padding-bottom: 5%;
     padding-top: 5%;
     margin-bottom: 3%;
 }
 .managerCalendarWrap{
-    width: 40%;
+    width: 60%;
     margin-left: 5%;
 }
 
 .designerWeek {
     justify-self: right;
 }
-
 .designerInfoBlock {
-    width: 35%;
-
+    width: 20%;
+    
 }
-
 
 
 .managerRegInfo {
     text-align: center;
 }
-
-
 
 .pageTitle {
     text-align: center;
@@ -107,8 +89,16 @@ h2.designer {
     color: rgb(0, 0, 0);
     padding-top: 20px;
 }
-.findDesignerWrap{
+.findDesignerPageWrap{
     height: 800px;
+}
+.findDesignerWrap{
+    width: 70%;
+    height: 350px;
+    display: inline-flex;
+}
+.searchColumn-left{
+    width: 60%;
 }
 .titleWrap {
     text-align: center;
@@ -118,36 +108,62 @@ h2.designer {
 .contentWrap {
     text-align: center;
     border-radius: 100px;
-    background-color: rgb(249, 190, 165);
     max-width: 70%;
     margin-left: auto;
     padding-top: 5%;
     padding-bottom: 4%;
     transform: scale(0.99, 0.95);
-
 }
-.projectDashWrap{
-    background-color: rgb(255, 255, 255);
-    opacity: .9;
-    margin-top: 5%;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 0px 0px 50px rgba(12, 12, 12, 0.76);
-    border-radius: .5%;
-
+.hoursSearchInput{
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.projectSearchInput{
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 .pageWrapper {
     background-color: rgb(247, 229, 206);
     background-size: 100%;
 }
+.softwareSearchInput{
+    padding-top: 10px;
+}
+
+.searchResults{
+    display: flex;
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+.searchBtn{
+    margin-top: 55px;
+
+}
+.projectsTableWrap{
+    height: 600px;
+}
+
+.projectsTable{
+    height: 100%;
+}
+.dateInput{
+    padding-top: 10px;
+    width: 300px;
+    padding-bottom: 20px;
+}
+.searchOptionLabel{
+    font-size: 20px;
+    width: 300px;
+    padding-bottom: 10px;
+}
 
 .homeComponentWrapper {
-    margin-left: 260px;
+    margin-left: 280px;
     height: 100%;
     padding: 40px;
     margin-top: 30px;
     text-align: center;
-    background-color: rgb(249, 227, 165);
     background-image: url('../../images/pencils.jpg');
     background-size: cover;
     background-position: center;
@@ -156,8 +172,69 @@ h2.designer {
     padding-bottom: 30px;
 }
 
-.searchResults{
-    height: 300px;
-    margin-left: 10%;
-    display: inline-flex;
+/* MANAGER REGISTRATION*/
+.registrationElements{
+    margin-top: 10%;
+
+}
+.registrationElements{
+    background-color: rgba(255, 255, 255, 0.986);
+    width: 40%;
+    margin-left: auto;
+    color: rgb(255, 255, 255);
+    border-radius: 2%;
+    margin-right: auto;
+    text-align: left;
+}
+.registerForm{
+    border-radius: 2%;
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.registrationTitle{
+    text-align: center;
+    padding: 2%;
+    color: black;
+}
+.registerBTN{
+    width: 80px;
+    margin-left: auto;
+    text-align: center;
+}
+
+.loginOption{
+    color: black;
+    height: 40px;
+    text-align: center;
+}
+.registerInput{
+    padding-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
+}
+.registerWrap{
+    margin-top: 5%;
+}
+
+/* MY DESIGNERS */
+.teamDesignersWrap{
+    width: 70%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    height: 350px;
+}
+
+.myDesignerInfo{
+    height: 900px;
+}
+.contractDesignerWrap{
+    overflow-y: scroll;
+    height: 350px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }

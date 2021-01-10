@@ -17,6 +17,7 @@ const profileRouter = require('./routes/profile.router');
 const adminRouter = require('./routes/admin.router');
 const searchRouter = require('./routes/search.router')
 const contractRouter = require('./routes/contracts.router');
+const managerRouter = require('./routes/manager.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,6 +41,7 @@ app.use('/api/profile', profileRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/search', searchRouter)
 app.use('/api/contracts', contractRouter);
+app.use('/api/manager', managerRouter);
 
 // Serve static files
 app.use(express.static('build'));

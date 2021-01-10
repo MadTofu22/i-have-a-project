@@ -9,6 +9,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
   background-color: rgb(247, 229, 206);
+  background-image: url(../../images/pencils.jpg);
 }
 
 img {
@@ -98,6 +99,20 @@ Alert
 }
 
 /* --------------------------------------------------------------------------------
+Component Wrap
+-------------------------------------------------------------------------------- */
+
+
+.componentViewWrap{
+  background-color: rgba(255, 255, 255, 0.966);
+  margin-top: 5%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0px 0px 50px rgba(12, 12, 12, 0.76);
+  border-radius: .5%;
+
+}
+/* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
 
@@ -117,9 +132,15 @@ input {
   margin-bottom: 10px;
 }
 
+
 .MuiDataGrid-columnsContainer{
   font-size: 30px;
 }
 .MuiDataGrid-colCell{
   width: 100px;
+}
+.findDesignerCard{
+  padding-left: 12px;
+  padding-top: 10px;
+  padding-right: 12px;
 }

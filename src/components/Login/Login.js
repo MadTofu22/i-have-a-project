@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { theme } from '../App/Material-UI/MUITheme';
 import {withRouter} from 'react-router-dom';
@@ -39,10 +39,12 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <div className="loginWrap">
       <div className='loginElements'>
+        <h2 className="loginTitle">I Have A Project</h2>
+
         <ThemeProvider theme={theme}>
         <Container maxWidth="md">
-        <Box bgcolor="primary.light" height>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -51,59 +53,58 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-              Username:
-          <Input
-          id="input-with-icon-adornment"
-          startAdornment=
-          {<InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>}
-          value={this.state.username}
-                onChange={this.handleInputChangeFor('email')}></Input>
-          {/* <label htmlFor="email">
-              Username: */}
-              {/* <input
-                type="text"
-                name="email"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('email')}
-              /> */}
-            {/* </label> */}
+        <form onSubmit={this.login} className="loginForm">
+
+          <div  className="loginInput">
+          <TextField
+          label="username"
+          variant="outlined"
+          InputProps={{
+            startAdornment: (
+            <InputAdornment 
+              position="start">
+                <AccountCircle/>
+            </InputAdornment>)
+          }}
+            value={this.state.username}
+                onChange={this.handleInputChangeFor('email')}></TextField>
           </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
+          <div  className="loginInput">
+              <TextField
                 type="password"
+                variant="outlined"
+                label="Password"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
           </div>
-          <div>
-            <input
-              className="log-in"
+          <div  
+            className="loginBTN"
+          >
+            <Button
+            
               type="submit"
               name="submit"
               value="Log In"
-            />
+              variant="contained"
+            >Log In</Button>
           </div>
         </form>
-        
-          <Button
-          variant="contained" color="secondary" style={{ margin: 20 }}
-            className="link-button"
-            onClick={() => {this.props.history.push('/ManagerRegistration')}}
-          >
-            Register
-          </Button>
-          </Box>
+          <div className="registerOption">
+            Not a member?
+            <Button
+              style={{color: 'blue'}}
+              variant='link' color="secondary" 
+              className="loginRegisterBtn"
+              onClick={() => {this.props.history.push('/ManagerRegistration')}}
+            >
+              register
+            </Button>
+          </div>
           </Container>
           </ThemeProvider>
+      </div>
       </div>
     );
   }
