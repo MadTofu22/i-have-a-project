@@ -81,7 +81,7 @@ class ManagerRegistration extends Component {
       return (
         <div className="registerWrap">
           <div className='registrationElements'>
-          <h1 className="loginTitle">IHaveAProject</h1>
+          <h1 className="loginTitle">I Have A Project</h1>
 
           <ThemeProvider theme={theme}>
           <h3 className="loginTitle">Manager Registration</h3>
