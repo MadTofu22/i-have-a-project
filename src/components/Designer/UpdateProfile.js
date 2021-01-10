@@ -4,7 +4,7 @@ import {HashRouter as Router, Route, withRouter} from 'react-router-dom'
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Import components
-import AddSkills from './UpdateProfileComponents/AddSkills';
+// import AddSkills from './UpdateProfileComponents/AddSkills';
 import AddInformation from './UpdateProfileComponents/AddInformation';
 
 class UpdateProfile extends Component {
@@ -65,7 +65,7 @@ class UpdateProfile extends Component {
 				</div>
 			</Router>
 			:
-			<h1>Profile Data Loading{this.setData}</h1>
+			<h1 onLoad={this.setData}>Profile Data Loading</h1>
 		);
 	}
 }

@@ -5,6 +5,10 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+
 class AddedSkillLabel extends Component {
     
     constructor (props) {
@@ -37,18 +41,12 @@ class AddedSkillLabel extends Component {
                     max='5'
                     onChange={this.handleRatingChange} 
                 />
-                <input 
-                    type='button' 
-                    className='skillButton' 
-                    value='Save Rating' 
-                    onClick={() => this.props.updateSkill(this.props.index, this.state.newRating)} 
-                />
-                <input 
-                    type='button' 
-                    className='skillButton' 
-                    value='Delete' 
-                    onClick={() => this.props.removeSkill(this.props.index)} 
-                />
+                <IconButton aria-label="save" onClick={() => this.props.updateSkill(this.props.index, this.state.newRating)}>
+                    <SaveIcon fontSize="small" />
+                </IconButton>
+                <IconButton aria-label="delete" onClick={() => this.props.removeProfileItem(this.props.skill, 'skill', this.props.index)}>
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
             </Paper>
         );
     }

@@ -308,5 +308,40 @@ router.post('/software/:id', (req, res) => {
     });    
 });
 
+router.delete('/skill/:id', (req, res) => {
+    const queryText = `DELETE FROM "skills" WHERE id = $1;`;
+    
+    pool.query(queryText, [req.params.id])
+    .then(response => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    });    
+});
+
+router.delete('/career/:id', (req, res) => {
+    const queryText = `DELETE FROM "career" WHERE id = $1;`;
+    
+    pool.query(queryText, [req.params.id])
+    .then(response => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    });    
+});
+
+router.delete('/education/:id', (req, res) => {
+    const queryText = `DELETE FROM "education" WHERE id = $1;`;
+    
+    pool.query(queryText, [req.params.id])
+    .then(response => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    });    
+});
 
 module.exports = router;
