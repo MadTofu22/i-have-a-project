@@ -98,4 +98,42 @@ router.post('/delete', async (req, res) => {
     }
 });
 
+router.put('/ratechange', async (req, res) => {
+    const connection = await pool.connect(); 
+    console.log(req.body);
+    
+    try {
+        await connection.query('BEGIN');
+
+        const statusCheck = `SELECT "user_type" FROM "user" WHERE "id" = $1;`
+        const authorizedCheck = await connection.query(statusCheck, [req.user.id]);
+        console.log(authorizedCheck.rows[0].user_type);
+
+        const relationCheck = `SELECT "manager_id" FROM "designers" WHERE "id" = $1;`
+        const authorizedCheckTwo = await connection.query(relationCheck, [req.body.designer_id]);
+
+        const updateRate = `UPDATE "designers"
+                                SET "rate" = $1
+                                WHERE "id" = $2`
+
+        if (req.isAuthenticated && authorizedCheck.rows[0].user_type === 'manager' && authorizedCheckTwo.rows[0].manager_id == req.user.id) {
+
+            connection.query(updateRate, [req.body.rate, req.body.designer_id])
+            
+            await connection.query('COMMIT');
+            res.sendStatus(200);
+        }
+
+        else {
+            res.sendStatus(403);
+        }
+    } catch ( error ) {
+        await connection.query('ROLLBACK');
+        console.log(`Transaction Error - Rolling back new account`, error);
+        res.sendStatus(500); 
+    } finally {
+        connection.release()
+    }
+});
+
 module.exports = router;

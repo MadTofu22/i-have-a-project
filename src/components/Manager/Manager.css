@@ -169,7 +169,7 @@ h2.designer {
     background-position: center;
     min-height: 76vh;
     padding-top: 30px;
-   padding-bottom: 30px;
+    padding-bottom: 30px;
 }
 
 /* MANAGER REGISTRATION*/
@@ -216,4 +216,25 @@ h2.designer {
 }
 .registerWrap{
     margin-top: 5%;
+}
+
+/* MY DESIGNERS */
+.teamDesignersWrap{
+    width: 70%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    height: 350px;
+}
+
+.myDesignerInfo{
+    height: 900px;
+}
+.contractDesignerWrap{
+    overflow-y: scroll;
+    height: 350px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
