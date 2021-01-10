@@ -15,15 +15,25 @@ class AddedSkillLabel extends Component {
         super(props);
         // this.ratingInputRef = React.createRef();
         this.state = {
-            newRating: '',
+            newRating: this.props.skill.proficiency,
         }
     }
 
     // This function handles updating the local state with the changed rating number
     handleRatingChange = (event) => {
-        // console.log('newRating:', this.ratingInputRef.current.value);
+        
+        let num = Number(event.target.value);
+
+        if(num > 5) {
+            num = 5;
+        } else if (num < 1) {
+            num = 1;
+        } else {
+            console.log('rating is between 1 and 5');
+        }
+
         this.setState({
-            newRating: event.target.value
+            newRating: num
         });
     }
 
@@ -36,7 +46,7 @@ class AddedSkillLabel extends Component {
                     type='number' 
                     variant="outlined" 
                     className='ratingInput' 
-                    defaultValue={this.props.skill.proficiency} 
+                    value={this.state.newRating} 
                     min='1' 
                     max='5'
                     onChange={this.handleRatingChange} 
