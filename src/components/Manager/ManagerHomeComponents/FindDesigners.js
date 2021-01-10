@@ -152,7 +152,7 @@ class FindNewDesigner extends Component {
                       value={this.state.newSearch.software_id}
                       variant="outlined"
                     > 
-                        <MenuItem value={0}>Select a Software</MenuItem>
+                        <MenuItem value={0}>Select a Required Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {
                         return <MenuItem key={softwareObj.id} value={softwareObj.id}>{softwareObj.label}</MenuItem>
                       })}

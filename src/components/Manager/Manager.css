@@ -22,7 +22,7 @@
     flex-direction: column;
     height: 100%;
     box-shadow: 0px 0px 20px rgba(70, 66, 66, 0.76);
-    background-color: rgb(38, 151, 126);
+    background-color: rgb(238, 212, 60);
     z-index: 3;
     padding-right: 10px;
     padding-left: 10px;
@@ -169,7 +169,7 @@ h2.designer {
     background-position: center;
     min-height: 76vh;
     padding-top: 30px;
-    padding-bottom: 30px;
+   padding-bottom: 30px;
 }
 
 /* MANAGER REGISTRATION*/

@@ -41,7 +41,7 @@ class LoginPage extends Component {
     return (
       <div className="loginWrap">
       <div className='loginElements'>
-        <h2 className="loginTitle">iHaveAProject</h2>
+        <h2 className="loginTitle">I Have A Project</h2>
 
         <ThemeProvider theme={theme}>
         <Container maxWidth="md">
