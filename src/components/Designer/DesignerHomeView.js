@@ -7,7 +7,6 @@ import {
 	withRouter
   } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps'
-import NavButtonDesigner from './DesignerHomeComponents/NavButtonDesigner.js'
 import Calendar from './DesignerHomeComponents/Calendar.js'
 import MyProfile from '././DesignerHomeComponents/MyProfile.js'
 import Projects from '././DesignerHomeComponents/Projects.js'
@@ -64,7 +63,7 @@ class DesignerHomeView extends Component {
 						<h2 
 							className="titleWrap"
 							onClick={()=> this.props.history.push('/home')}
-							>iHaveAProject</h2>
+							>I Have A Project</h2>
                         <Divider className="menuDivider"  variant="middle"/>
 							{pages.map((page, index) => {
 								return <NavButton key={index} page={page} />

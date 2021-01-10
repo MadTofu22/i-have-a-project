@@ -40,3 +40,23 @@
 .createBtn{
     margin-top: 65%;
 }
+.projectDetailsWrap{
+    height: 800px;
+}
+.projectActionMenu{
+    padding-left: 7%;
+    text-align: left;
+    width: 40%;
+    padding-right: 4%;
+}
+.projectInfoWrap{
+    display: flex;
+}
+.descriptionWrap{
+    padding-top: 8%;
+    width: 45%;
+    text-align: left;
+}
+.actionMenu{
+    padding-top: 80px;
+}

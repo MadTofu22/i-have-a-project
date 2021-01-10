@@ -89,7 +89,7 @@ function FindDesignerCard(props) {
     }
 
 	return (
-         <>
+         <div className="findDesignerCard">
              <Card style={{width:'250px', height: '300px'}}>
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
@@ -226,7 +226,7 @@ function FindDesignerCard(props) {
 				</div>
                 </DialogContent>
           </Dialog>
-        </>
+        </div>
 	);
 }
 
