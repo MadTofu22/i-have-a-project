@@ -61,6 +61,14 @@ function* createContractRequest(action) {
         requested_hours: action.payload.search.requested_hours,
     }
     yield axios.post('/api/contracts', newRequest)
+
+    let newJoin = {
+      designer_id: action.payload.designer.designerInfo.designer_id,
+      project_id: action.payload.search.project_id,
+      rate: action.payload.designer.designerInfo.rate,
+      hours_est: action.payload.search.requested_hours,
+    }
+    yield axios.prototype('/')
   } catch (error) {
     console.log(error);
     

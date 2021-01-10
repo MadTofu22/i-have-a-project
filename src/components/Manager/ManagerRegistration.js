@@ -111,7 +111,6 @@ class ManagerRegistration extends Component {
          
             <div  className="registerInput">
               <label>
-                
                   <div>
                     <TextField
                       label="First Name"
@@ -138,7 +137,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="email">
-             
+               
                 <TextField
                   type="text"
                   name="email"
@@ -153,7 +152,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="password">
-             
+                
                 <TextField
                   type="password"
                   label="Password"
@@ -179,7 +178,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="company">
-             
+              
                 <TextField
                   label="Company"
                   type="company"

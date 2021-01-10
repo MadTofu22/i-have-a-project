@@ -315,7 +315,7 @@ class AddInformation extends Component {
 					<br/>
 					<Button
 						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
-					>Save and Go Home
+						>Save and Go Home
 					</Button>
 				</div>
 			</div>
