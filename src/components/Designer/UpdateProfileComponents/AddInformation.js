@@ -50,7 +50,7 @@ class AddInformation extends Component {
 				designer: {
 					phone: '(612)-555-4326',
 					linkedin: 'linkedin.com/peter-pierce',
-					photo: 'images/simon.jpg',
+					photo: 'images/simon.png',
 				},
 				skills: [
 					{label: 'Communication', proficiency: 3},
