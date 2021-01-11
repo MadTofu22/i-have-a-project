@@ -82,13 +82,6 @@ create table "designer_software_join" (
 	"proficient" boolean not null
 );
 
-INSERT INTO "software" ("label")
-VALUES ('AutoCAD'),
-('Blender'),
-('Adobe Illustrator'),
-('MS Paint'),
-('FreeCAD');
-
 CREATE TABLE "contract_requests" (
 	"id" SERIAL PRIMARY KEY,
 	"requesting_manager_id" INT REFERENCES "user" NOT NULL,

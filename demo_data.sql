@@ -2,8 +2,8 @@
 
 -- Populate the initial managers into the USER table
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company")
-VALUES ('alexs@3dagents.com', 'managerPW', 'manager', 'Simon', 'Germscheid', '3D Agents'),
-('bradleyj@staryflyerimages.com', 'managerPW', 'manager', 'Peter', 'Pierce', 'Staryflyer Images'),
+VALUES ('alexs@3dagents.com', 'managerPW', 'manager', 'Alex', 'Smith', '3D Agents'),
+('bradleyj@staryflyerimages.com', 'managerPW', 'manager', 'Roger', 'Kippling', 'Staryflyer Images'),
 ('toms@marvelousmeshes.com', 'managerPW', 'manager', 'Tom', 'Stutler', 'Marvelous Meshes'),
 ('samanthap@we3d.com', 'managerPW', 'manager', 'Samantha', 'Ponterre', 'We3D');
 
@@ -36,9 +36,9 @@ VALUES ('cococ@staryflyerimages.com', 'designerPW', 'designer', 'Coco', 'Chanel'
 ('alexanderm@we3d.com', 'designerPW', 'designer', 'Alexander', 'McQueen', 'We3D', '10');
 
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company")
-VALUES ('sgermscheid@gmail.com', '', 'manager', 'Simon', 'Germscheid', 'Prime Rendering'),
-('elliotmalcolm@hotmail.com', '', 'manager', 'Elliot', 'Malcolm', 'Digital Masterworks'),
-('rachelclairephoto@gmail.com', '', 'admin', 'Rachel', 'Smith', 'IHAP');
+VALUES ('elliotmalcolm@hotmail.com', 'elliot', 'manager', 'Elliot', 'Malcolm', 'Digital Masterworks'),
+('sgermscheid@gmail.com', 'simon', 'manager', 'Simon', 'Germscheid', 'Prime Rendering'),
+('rachelclairephoto@gmail.com', 'rachel', 'admin', 'Rachel', 'Smith', 'IHAP');
 
 -- Populat the 2nd round of designers in to the DESIGNER table
 INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate", "availability_hours", "weekend_availability")
@@ -56,16 +56,16 @@ VALUES ('16', '(612) 555-9843', 'www.linkedin.com/in/lucy-coleman', 'images/simo
 
 -- Populate the last wave of designers into the USER table
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
-VALUES ('lucyc@simonsaysgraphics.com', 'ssg1', 'designer', 'Lucy', 'Coleman', 'Prime Rendering', '11'),
-('meganh@simonsaysgraphics.com', 'ssg2', 'designer', 'Megan', 'Howell', 'Prime Rendering', '12'),
-('chloed@simonsaysgraphics.com', 'ssg3', 'designer', 'Chloe', 'Dominguez', 'Prime Rendering', '13'),
-('jessicab@simonsaysgraphics.com', 'ssg4', 'designer', 'Jessica', 'Brown', 'Prime Rendering', '14'),
-('charlottem@simonsaysgraphics.com', 'ssg5', 'designer', 'Charlotte', 'Mejia', 'Prime Rendering', '15'),
-('emilyr@simonsaysgraphics.com', 'ssg6', 'designer', 'Emily', 'Reyes', 'Prime Rendering', '16'),
-('sarahm@simonsaysgraphics.com', 'ssg7', 'designer', 'Sarah', 'Mcgee', 'Prime Rendering', '17'),
-('harryh@simonsaysgraphics.com', 'ssg8', 'designer', 'Harry', 'Hoffman', 'Prime Rendering', '18'),
-('oliverc@simonsaysgraphics.com', 'ssg9', 'designer', 'Oliver', 'Cobb', 'Prime Rendering', '19'),
-('danielh@simonsaysgraphics.com', 'ssg10', 'designer', 'Daniel', 'Howell', 'Prime Rendering', '20'),
+VALUES ('lucyc@primerendering.com', 'ssg1', 'designer', 'Lucy', 'Coleman', 'Prime Rendering', '11'),
+('meganh@primerendering.com', 'ssg2', 'designer', 'Megan', 'Howell', 'Prime Rendering', '12'),
+('chloed@primerendering.com', 'ssg3', 'designer', 'Chloe', 'Dominguez', 'Prime Rendering', '13'),
+('jessicab@primerendering.com', 'ssg4', 'designer', 'Jessica', 'Brown', 'Prime Rendering', '14'),
+('charlottem@primerendering.com', 'ssg5', 'designer', 'Charlotte', 'Mejia', 'Prime Rendering', '15'),
+('emilyr@primerendering.com', 'ssg6', 'designer', 'Emily', 'Reyes', 'Prime Rendering', '16'),
+('sarahm@primerendering.com', 'ssg7', 'designer', 'Sarah', 'Mcgee', 'Prime Rendering', '17'),
+('harryh@primerendering.com', 'ssg8', 'designer', 'Harry', 'Hoffman', 'Prime Rendering', '18'),
+('oliverc@primerendering.com', 'ssg9', 'designer', 'Oliver', 'Cobb', 'Prime Rendering', '19'),
+('danielh@primerendering.com', 'ssg10', 'designer', 'Daniel', 'Howell', 'Prime Rendering', '20'),
 ('peterp@gmail.com', 'peter', 'designer', 'Peter', 'Pierce', 'Prime Rendering', '21');
 
 -- Populate the SKILLS table
@@ -163,7 +163,7 @@ values ('1', '1', 'true'),
 ('2', '2', 'true'),
 ('3', '3', 'true'),
 ('3', '5', 'true'),
-('4', '6', 'true'),
+('4', '5', 'true'),
 ('4', '1', 'true'),
 ('5', '4', 'true'),
 ('5', '2', 'true'),
@@ -172,13 +172,13 @@ values ('1', '1', 'true'),
 ('6', '2', 'true'),
 ('7', '1', 'true'),
 ('8', '4', 'true'),
-('8', '6', 'true'),
+('8', '5', 'true'),
 ('8', '1', 'true'),
 ('8', '4', 'true'),
 ('8', '3', 'true'),
 ('9', '2', 'true'),
 ('9', '1', 'true'),
-('10', '6', 'true'),
+('10', '5', 'true'),
 ('10', '3', 'true'),
 ('21', '1', 'false'),
 ('21', '2', 'false'),
@@ -225,3 +225,7 @@ values ('1', '2021-1-14', '3', 'TRUE'),
 ('8', '2021-1-15', '10', 'TRUE'),
 ('9', '2021-1-15', '10', 'TRUE'),
 ('10', '2021-1-15', '10', 'TRUE');
+
+INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company")
+VALUES ('george.menendez@designteamsinc.com', 'managerPW', 'manager', 'George', 'Menendez', 'Desgin Teams Inc'),
+('cory.larkin@4axisdesigns.com', 'managerPW', 'manager', 'Cory', 'Larkin', '4 Axis Designs');
