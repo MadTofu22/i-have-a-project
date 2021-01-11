@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import '../ContractRequest.css';
 
 
 class ContractRequests extends Component {
@@ -76,12 +77,14 @@ class ContractRequests extends Component {
             <h2>Inbox:</h2>
             <TableContainer component={Paper}>
             <Table>
-                <TableHead>
+                <TableHead style={{fontWeight: "bold"}}>
                     <TableRow>
-                        <TableCell>Inquiring Manager</TableCell>
-                        <TableCell>Requested Designer</TableCell>
-                        <TableCell>Project Timeline</TableCell>
-                        <TableCell>Date Received</TableCell>
+                        <TableCell><div className="tableHeader">Inquiring Manager</div></TableCell>
+                        <TableCell><div className="tableH">Requested Designer</div></TableCell>
+                        <TableCell><div className="tableT">Project Timeline</div></TableCell>
+                        <TableCell><div className="tableHeader">Date Received</div></TableCell>
+                        <TableCell><div className="tableHeader">Accept</div></TableCell>
+                        <TableCell><div className="tableHeader">Deny</div></TableCell>
                     </TableRow>
                 </TableHead> 
                 <TableBody>
@@ -112,13 +115,13 @@ class ContractRequests extends Component {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Requested Designer Name</TableCell>
-                        <TableCell>Team Manager</TableCell>
-                        <TableCell>Project Name</TableCell>
-                        <TableCell>Hourly Rate</TableCell>
-                        <TableCell>Date Submitted</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>Delete</TableCell>
+                        <TableCell><div className="tableHeader">Requested Designer Name</div></TableCell>
+                        <TableCell><div className="tableHeader">Team Manager</div></TableCell>
+                        <TableCell><div className="tableHeader">Project Name</div></TableCell>
+                        <TableCell><div className="tableHeader">Hourly Rate</div></TableCell>
+                        <TableCell><div className="tableHeader">Date Submitted</div></TableCell>
+                        <TableCell><div className="tableHeader">Status</div></TableCell>
+                        <TableCell><div className="tableHeader">Delete</div></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
