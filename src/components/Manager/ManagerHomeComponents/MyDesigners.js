@@ -65,7 +65,8 @@ class MyDesigners extends Component {
                     {this.props.store.designer.length > 0 ?
                     <div className="myDesignersTableWrap">
                         <DataGrid
-                        autoHeight={true}
+                        // autoHeight={true}
+                            
                             columns={[
                                     { field: 'id', headerName: 'ID', width: 100},
                                     { field: 'first_name', headerName: 'First Name',  width: 200},
@@ -103,7 +104,7 @@ class MyDesigners extends Component {
                     </div>                   
                 </div>
                
-                <div >
+                <div className='contractDesignerSectionWrap'>
                     <h3>Contract Designers</h3>
 
                         <Button 
