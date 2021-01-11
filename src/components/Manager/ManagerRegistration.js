@@ -24,17 +24,17 @@ class ManagerRegistration extends Component {
   
     registerUser = (event) => {
         event.preventDefault();
-  
+      console.log(this.state.username, this.state.password, this.state.passwordIsMatch)
       if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
 
         this.props.dispatch({
-          type: 'REGISTER',
+          type: 'LOGIN',//'REGISTER',
           payload: {
             username: this.state.username,
             password: this.state.password,
-            company: this.state.company,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+            // company: this.state.company,
+            // firstName: this.state.firstName,
+            // lastName: this.state.lastName,
           }
         });
         
@@ -80,12 +80,12 @@ class ManagerRegistration extends Component {
     fillInfo = () => {
       this.setState ({
           username: 'elliotmalcolm@hotmail.com',
-          password: '123456',
-          passwordConfirmation: '123456',
+          password: 'elliot',
+          passwordConfirmation: 'elliot',
           company: 'Digital Masterworks',
           firstName: 'Elliot',
           lastName: 'Malcolm',
-          passwordIsMatch: null,
+          passwordIsMatch: true,
           passwordConfirmationMsg: ''
       })
     }

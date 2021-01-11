@@ -191,13 +191,15 @@ router.put('/skills/:id', (req, res) => {
 router.put('/software/:id', (req, res) => {
 
     const queryParams = [
-        req.body.id,
+        req.params.id,
         req.body.proficient,
+        req.body.index,
     ];
+    console.log('in the software put route, queryParams=', queryParams)
     const queryText = `
         UPDATE "designer_software_join" SET
             proficient = $2
-            WHERE id = $1;`;
+            WHERE designer_id = $1 AND software_id = $3;`;
     pool.query(queryText, queryParams)
     .then(response => {
         res.sendStatus(200);

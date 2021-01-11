@@ -217,7 +217,7 @@ class AddInformation extends Component {
 		return (
 		<div className="componentViewWrap">
 					<Button
-						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
+						onClick={() => {console.log('in sagvetohome',this.state.profile); this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
 					>Save and Go Home
 					</Button>
 			<div className="profileWrap">
