@@ -18,15 +18,6 @@ class AddSkills extends Component {
 		};
 	}
 
-	// componentDidMount = () => {
-	// 	console.log('in component did mount')
-	// 	this.props.dispatch({
-	// 		type: 'FETCH_PROFILE',
-	// 		payload: this.props.store.user.designer_id
-	// 	});
-	// }
-
-
 
 	render() {
 		console.log('AddSkills - state:', this.state, '; props:', this.props);

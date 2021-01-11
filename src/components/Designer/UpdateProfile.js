@@ -47,7 +47,6 @@ class UpdateProfile extends Component {
 		return (
 			this.props.store.profile.skills ?
 			<Router>
-				<h1>Build Your Profile!</h1>
 				<div className='profileInputContainer'>
 					<Route exact path='/UpdateProfile/Info'>
 						<AddInformation
