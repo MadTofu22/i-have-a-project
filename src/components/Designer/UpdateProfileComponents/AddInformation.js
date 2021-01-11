@@ -31,6 +31,38 @@ class AddInformation extends Component {
 		};
 	}
 
+
+	fillForm = () => {
+		this.setState({
+			profile: {
+				career: [
+					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering Student'},
+				],
+				education: [
+					{location: 'Prime Digital Academy', degree: 'Full Stack Software Engineering'}
+				],
+				software: [
+					{label: 'AutoCAD', proficient: true},
+					{label: 'Blender', proficient: false},
+					{label: 'Adobe Illustrator', proficient: false},
+					{label: 'MS Paint', proficient: false},
+					{label: 'FreeCAD', proficient: false},
+				],
+				designer: {
+					phone: '(612)-555-4326',
+					linkedin: 'linkedin.com/peter-pierce',
+					photo: 'images/simon.png',
+				},
+				skills: [
+					{label: 'Communication', proficiency: 3},
+					{label: 'Texturing', proficiency: 3},
+					{label: 'Vector Math', proficiency: 3},
+				],
+				filled: true
+			}
+		})
+	}
+
 	componentDidMount = () => {
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
@@ -191,7 +223,7 @@ class AddInformation extends Component {
 					</Button>
 			<div className="profileWrap">
 				<div className="addInfoWrap">
-					<h2>Add Information</h2>
+					<h2>Add Information <button id='fillBuildProfile' onClick={this.fillForm}>A</button></h2>
 					<TextField
 						variant="outlined" 
 						type='text'

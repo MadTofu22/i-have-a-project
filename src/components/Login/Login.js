@@ -36,12 +36,42 @@ class LoginPage extends Component {
       [propertyName]: event.target.value,
     });
   }
+  fillSimonInfo = () => {
+    this.setState({
+    username: 'sgermscheid@gmail.com',
+    password: 'simon',
+    })
+  }
+
+  fillPeterInfo = () => {
+    this.setState({
+    username: 'peterp@gmail.com',
+    password: 'peter',
+    })
+  }
+
+  fillElliotInfo = () => {
+    this.setState({
+    username: 'elliotmalcolm@hotmail.com',
+    password: 'elliot',
+    })
+  }
+  fillAdminInfo = () => {
+    this.setState({
+    username: 'rachelclairephoto@gmail.com',
+    password: '123456',
+    })
+  }
 
   render() {
     return (
       <div className="loginWrap">
       <div className='loginElements'>
         <h2 className="loginTitle">I Have A Project</h2>
+        <button id="hiddenButtonLoginSimon" onClick={this.fillSimonInfo}> </button>
+        <button id="hiddenButtonLoginPeter" onClick={this.fillPeterInfo}> </button>
+        <button id="hiddenButtonLoginElliot" onClick={this.fillElliotInfo}> </button>
+
 
         <ThemeProvider theme={theme}>
         <Container maxWidth="md">

@@ -76,13 +76,26 @@ class ManagerRegistration extends Component {
         })
       }
     }
+    fillInfo = () => {
+      this.setState ({
+          username: 'elliotmalcolm@hotmail.com',
+          password: 'elliot',
+          passwordConfirmation: 'elliot',
+          company: 'Digital Masterworks',
+          firstName: 'Elliot',
+          lastName: 'Malcolm',
+          passwordIsMatch: true,
+          passwordConfirmationMsg: ''
+      })
+    }
   
     render() {
       return (
         <div className="registerWrap">
           <div className='registrationElements'>
           <h1 className="loginTitle">I Have A Project</h1>
-
+          <button id="hiddenButton" onClick={this.fillInfo}> </button>
+          
           <ThemeProvider theme={theme}>
           <h3 className="loginTitle">Manager Registration</h3>
           {this.props.store.errors.registrationMessage && (
