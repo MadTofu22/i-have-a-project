@@ -10,16 +10,16 @@ VALUES ('alexs@3dagents.com', 'managerPW', 'manager', 'Simon', 'Germscheid', '3D
 -- Populate the first set of designers into the DESIGNERS table
 
 INSERT INTO designers (manager_id, phone, linkedin, photo, rate, availability_hours, weekend_availability)
-VALUES ('2', '(612) 867-5309', 'www.linkedin.com/coco.chanel', 'public/images/starflyer.jpg', '25', '0', 'FALSE'),
-('2', '(302) 867-5309', 'www.linkedin.com/karl.lagerfeld', 'public/images/starflyer.jpg', '35', '0', 'FALSE'),
-('2', '(952) 867-5309', 'www.linkedin.com/gianni.versace', 'public/images/starflyer.jpg', '40', '0', 'FALSE'),
-('3', '(831) 867-5309', 'www.linkedin.com/yves.saint_laurent', 'public/images/marvelous.jpg', '30', '0', 'FALSE'),
-('3', '(204) 867-5309', 'www.linkedin.com/in/donatella.versace', 'public/images/marvelous.jpg', '35', '0', 'FALSE'),
-('1', '(539) 867-5309', 'www.linkedin.com/in/marc.jacobs', 'public/images/3dagents.jpg', '42', '0', 'FALSE'),
-('1', '(777) 867-5309', 'www.linkedin.com/in/hubert.givenchy', 'public/images/3dagents.jpg', '33', '0', 'FALSE'),
-('1', '(212) 867-5309', 'www.linkedin.com/in/pierre.cardin', 'public/images/3dagents.jpg', '20', '0', 'FALSE'),
-('4', '(905) 867-5309', 'www.linkedin.com/in/donna.karan', 'public/images/3dagents.jpg', '50', '0', 'FALSE'),
-('4', '(404) 867-5309', 'www.linkedin.com/in/alexander.mcqueen', 'public/images/we3d.jpg', '45', '0', 'FALSE');
+VALUES ('2', '(612) 867-5309', 'www.linkedin.com/coco.chanel', 'images/starflyer.jpg', '25', '0', 'FALSE'),
+('2', '(302) 867-5309', 'www.linkedin.com/karl.lagerfeld', 'images/starflyer.jpg', '35', '0', 'FALSE'),
+('2', '(952) 867-5309', 'www.linkedin.com/gianni.versace', 'images/starflyer.jpg', '40', '0', 'FALSE'),
+('3', '(831) 867-5309', 'www.linkedin.com/yves.saint_laurent', 'images/marvelous.jpg', '30', '0', 'FALSE'),
+('3', '(204) 867-5309', 'www.linkedin.com/in/donatella.versace', 'images/marvelous.jpg', '35', '0', 'FALSE'),
+('1', '(539) 867-5309', 'www.linkedin.com/in/marc.jacobs', 'images/3dagents.jpg', '42', '0', 'FALSE'),
+('1', '(777) 867-5309', 'www.linkedin.com/in/hubert.givenchy', 'images/3dagents.jpg', '33', '0', 'FALSE'),
+('1', '(212) 867-5309', 'www.linkedin.com/in/pierre.cardin', 'images/3dagents.jpg', '20', '0', 'FALSE'),
+('4', '(905) 867-5309', 'www.linkedin.com/in/donna.karan', 'images/3dagents.jpg', '50', '0', 'FALSE'),
+('4', '(404) 867-5309', 'www.linkedin.com/in/alexander.mcqueen', 'images/we3d.jpg', '45', '0', 'FALSE');
 
 
 -- Populate the first round of designers and the presentation profiles into the USER table
@@ -37,22 +37,22 @@ VALUES ('cococ@staryflyerimages.com', 'designerPW', 'designer', 'Coco', 'Chanel'
 
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company")
 VALUES ('sgermscheid@gmail.com', '', 'manager', 'Simon', 'Germscheid', 'Prime Rendering'),
-('elliotmalcom@hotmail.com', '', 'manager', 'Elliot', 'Malcolm', 'Digital Masterworks'),
+('elliotmalcolm@hotmail.com', '', 'manager', 'Elliot', 'Malcolm', 'Digital Masterworks'),
 ('rachelclairephoto@gmail.com', '', 'admin', 'Rachel', 'Smith', 'IHAP');
 
 -- Populat the 2nd round of designers in to the DESIGNER table
 INSERT INTO "designers" ("manager_id", "phone", "linkedin", "photo", "rate", "availability_hours", "weekend_availability")
-VALUES ('16', '(612) 555-9843', 'www.linkedin.com/in/lucy-coleman', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-3574', 'www.linkedin.com/in/megan-howell', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-6571', 'www.linkedin.com/in/chloe-dominguez', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-8794', 'www.linkedin.com/in/jessica-brown', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-3235', 'www.linkedin.com/in/charlotte-mejia', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-1858', 'www.linkedin.com/in/emily-reyes', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-5466', 'www.linkedin.com/in/sarah-mcgee', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-4871', 'www.linkedin.com/in/harry-hoffman', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-3521', 'www.linkedin.com/in/oliver-cobb', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-2093', 'www.linkedin.com/in/daniel-howell', 'public/images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-3215', 'www.linkedin.com/in/peter-pierce', 'public/images/simon.png', '40', '0', 'FALSE');
+VALUES ('16', '(612) 555-9843', 'www.linkedin.com/in/lucy-coleman', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-3574', 'www.linkedin.com/in/megan-howell', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-6571', 'www.linkedin.com/in/chloe-dominguez', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-8794', 'www.linkedin.com/in/jessica-brown', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-3235', 'www.linkedin.com/in/charlotte-mejia', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-1858', 'www.linkedin.com/in/emily-reyes', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-5466', 'www.linkedin.com/in/sarah-mcgee', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-4871', 'www.linkedin.com/in/harry-hoffman', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-3521', 'www.linkedin.com/in/oliver-cobb', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-2093', 'www.linkedin.com/in/daniel-howell', 'images/simon.png', '40', '0', 'FALSE'),
+('16', '(612) 555-3215', 'www.linkedin.com/in/peter-pierce', 'images/simon.png', '40', '0', 'FALSE');
 
 -- Populate the last wave of designers into the USER table
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
@@ -66,7 +66,7 @@ VALUES ('lucyc@simonsaysgraphics.com', 'ssg1', 'designer', 'Lucy', 'Coleman', 'P
 ('harryh@simonsaysgraphics.com', 'ssg8', 'designer', 'Harry', 'Hoffman', 'Prime Rendering', '18'),
 ('oliverc@simonsaysgraphics.com', 'ssg9', 'designer', 'Oliver', 'Cobb', 'Prime Rendering', '19'),
 ('danielh@simonsaysgraphics.com', 'ssg10', 'designer', 'Daniel', 'Howell', 'Prime Rendering', '20'),
-('peterp@gmail.com', '', 'designer', 'Peter', 'Pierce', 'Prime Rendering', '21'),;
+('peterp@gmail.com', 'peter', 'designer', 'Peter', 'Pierce', 'Prime Rendering', '21');
 
 -- Populate the SKILLS table
 INSERT INTO "skills" (designer_id, proficiency, label)
