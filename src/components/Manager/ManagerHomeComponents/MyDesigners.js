@@ -7,29 +7,14 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddTeamMember from '../../Modals/AddTeamMember'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import ChangeRate from '../../Modals/ChangeRate';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 class MyDesigners extends Component {
-   
-    state = {
-		// events: [{
-		// 	id: 0,
-		// 	title: '',
-		// 	start: '',
-		// 	hoursCommitted: 0
-		//   }],
-		// clickEvent: {
-		// 		id: 0,
-		// 		start: '',
-		// 		hoursCommitted: 0,
-		// 		renderModal: true,
-		// 		project_id: null
-		// }
-	};
+
     
     handleNavTo = () => {
         this.props.history.push('/ManagerHomeView/Search');
@@ -37,6 +22,9 @@ class MyDesigners extends Component {
     componentDidMount = () => {
         this.props.dispatch({
             type: "FETCH_DESIGNERS"
+        })
+        this.props.dispatch({
+            type: "FETCH_CONTRACT_DESIGNERS"
         })
     }
 
@@ -50,66 +38,54 @@ class MyDesigners extends Component {
           payload: userData
         })
     } 
-    // Formulas for the rate change modal that are within component
-    // closeClickEvent = () => {
-	// 	this.setState({
-	// 		clickEvent: {
-	// 				dialog: 'Add Availability',
-	// 				id: 0,
-	// 				start: '',
-	// 				rate: 0,
-	// 				renderModal: false,
-	// 				project_id: null
-	// 		}
-	// 	});
-	// }
-    
 
 	render() {
 		return (
            
-                <div className="componentViewWrap">
-                 <h3 className=''>My Designers:</h3>
+            <div className="componentViewWrap">
 
-            <div style={{width: '100%'}} className="myDesignerInfo">
-                {this.props.store.user && 
-                    <AddTeamMember 
-                        managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
-                        managerEmail={this.props.store.user.email}
-                        managerCompany={this.props.store.user.company}
-                        managerId={this.props.store.user.id}
-                    />
-                }
-                <div style={{ height: 250, width: '100%', padding: '20px' }}>
-                    <h1>Team Designers</h1>
+                <div  className="myDesignerInfo">
+                    <div>
+                       
+                        <div  className="teamDesignersWrap" >
+                        <h3>My Designers</h3>
+                            {this.props.store.user && 
+
+                            <div className="myDesignerButton">
+                                <AddTeamMember 
+                                    managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
+                                    managerEmail={this.props.store.user.email}
+                                    managerCompany={this.props.store.user.company}
+                                    managerId={this.props.store.user.id}
+                                />
+                    </div>
+                    }
+                   
                     {this.props.store.designer.length > 0 ?
+                    <div className="myDesignersTableWrap">
                         <DataGrid
-                        style={{height: 250, width: '100%', padding: '20px'}}
                         autoHeight={true}
                             columns={[
-                                    { field: 'id', headerName: 'ID'},
-                                    { field: 'first_name', headerName: 'First Name'},
-                                    { field: 'last_name', headerName: 'Last Name'},
-                                    {field: 'rate',
-                                    headerName: 'Rate',
-                                    renderCell: (params) => (
-                                        <form>
-                                            <Button>
-                                                {/*  aria-label="delete" onClick={() => this.deleteUser(params.row.id)} */}
-                                                <ChangeRate
+                                    { field: 'id', headerName: 'ID', width: 100},
+                                    { field: 'first_name', headerName: 'First Name',  width: 200},
+                                    { field: 'last_name', headerName: 'Last Name',  width: 300},
+                                    { field: 'rate',
+                                        width: 150, 
+                                        headerName: 'Rate',
+                                        renderCell: (params) => (
+                                            <>
+                                            <AttachMoneyIcon /> {params.row.rate}
+                                            <ChangeRate
                                                     fontSize="small"
-                                                    // closeClickEvent={this.closeClickEvent}
-                                                    // clickEvent={this.state.clickEvent}
                                                     designer={{id: params.row.id}}
                                                     rate={params.row.rate}
-                                                    // Pipe in the rate via here
-                                                />
-                                            </Button>
-                                        </form>
+                                            />
+                                            </>
                                     )},
                                     {
                                         field: 'delete',
                                         headerName: 'Delete',
+                                        width: 150, 
                                         renderCell: (params) => (
                                             <IconButton aria-label="delete" onClick={() => this.deleteUser(params.row.id)}>
                                                 <DeleteIcon fontSize="small" />
@@ -119,16 +95,45 @@ class MyDesigners extends Component {
                                 ]}
                             rows={this.props.store.designer}
                         />
+                     </div>
+                    :
+                    <div>You don't have any designers yet</div>
+                    }
+                    </div>                   
+                </div>
+               
+                <div >
+                    <h3>Contract Designers</h3>
+
+                        <Button 
+                            style={{
+                                marginBottom: '10px'
+                            }}
+                            variant="contained" 
+                            onClick={() => this.handleNavTo()}
+                            ><SearchIcon/> Find Designer
+                        </Button>
+                        <div className="contractDesignerWrap">
+                        {this.props.store.contractDesigners.length > 0 ?
+                        <DataGrid
+                      
+                        autoHeight={true}
+                            columns={[
+                                    { field: 'id', headerName: 'ID', width: 100},
+                                    { field: 'company', headerName: 'Company',  width: 200},
+                                    { field: 'first_name', headerName: 'First Name',  width: 200},
+                                    { field: 'last_name', headerName: 'Last Name',  width: 200},
+                                    { field: 'rate', headerName: 'Rate',  width: 200},
+                                    { field: 'requested_hours', headerName: 'Est. Hours',  width: 200}
+                                ]}
+                            rows={this.props.store.contractDesigners}
+                        />
                     :
                     <div>You don't have any designers yet</div>}
+                    </div>
                 </div>
-                <br></br>
-                <Button variant="contained" color="secondary" style={{ margin: 20 }}
-                onClick={() => this.handleNavTo('')}>Find Designer</Button>
-                <div style={{ height: 250, width: '100%', padding: '20px' }}>
-                            <h1>Contract Designers</h1>
+                
                 </div>
-            </div>
             </div>
 		);
 	}

@@ -31,9 +31,21 @@ function* updateDesignerRate(action) {
     console.log('User delete request failed', error);
   }
 }
+function* fetchContractDesigners() {
+  try {
+    const response = yield axios.get('/api/designers/contract')
+    yield put({
+      type: "SET_CONTRACT_DESIGNERS",
+      payload: response.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* designerSaga() {
   yield takeLatest('FETCH_DESIGNERS', fetchDesigners);
+  yield takeLatest('FETCH_CONTRACT_DESIGNERS', fetchContractDesigners)
   yield takeLatest('DELETE_TEAM_MEMEBER', deleteDesignerInfo);
   yield takeLatest('UPDATE_DESIGNER_RATE', updateDesignerRate);
 }

@@ -42,7 +42,7 @@ CREATE TABLE "projects_designers_join" (
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL,
-	"hours_est" int,
+	"hours_est" int
 );
 
 CREATE TABLE "designer_calendar_item" (
@@ -81,13 +81,6 @@ create table "designer_software_join" (
 	"software_id" INT references "software" not null,
 	"proficient" boolean not null
 );
-
-INSERT INTO "software" ("label")
-VALUES ('AutoCAD'),
-('Blendr'),
-('Adobe Illustrator'),
-('MS Paint'),
-('FreeCAD');
 
 CREATE TABLE "contract_requests" (
 	"id" SERIAL PRIMARY KEY,

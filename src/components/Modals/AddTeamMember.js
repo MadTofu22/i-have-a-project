@@ -9,6 +9,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+
+import "./AddTeamMember.css";
 
 // Import and initialize emailjs
 import emailjs, {init} from 'emailjs-com';
@@ -66,8 +69,8 @@ function AddTeamMember(props) {
       }
     };
 
-    props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
-    sendEmail(inviteData);
+    // props.dispatch({type: 'REGISTER_DESIGNER', payload: inviteData});
+    // sendEmail(inviteData);
 
     setOpen(false)
     setFirstName('')
@@ -118,14 +121,24 @@ function AddTeamMember(props) {
     }
   }
 
+  const fillInfo = () => {
+    setFirstName("Peter");
+    setLastName("Pierce");
+    setEmail("peterpierce@gmail.com");
+    setRate("55");
+    setMessage("Hey Peter! Please sign up for I Have A Project so we can get you some work!");
+
+  }
+
   return (
     <div>
 
-    <Button variant="contained" color="secondary" style={{ margin: 20 }}
-                onClick={handleClickOpen}>Invite Team Member</Button> 
+    <Button variant="contained" style={{ margin: 20 }}
+                onClick={handleClickOpen}><PersonAddIcon/> Invite Team Member</Button> 
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Enter Team Member Info</DialogTitle>
+        <button id="hiddenButtonInvite" onClick={fillInfo}> Button </button>
         <DialogContent>
           <TextField
             autoFocus
@@ -133,6 +146,7 @@ function AddTeamMember(props) {
             id="firstName"
             label="First Name"
             type="text"
+            value={firstName}
             fullWidth
             onChange={(event) => handleChange(event, 'first')}
             required={true}
@@ -144,6 +158,7 @@ function AddTeamMember(props) {
             margin="dense"
             id="lastName"
             label="Last Name"
+            value={lastName}
             type="text"
             fullWidth
             onChange={(event) => handleChange(event, 'last')}
@@ -157,6 +172,7 @@ function AddTeamMember(props) {
             id="email"
             label="Designer Email"
             type="text"
+            value={email}
             fullWidth
             onChange={(event) => handleChange(event, 'email')}
             required={true}
@@ -169,6 +185,7 @@ function AddTeamMember(props) {
             id="rate"
             label="Rate per hour"
             type="text"
+            value={rate}
             fullWidth
             onChange={(event) => handleChange(event, 'rate')}
             required={true}
@@ -181,6 +198,7 @@ function AddTeamMember(props) {
             id="message"
             label="Short Message"
             type="text"
+            value={message}
             fullWidth
             onChange={(event) => handleChange(event, 'message')}
             required={true}

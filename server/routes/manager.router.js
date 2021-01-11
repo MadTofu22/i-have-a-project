@@ -98,8 +98,10 @@ router.post('/delete', async (req, res) => {
     }
 });
 
-router.put('/', (req, res) => {
+router.put('/ratechange', async (req, res) => {
     const connection = await pool.connect(); 
+    console.log(req.body);
+    
     try {
         await connection.query('BEGIN');
 
@@ -110,9 +112,13 @@ router.put('/', (req, res) => {
         const relationCheck = `SELECT "manager_id" FROM "designers" WHERE "id" = $1;`
         const authorizedCheckTwo = await connection.query(relationCheck, [req.body.designer_id]);
 
+        const updateRate = `UPDATE "designers"
+                                SET "rate" = $1
+                                WHERE "id" = $2`
+
         if (req.isAuthenticated && authorizedCheck.rows[0].user_type === 'manager' && authorizedCheckTwo.rows[0].manager_id == req.user.id) {
 
-            
+            connection.query(updateRate, [req.body.rate, req.body.designer_id])
             
             await connection.query('COMMIT');
             res.sendStatus(200);

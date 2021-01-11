@@ -23,7 +23,7 @@ class AddInformation extends Component {
 		this.careerLocationInputRef = React.createRef();
 		this.skillInputRef = React.createRef();
 		this.state = {
-			profile: props.profile,
+			profile: this.props.profile,
 			newProfile: {
 				career: {},
 				education: {},
@@ -31,14 +31,45 @@ class AddInformation extends Component {
 		};
 	}
 
+	fillForm = () => {
+		this.setState({
+			profile: {
+				career: [
+					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering Student'},
+				],
+				education: [
+					{location: 'Prime Digital Academy', degree: 'Full Stack Software Engineering'}
+				],
+				software: [
+					{label: 'AutoCAD', proficient: true},
+					{label: 'Blender', proficient: false},
+					{label: 'Adobe Illustrator', proficient: false},
+					{label: 'MS Paint', proficient: false},
+					{label: 'FreeCAD', proficient: false},
+				],
+				designer: {
+					phone: '(612)-555-4326',
+					linkedin: 'linkedin.com/peter-pierce',
+					photo: 'images/simon.png',
+				},
+				skills: [
+					{label: 'Communication', proficiency: 3},
+					{label: 'Texturing', proficiency: 3},
+					{label: 'Vector Math', proficiency: 3},
+				],
+				filled: true
+			}
+		})
+	}
+
 	componentDidMount = () => {
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
 			payload: this.props.store.user.designer_id
 		});
-		this.setState({
-			profile: this.props.store.profile,
-		});
+		// this.setState({
+		// 	profile: this.props.store.profile,
+		// });
 	}
 
 	// This function marks the state for the selected software as checked and toggles the save button enabled
@@ -78,7 +109,7 @@ class AddInformation extends Component {
 				skills: [
 					...this.state.profile.skills,
 					{
-						label: this.skillInputRef.current.value,
+						label: this.state.currentSkillInput,
 						proficiency: '3',
 					}
 				]
@@ -184,26 +215,36 @@ class AddInformation extends Component {
 	render() {
 		console.log('UpdateProfile/info has rendered - this.props:', this.props, this.state)
 		return (
-			<div className="componentViewWrap">
+		<div className="componentViewWrap">
+					<Button
+						onClick={() => {console.log('in sagvetohome',this.state.profile); this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
+					>Save and Go Home
+					</Button>
+			<div className="profileWrap">
 				<div className="addInfoWrap">
-					<h2>Add Information</h2>
 					<br/>
+					<h2>Add Information<button id='fillBuildProfile' onClick={this.fillForm}>A</button></h2>
 					<TextField
 						variant="outlined" 
 						type='text'
 						id='phoneNum'
 						label="Phone Number"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.phone : ''}
+						value={this.state.profile.filled ? '(612) 555-4326' : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'phone')}
 					/>
+					<br/>
+					<br/>
 					<TextField 
 						type='text'
 						variant="outlined" 
 						id='imgUrl'
 						label="Profile Image URL"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.photo : ''}
+						value={this.state.profile.filled ? 'images/simon.png' : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'photo')}
 					/>
+					<br/>
 					<br/>
 					<TextField 
 						type='text'
@@ -211,9 +252,11 @@ class AddInformation extends Component {
 						label="LinkedIn Page"
 						id='linkedinUrl'
 						onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
+						value={this.state.profile.filled ? 'linkedin.com/peter-pierce' : ''}
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.linkedin : ''}
 					/>
 					<br/>
+					<h2>Added Education</h2>
 					<TextField 
 						type='text'
 						variant="outlined" 
@@ -222,6 +265,7 @@ class AddInformation extends Component {
 						ref={this.educationTitleInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'education', 'degree')}
 					/>
+				
 					<TextField 
 						type='text'
 						variant="outlined" 
@@ -231,7 +275,7 @@ class AddInformation extends Component {
 						onChange={(event) => this.handleHistoryInputChange(event, 'education', 'location')}
 					/>
 					<Button color='default' onClick={() => this.updateHistoryList('education')}>Add</Button>
-					<h2>Added Education</h2>
+					
 					<ul>
 						{this.state.profile.education ? this.state.profile.education.map((row, index) => {
 							return <li key={index}>
@@ -243,6 +287,7 @@ class AddInformation extends Component {
 						}) : ''}
 					</ul>
 					<br/>
+					<h2>Added Work Experience</h2>
 					<TextField
 						variant="outlined" 
 						type='text'
@@ -250,7 +295,7 @@ class AddInformation extends Component {
 						ref={this.careerTitleInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'career', 'title')}
 					/>
-				
+			
 					<TextField
 						variant="outlined" 
 						type='text'
@@ -259,8 +304,9 @@ class AddInformation extends Component {
 						ref={this.careerLocationInputRef}
 						onChange={(event) => this.handleHistoryInputChange(event, 'career', 'location')}
 					/>
+					
 					<Button color='default' onClick={() => this.updateHistoryList('career')}>Add</Button>
-					<h2>Added Work Experience</h2>
+					
 					<ul>
 						{this.state.profile.career ? this.state.profile.career.map((job, index) => {
 
@@ -273,6 +319,7 @@ class AddInformation extends Component {
 						}) : ''}
 					</ul>
 				</div>
+				
 				<div className="addInfoWrap">
 					
 					<h2>Software</h2>
@@ -291,32 +338,36 @@ class AddInformation extends Component {
 								<label htmlFor={`software${index}`}>{software.label}</label>
 							</div>
 					}) : ''}
-					<div className='skillsSection'>
-						<h2>Add Skills</h2>
-						<TextField 
-							type='text' 
-							variant='outlined'
-							id='skillInput' 
-							label='Skill Name'
-							className='skillsTextField' 
-							ref={this.skillInputRef} 
-							onChange={this.handleSkillInputChange} />
-						<Button id='addSkill' value='Add' color='default' onClick={this.addSkill}>Add</Button>
-						{this.state.profile.skills ? this.state.profile.skills.map((skill, index) => {
-							return <AddedSkillLabel 
-										key={index} 
-										index={index} 
-										skill={skill} 
-										removeProfileItem={this.removeProfileItem} 
-										updateSkill={this.updateSkill} 
-									/>
-						}) : ''}
-					</div>
-					<br/>
-					<Button
-						onClick={() => {this.props.saveAndNavigate('/DesignerHomeView', this.state.profile)}}
-					>Save and Go Home
-					</Button>
+								<div >
+									<div className="skillTitleWrap">
+											<h2>Add Skills</h2>
+											<TextField 
+												type='text' 
+												variant='outlined'
+												id='skillInput' 
+												label='Skill Name'
+												className='skillsTextField' 
+												ref={this.skillInputRef} 
+												onChange={this.handleSkillInputChange} />
+											<Button id='addSkill' value='Add' color='default' onClick={this.addSkill}>Add</Button>
+									</div>
+										<div className="skillListWrap">
+											
+												<div className="skillsSection">
+													{this.state.profile.skills ? this.state.profile.skills.map((skill, index) => {
+														return 	<AddedSkillLabel 
+																		key={index} 
+																		index={index} 
+																		skill={skill} 
+																		removeProfileItem={this.removeProfileItem} 
+																		updateSkill={this.updateSkill} 
+																	/>
+																
+													}) : ''}
+												</div>
+										</div>
+						</div>
+					</div>					
 				</div>
 			</div>
 		);

@@ -23,15 +23,65 @@
 .loginBTN{
     width: 80px;
     margin-left: auto;
+    margin: auto;
+    left: 50%;
+  
 
 }
 .registerOption{
     color: black;
     height: 40px;
+    width:400px;
+    margin-left: auto;
 }
 .loginInput{
     padding-bottom: 10px;
     margin-right: auto;
     margin-left: auto;
     width: 200px;
+}
+
+#hiddenButtonLoginSimon {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    left: 40%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#hiddenButtonLoginPeter {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#hiddenButtonLoginElliot {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    left: 60%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

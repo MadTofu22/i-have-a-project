@@ -63,7 +63,8 @@ function* updateProfile(action) {
 	// Call each of the put and post requests for all of the arrays/objects
 	yield axios.put(`/api/profile/designers/${action.payload.designer_id}`, data.update);
 	for (let row of data.update.software) {
-		yield axios.put(`/api/profile/software/${action.payload.designer_id}`, row);
+		console.log('in updateProfile saga, the row or software update loop is', row)
+		yield axios.put(`/api/profile/software/${action.payload.designer_id}`, {proficient: row.proficient, index: (data.update.software.indexOf(row)+1),});
 	}
 
 	for(let section in data.create) {

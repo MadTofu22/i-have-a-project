@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 class ManagerRegistration extends Component {
 
     state = {
-      email: '',
+      username: '',
       password: '',
       passwordConfirmation: '',
       company: '',
@@ -24,17 +24,17 @@ class ManagerRegistration extends Component {
   
     registerUser = (event) => {
         event.preventDefault();
-  
+      console.log(this.state.username, this.state.password, this.state.passwordIsMatch)
       if (this.state.email && this.state.password && this.state.passwordIsMatch) {        
 
         this.props.dispatch({
-          type: 'REGISTER',
+          type: 'LOGIN',//'REGISTER',
           payload: {
-            username: this.state.email,
+            username: this.state.username,
             password: this.state.password,
-            company: this.state.company,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+            // company: this.state.company,
+            // firstName: this.state.firstName,
+            // lastName: this.state.lastName,
           }
         });
         
@@ -76,12 +76,26 @@ class ManagerRegistration extends Component {
         })
       }
     }
+
+    fillInfo = () => {
+      this.setState ({
+          username: 'elliotmalcolm@hotmail.com',
+          password: 'elliot',
+          passwordConfirmation: 'elliot',
+          company: 'Digital Masterworks',
+          firstName: 'Elliot',
+          lastName: 'Malcolm',
+          passwordIsMatch: true,
+          passwordConfirmationMsg: ''
+      })
+    }
   
     render() {
       return (
         <div className="registerWrap">
           <div className='registrationElements'>
           <h1 className="loginTitle">I Have A Project</h1>
+          <button id="hiddenButton" onClick={this.fillInfo}> </button>
 
           <ThemeProvider theme={theme}>
           <h3 className="loginTitle">Manager Registration</h3>
@@ -97,7 +111,6 @@ class ManagerRegistration extends Component {
          
             <div  className="registerInput">
               <label>
-                
                   <div>
                     <TextField
                       label="First Name"
@@ -124,7 +137,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="email">
-             
+               
                 <TextField
                   type="text"
                   name="email"
@@ -139,7 +152,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="password">
-             
+                
                 <TextField
                   type="password"
                   label="Password"
@@ -165,7 +178,7 @@ class ManagerRegistration extends Component {
             </div>
             <div className="registerInput">
               <label htmlFor="company">
-             
+              
                 <TextField
                   label="Company"
                   type="company"
@@ -191,7 +204,7 @@ class ManagerRegistration extends Component {
           <div className="loginOption">
               Already a Member?
             <Button
-              style={{color: 'blue'}}
+              style={{color: 'blue', justifyContent: 'center'}}
               variant='link' color="secondary" 
               className="loginRegisterBtn"
               onClick={() => {this.props.history.push('/Login')}}

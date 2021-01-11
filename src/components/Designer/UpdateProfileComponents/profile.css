@@ -1,0 +1,44 @@
+.skillListWrap{
+    display: inline-flex;
+    height: 400px;
+    overflow-y: scroll;
+    width: 300px;
+}
+.skillWrap{
+    padding-left: 15px;
+    padding-top: 20px;
+    font-size: 15px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: 30%;
+    width: 90%;
+}
+.skillTitleWrap{
+    width: 100%;
+}
+.profileWrap{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+.addInfoWrap{
+    padding-left: 20px;
+    width: 45%;
+}
+
+#fillBuildProfile {
+    background:transparent;
+    border:none;
+    outline:none;
+    /* display:block; */
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    /* left: 60%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    color: transparent;
+}

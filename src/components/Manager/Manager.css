@@ -22,7 +22,7 @@
     flex-direction: column;
     height: 100%;
     box-shadow: 0px 0px 20px rgba(70, 66, 66, 0.76);
-    background-color: rgb(238, 212, 60);
+    background-color: rgba(99, 159, 189, 0.806);
     z-index: 3;
     padding-right: 10px;
     padding-left: 10px;
@@ -136,6 +136,7 @@ h2.designer {
     height: 400px;
     overflow-y: scroll;
 }
+
 .searchBtn{
     margin-top: 55px;
 
@@ -169,7 +170,7 @@ h2.designer {
     background-position: center;
     min-height: 76vh;
     padding-top: 30px;
-   padding-bottom: 30px;
+    padding-bottom: 30px;
 }
 
 /* MANAGER REGISTRATION*/
@@ -216,4 +217,39 @@ h2.designer {
 }
 .registerWrap{
     margin-top: 5%;
+}
+
+#hiddenButton {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+/* MY DESIGNERS */
+.teamDesignersWrap{
+    width: 70%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+}
+.teamDesignersWrap{
+    height: 300px;
+}
+.myDesignerInfo{
+    height: 900px;
+}
+.contractDesignerWrap{
+    height: 45%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }

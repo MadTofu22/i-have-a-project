@@ -40,7 +40,11 @@ class AddedSkillLabel extends Component {
     render () {
         console.log(this)
         return (
+            <div className="skillWrap">
             <Paper className='componentViewWrap'>
+               
+
+                
                 <h3>{this.props.skill.label}</h3>
                 <TextField 
                     type='number' 
@@ -58,6 +62,7 @@ class AddedSkillLabel extends Component {
                     <DeleteIcon fontSize="small" />
                 </IconButton>
             </Paper>
+            </div>
         );
     }
 }
