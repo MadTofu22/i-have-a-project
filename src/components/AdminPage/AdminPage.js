@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Button } from '@material-ui/core';
 
 import './AdminPage.css'
 import { DataGrid } from '@material-ui/data-grid';
@@ -27,11 +28,24 @@ class AdminPage extends Component {
         })
     }  
 
+    handleLogout = () => {
+        this.props.history.push('/Login');
+        this.props.dispatch({type: 'LOGOUT'});
+    }
+
     render() {
         return (
             <div className="adminViewWrap">
             <div className='adminInformation' style={{ height: 450, width: '100%' }}>
-                <h1>Administrative Services</h1>
+            <div className='adminHeader'>
+                <h1>Administrative Services</h1> 
+                <div className='headerButton' >
+                     <Button 
+							onClick={() => this.handleLogout()}
+							>Logout
+					</Button>
+                </div>
+                </div>
                 <div className='adminDataGrid'>
                     <DataGrid
                         columns={[
@@ -54,6 +68,7 @@ class AdminPage extends Component {
                         rows={this.props.store.admin}
                     />
                 </div>
+              
             </div>
             </div>
         );
