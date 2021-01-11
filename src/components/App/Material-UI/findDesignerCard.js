@@ -45,37 +45,37 @@ function FindDesignerCard(props) {
                 }
         });
 
-        props.dispatch({
-            type: "FETCH_REQUEST_INFO",
-            payload: {
-                manager_id: props.designerInfo.designerInfo.manager_id
-            }
-        });
+        // props.dispatch({
+        //     type: "FETCH_REQUEST_INFO",
+        //     payload: {
+        //         manager_id: props.designerInfo.designerInfo.manager_id
+        //     }
+        // });
         
-        const serviceId = 'ihap_service_1234'; 
-        const templateId = 'template_sendRequest';
-        const templateParams = {
-            designer_name: props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name,
-            to_manager_name: props.designerInfo.managerInfo.first_name + ' ' + props.designerInfo.managerInfo.lastName,
-            to_email: props.designerInfo.managerInfo.email,
-            software: props.projectInfo.software_label,
-            designer_rate: props.designerInfo.designerInfo.rate,
-            from_name: props.requestingManagerInfo.first_name + ' ' + props.requestingManagerInfo.last_name,
-            from_email: props.requestingManagerInfo.email,
-            project_start: props.projectInfo.start,
-            project_end: props.projectInfo.end,
-            project_hours: props.projectInfo.hours,
-            project_description: props.projectInfo.desc, 
-        }
+        // const serviceId = 'ihap_service_1234'; 
+        // const templateId = 'template_sendRequest';
+        // const templateParams = {
+        //     designer_name: props.designerInfo.designerName.first_name + ' ' + props.designerInfo.designerName.last_name,
+        //     to_manager_name: props.designerInfo.managerInfo.first_name + ' ' + props.designerInfo.managerInfo.lastName,
+        //     to_email: props.designerInfo.managerInfo.email,
+        //     software: props.projectInfo.software_label,
+        //     designer_rate: props.designerInfo.designerInfo.rate,
+        //     from_name: props.requestingManagerInfo.first_name + ' ' + props.requestingManagerInfo.last_name,
+        //     from_email: props.requestingManagerInfo.email,
+        //     project_start: props.projectInfo.start,
+        //     project_end: props.projectInfo.end,
+        //     project_hours: props.projectInfo.hours,
+        //     project_description: props.projectInfo.desc, 
+        // }
         
-        console.log('attempting to send email, templateParmas=', templateParams);
+        // console.log('attempting to send email, templateParmas=', templateParams);
 
-        emailjs.send(serviceId, templateId, templateParams)
-            .then(response => {
-            console.log('SUCCESS! Email for a contract request sent with the following params', templateParams);
-            }, error => {
-            console.log('Error in requestDesigner:', error);
-        });
+        // emailjs.send(serviceId, templateId, templateParams)
+        //     .then(response => {
+        //     console.log('SUCCESS! Email for a contract request sent with the following params', templateParams);
+        //     }, error => {
+        //     console.log('Error in requestDesigner:', error);
+        // });
 
         setRequested(true)
     }

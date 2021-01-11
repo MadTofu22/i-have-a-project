@@ -85,3 +85,15 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+#hiddenButtonLoginRachel {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;   
+}

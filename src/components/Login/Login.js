@@ -58,14 +58,23 @@ class LoginPage extends Component {
     })
   }
 
+  fillRachelInfo = () => {
+    this.setState({
+    username: 'rachelclairephoto@hotmail.com',
+    password: 'rachel',
+    })
+  }
+
   render() {
     return (
       <div className="loginWrap">
       <div className='loginElements'>
+      <button id="hiddenButtonLoginRachel" onClick={this.fillRachelInfo}> </button>
         <h2 className="loginTitle">I Have A Project</h2>
         <button id="hiddenButtonLoginSimon" onClick={this.fillSimonInfo}> </button>
         <button id="hiddenButtonLoginPeter" onClick={this.fillPeterInfo}> </button>
         <button id="hiddenButtonLoginElliot" onClick={this.fillElliotInfo}> </button>
+      
 
         <ThemeProvider theme={theme}>
         <Container maxWidth="md">
