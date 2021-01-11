@@ -38,7 +38,7 @@ class AddInformation extends Component {
 					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering Student'},
 				],
 				education: [
-					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering'}
+					{location: 'Prime Digital Academy', degree: 'Full Stack Software Engineering'}
 				],
 				software: [
 					{label: 'AutoCAD', proficient: true},
@@ -52,6 +52,12 @@ class AddInformation extends Component {
 					linkedin: 'linkedin.com/peter-pierce',
 					photo: 'images/simon.jpg',
 				},
+				skills: [
+					{label: 'Communication', proficiency: 3},
+					{label: 'Texturing', proficiency: 3},
+					{label: 'Vector Math', proficiency: 3},
+				],
+				filled: true
 			}
 		})
 	}
@@ -224,6 +230,7 @@ class AddInformation extends Component {
 						id='phoneNum'
 						label="Phone Number"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.phone : ''}
+						value={this.state.profile.filled ? '(612) 555-4326' : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'phone')}
 					/>
 					<br/>
@@ -234,6 +241,7 @@ class AddInformation extends Component {
 						id='imgUrl'
 						label="Profile Image URL"
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.photo : ''}
+						value={this.state.profile.filled ? 'images/simon.png' : ''}
 						onChange={(event) => this.handleInputChange(event, 'designer', 'photo')}
 					/>
 					<br/>
@@ -244,6 +252,7 @@ class AddInformation extends Component {
 						label="LinkedIn Page"
 						id='linkedinUrl'
 						onChange={(event) => this.handleInputChange(event, 'designer', 'linkedin')}
+						value={this.state.profile.filled ? 'linkedin.com/peter-pierce' : ''}
 						defaultValue={this.state.profile.designer ? this.state.profile.designer.linkedin : ''}
 					/>
 					<br/>
