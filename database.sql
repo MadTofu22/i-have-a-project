@@ -42,7 +42,7 @@ CREATE TABLE "projects_designers_join" (
 	"designer_id" INT REFERENCES "designers" NOT NULL,
 	"project_id" INT REFERENCES "projects" NOT NULL,
 	"rate" DECIMAL,
-	"hours_est" int,
+	"hours_est" int
 );
 
 CREATE TABLE "designer_calendar_item" (
@@ -84,7 +84,7 @@ create table "designer_software_join" (
 
 INSERT INTO "software" ("label")
 VALUES ('AutoCAD'),
-('Blendr'),
+('Blender'),
 ('Adobe Illustrator'),
 ('MS Paint'),
 ('FreeCAD');
