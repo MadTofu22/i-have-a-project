@@ -10,7 +10,6 @@ import Divider from '@material-ui/core/Divider'
 import '../Designer.css'
 
 class MyProfile extends Component {
-
 	
 	componentDidMount = () => {
 		this.props.dispatch({type: 'FETCH_PROFILE', payload: this.props.store.user.designer_id});

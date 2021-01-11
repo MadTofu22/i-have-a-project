@@ -9,7 +9,7 @@ import AddInformation from './UpdateProfileComponents/AddInformation';
 class UpdateProfile extends Component {
 	
 	state = {
-		profile: this.props.store.profile,
+		profile: {}
 	};
 
 	componentDidMount = () => {
@@ -18,9 +18,9 @@ class UpdateProfile extends Component {
 			type: 'FETCH_PROFILE',
 			payload: this.props.store.user.designer_id
 		});
-		this.setState({
-			profile: this.props.store.profile,
-		});
+		// this.setState({
+		// 	profile: this.props.store.profile,
+		// });
 	}
 	setData = () => {
 		console.log('setting data in update profile')

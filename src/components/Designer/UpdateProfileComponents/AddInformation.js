@@ -23,7 +23,7 @@ class AddInformation extends Component {
 		this.careerLocationInputRef = React.createRef();
 		this.skillInputRef = React.createRef();
 		this.state = {
-			profile: props.profile,
+			profile: this.props.profile,
 			newProfile: {
 				career: {},
 				education: {},
@@ -31,14 +31,39 @@ class AddInformation extends Component {
 		};
 	}
 
+	fillForm = () => {
+		this.setState({
+			profile: {
+				career: [
+					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering Student'},
+				],
+				education: [
+					{location: 'Prime Digital Academy', title: 'Full Stack Software Engineering'}
+				],
+				software: [
+					{label: 'AutoCAD', proficient: true},
+					{label: 'Blender', proficient: false},
+					{label: 'Adobe Illustrator', proficient: false},
+					{label: 'MS Paint', proficient: false},
+					{label: 'FreeCAD', proficient: false},
+				],
+				designer: {
+					phone: '(612)-555-4326',
+					linkedin: 'linkedin.com/peter-pierce',
+					photo: 'images/simon.jpg',
+				},
+			}
+		})
+	}
+
 	componentDidMount = () => {
 		this.props.dispatch({
 			type: 'FETCH_PROFILE',
 			payload: this.props.store.user.designer_id
 		});
-		this.setState({
-			profile: this.props.store.profile,
-		});
+		// this.setState({
+		// 	profile: this.props.store.profile,
+		// });
 	}
 
 	// This function marks the state for the selected software as checked and toggles the save button enabled
@@ -78,7 +103,7 @@ class AddInformation extends Component {
 				skills: [
 					...this.state.profile.skills,
 					{
-						label: this.skillInputRef.current.value,
+						label: this.state.currentSkillInput,
 						proficiency: '3',
 					}
 				]
@@ -186,7 +211,8 @@ class AddInformation extends Component {
 		return (
 			<div className="componentViewWrap">
 				<div className="addInfoWrap">
-					<h2>Add Information</h2>
+					<h2>Add Information<button id='fillBuildProfile' onClick={this.fillForm}>A</button></h2>
+					
 					<br/>
 					<TextField
 						variant="outlined" 

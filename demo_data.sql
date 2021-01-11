@@ -52,7 +52,7 @@ VALUES ('16', '(612) 555-9843', 'www.linkedin.com/in/lucy-coleman', 'images/simo
 ('16', '(612) 555-4871', 'www.linkedin.com/in/harry-hoffman', 'images/simon.png', '40', '0', 'FALSE'),
 ('16', '(612) 555-3521', 'www.linkedin.com/in/oliver-cobb', 'images/simon.png', '40', '0', 'FALSE'),
 ('16', '(612) 555-2093', 'www.linkedin.com/in/daniel-howell', 'images/simon.png', '40', '0', 'FALSE'),
-('16', '(612) 555-3215', 'www.linkedin.com/in/peter-pierce', 'images/simon.png', '40', '0', 'FALSE');
+('16', '', '', '', '40', '0', 'FALSE');
 
 -- Populate the last wave of designers into the USER table
 INSERT INTO "user" ("email", "password", "user_type", "first_name", "last_name", "company", "designer_id")
@@ -179,7 +179,12 @@ values ('1', '1', 'true'),
 ('9', '2', 'true'),
 ('9', '1', 'true'),
 ('10', '6', 'true'),
-('10', '3', 'true');
+('10', '3', 'true'),
+('21', '1', 'false'),
+('21', '2', 'false'),
+('21', '3', 'false'),
+('21', '4', 'false'),
+('21', '5', 'false');
 
 INSERT INTO "projects" ("manager_id", "status", "due_date", "start", "notes", "project_name")
 VALUES ('16', 'inactive', '12/24/2020', '12/01/2020', 'Target post xmas ad, print', 'Target Post Christmas Advert'),
