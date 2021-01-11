@@ -136,6 +136,7 @@ h2.designer {
     height: 400px;
     overflow-y: scroll;
 }
+
 .searchBtn{
     margin-top: 55px;
 
@@ -238,16 +239,16 @@ h2.designer {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    overflow-y: scroll;
     height: 350px;
 }
-
+.teamDesignersWrap{
+    height: 300px;
+}
 .myDesignerInfo{
     height: 900px;
 }
 .contractDesignerWrap{
-    overflow-y: scroll;
-    height: 350px;
+    height: 45%;
     width: 80%;
     margin-left: auto;
     margin-right: auto;

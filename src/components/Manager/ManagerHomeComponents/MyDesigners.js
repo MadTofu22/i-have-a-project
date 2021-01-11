@@ -42,27 +42,28 @@ class MyDesigners extends Component {
 	render() {
 		return (
            
-                <div className="componentViewWrap">
-                 <h3 className="pageTitle">My Designers:</h3>
+            <div className="componentViewWrap">
 
-            <div  className="myDesignerInfo">
-                <div>
-                    <h1>Team Designers</h1>
-                    <div  className="teamDesignersWrap" >
-                    {this.props.store.user && 
-                    <div className="myDesignerButton">
-                        <AddTeamMember 
-                            managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
-                            managerEmail={this.props.store.user.email}
-                            managerCompany={this.props.store.user.company}
-                            managerId={this.props.store.user.id}
-                        />
+                <div  className="myDesignerInfo">
+                    <div>
+                       
+                        <div  className="teamDesignersWrap" >
+                        <h3>My Designers</h3>
+                            {this.props.store.user && 
+
+                            <div className="myDesignerButton">
+                                <AddTeamMember 
+                                    managerName={this.props.store.user.first_name + ' ' + this.props.store.user.last_name}
+                                    managerEmail={this.props.store.user.email}
+                                    managerCompany={this.props.store.user.company}
+                                    managerId={this.props.store.user.id}
+                                />
                     </div>
                     }
                    
                     {this.props.store.designer.length > 0 ?
+                    <div className="myDesignersTableWrap">
                         <DataGrid
-                      
                         autoHeight={true}
                             columns={[
                                     { field: 'id', headerName: 'ID', width: 100},
@@ -94,13 +95,15 @@ class MyDesigners extends Component {
                                 ]}
                             rows={this.props.store.designer}
                         />
+                     </div>
                     :
-                    <div>You don't have any designers yet</div>}
-                    </div>
+                    <div>You don't have any designers yet</div>
+                    }
+                    </div>                   
                 </div>
                
-                <div className="contractDesignerWrap">
-                    <h1>Contract Designers</h1>
+                <div >
+                    <h3>Contract Designers</h3>
 
                         <Button 
                             style={{
@@ -110,14 +113,14 @@ class MyDesigners extends Component {
                             onClick={() => this.handleNavTo()}
                             ><SearchIcon/> Find Designer
                         </Button>
-
+                        <div className="contractDesignerWrap">
                         {this.props.store.contractDesigners.length > 0 ?
                         <DataGrid
                       
                         autoHeight={true}
                             columns={[
                                     { field: 'id', headerName: 'ID', width: 100},
-                                    { field: 'company', headerName: 'Compnany',  width: 200},
+                                    { field: 'company', headerName: 'Company',  width: 200},
                                     { field: 'first_name', headerName: 'First Name',  width: 200},
                                     { field: 'last_name', headerName: 'Last Name',  width: 200},
                                     { field: 'rate', headerName: 'Rate',  width: 200},
@@ -127,7 +130,7 @@ class MyDesigners extends Component {
                         />
                     :
                     <div>You don't have any designers yet</div>}
-                    
+                    </div>
                 </div>
                 
                 </div>
