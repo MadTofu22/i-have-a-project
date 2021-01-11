@@ -118,6 +118,7 @@ class ContractRequests extends Component {
                         <TableCell>Hourly Rate</TableCell>
                         <TableCell>Date Submitted</TableCell>
                         <TableCell>Status</TableCell>
+                        <TableCell>Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
