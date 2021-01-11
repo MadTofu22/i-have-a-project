@@ -1,0 +1,16 @@
+.tableHeader{
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+.tableH{
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+.tableT{
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+.MuiTableHead-root{font-size: 100px;}
