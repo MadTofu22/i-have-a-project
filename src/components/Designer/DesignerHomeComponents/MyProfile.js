@@ -19,8 +19,6 @@ class MyProfile extends Component {
 	render() {
 		return (
 			<div className="componentViewWrap">
-				<h3 className='pageTitle'>My Profile:</h3>
-
 				<div className="myProfileWrap">
 					<div className="left-ProfileColumn">
 	
@@ -69,7 +67,7 @@ class MyProfile extends Component {
 									return <p className='educationItem' key={index}>{degree.degree} at {degree.location}</p>
 								})
 								:
-								'No Education History Added'
+								<p>No Education History Added</p>
 							}
 								</div>
 						</div>
@@ -85,7 +83,7 @@ class MyProfile extends Component {
 											}
 										})
 										:
-										'No Proficient Software Listed'
+										<p>No Proficient Software Listed</p>
 										}
 									</div>						
 							</div>
@@ -111,7 +109,7 @@ class MyProfile extends Component {
 					
 									})
 									:
-									'No Additional Skills Added'
+									<p>No Additional Skills Added</p>
 								}
 								 </div>
 							</div>
