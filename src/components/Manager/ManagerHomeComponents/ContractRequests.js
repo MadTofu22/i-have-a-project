@@ -71,9 +71,8 @@ class ContractRequests extends Component {
         return (
     
             <div className="componentViewWrap">
-            <div className="pageTitle titleWrap">
-                Contract Requests
-            </div>
+                <br/>
+                <br/>
             <h2>Inbox:</h2>
             <TableContainer component={Paper}>
             <Table>
@@ -110,7 +109,10 @@ class ContractRequests extends Component {
                     </TableBody>
                     </Table>
                 </TableContainer>
+                <br/>
+                <br/>
             <h2>Outbox:</h2>
+            
             <TableContainer component={Paper}>
             <Table>
                 <TableHead>
@@ -148,6 +150,8 @@ class ContractRequests extends Component {
                 </TableBody>
             </Table>
             </TableContainer>
+            <br/>
+            <br/>
             </div>
 
         );

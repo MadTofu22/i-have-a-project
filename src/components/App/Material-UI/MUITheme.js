@@ -13,15 +13,15 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export const theme = createMuiTheme({
     palette: {
         primary: {
-          main: '#ffcc80',
+          main: '#458cf7',
         },
         secondary: {
-          main: '#e57373',
+          main: '#7ddbf0',
         },
       },
     typography: {
         fontFamily: '"Helvetica Neue"',
-        size: 200
+        size: 100
     }
     
 });

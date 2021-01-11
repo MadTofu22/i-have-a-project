@@ -58,9 +58,9 @@ class Dashboard extends Component {
         return (
             <ThemeProvider class={theme}>
             <div className='componentViewWrap'>
-                <h3 className='pageTitle'>My Projects:</h3>
+            <br/>
                 <div className='projectsTableWrap'>
-                    
+                    <br/>
                     {this.props.store.projects.length > 0 ?
                          
                         <DataGrid className='projectsTable' 

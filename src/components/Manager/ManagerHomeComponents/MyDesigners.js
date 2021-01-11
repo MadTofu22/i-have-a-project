@@ -43,12 +43,13 @@ class MyDesigners extends Component {
 		return (
            
             <div className="componentViewWrap">
-
+                    <br/>
+                    <br/>
                 <div  className="myDesignerInfo">
                     <div>
                        
                         <div  className="teamDesignersWrap" >
-                        <h3>My Designers</h3>
+                        <h3>My Team Designers</h3>
                             {this.props.store.user && 
 
                             <div className="myDesignerButton">

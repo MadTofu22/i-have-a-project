@@ -12,10 +12,10 @@ class Projects extends Component {
 		this.props.history.push(`/DesignerHomeView/ProjectDetails/${row.row.project_id}`)
 	}
 
+
 	render() {
 		return (
 			<div className="componentViewWrap" >
-				 <h3 className='pageTitle'>My Projects:</h3>
 				{this.props.store.projects.length > 1 ?
 					<div className="projectsTableWrap">
 					<DataGrid
