@@ -71,24 +71,23 @@ class ContractRequests extends Component {
     
             <div className="componentViewWrap">
             <div className="pageTitle titleWrap">
-           
                 Contract Requests
             </div>
-            <div>Inbox:</div>
+            <h2>Inbox:</h2>
             <TableContainer component={Paper}>
             <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Inquiring Manager</TableCell>
-                            <TableCell>Requested Designer</TableCell>
-                            <TableCell>Project Timeline</TableCell>
-                            <TableCell>Date Received</TableCell>
-                        </TableRow>
-                    </TableHead> 
-                    <TableBody>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Inquiring Manager</TableCell>
+                        <TableCell>Requested Designer</TableCell>
+                        <TableCell>Project Timeline</TableCell>
+                        <TableCell>Date Received</TableCell>
+                    </TableRow>
+                </TableHead> 
+                <TableBody>
                         {this.props.store.inbox.length > 0 ?
-                                this.props.store.inbox.map((inbox, index) => {
-                                    if (inbox.contractData.request_status !== 'completed'){
+                            this.props.store.inbox.map((inbox, index) => {
+                                if (inbox.contractData.request_status !== 'completed'){
                                     return(
                                         <TableRow key={index}>                                       
                                             <TableCell>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</TableCell>
@@ -108,7 +107,8 @@ class ContractRequests extends Component {
                     </TableBody>
                     </Table>
                 </TableContainer>
-            <div>Outbox:</div>
+            <h2>Outbox:</h2>
+            <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -124,7 +124,7 @@ class ContractRequests extends Component {
                 <TableBody>
                     
                     {this.props.store.outbox.length > 0 ?
-                                this.props.store.outbox.map((outbox) => {
+                            this.props.store.outbox.map((outbox) => {
                                     return(
                                         <TableRow>                                        
                                             <TableCell>{outbox.designerData.first_name + " " + outbox.designerData.last_name}</TableCell>
@@ -143,9 +143,10 @@ class ContractRequests extends Component {
                                 }
                           
                 </TableBody>
-          </Table>
-    
+            </Table>
+            </TableContainer>
             </div>
+
         );
     }
 }
