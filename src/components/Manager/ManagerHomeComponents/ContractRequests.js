@@ -69,7 +69,6 @@ class ContractRequests extends Component {
 
     render () {
         return (
-    
             <div className="componentViewWrap">
                 <br/>
                 <br/>
@@ -137,7 +136,7 @@ class ContractRequests extends Component {
                                             <TableCell>{outbox.contractData.project_name}</TableCell>
                                             <TableCell>{outbox.designerData.rate}</TableCell>
                                             <TableCell>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</TableCell>
-                                            <TableCell>{outbox.contractData.status}</TableCell>
+                                            <TableCell>{outbox.contractData.request_status}</TableCell>
                                             <TableCell><button onClick={() => this.handleOutboxDelete(outbox.contractData.contract_id, this.props.store.user.id)}>delete</button></TableCell>
                                         </TableRow>
                                     )

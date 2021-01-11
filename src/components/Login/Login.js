@@ -60,7 +60,7 @@ class LoginPage extends Component {
 
   fillRachelInfo = () => {
     this.setState({
-    username: 'rachelclairephoto@hotmail.com',
+    username: 'rachelclairephoto@gmail.com',
     password: 'rachel',
     })
   }

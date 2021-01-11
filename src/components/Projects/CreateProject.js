@@ -67,6 +67,23 @@ class CreateProject extends Component {
 			type: "FETCH_DESIGNERS"
 		})
 	}
+
+	fillInfo = () => {
+		this.setState({
+			newProject: {
+				project_name: 'New Product Line for Prime',
+				notes: '3D render for the protoypes of a new product line that Prime wants to roll out before Q4.',
+				due_date: '2021-01-29',
+				start: '2021-01-11',
+				status: 'New',
+				TeamDesigners: [
+				
+			],
+			},
+			filled: true,
+		});
+	}
+
 	handleSetEstHours = (designerID, event) => {
 		let newDesignerArray = JSON.parse(JSON.stringify(this.state.newProject.TeamDesigners))
 		console.log(this.state.newProject.TeamDesigners);
@@ -90,10 +107,11 @@ class CreateProject extends Component {
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className='componentViewWrap'>
 				<ThemeProvider theme={theme}>
-				<h1>Enter New Project Information</h1>
+				<h1><button id="hiddenButton" onClick={this.fillInfo}>A</button>Enter New Project Information</h1>
 				<form onSubmit={(event) => this.handleSubmit(event)} >
 					<div className="createProjectForm">
 						<div className="createProject-left">
@@ -102,6 +120,7 @@ class CreateProject extends Component {
 									id="outlined-basic" 
 									label="Project Name" 
 									variant="outlined" 
+									value={this.state.filled ? this.state.newProject.project_name : ''}
 									onChange={(event) => this.handlechange(event, 'project_name')}
 								/>
 							</div>
@@ -111,7 +130,8 @@ class CreateProject extends Component {
 									id="date"
 									label="Start Date"
 									type="date"
-									variant="outlined" 
+									variant="outlined"
+									value={this.state.filled ? this.state.newProject.start : ''} 
 									InputLabelProps={{
 									shrink: true,
 									}}
@@ -123,6 +143,7 @@ class CreateProject extends Component {
 									label="Due Date"
 									type="date"
 									variant="outlined" 
+									value={this.state.filled ? this.state.newProject.due_date : ''}
 									InputLabelProps={{
 									shrink: true,
 									}}
@@ -135,6 +156,7 @@ class CreateProject extends Component {
 									variant="outlined"
 									label="Short Description"
 									multiline
+									value={this.state.filled ? this.state.newProject.notes : ''}
 									rows={4}
 									onChange={(event) => this.handlechange(event, 'notes')}
 									helperText="Enter Quick Description of Project"
@@ -152,7 +174,7 @@ class CreateProject extends Component {
 									label="Status"
 									onChange={(event) => this.handlechange(event, 'status')}
 									helperText="Select Project Status"
-									value={this.state.newProject.status}
+									value={this.state.filled ? this.state.newProject.status : ''}
 									>
 									{this.state.status.map((option) => (
 										<MenuItem key={option} value={option}>
