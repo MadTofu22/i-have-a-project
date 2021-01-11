@@ -3,6 +3,12 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
@@ -58,37 +64,40 @@ class ContractRequests extends Component {
             payload: {id, designerId, managerId, projectId, action}
         })
     }
+       
 
     render () {
         return (
-        
+    
             <div className="componentViewWrap">
             <div className="pageTitle titleWrap">
+           
                 Contract Requests
             </div>
             <div>Inbox:</div>
-                <table> 
-                    <thead>
-                        <tr>
-                            <th>Inquiring Manager</th>
-                            <th>Requested Designer</th>
-                            <th>Project Timeline</th>
-                            <th>Date Received</th>
-                        </tr>
-                    </thead> 
-                        <tbody>
+            <TableContainer component={Paper}>
+            <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Inquiring Manager</TableCell>
+                            <TableCell>Requested Designer</TableCell>
+                            <TableCell>Project Timeline</TableCell>
+                            <TableCell>Date Received</TableCell>
+                        </TableRow>
+                    </TableHead> 
+                    <TableBody>
                         {this.props.store.inbox.length > 0 ?
-                                this.props.store.inbox.map((inbox) => {
+                                this.props.store.inbox.map((inbox, index) => {
                                     if (inbox.contractData.request_status !== 'completed'){
                                     return(
-                                        <tr>                                        
-                                        <td>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</td>
-                                        <td>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</td>
-                                        <td>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</td>
-                                        <td>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'accepted')}>accept</button></td>
-                                        <td><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'denied')}>deny</button></td>
-                                        </tr>
+                                        <TableRow key={index}>                                       
+                                            <TableCell>{inbox.managerData.first_name + " " + inbox.managerData.last_name}</TableCell>
+                                            <TableCell>{inbox.designerData.first_name + " " + inbox.designerData.last_name}</TableCell>
+                                            <TableCell>{this.dateFunction(inbox.contractData.start.slice(0,10)) + " - " + this.dateFunction(inbox.contractData.due_date.slice(0,10))}</TableCell>
+                                            <TableCell>{this.dateFunction(inbox.contractData.date_sent.slice(0,10))}</TableCell>
+                                            <TableCell><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'accepted')}>accept</button></TableCell>
+                                            <TableCell><button onClick={() => this.handleInboxAction(inbox.contractData.contract_id, inbox.designerData.designer_id, this.props.store.user.id, inbox.contractData.project_id, 'denied')}>deny</button></TableCell>
+                                        </TableRow>
                                     )
                                     }
                                 })
@@ -96,34 +105,35 @@ class ContractRequests extends Component {
                                 <>
                                 </>
                                 }
-                        </tbody>
-                </table>
+                    </TableBody>
+                    </Table>
+                </TableContainer>
             <div>Outbox:</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Requested Designer Name</th>
-                        <th>Team Manager</th>
-                        <th>Project Name</th>
-                        <th>Hourly Rate</th>
-                        <th>Date Submitted</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Requested Designer Name</TableCell>
+                        <TableCell>Team Manager</TableCell>
+                        <TableCell>Project Name</TableCell>
+                        <TableCell>Hourly Rate</TableCell>
+                        <TableCell>Date Submitted</TableCell>
+                        <TableCell>Status</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     
                     {this.props.store.outbox.length > 0 ?
                                 this.props.store.outbox.map((outbox) => {
                                     return(
-                                        <tr>                                        
-                                        <td>{outbox.designerData.first_name + " " + outbox.designerData.last_name}</td>
-                                        <td>{outbox.managerData.first_name + " " + outbox.managerData.last_name}</td>
-                                        <td>{outbox.contractData.project_name}</td>
-                                        <td>{outbox.designerData.rate}</td>
-                                        <td>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</td>
-                                        <td>{outbox.contractData.status}</td>
-                                        <td><button onClick={() => this.handleOutboxDelete(outbox.contractData.contract_id, this.props.store.user.id)}>delete</button></td>
-                                        </tr>
+                                        <TableRow>                                        
+                                            <TableCell>{outbox.designerData.first_name + " " + outbox.designerData.last_name}</TableCell>
+                                            <TableCell>{outbox.managerData.first_name + " " + outbox.managerData.last_name}</TableCell>
+                                            <TableCell>{outbox.contractData.project_name}</TableCell>
+                                            <TableCell>{outbox.designerData.rate}</TableCell>
+                                            <TableCell>{this.dateFunction(outbox.contractData.date_sent.slice(0,10))}</TableCell>
+                                            <TableCell>{outbox.contractData.status}</TableCell>
+                                            <TableCell><button onClick={() => this.handleOutboxDelete(outbox.contractData.contract_id, this.props.store.user.id)}>delete</button></TableCell>
+                                        </TableRow>
                                     )
                                 })
                                 :
@@ -131,8 +141,8 @@ class ContractRequests extends Component {
                                 </>
                                 }
                           
-                </tbody>
-            </table>
+                </TableBody>
+          </Table>
     
             </div>
         );
