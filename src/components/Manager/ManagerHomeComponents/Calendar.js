@@ -112,7 +112,7 @@ class ManagerCalendar extends Component {
         return (
             <div className="componentViewWrap">
                 <ThemeProvider theme={theme}>
-                <h2 className='pageTitle'>Designer Weekly Calendars</h2>
+                <br/>
                    {this.props.store.managerCalendar.length > 0 ?
                         this.props.store.managerCalendar.map( (element) => {
                             let totalAvailability = 0;

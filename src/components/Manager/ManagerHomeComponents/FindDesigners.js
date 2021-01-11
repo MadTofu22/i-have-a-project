@@ -70,10 +70,9 @@ class FindNewDesigner extends Component {
     render() {
       return (
         <div className="componentViewWrap">
+          <br/>
+          <br/>
           <ThemeProvider theme={theme}>
-                <div className="titleWrap">
-                 <h1 v>Find New Designer</h1>
-                </div>
           <div className="findDesignerPageWrap">
           <form onSubmit={(event) => this.searchDesigner(event)}>
             <div className="findDesignerWrap">

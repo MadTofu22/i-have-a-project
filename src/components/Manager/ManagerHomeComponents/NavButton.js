@@ -18,7 +18,7 @@ class NavButton extends Component {
                 
             <Button 
                 position="flex" 
-                color="secondary" 
+                color="primary" 
                 className="app-header">
             <div 
                 className={
