@@ -62,7 +62,7 @@ router.get('/outbox/:id', async (req, res) => {
 router.get('/inbox/:id', async (req, res) => {
     if (req.isAuthenticated) {
         const contractQueryText = `
-            SELECT *, contract_requests.id AS contract_id, FROM contract_requests
+            SELECT *, contract_requests.id AS contract_id FROM contract_requests
             JOIN projects ON projects.id = contract_requests.project_id
             JOIN software ON software.id = contract_requests.software_id
             WHERE contracted_manager_id = $1;`;

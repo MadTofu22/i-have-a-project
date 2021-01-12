@@ -137,6 +137,8 @@ class CreateProject extends Component {
 									}}
 									onChange={(event) => this.handlechange(event, 'start')}
 								/>
+								<br/>
+								<br/>
 
 								<TextField
 									id="date"
