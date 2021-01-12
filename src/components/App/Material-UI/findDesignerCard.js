@@ -152,7 +152,7 @@ function FindDesignerCard(props) {
 						<div className="profileContactInfo">
 							<div className="sectionHeader">Contact Info: </div>
 							<div className="sectionList">
-								<p>Manager Email: {props.store.user ?props.store.user.email : ''}</p>
+								<p>Manager Email: {props.designerInfo.managerInfo ? props.designerInfo.managerInfo.email : ''}</p>
 								<p>Linkedin URL: {props.store.profile.designer ? props.store.profile.designer.linkedin : ''}</p>
 							</div>
 						</div>
