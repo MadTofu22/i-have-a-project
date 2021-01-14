@@ -12,6 +12,7 @@ import MyProfile from '././DesignerHomeComponents/MyProfile.js'
 import Projects from '././DesignerHomeComponents/Projects.js'
 import ProjectDetails from '../Projects/ProjectDetails';
 import NavButton from '../Manager/ManagerHomeComponents/NavButton';
+import PasswordUpdate from '../Modals/PasswordUpdate'
 
 
 import Button from '@material-ui/core/Button'
@@ -71,6 +72,7 @@ class DesignerHomeView extends Component {
 						
 						<Divider className="menuDivider"  variant="middle"/>
                         <Button onClick={() => this.props.history.push('/UpdateProfile')} className='headerButton'>Update Profile</Button>
+						<PasswordUpdate/>
                         <Button 
 							className='headerButton' 
 							onClick={() => this.handleLogout()}
