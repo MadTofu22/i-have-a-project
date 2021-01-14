@@ -133,8 +133,9 @@ class FindNewDesigner extends Component {
                       <Select 
                         type='select'
                         variant="outlined"
+                        required
                         onChange={(event) => this.handleChange(event, 'project_id')}
-                        value={this.props.store.projects.length > 0 && this.state.newSearch.project_id }
+                        value={this.props.store.projects.length > 0 && this.state.newSearch.project_id}
                       >
                           {this.props.store.projects.map( (project) => {                            
                             return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
@@ -150,6 +151,7 @@ class FindNewDesigner extends Component {
                       onChange={(event) =>this.handleChange(event, 'software_id')}
                       value={this.state.newSearch.software_id}
                       variant="outlined"
+                      required
                     > 
                         <MenuItem value={0}>Select a Required Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {
