@@ -35,6 +35,25 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+router.put('/updatePassword', rejectUnauthenticated, async (req, res, next) => {
+  console.log(req.body);
+  
+    
+    const password = encryptLib.encryptPassword(req.body.password);
+
+    const queryText = `UPDATE "user" 
+                          SET "password" = $1
+                        WHERE "id" = $2 `
+      pool.query(queryText, [password, req.user.id])
+      .then( () => {
+        res.sendStatus(201)
+      })
+      .catch( (error) => {
+        console.log(error);
+        res.sendStatus(500)
+      })
+});
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

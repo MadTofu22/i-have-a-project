@@ -25,8 +25,18 @@ function* fetchUser(action) {
   }
 }
 
+function* updatePassword(action) {
+  try {
+    yield axios.put('/api/user/updatePassword', {password: action.payload})
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_DESIGNER_PASSWORD', updatePassword);
+
 }
 
 export default userSaga;
