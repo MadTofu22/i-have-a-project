@@ -51,7 +51,14 @@ class AddCalendarEvent extends Component{
 
    handleClose = () => {
     this.setState({
-      open: false
+      open: false,
+      clickEvent: {
+        dialog: 'Add Availability',
+				id: 0,
+				start: '',
+				hoursCommitted: '',
+        renderModal: false,
+  	}
     })
     this.props.closeClickEvent()
   };
