@@ -75,6 +75,7 @@ class FindNewDesigner extends Component {
 
 
     render() {
+      let hasProjects = this.props.store.projects.length > 0 ? true : false;
       return (
         <div className="componentViewWrap">
           <br/>
@@ -133,21 +134,26 @@ class FindNewDesigner extends Component {
                 <div>
                     
                   <label className="searchOptionLabel"> Details: </label>
-                  {this.props.store.projects.length > 0 &&
+                  {this.props.store.projects.length > 0 ? 
+                    this.props.store.projects.length > 0 &&
                     <div className="projectSearchInput">
                       <InputLabel>Choose a Project</InputLabel>
+                      
                       <Select 
                         type='select'
                         variant="outlined"
+                        required
                         onChange={(event) => this.handleChange(event, 'project_id')}
-                        value={this.props.store.projects.length > 0 && this.state.newSearch.project_id }
+                        value={this.props.store.projects.length > 0 && this.state.newSearch.project_id}
                       >
-                          {this.props.store.projects.map( (project) => {                            
-                            return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
-                          })}
+                            {this.props.store.projects.map( (project) => {                            
+                              return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
+                            })}
+                           
                       </Select>
                     </div>
-
+                    :
+                    <h4>Please create a project before searching.</h4>
                   }
             </div>
               <div className="softwareSearchInput">
@@ -156,6 +162,7 @@ class FindNewDesigner extends Component {
                       onChange={(event) =>this.handleChange(event, 'software_id')}
                       value={this.state.newSearch.software_id}
                       variant="outlined"
+                      required
                     > 
                         <MenuItem value={0}>Select a Required Software</MenuItem>
                         {this.props.store.software.map( (softwareObj) => {

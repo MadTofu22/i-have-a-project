@@ -219,6 +219,20 @@ h2.designer {
     margin-top: 5%;
 }
 
+#hiddenButton {
+    background:transparent;
+    border:none;
+    outline:none;
+    display:block;
+    height:48px;
+    width:32px;
+    cursor:pointer;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 /* MY DESIGNERS */
 .teamDesignersWrap{
     width: 70%;
@@ -243,8 +257,13 @@ h2.designer {
 .myDesignersTableWrap {
     height: 100%;
     padding-bottom: 10px;
+    overflow: hidden;
 }
 
 .contractDesignerSectionWrap {
     padding: 10em 0em;
+}
+
+.componentViewWrap {
+    
 }
