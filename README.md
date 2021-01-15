@@ -5,6 +5,9 @@ Our client described to us the fast moving world of creative design, how agency 
 Sometimes a project manager will have to quickly expand their team on a project by project basis to avoid negative consequences, such as missing deadlines, slow growth, and unhappy clients. These common downsides can have lasting impacts on the business and it’s team members.
 On the other side, a manager might have a surplus of unused talent, and be in a position to loan out a designer on their staff to a different team or company.
 
+##Images 
+![project page](https://github.com/ukkonendevs/i-have-a-project/blob/main/src/images/website.image.png)
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
