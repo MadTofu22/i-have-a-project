@@ -106,7 +106,7 @@ class MyDesigners extends Component {
                
                 <div className='contractDesignerSectionWrap'>
                     <h3>Contract Designers</h3>
-
+                        
                         <Button 
                             style={{
                                 marginBottom: '10px'
@@ -117,9 +117,9 @@ class MyDesigners extends Component {
                         </Button>
                         <div className="contractDesignerWrap">
                         {this.props.store.contractDesigners.length > 0 ?
+                        <div className="myDesignersTableWrap">
                         <DataGrid
-                      
-                        autoHeight={true}
+                            autoHeight={true}
                             columns={[
                                     { field: 'id', headerName: 'ID', width: 100},
                                     { field: 'company', headerName: 'Company',  width: 200},
@@ -130,8 +130,9 @@ class MyDesigners extends Component {
                                 ]}
                             rows={this.props.store.contractDesigners}
                         />
+                        </div>
                     :
-                    <div>You don't have any designers yet</div>}
+                    <h4>You don't have any designers yet</h4>}
                     </div>
                 </div>
                 

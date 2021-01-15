@@ -234,8 +234,7 @@ h2.designer {
     height: 1000px;
 }
 .contractDesignerWrap{
-    height: 45%;
-    width: 80%;
+    height: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -243,6 +242,7 @@ h2.designer {
 .myDesignersTableWrap {
     height: 100%;
     padding-bottom: 10px;
+    overflow: hidden;
 }
 
 .contractDesignerSectionWrap {

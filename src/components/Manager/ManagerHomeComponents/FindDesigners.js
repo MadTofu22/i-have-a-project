@@ -75,7 +75,7 @@ class FindNewDesigner extends Component {
 
 
     render() {
-      console.log('num of project on the find designers page', this.props.store.projects.length)
+      let hasProjects = this.props.store.projects.length > 0 ? true : false;
       return (
         <div className="componentViewWrap">
           <br/>
@@ -134,10 +134,11 @@ class FindNewDesigner extends Component {
                 <div>
                     
                   <label className="searchOptionLabel"> Details: </label>
-                  {this.props.store.projects.length > 0 &&
+                  {this.props.store.projects.length > 0 ? 
+                    this.props.store.projects.length > 0 &&
                     <div className="projectSearchInput">
                       <InputLabel>Choose a Project</InputLabel>
-                      {this.props.store.projects.length < 1 ? 
+                      
                       <Select 
                         type='select'
                         variant="outlined"
@@ -150,10 +151,9 @@ class FindNewDesigner extends Component {
                             })}
                            
                       </Select>
-                      :
-                      <h4>Please create a project before searching.</h4>
-                    }
                     </div>
+                    :
+                    <h4>Please create a project before searching.</h4>
                   }
             </div>
               <div className="softwareSearchInput">
