@@ -15,7 +15,7 @@ import Select from '@material-ui/core/Select';
 
 import FindDesignerCard from '../../App/Material-UI/findDesignerCard'
 import InputLabel from '@material-ui/core/InputLabel';
-import { preventDefault } from '@fullcalendar/react';
+import { TrainRounded } from '@material-ui/icons';
 
 
 class FindNewDesigner extends Component {
@@ -47,16 +47,23 @@ class FindNewDesigner extends Component {
     }
 
     handleHours = (event) => {
-      console.log(event.target.value, 'value of change');
-      
-     if (event.target.value >= 0 && Number(event.target.value) ) {
+      let characters = ['1','2','3','4','5','6','7','8','9','0']
+      let result = false
+       for (const number of characters) {
+         if (event.target.value[event.target.value.length - 1] == number) {
+           console.log(event.target.value[event.target.value.length - 1]);
+           
+           result = true
+         }
+       }
+      if (result === true) {
         this.setState({
           newSearch: {
             ...this.state.newSearch,
-            requested_hours: event.target.value
+            requested_hours: Number(event.target.value)
           }
         });
-     }
+      }
     }
     searchDesigner = (event) => {
       event.preventDefault()
@@ -114,8 +121,7 @@ class FindNewDesigner extends Component {
                             margin="dense"
                             variant="outlined"
                             id="name"
-                            label="Hours"
-                            type="number"
+
                             helperText="Hours Designer will need to be available for"
                             required
                             value={this.state.newSearch.requested_hours}

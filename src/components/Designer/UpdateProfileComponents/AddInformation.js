@@ -61,7 +61,8 @@ class AddInformation extends Component {
 	// This function updates the local state with the current input in the Enter Skill field
 	handleSkillInputChange = (event) => {
 
-		console.log(this.skillInputRef)
+
+		console.log(this.skillInputRef.current.value)
 		this.setState({
 			...this.state,
 			currentSkillInput: this.skillInputRef.current.value,
@@ -70,7 +71,7 @@ class AddInformation extends Component {
 
 	// This function adds a skill to the skills list array and sets the default rating to 3
 	addSkill = () => {
-
+		
 		this.setState({
 			...this.state,
 			profile: {
@@ -84,7 +85,8 @@ class AddInformation extends Component {
 				]
 			}
 		});
-		this.skillInputRef.current.value = '';	
+		console.log('skill added', this.skillInputRef.current);
+		
 	}
 
 	// This function updates the local state skills list with User added skills and their ratings.
@@ -307,7 +309,6 @@ class AddInformation extends Component {
 									<div className="skillTitleWrap">
 											<h2>Add Skills</h2>
 											<TextField 
-												type='text' 
 												variant='outlined'
 												id='skillInput' 
 												label='Skill Name'
