@@ -68,6 +68,7 @@ class FindNewDesigner extends Component {
 
 
     render() {
+      console.log('num of project on the find designers page', this.props.store.projects.length)
       return (
         <div className="componentViewWrap">
           <br/>
@@ -130,6 +131,7 @@ class FindNewDesigner extends Component {
                   {this.props.store.projects.length > 0 &&
                     <div className="projectSearchInput">
                       <InputLabel>Choose a Project</InputLabel>
+                      {this.props.store.projects.length < 1 ? 
                       <Select 
                         type='select'
                         variant="outlined"
@@ -137,12 +139,15 @@ class FindNewDesigner extends Component {
                         onChange={(event) => this.handleChange(event, 'project_id')}
                         value={this.props.store.projects.length > 0 && this.state.newSearch.project_id}
                       >
-                          {this.props.store.projects.map( (project) => {                            
-                            return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
-                          })}
+                            {this.props.store.projects.map( (project) => {                            
+                              return <MenuItem key={project.id} value={project.id}>{project.project_name}</MenuItem>
+                            })}
+                           
                       </Select>
+                      :
+                      <h4>Please create a project before searching.</h4>
+                    }
                     </div>
-
                   }
             </div>
               <div className="softwareSearchInput">
