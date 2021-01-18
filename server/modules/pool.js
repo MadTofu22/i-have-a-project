@@ -39,6 +39,8 @@ if (process.env.DATABASE_URL) {
   };
 } else {
   config = {
+    user: process.env.REACT_APP_PGUSER || '',
+    password: process.env.REACT_APP_PGPASS || '',
     host: 'localhost', // Server hosting the postgres database
     port: 5432, // env var: PGPORT
     database: 'i_have_a_project', // CHANGE THIS LINE! env var: PGDATABASE, this is likely the one thing you need to change to get up and running
